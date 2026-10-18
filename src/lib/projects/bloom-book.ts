@@ -1,3 +1,5 @@
+import { initialPagerState, pagerReducer, type PagerAction, type PagerState } from "./pager";
+
 /**
  * Bloom Book — Blossom Maria's flower journal. These are fictional
  * flowers from Maria's world.
@@ -56,29 +58,10 @@ export const BLOOM_ENTRIES: readonly BloomEntry[] = [
   },
 ];
 
-export interface BookState {
-  open: boolean;
-  page: number;
-}
-
-export type BookAction = { type: "open" } | { type: "close" } | { type: "next" } | { type: "prev" } | { type: "goto"; page: number };
-
-export const initialBookState: BookState = { open: false, page: 0 };
+export type BookState = PagerState;
+export type BookAction = PagerAction;
+export const initialBookState: BookState = initialPagerState;
 
 export function bookReducer(state: BookState, action: BookAction): BookState {
-  const last = BLOOM_ENTRIES.length - 1;
-  switch (action.type) {
-    case "open":
-      return { ...state, open: true };
-    case "close":
-      return { open: false, page: 0 };
-    case "next":
-      return state.open ? { ...state, page: Math.min(state.page + 1, last) } : state;
-    case "prev":
-      return state.open ? { ...state, page: Math.max(state.page - 1, 0) } : state;
-    case "goto":
-      return state.open && Number.isInteger(action.page) && action.page >= 0 && action.page <= last
-        ? { ...state, page: action.page }
-        : state;
-  }
+  return pagerReducer(state, action, BLOOM_ENTRIES.length);
 }

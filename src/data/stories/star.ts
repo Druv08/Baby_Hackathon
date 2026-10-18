@@ -139,10 +139,7 @@ export const STAR_PROFILE: CharacterProfile = {
   motto: "Every question is the beginning of a new discovery.",
 };
 
-/**
- * Star Maria's three creations. Metadata only for now: they stay `proposed`
- * until their interactive modules exist.
- */
+/** Star Maria's three creations — each a small playable experience. */
 export const STAR_PROJECTS: PortfolioProject[] = [
   {
     id: "constellation-builder",
@@ -150,8 +147,9 @@ export const STAR_PROJECTS: PortfolioProject[] = [
     description:
       "A magical stargazing board where visitors can connect glowing stars, create constellations, and discover the stories hidden in the night sky.",
     image: "/projects/star/constellation-builder.png",
-    status: "draft",
-    implementation: "proposed",
+    interactionId: "constellation-builder",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "dream-atlas",
@@ -159,8 +157,9 @@ export const STAR_PROJECTS: PortfolioProject[] = [
     description:
       "An enchanted atlas containing the constellations Maria discovered and the forgotten wishes hidden among them.",
     image: "/projects/star/dream-atlas.png",
-    status: "draft",
-    implementation: "proposed",
+    interactionId: "dream-atlas",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "stargazers-telescope",
@@ -168,7 +167,8 @@ export const STAR_PROJECTS: PortfolioProject[] = [
     description:
       "A magical telescope Maria created to help little explorers discover stars, moons, and hidden wonders across the night sky.",
     image: "/projects/star/stargazers-telescope.png",
-    status: "draft",
-    implementation: "proposed",
+    interactionId: "stargazers-telescope",
+    status: "ready",
+    implementation: "live",
   },
 ];

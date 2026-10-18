@@ -107,7 +107,7 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
               <span aria-hidden="true">🌷</span> My Creations
             </p>
             <h2 id="creations-title">Things I’ve made</h2>
-            <p>Three little creations from {character.name}’s garden. Try them all!</p>
+            <p>Three little creations from {character.name}’s {theme.workshop ?? "workshop"}. Try them all!</p>
           </header>
 
           <ul className={styles.cards}>

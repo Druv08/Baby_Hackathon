@@ -20,6 +20,9 @@ function readyStar(): FuturePath {
     ...FUTURES.find((f) => f.slug === "star")!,
     storyStatus: "ready",
     scenes,
+    // Synthetic fixture: no real projects, so playability is controlled per test.
+    projects: [],
+    portfolioStatus: "pending",
   };
   futurePathSchema.parse(future); // the fixture itself must be valid
   return future;

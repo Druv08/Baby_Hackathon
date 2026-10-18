@@ -15,6 +15,8 @@ export interface CharacterTheme {
   portraitAlt: string;
   /** Portfolio heading, e.g. "Garden Journal". */
   journalTitle?: string;
+  /** Where the creations come from, e.g. "garden". */
+  workshop?: string;
 }
 
 export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
@@ -34,6 +36,7 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentGlow: "rgba(247, 168, 196, 0.65)",
     portraitAlt: "Blossom Maria in a pink flowered bonnet and cape, holding a basket of blossoms beside a butterfly.",
     journalTitle: "Garden Journal",
+    workshop: "garden",
   },
   star: {
     label: "Star",
@@ -43,6 +46,7 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentGlow: "rgba(150, 120, 230, 0.55)",
     portraitAlt: "Star Maria in a starry purple hooded cloak, holding a glowing jar of stars.",
     journalTitle: "Stargazing Journal",
+    workshop: "observatory",
   },
   cloud: {
     label: "Cloud",

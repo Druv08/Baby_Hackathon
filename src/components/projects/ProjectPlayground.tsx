@@ -1,5 +1,8 @@
 "use client";
 
+import { ConstellationBuilder } from "@/components/star/ConstellationBuilder";
+import { DreamAtlas } from "@/components/star/DreamAtlas";
+import { StargazersTelescope } from "@/components/star/StargazersTelescope";
 import { BloomBook } from "./BloomBook";
 import { ButterflyCorner } from "./ButterflyCorner";
 import { DreamGarden } from "./DreamGarden";
@@ -9,6 +12,10 @@ const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
   "dream-garden": DreamGarden,
   "bloom-book": BloomBook,
   "butterfly-corner": ButterflyCorner,
+  // Star Maria
+  "constellation-builder": ConstellationBuilder,
+  "dream-atlas": DreamAtlas,
+  "stargazers-telescope": StargazersTelescope,
 };
 
 export function ProjectPlayground({ interactionId }: { interactionId: string }) {

@@ -30,7 +30,7 @@ export const FUTURES: FuturePath[] = [
     characterId: 3,
     heroImage: "/heroes/star.png",
     storyStatus: "ready",
-    portfolioStatus: "pending",
+    portfolioStatus: "ready",
     storyIntro: STAR_STORY_INTRO,
     scenes: STAR_SCENES,
     profile: STAR_PROFILE,
