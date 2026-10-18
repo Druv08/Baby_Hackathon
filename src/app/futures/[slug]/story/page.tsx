@@ -7,6 +7,7 @@ import { FloralDivider } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
 import { Portfolio } from "@/components/projects/Portfolio";
 import { FadeIn } from "@/components/story/FadeIn";
+import { RainbowCloud } from "@/components/cloud/RainbowCloud";
 import { HiddenConstellation } from "@/components/star/HiddenConstellation";
 import { HiddenSecret } from "@/components/story/GoldenSeed";
 import { StoryCompletion } from "@/components/story/StoryCompletion";
@@ -193,7 +194,8 @@ function AmbientLayer({ slug }: { slug: string }) {
 
 type SecretSpot =
   | { kind: "seed"; sceneId: number; left: string; top: string }
-  | { kind: "constellation"; sceneId: number };
+  | { kind: "constellation"; sceneId: number }
+  | { kind: "rainbow-cloud"; sceneId: number; left: string; top: string };
 
 /** Where each future's hidden collectible is tucked into its story. */
 const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
@@ -201,6 +203,8 @@ const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
   blossom: { kind: "seed", sceneId: 4, left: "11%", top: "71%" },
   // Three faint stars in the sky inside "The Forgotten Observatory".
   star: { kind: "constellation", sceneId: 2 },
+  // A tiny cloud drifting among the pink clouds of "Lost in the Endless Sky".
+  cloud: { kind: "rainbow-cloud", sceneId: 3, left: "91%", top: "63%" },
 };
 
 function OriginScene({
@@ -234,6 +238,9 @@ function OriginScene({
             <HiddenSecret futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
           )}
           {secret?.spot.kind === "constellation" && <HiddenConstellation futureSlug={secret.slug} />}
+          {secret?.spot.kind === "rainbow-cloud" && (
+            <RainbowCloud futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
+          )}
         </FadeIn>
 
         <FadeIn className={styles.panel}>

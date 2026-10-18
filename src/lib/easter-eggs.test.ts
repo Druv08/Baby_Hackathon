@@ -37,7 +37,7 @@ describe("secret registry", () => {
     const expected = {
       blossom: "Golden Seed",
       star: "Hidden Constellation",
-      cloud: "Secret Cloud",
+      cloud: "Secret Rainbow Cloud",
       aqua: "Hidden Pearl",
       inventor: "Secret Gear",
       forest: "Hidden Leaf",
