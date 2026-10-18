@@ -115,7 +115,11 @@ export default async function FuturePage({ params }: Params) {
                 <li key={project.id} className={styles.project}>
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   {project.description && <p>{project.description}</p>}
-                  {project.playable ? (
+                  {project.playable && enterHref ? (
+                    <Link href={`${enterHref}#project-${project.id}`} className="btn btn-primary">
+                      Play {project.title} <span aria-hidden="true">→</span>
+                    </Link>
+                  ) : project.playable ? (
                     <span className="badge">Ready to play</span>
                   ) : (
                     <span className="badge">

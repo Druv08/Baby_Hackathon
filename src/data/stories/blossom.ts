@@ -1,4 +1,5 @@
-import type { StoryIntro } from "@/types/future";
+import type { CharacterProfile, StoryIntro } from "@/types/future";
+import type { PortfolioProject } from "@/types/project";
 import type { StoryScene } from "@/types/story";
 
 /**
@@ -99,5 +100,59 @@ export const BLOSSOM_SCENES: StoryScene[] = [
       "Maria imagined a future where she could care for magical gardens and make the world a little more beautiful.",
       "And that was how she discovered one of her eight possible futures.",
     ].join("\n\n"),
+  },
+];
+
+export const BLOSSOM_PROFILE: CharacterProfile = {
+  species: "Baby red panda",
+  personality: ["Gentle", "curious", "patient", "caring", "optimistic"],
+  specialTalent: "Helping forgotten gardens bloom again",
+  home: "The Forgotten Garden",
+  theme: "Patience, kindness and growth",
+  about: [
+    "Hi! I’m Blossom Maria!",
+    "I take care of magical gardens, grow beautiful flowers, and create safe little homes for butterflies.",
+    "I believe that even the smallest seed can become something wonderful when someone cares for it.",
+  ],
+  whatIDo:
+    "I restore forgotten gardens, nurture magical plants, collect special seeds, and help tiny garden creatures find safe places to live.",
+  strengths: ["Patience", "Kindness", "Creativity", "Observation", "Caring for nature"],
+  journey: "I discovered my passion when I brought a forgotten garden back to life, starting with just one tiny seed.",
+  motto: "Every little flower deserves a chance to bloom.",
+};
+
+/**
+ * Blossom Maria's three creations — each a small playable experience.
+ * No Bloom Book artwork was supplied, so it has no image.
+ */
+export const BLOSSOM_PROJECTS: PortfolioProject[] = [
+  {
+    id: "dream-garden",
+    title: "Dream Garden",
+    description:
+      "A magical garden Maria created where visitors can plant seeds, water them, and watch beautiful flowers bloom.",
+    image: "/projects/blossom/dream-garden.png",
+    interactionId: "dream-garden",
+    status: "ready",
+    implementation: "live",
+  },
+  {
+    id: "bloom-book",
+    title: "Bloom Book",
+    description:
+      "Blossom Maria’s magical flower journal, filled with little discoveries, beautiful petals, and stories about the flowers she has cared for.",
+    interactionId: "bloom-book",
+    status: "ready",
+    implementation: "live",
+  },
+  {
+    id: "butterfly-corner",
+    title: "Butterfly Corner",
+    description:
+      "A peaceful little sanctuary Blossom Maria built to help butterflies find flowers, shelter, and a safe place to rest.",
+    image: "/projects/blossom/butterfly-corner.png",
+    interactionId: "butterfly-corner",
+    status: "ready",
+    implementation: "live",
   },
 ];

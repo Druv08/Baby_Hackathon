@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { FloralDivider } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
+import { Portfolio } from "@/components/projects/Portfolio";
 import { FadeIn } from "@/components/story/FadeIn";
 import { PetalLayer } from "@/components/story/PetalLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
@@ -134,13 +135,16 @@ export default async function StoryPage({ params }: Params) {
                 {reveal.character.name} — <span>The {reveal.character.profession}</span>
               </p>
               {reveal.character.tagline && <p className={styles.cardTagline}>“{reveal.character.tagline}”</p>}
-              <a href={`/futures/${view.slug}#creations`} className="btn btn-primary">
-                Explore My Creations <span aria-hidden="true">→</span>
+              <a href={future.profile ? "#portfolio" : `/futures/${view.slug}#creations`} className="btn btn-primary">
+                Explore My Creations <span aria-hidden="true">↓</span>
               </a>
             </FadeIn>
           </div>
         </div>
       </section>
+
+      {/* ── Portfolio and creations ──────────────────────────────────── */}
+      {future.profile && <Portfolio view={view} profile={future.profile} />}
 
       <FloralDivider />
 

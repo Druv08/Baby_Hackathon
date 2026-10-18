@@ -1,5 +1,5 @@
 import type { FuturePath } from "@/types/future";
-import { BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
+import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
 
 /**
  * The eight independent futures. To add content for one future, edit only its
@@ -17,33 +17,11 @@ export const FUTURES: FuturePath[] = [
     heroImage: "/heroes/blossom.png",
     storyCoverImage: "/heroes/blossom-story-cover.png",
     storyStatus: "ready",
-    portfolioStatus: "pending",
+    portfolioStatus: "ready",
     storyIntro: BLOSSOM_STORY_INTRO,
     scenes: BLOSSOM_SCENES,
-    projects: [
-      {
-        id: "dream-garden",
-        title: "Dream Garden",
-        description:
-          "A magical garden waiting to bloom again. Explore, plant, and help bring the colors back to life.",
-        status: "draft",
-        implementation: "proposed",
-      },
-      {
-        id: "bloom-book",
-        title: "Bloom Book",
-        description: "",
-        status: "pending",
-        implementation: "proposed",
-      },
-      {
-        id: "butterfly-corner",
-        title: "Butterfly Corner",
-        description: "",
-        status: "pending",
-        implementation: "proposed",
-      },
-    ],
+    profile: BLOSSOM_PROFILE,
+    projects: BLOSSOM_PROJECTS,
   },
   {
     id: 3,

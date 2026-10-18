@@ -52,7 +52,9 @@ describe("content helpers", () => {
 
   it("does not report proposed projects as playable", () => {
     for (const f of getAllFutures()) {
-      for (const p of f.projects) expect(isProjectPlayable(p)).toBe(false);
+      for (const p of f.projects) {
+        if (p.implementation !== "live") expect(isProjectPlayable(p)).toBe(false);
+      }
     }
     expect(
       isProjectPlayable({ id: "x", title: "X", description: "", status: "ready", implementation: "live", interactionId: "x" }),
