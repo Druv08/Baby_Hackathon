@@ -13,8 +13,8 @@
   height: var(--story-nav-height, 3.75rem);
   margin-bottom: var(--space-6);
   padding-inline: var(--gutter);
-  /* Nearly opaque so text scrolling underneath doesn't ghost through. */
-  background: rgba(255, 250, 244, 0.97);
+  /* Opaque so text scrolling underneath never ghosts through. */
+  background: #fffaf4;
   border-block: 1px solid rgba(194, 56, 111, 0.15);
   box-shadow: 0 6px 18px rgba(120, 40, 80, 0.08);
   backdrop-filter: blur(10px);

@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 248, 242, 0.82);
+  background: #fff8f2; /* solid so scrolled text never ghosts through */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(194, 56, 111, 0.12);

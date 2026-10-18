@@ -310,3 +310,12 @@
     bottom: 10%;
   }
 }
+
+/* Star reveal: golden four-point stars instead of petals. */
+.sparkleLayer[data-variant="stars"] span {
+  border-radius: 0;
+  background: #ffe08a;
+  box-shadow: none;
+  filter: drop-shadow(0 0 6px #ffd36a);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+}

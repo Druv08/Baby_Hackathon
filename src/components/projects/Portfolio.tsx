@@ -19,7 +19,9 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
             <p className="eyebrow">
               <span aria-hidden="true">📖</span> {theme.label} Portfolio
             </p>
-            <h2 id="portfolio-title">{character.name}’s Garden Journal</h2>
+            <h2 id="portfolio-title">
+              {character.name}’s {theme.journalTitle ?? "Journal"}
+            </h2>
           </header>
 
           <div className={styles.journal}>

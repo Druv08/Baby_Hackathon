@@ -290,3 +290,28 @@
     width: min(65%, 16rem);
   }
 }
+
+/* ── Star: night-time observatory world ───────────────────────────── */
+.world[data-world="star"][data-backdrop="true"] {
+  background: #1b1540;
+}
+
+/* Keep the night sky deep and starry rather than washing it out. */
+.world[data-world="star"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(18, 12, 48, 0.2), rgba(18, 12, 48, 0.05) 45%, rgba(18, 12, 48, 0.3));
+}
+
+.world[data-world="star"] .backdropImage {
+  object-position: 50% 45%;
+}
+
+.world[data-world="star"] .introTitle {
+  color: #5b3fa8;
+  text-shadow: 0 0 26px rgba(190, 160, 255, 0.8);
+}
+
+/* Star frames get a golden rim, like the observatory brass. */
+.world[data-world="star"] .frame,
+.world[data-world="star"] .revealFrame {
+  box-shadow: 0 0 0 3px #d8b25e, 0 20px 50px rgba(10, 6, 40, 0.45), 0 0 40px rgba(255, 214, 120, 0.25);
+}

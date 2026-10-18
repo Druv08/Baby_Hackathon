@@ -10,6 +10,7 @@ import { FadeIn } from "@/components/story/FadeIn";
 import { HiddenSecret } from "@/components/story/GoldenSeed";
 import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
+import { StarfieldLayer } from "@/components/story/StarfieldLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
 import { StoryText } from "@/components/story/StoryText";
@@ -53,7 +54,7 @@ export default async function StoryPage({ params }: Params) {
   const hasBackdrop = isAssetVerified(backdrop);
 
   return (
-    <div className={styles.world} data-backdrop={hasBackdrop} style={themeStyle(view.slug)}>
+    <div className={styles.world} data-world={view.slug} data-backdrop={hasBackdrop} style={themeStyle(view.slug)}>
       <RecordFutureVisit futureId={view.id} />
       {hasBackdrop && (
         // Fixed to the viewport (clipped to this page), so every scene scrolls
@@ -63,7 +64,7 @@ export default async function StoryPage({ params }: Params) {
           <div className={styles.backdropVeil} />
         </div>
       )}
-      <PetalLayer />
+      {view.slug === "star" ? <StarfieldLayer /> : <PetalLayer />}
 
       <div className={styles.content}>
       {/* ── Introduction ─────────────────────────────────────────────── */}
@@ -125,7 +126,7 @@ export default async function StoryPage({ params }: Params) {
             {reveal.verifiedImage && (
               <Image
                 src={reveal.verifiedImage}
-                alt={`${reveal.character.name} in the restored garden, holding a basket of flowers.`}
+                alt={SCENE_ALT[reveal.image ?? ""] ?? reveal.title}
                 width={1672}
                 height={941}
                 sizes="(max-width: 1100px) 94vw, 1100px"
@@ -235,4 +236,12 @@ const SCENE_ALT: Record<string, string> = {
   "/stories/blossom/scene-2.png": "Maria waters a newly planted seed with a little watering can among drooping flowers.",
   "/stories/blossom/scene-3.png": "Maria crouches beside a tiny green sprout in freshly dug soil.",
   "/stories/blossom/scene-4.png": "Maria dances happily as flowers bloom all around her and butterflies return.",
+  "/stories/blossom/scene-5.png": "Blossom Maria in the restored garden, holding a basket of flowers.",
+  "/stories/star/scene-1.png":
+    "Maria, in her pink floral scarf, gazes up at a lonely shooting star drifting toward a distant observatory.",
+  "/stories/star/scene-2.png": "Maria stands on a stool, peering through a huge brass telescope in the old observatory.",
+  "/stories/star/scene-3.png": "Maria sits at a desk covered in unfinished star maps, thinking hard, beside the starry window.",
+  "/stories/star/scene-4.png": "Maria joyfully traces glowing lines between stars with a star wand, creating her first Dream Map.",
+  "/stories/star/scene-5.png":
+    "Star Maria in her purple hooded celestial cloak and jeweled bow, holding up a glowing jar of stars on the observatory terrace.",
 };

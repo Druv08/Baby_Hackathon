@@ -2,6 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import {
+  ConnectDreams,
+  LonelyStar,
+  TelescopePeek,
+  UnfinishedConstellation,
+} from "@/components/star/StarSceneInteractions";
 import styles from "./SceneInteraction.module.css";
 
 /**
@@ -21,6 +27,17 @@ export function SceneInteraction({ id }: { id?: string }) {
       return <BloomFlowers />;
     case "blossom-reveal":
       return <RevealSparkles />;
+    // Star Maria
+    case "lonely-star":
+      return <LonelyStar />;
+    case "telescope-peek":
+      return <TelescopePeek />;
+    case "unfinished-constellation":
+      return <UnfinishedConstellation />;
+    case "connect-dreams":
+      return <ConnectDreams />;
+    case "star-reveal":
+      return <RevealSparkles variant="stars" />;
     default:
       return null;
   }
@@ -153,8 +170,8 @@ function BloomFlowers() {
   );
 }
 
-/** Scene 5: a soft burst of golden and pink petals when the reveal appears. */
-function RevealSparkles() {
+/** Scene 5: soft golden-and-pink petals (or golden stars) when the reveal appears. */
+function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {
@@ -165,7 +182,7 @@ function RevealSparkles() {
     return () => observer.disconnect();
   }, []);
   return (
-    <div ref={ref} className={styles.sparkleLayer} data-shown={shown} aria-hidden="true">
+    <div ref={ref} className={styles.sparkleLayer} data-shown={shown} data-variant={variant} aria-hidden="true">
       {Array.from({ length: 14 }, (_, i) => (
         <span
           key={i}

@@ -13,6 +13,8 @@ export interface CharacterTheme {
   accentGlow: string;
   /** Describes `/characters/{id}.png` for screen readers. */
   portraitAlt: string;
+  /** Portfolio heading, e.g. "Garden Journal". */
+  journalTitle?: string;
 }
 
 export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
@@ -31,6 +33,7 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#fde3ee",
     accentGlow: "rgba(247, 168, 196, 0.65)",
     portraitAlt: "Blossom Maria in a pink flowered bonnet and cape, holding a basket of blossoms beside a butterfly.",
+    journalTitle: "Garden Journal",
   },
   star: {
     label: "Star",
@@ -39,6 +42,7 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#ece4fb",
     accentGlow: "rgba(150, 120, 230, 0.55)",
     portraitAlt: "Star Maria in a starry purple hooded cloak, holding a glowing jar of stars.",
+    journalTitle: "Stargazing Journal",
   },
   cloud: {
     label: "Cloud",
