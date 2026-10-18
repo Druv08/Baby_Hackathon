@@ -47,3 +47,41 @@ Edit only that future's entry in `src/data/futures.ts`:
    (i.e. `implementation: "live"` with an `interactionId`).
 
 `npm test` enforces all of the above.
+
+## Frontend integration
+
+### Loading a future page
+
+```tsx
+import { loadFutureView } from "@/lib/future-view";
+
+const view = loadFutureView(slug); // undefined for unknown slugs → notFound()
+view.heroImage;            // verified hero path
+view.story.canEnter;       // false while pending/draft → disable "Enter Story"
+view.story.origin;         // scenes 1–4 (Normal Maria), ordered
+view.story.reveal;         // scene 5 (future Maria)
+view.portfolio.projects;   // check `project.playable` before showing a button
+view.sections;             // { hero, "enter-story", origin, reveal, ... }: boolean
+```
+
+See `src/app/futures/[slug]/page.tsx` for a minimal, unstyled example.
+
+### Visitor progress and secrets (client components)
+
+```tsx
+"use client";
+import { useJourneyProgress } from "@/hooks/useJourneyProgress";
+
+const {
+  hydrated, welcomeMessage, completedCount, isStoryComplete,
+  discoverFuture, completeStory, setVisitorName, resetProgress,
+  collectSecret, secretCount, secretEndingUnlocked, secretEnding,
+} = useJourneyProgress();
+
+completeStory(view.id);                        // call at the end of scene 5
+const result = collectSecret("golden-seed");   // "collected" | "already-collected" | "unknown"
+```
+
+Progress lives in `localStorage` under `maria:journey-progress`. It renders
+as empty progress on the server and during hydration; wait for `hydrated`
+before showing returning-visitor UI.
