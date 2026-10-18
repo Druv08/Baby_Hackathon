@@ -241,3 +241,22 @@ const count = useVisitCounter(); // null while loading or unavailable → hide t
 - `src/lib/server/supabase.integration.test.ts`: live Supabase tests,
   including a truly concurrent counter test. **Skipped** unless
   `SUPABASE_INTEGRATION_TESTS=1` and credentials are set.
+
+## Story pages (Blossom is the reference)
+
+A future gets a story page at `/futures/<slug>/story` as soon as its
+`storyStatus` is `ready`; until then its hero shows "Story Coming Soon".
+Blossom is the complete example — copy its shape for the next future:
+
+| Piece | Where |
+|---|---|
+| Intro, five scenes, profile, three projects | `src/data/stories/blossom.ts` |
+| Wiring into the future | `src/data/futures.ts` (Blossom entry) |
+| Scene and project artwork | `public/stories/blossom/`, `public/projects/blossom/` (listed in `src/data/assets.ts`) |
+| Per-scene interactions (by `interactionId`) | `src/components/story/SceneInteraction.tsx` |
+| Playable creations (by `interactionId`) | `src/components/projects/ProjectPlayground.tsx`, rules in `src/lib/projects/` |
+| Where the hidden secret sits | `SECRET_SPOTS` in `src/app/futures/[slug]/story/page.tsx` |
+
+Progress uses the shared journey store: opening the hero discovers the
+future, reaching scene 5 completes its story, and the hidden collectible is
+saved with `collectSecret`. Nothing new is stored in the database.

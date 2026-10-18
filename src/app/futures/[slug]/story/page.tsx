@@ -7,6 +7,8 @@ import { FloralDivider } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
 import { Portfolio } from "@/components/projects/Portfolio";
 import { FadeIn } from "@/components/story/FadeIn";
+import { HiddenSecret } from "@/components/story/GoldenSeed";
+import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
@@ -87,7 +89,11 @@ export default async function StoryPage({ params }: Params) {
 
       {/* ── Scenes 1–4: Normal Maria ─────────────────────────────────── */}
       {origin.map((scene) => (
-        <OriginScene key={scene.id} scene={scene} />
+        <OriginScene
+          key={scene.id}
+          scene={scene}
+          secret={SECRET_SPOTS[view.slug]?.sceneId === scene.id ? { slug: view.slug, ...SECRET_SPOTS[view.slug]! } : undefined}
+        />
       ))}
 
       {/* ── Scene 5: the reveal ──────────────────────────────────────── */}
@@ -140,6 +146,8 @@ export default async function StoryPage({ params }: Params) {
               </a>
             </FadeIn>
           </div>
+
+          <StoryCompletion futureId={view.id} />
         </div>
       </section>
 
@@ -160,7 +168,19 @@ export default async function StoryPage({ params }: Params) {
   );
 }
 
-function OriginScene({ scene }: { scene: SceneView }) {
+/** Where each future's hidden collectible is tucked into its story. */
+const SECRET_SPOTS: Partial<Record<string, { sceneId: number; left: string; top: string }>> = {
+  // Among the blooming flowers on the left of "The Garden Wakes Up".
+  blossom: { sceneId: 4, left: "11%", top: "71%" },
+};
+
+function OriginScene({
+  scene,
+  secret,
+}: {
+  scene: SceneView;
+  secret?: { slug: string; left: string; top: string };
+}) {
   return (
     <section
       id={`scene-${scene.id}`}
@@ -181,6 +201,7 @@ function OriginScene({ scene }: { scene: SceneView }) {
             />
           )}
           <SceneInteraction id={scene.interactionId} />
+          {secret && <HiddenSecret futureSlug={secret.slug} left={secret.left} top={secret.top} />}
         </FadeIn>
 
         <FadeIn className={styles.panel}>

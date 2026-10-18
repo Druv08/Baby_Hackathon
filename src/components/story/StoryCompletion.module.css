@@ -1,0 +1,14 @@
+.note {
+  min-height: 1.5rem;
+  margin: var(--space-2) auto 0;
+  text-align: center;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.note[data-done="true"] {
+  display: table;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+}
