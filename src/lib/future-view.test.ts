@@ -50,10 +50,10 @@ describe("loadFutureView", () => {
     expect(loadFutureView("blossom")!.storyCoverImage).toBe("/heroes/blossom-story-cover.png");
   });
 
-  it("keeps pending stories usable with a hero but no story content", () => {
-    for (const f of FUTURES) {
+  it("keeps unfinished stories usable with a hero but no story content", () => {
+    for (const f of FUTURES.filter((f) => f.storyStatus !== "ready")) {
       const view = loadFutureView(f.slug)!;
-      expect(view.story.status).toBe("pending");
+      expect(view.story.status).not.toBe("ready");
       expect(view.story.canEnter).toBe(false);
       expect(view.story.scenes).toEqual([]);
       expect(view.story.reveal).toBeUndefined();

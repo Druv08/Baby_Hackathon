@@ -1,4 +1,5 @@
 import type { FuturePath } from "@/types/future";
+import { BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
 
 /**
  * The eight independent futures. To add content for one future, edit only its
@@ -15,9 +16,11 @@ export const FUTURES: FuturePath[] = [
     characterId: 2,
     heroImage: "/heroes/blossom.png",
     storyCoverImage: "/heroes/blossom-story-cover.png",
-    storyStatus: "pending",
+    // Draft until the story route is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
+    storyIntro: BLOSSOM_STORY_INTRO,
+    scenes: BLOSSOM_SCENES,
     projects: [
       {
         id: "dream-garden",
