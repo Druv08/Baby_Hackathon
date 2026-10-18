@@ -46,7 +46,7 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
                 </div>
                 <div>
                   <dt>Profession</dt>
-                  <dd>{character.profession}</dd>
+                  <dd>{profile.profession ?? character.profession}</dd>
                 </div>
                 <div>
                   <dt>Personality</dt>

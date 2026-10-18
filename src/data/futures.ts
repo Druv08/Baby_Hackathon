@@ -1,5 +1,6 @@
 import type { FuturePath } from "@/types/future";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
+import { CLOUD_PROFILE, CLOUD_PROJECTS, CLOUD_SCENES, CLOUD_STORY_INTRO } from "./stories/cloud";
 import { STAR_PROFILE, STAR_PROJECTS, STAR_SCENES, STAR_STORY_INTRO } from "./stories/star";
 
 /**
@@ -41,18 +42,13 @@ export const FUTURES: FuturePath[] = [
     slug: "cloud",
     characterId: 4,
     heroImage: "/heroes/cloud.png",
-    storyStatus: "pending",
+    // Draft until the story page is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
-    projects: [
-      {
-        id: "cloud-maker",
-        title: "Cloud Maker",
-        description: "Let's find more skies together!",
-        status: "draft",
-        implementation: "proposed",
-      },
-    ],
+    storyIntro: CLOUD_STORY_INTRO,
+    scenes: CLOUD_SCENES,
+    profile: CLOUD_PROFILE,
+    projects: CLOUD_PROJECTS,
   },
   {
     id: 5,

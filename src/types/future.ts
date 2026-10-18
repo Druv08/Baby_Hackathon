@@ -39,6 +39,8 @@ export interface StoryIntro {
 
 export interface CharacterProfile {
   species: string;
+  /** Longer profession line for the portfolio; defaults to the character's. */
+  profession?: string;
   personality: string[];
   specialTalent: string;
   home: string;

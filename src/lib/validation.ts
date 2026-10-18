@@ -80,6 +80,7 @@ export const storyIntroSchema = z.object({
 
 export const characterProfileSchema = z.object({
   species: nonEmpty,
+  profession: nonEmpty.optional(),
   personality: z.array(nonEmpty).min(1),
   specialTalent: nonEmpty,
   home: nonEmpty,
