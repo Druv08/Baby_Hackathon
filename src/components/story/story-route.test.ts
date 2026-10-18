@@ -20,8 +20,8 @@ describe("Blossom story route", () => {
   });
 
   it("only creates story pages for ready stories", () => {
-    expect(getStoryRouteSlugs()).toEqual(["blossom", "star"]);
-    for (const f of getAllFutures().filter((f) => !["blossom", "star"].includes(f.slug))) {
+    expect(getStoryRouteSlugs()).toEqual(["blossom", "star", "cloud"]);
+    for (const f of getAllFutures().filter((f) => !["blossom", "star", "cloud"].includes(f.slug))) {
       expect(storyHref(f.slug)).toBeUndefined();
       expect(loadFutureView(f.slug)!.story.canEnter).toBe(false);
     }

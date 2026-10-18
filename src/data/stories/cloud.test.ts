@@ -95,8 +95,10 @@ describe("Cloud story content", () => {
     expect(validateCatalog(CHARACTERS, FUTURES).success).toBe(true);
   });
 
-  it("loads all five scenes through loadFutureView, with the reveal last", () => {
-    const view = loadFutureView("cloud", { includeDrafts: true })!;
+  it("is ready, and loadFutureView returns all five scenes with the reveal last", () => {
+    expect(cloud().storyStatus).toBe("ready");
+    const view = loadFutureView("cloud")!;
+    expect(view.story.canEnter).toBe(true);
     expect(view.story.scenes.map((s) => s.position)).toEqual([1, 2, 3, 4, 5]);
     expect(view.story.origin.map((s) => s.character.id)).toEqual([1, 1, 1, 1]);
     expect(view.story.reveal?.character.name).toBe("Cloud Maria");

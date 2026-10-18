@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { CloudBridge, CloudSteps, WindChimes, WorriedCloud } from "@/components/cloud/CloudSceneInteractions";
 import {
   ConnectDreams,
   LonelyStar,
@@ -38,6 +39,17 @@ export function SceneInteraction({ id }: { id?: string }) {
       return <ConnectDreams />;
     case "star-reveal":
       return <RevealSparkles variant="stars" />;
+    // Cloud Maria
+    case "worried-cloud":
+      return <WorriedCloud />;
+    case "cloud-steps":
+      return <CloudSteps />;
+    case "wind-chimes":
+      return <WindChimes />;
+    case "cloud-bridge":
+      return <CloudBridge />;
+    case "cloud-reveal":
+      return <RevealSparkles variant="clouds" />;
     default:
       return null;
   }
@@ -170,8 +182,11 @@ function BloomFlowers() {
   );
 }
 
-/** Scene 5: soft golden-and-pink petals (or golden stars) when the reveal appears. */
-function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" }) {
+/**
+ * Scene 5: soft golden-and-pink petals (golden stars for Star, rising cloud
+ * puffs and a brightening sky for Cloud) when the reveal appears.
+ */
+function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {

@@ -1,0 +1,689 @@
+/* ── Scene 1: worried cloud hotspot (over the illustration) ─────────── */
+.imageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  pointer-events: none;
+}
+
+.imageLayer > * {
+  pointer-events: auto;
+}
+
+.worriedCloud {
+  position: absolute;
+  width: max(17%, 64px);
+  aspect-ratio: 1.45;
+  padding: 0;
+  border: 3px dashed #5b9be0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 70%);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  animation: hint 2.6s ease-in-out infinite;
+  transition: box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.worriedCloud:focus-visible {
+  outline: 3px solid #2f6fb0;
+  outline-offset: 3px;
+}
+
+/* Brighter with every bit of attention. */
+.worriedCloud[data-level="1"] {
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 70%);
+  box-shadow: 0 0 22px 6px rgba(255, 255, 255, 0.55);
+}
+.worriedCloud[data-level="2"],
+.worriedCloud[data-level="3"] {
+  border-style: solid;
+  background: radial-gradient(ellipse, rgba(255, 250, 230, 0.42), rgba(255, 255, 255, 0) 70%);
+  box-shadow: 0 0 32px 12px rgba(255, 246, 214, 0.7);
+}
+
+.bounce {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.bounce[data-active="true"] {
+  animation: bounce 0.7s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+/* Little sparkles that hop up when the cloud is noticed. */
+.bounce i {
+  position: absolute;
+  top: 10%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, rgba(255, 240, 200, 0) 70%);
+  animation: hop 0.9s ease-out forwards;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-14%) scale(1.06, 0.94);
+  }
+  60% {
+    transform: translateY(0) scale(0.96, 1.04);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hop {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-36px);
+  }
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.06;
+  }
+}
+
+/* Top-left, so it never covers Maria or the little cloud. */
+.caption {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 3;
+  max-width: min(60%, 30rem);
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(37, 74, 120, 0.82);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* ── Panels below the illustration ──────────────────────────────────── */
+.panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #e6f2fc, #fdf0e6);
+}
+
+.panel[data-tone="mist"] {
+  background: linear-gradient(180deg, #f6e6ef, #fdf0e6);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.inline {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.ghost {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 0;
+  background: none;
+  color: #2f6fb0;
+  font: 700 0.95rem var(--font-body);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ghost:focus-visible {
+  outline: 3px solid #2f6fb0;
+  outline-offset: 2px;
+}
+
+/* Fluffy cloud outline shared by steps, platforms, tray clouds and the friend. */
+.puff {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.puff path {
+  fill: #fff;
+  stroke: #b9d6f1;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.face circle {
+  fill: #4a3a52;
+}
+
+.face path {
+  stroke: #4a3a52;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.face .blush {
+  fill: #ffb3c7;
+}
+
+.step,
+.platform {
+  filter: drop-shadow(0 4px 6px rgba(47, 111, 176, 0.25));
+}
+
+/* ── Scene 2: cloud staircase ───────────────────────────────────────── */
+.stairs {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(12px, 4vw, 40px);
+  min-height: 120px;
+  padding-top: 10px;
+}
+
+.step {
+  position: relative;
+  width: clamp(76px, 18vw, 120px);
+  height: 58px;
+  margin-bottom: var(--rise);
+  padding: 0;
+  border: 0;
+  border-radius: 40%;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.step[data-next="true"] {
+  animation: glow 1.8s ease-in-out infinite;
+}
+
+.step .puff {
+  position: absolute;
+  inset: 0;
+}
+
+.step[data-climbed="true"] {
+  filter: drop-shadow(0 0 10px rgba(255, 214, 140, 0.9));
+  transform: translateY(4px);
+}
+
+.step[data-wobble="true"] {
+  animation: wobble 0.5s ease;
+}
+
+.step:focus-visible {
+  outline: 3px solid #2f6fb0;
+  outline-offset: 4px;
+}
+
+.paw {
+  position: absolute;
+  inset: 8px 0 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 4px 6px rgba(47, 111, 176, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(120, 180, 240, 0.95));
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+}
+
+.cheer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cheer i {
+  position: absolute;
+  bottom: 40%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff6d8, #ffd27a 50%, rgba(255, 210, 122, 0) 72%);
+  animation: rise 1.4s ease-out forwards;
+}
+
+.cheer i:nth-child(1) {
+  left: 18%;
+}
+.cheer i:nth-child(2) {
+  left: 34%;
+  animation-delay: 0.15s;
+}
+.cheer i:nth-child(3) {
+  left: 50%;
+  animation-delay: 0.3s;
+}
+.cheer i:nth-child(4) {
+  left: 66%;
+  animation-delay: 0.1s;
+}
+.cheer i:nth-child(5) {
+  left: 82%;
+  animation-delay: 0.25s;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.2);
+  }
+}
+
+/* ── Scene 3: wind chimes ───────────────────────────────────────────── */
+.skyWindow {
+  overflow: hidden;
+  aspect-ratio: 16 / 5;
+  border-radius: 18px;
+  border: 3px solid #d9b25f;
+  box-shadow: inset 0 0 18px rgba(120, 90, 140, 0.2);
+}
+
+.skyWindow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.driftClouds {
+  transition: transform 1.4s ease;
+}
+
+.skyWindow[data-drift="down"] .driftClouds {
+  transform: translate(4px, 12px);
+}
+.skyWindow[data-drift="back"] .driftClouds {
+  transform: translate(-14px, 0);
+}
+.skyWindow[data-drift="forward"] .driftClouds {
+  transform: translate(18px, -5px);
+}
+
+.fog {
+  opacity: 0.55;
+  transition: opacity 1.2s ease;
+}
+
+.skyWindow[data-found="true"] .fog {
+  opacity: 0;
+}
+
+.island,
+.route {
+  opacity: 0;
+  transition: opacity 1s ease 0.4s;
+}
+
+.skyWindow[data-found="true"] .island {
+  opacity: 1;
+}
+
+.route {
+  stroke: #e2b04f;
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+
+.skyWindow[data-found="true"] .route {
+  opacity: 1;
+}
+
+.windTrail {
+  stroke: #9cc8ef;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  opacity: 0;
+}
+
+.skyWindow:not([data-drift="none"]) .windTrail {
+  animation: wind 1.6s ease-out;
+}
+
+@keyframes wind {
+  0% {
+    opacity: 0.9;
+    stroke-dashoffset: 160;
+  }
+  70% {
+    opacity: 0.8;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+.chimes {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 5vw, 40px);
+}
+
+.chime {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 72px;
+  min-height: 44px;
+  padding: 6px 10px 8px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #6b4a1e;
+  font: 800 0.9rem var(--font-body);
+  cursor: pointer;
+}
+
+.chime[aria-pressed="true"] {
+  border-color: #d9b25f;
+  background: #fff8e6;
+}
+
+.chime[data-correct="true"] {
+  box-shadow: 0 0 16px rgba(255, 210, 120, 0.8);
+}
+
+.chime:focus-visible {
+  outline: 3px solid #2f6fb0;
+  outline-offset: 2px;
+}
+
+/* Three golden tubes hanging from a little bar. */
+.chimeBody {
+  display: flex;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 3px solid #b8892f;
+  transform-origin: 50% 0;
+}
+
+.chimeBody i {
+  width: 7px;
+  height: 30px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #b8892f, #ffe39a 45%, #c99a3d);
+}
+
+.chimeBody i:nth-child(2) {
+  height: 38px;
+}
+
+.chimeBody[data-swing="true"] {
+  animation: swing 1.2s ease-out;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(14deg);
+  }
+  45% {
+    transform: rotate(-10deg);
+  }
+  70% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+/* ── Scene 4: cloud bridge ──────────────────────────────────────────── */
+.bridge {
+  display: grid;
+  grid-template-columns: 40px 1.4fr 0.8fr 1.1fr 48px;
+  align-items: center;
+  gap: 4px;
+  min-height: 88px;
+  padding: 8px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #cfe5f8, #f6dbe6);
+  transition: box-shadow 0.6s ease;
+}
+
+.bridge[data-complete="true"] {
+  box-shadow: 0 0 0 3px #e9c46a, 0 0 30px rgba(255, 210, 120, 0.85);
+}
+
+.cliff {
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #8fbf7a 0 22%, #b99a86 22%);
+  font-size: 1rem;
+}
+
+.friend {
+  display: block;
+  width: 40px;
+  height: 26px;
+}
+
+.friend[data-happy="true"] {
+  animation: happy 0.8s ease-in-out infinite;
+}
+
+@keyframes happy {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.gap {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  padding: 4px;
+  border: 2px dashed rgba(47, 111, 176, 0.6);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+}
+
+.gap[data-filled="true"] {
+  border-color: transparent;
+  background: none;
+  cursor: default;
+  opacity: 1;
+}
+
+.gap .platform {
+  visibility: hidden;
+}
+
+.gap[data-filled="true"] .platform {
+  visibility: visible;
+  animation: settle 0.6s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.bridge[data-complete="true"] .gap .platform {
+  filter: drop-shadow(0 0 10px rgba(255, 214, 120, 0.95));
+}
+
+.gap:focus-visible,
+.trayCloud:focus-visible {
+  outline: 3px solid #2f6fb0;
+  outline-offset: 2px;
+}
+
+@keyframes settle {
+  0% {
+    transform: translateY(30px) scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.platform {
+  display: block;
+  height: 40px;
+}
+
+.platform[data-size="small"] {
+  width: 46px;
+}
+.platform[data-size="medium"] {
+  width: 70px;
+}
+.platform[data-size="large"] {
+  width: 96px;
+}
+
+/* In the bridge, each cloud stretches to fill its gap edge to edge. */
+.gap .platform {
+  width: calc(100% + 14px);
+  max-width: none;
+  height: 46px;
+  margin-inline: -7px;
+}
+
+.gap .puff path {
+  vector-effect: non-scaling-stroke;
+}
+
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.trayCloud {
+  display: grid;
+  place-items: center;
+  min-width: 64px;
+  min-height: 56px;
+  padding: 6px 10px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.trayCloud[aria-pressed="true"] {
+  border-color: #2f6fb0;
+  transform: translateY(-4px);
+  background: #fff;
+}
+
+.trayCloud[data-used="true"] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .caption {
+    position: static;
+    max-width: none;
+    border-radius: 0;
+    background: #fffaf3;
+    color: var(--ink);
+    padding: 10px 12px;
+  }
+
+  .bridge {
+    grid-template-columns: 26px 1.4fr 0.8fr 1.1fr 36px;
+  }
+
+  .friend {
+    width: 32px;
+    height: 21px;
+  }
+
+  .platform[data-size="large"] {
+    width: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .worriedCloud,
+  .bounce[data-active="true"],
+  .bounce i,
+  .step[data-next="true"],
+  .step[data-wobble="true"],
+  .cheer i,
+  .chimeBody[data-swing="true"],
+  .windTrail,
+  .friend[data-happy="true"],
+  .gap[data-filled="true"] .platform {
+    animation: none !important;
+  }
+
+  .driftClouds,
+  .fog,
+  .island,
+  .route {
+    transition: none;
+  }
+}

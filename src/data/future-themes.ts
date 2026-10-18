@@ -55,6 +55,8 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#e2f0fc",
     accentGlow: "rgba(120, 180, 240, 0.55)",
     portraitAlt: "Cloud Maria in aviator goggles and a fluffy sky-blue cloud outfit, ready to explore the skies.",
+    journalTitle: "Travel Journal",
+    workshop: "sky workshop",
   },
   aqua: {
     label: "Aqua",

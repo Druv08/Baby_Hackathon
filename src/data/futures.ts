@@ -42,8 +42,7 @@ export const FUTURES: FuturePath[] = [
     slug: "cloud",
     characterId: 4,
     heroImage: "/heroes/cloud.png",
-    // Draft until the story page is live and verified.
-    storyStatus: "draft",
+    storyStatus: "ready",
     portfolioStatus: "pending",
     storyIntro: CLOUD_STORY_INTRO,
     scenes: CLOUD_SCENES,

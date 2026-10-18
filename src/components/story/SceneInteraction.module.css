@@ -319,3 +319,61 @@
   filter: drop-shadow(0 0 6px #ffd36a);
   clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
 }
+
+/* Cloud reveal: the floating islands brighten and soft cloud puffs rise. */
+.sparkleLayer[data-variant="clouds"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(255, 248, 225, 0.45), rgba(255, 248, 225, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.sparkleLayer[data-variant="clouds"][data-shown="true"]::before {
+  opacity: 1;
+}
+
+.sparkleLayer[data-variant="clouds"] span {
+  top: auto;
+  bottom: -30px;
+  width: 34px;
+  height: 18px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 55%, #fff 0 34%, transparent 35%),
+    radial-gradient(circle at 62% 42%, #fff 0 38%, transparent 39%),
+    radial-gradient(ellipse at 50% 75%, #fff 0 52%, transparent 54%);
+  box-shadow: none;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+}
+
+.sparkleLayer[data-variant="clouds"][data-shown="true"] span {
+  animation: puff 6s ease-out infinite;
+}
+
+@keyframes puff {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  20% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(20px, -260px) scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkleLayer[data-variant="clouds"][data-shown="true"] span {
+    animation: none;
+    opacity: 0.85;
+    bottom: 8%;
+  }
+
+  .sparkleLayer[data-variant="clouds"]::before {
+    transition: none;
+  }
+}

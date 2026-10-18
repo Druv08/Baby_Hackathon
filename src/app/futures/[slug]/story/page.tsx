@@ -12,6 +12,7 @@ import { HiddenSecret } from "@/components/story/GoldenSeed";
 import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
 import { StarfieldLayer } from "@/components/story/StarfieldLayer";
+import { SkyLayer } from "@/components/story/SkyLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
 import { StoryText } from "@/components/story/StoryText";
@@ -65,7 +66,7 @@ export default async function StoryPage({ params }: Params) {
           <div className={styles.backdropVeil} />
         </div>
       )}
-      {view.slug === "star" ? <StarfieldLayer /> : <PetalLayer />}
+      <AmbientLayer slug={view.slug} />
 
       <div className={styles.content}>
       {/* ── Introduction ─────────────────────────────────────────────── */}
@@ -183,6 +184,13 @@ export default async function StoryPage({ params }: Params) {
   );
 }
 
+/** Each world's moving atmosphere; Blossom (and any new world) keeps its petals. */
+function AmbientLayer({ slug }: { slug: string }) {
+  if (slug === "star") return <StarfieldLayer />;
+  if (slug === "cloud") return <SkyLayer />;
+  return <PetalLayer />;
+}
+
 type SecretSpot =
   | { kind: "seed"; sceneId: number; left: string; top: string }
   | { kind: "constellation"; sceneId: number };
@@ -254,4 +262,14 @@ const SCENE_ALT: Record<string, string> = {
   "/stories/star/scene-4.png": "Maria joyfully traces glowing lines between stars with a star wand, creating her first Dream Map.",
   "/stories/star/scene-5.png":
     "Star Maria in her purple hooded celestial cloak and jeweled bow, holding up a glowing jar of stars on the observatory terrace.",
+  "/stories/cloud/scene-1.png":
+    "Maria, in her pink floral scarf, looks up in surprise at floating islands and a broken sky bridge, beside a small worried cloud on the clifftop.",
+  "/stories/cloud/scene-2.png":
+    "Maria cautiously climbs a staircase of fluffy clouds beside a waterfall while the little cloud floats beside her.",
+  "/stories/cloud/scene-3.png":
+    "Maria sits alone on a floating rock surrounded by pink clouds, looking toward golden wind chimes hanging from a distant island.",
+  "/stories/cloud/scene-4.png":
+    "Maria happily guides glowing cloud platforms into a bridge between two floating islands as golden wind chimes ring.",
+  "/stories/cloud/scene-5.png":
+    "Cloud Maria in her light-blue aviator hood, brass goggles and cloud-trimmed scarf, holding up a cloud jar as she strides across a golden cloud bridge.",
 };
