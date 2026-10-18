@@ -207,3 +207,83 @@
     grid-template-columns: 7rem 1fr;
   }
 }
+
+/* ── Cloud: an explorer's travel journal ──────────────────────────── */
+.portfolio[data-world="cloud"] .head h2,
+.creations[data-world="cloud"] .head h2 {
+  color: #2f6fb0;
+}
+
+.portfolio[data-world="cloud"] .journal {
+  position: relative;
+  background:
+    radial-gradient(ellipse 18% 9% at 92% 6%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(ellipse 14% 7% at 86% 9%, rgba(255, 255, 255, 0.9), transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(127, 178, 229, 0.16) 31px 32px),
+    linear-gradient(160deg, #f1f8ff 0%, #fffaf3 45%, #fff1e6 100%);
+  border-color: #cfe2f4;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(156, 200, 239, 0.25);
+}
+
+/* A golden compass rose in the journal's corner. */
+.portfolio[data-world="cloud"] .journal::after {
+  content: "";
+  position: absolute;
+  right: clamp(12px, 2vw, 24px);
+  bottom: clamp(12px, 2vw, 24px);
+  width: clamp(56px, 7vw, 84px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #d9b25f;
+  background:
+    conic-gradient(from 0deg, #e7c35a 0 6%, transparent 6% 19%, #e7c35a 19% 31%, transparent 31% 44%, #e7c35a 44% 56%, transparent 56% 69%, #e7c35a 69% 81%, transparent 81% 94%, #e7c35a 94%),
+    radial-gradient(circle, #fff8e6 0 30%, transparent 31%);
+  clip-path: circle(50%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.portfolio[data-world="cloud"] .portrait {
+  box-shadow: 0 0 0 3px #9cc8ef, 0 0 30px rgba(255, 220, 160, 0.55);
+}
+
+.portfolio[data-world="cloud"] .facts div {
+  border-bottom-color: #cfe2f4;
+}
+
+.portfolio[data-world="cloud"] .facts dt,
+.portfolio[data-world="cloud"] .page h3,
+.creations[data-world="cloud"] .card h3,
+.creations[data-world="cloud"] .playTitle {
+  color: #2f6fb0;
+}
+
+.portfolio[data-world="cloud"] .tagline {
+  color: #3d78b8;
+}
+
+.portfolio[data-world="cloud"] .chips li {
+  background: #ffe6d2;
+}
+
+.portfolio[data-world="cloud"] .motto {
+  background: linear-gradient(135deg, #e2f0fc, #ffe9d9);
+  color: #2f6fb0;
+}
+
+/* Little airship-trail flourish under the creations heading. */
+.creations[data-world="cloud"] .head::after {
+  content: "· · · ☁ · · · 🎈 · · · ☁ · · ·";
+  color: #9cc8ef;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.creations[data-world="cloud"] .card {
+  border: 2px solid #e2f0fc;
+}
+
+.creations[data-world="cloud"] .playground {
+  border-color: #9cc8ef;
+  background: rgba(250, 253, 255, 0.92);
+}

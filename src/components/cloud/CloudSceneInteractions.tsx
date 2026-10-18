@@ -18,6 +18,7 @@ import {
   worriedCloudLevel,
   type CloudSize,
 } from "@/lib/projects/cloud-story";
+import { PUFF_PATH } from "./cloud-art";
 import styles from "./CloudSceneInteractions.module.css";
 
 /** A fluffy cloud outline, optionally with the little cloud friend's face. */
@@ -30,7 +31,7 @@ export function Puff({ face = false, stretch = false, className }: { face?: bool
       aria-hidden="true"
       focusable="false"
     >
-      <path d="M22 54 C9 54 5 41 14 35 C10 22 26 15 35 22 C39 9 60 7 66 20 C76 13 91 22 86 35 C96 39 93 54 80 54 Z" />
+      <path d={PUFF_PATH} />
       {face && (
         <g className={styles.face}>
           <circle cx="40" cy="36" r="3.2" />
@@ -155,7 +156,7 @@ export function WindChimes() {
               <stop offset="1" stopColor="#fbeee4" />
             </linearGradient>
             <symbol id="cloud-puff" viewBox="0 0 100 62">
-              <path d="M22 54 C9 54 5 41 14 35 C10 22 26 15 35 22 C39 9 60 7 66 20 C76 13 91 22 86 35 C96 39 93 54 80 54 Z" fill="#fff" />
+              <path d={PUFF_PATH} fill="#fff" />
             </symbol>
           </defs>
           <rect width="160" height="50" fill="url(#cloud-sky)" />

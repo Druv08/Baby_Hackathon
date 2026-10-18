@@ -139,10 +139,7 @@ export const CLOUD_PROFILE: CharacterProfile = {
   motto: "Every adventure begins with one little step.",
 };
 
-/**
- * Cloud Maria's three creations. Proposed until each playable module exists;
- * a project only becomes `live` once its interaction genuinely works.
- */
+/** Cloud Maria's three creations — each a small playable experience. */
 export const CLOUD_PROJECTS: PortfolioProject[] = [
   {
     id: "cloud-maker",
@@ -151,8 +148,8 @@ export const CLOUD_PROJECTS: PortfolioProject[] = [
       "A magical cloud-making machine Maria designed to help travelers create their own little floating worlds.",
     image: "/projects/cloud/cloud-maker.png",
     interactionId: "cloud-maker",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "sky-route-planner",
@@ -161,8 +158,8 @@ export const CLOUD_PROJECTS: PortfolioProject[] = [
       "Cloud Maria’s magical map of floating islands, safe cloud bridges, and secret routes through the sky.",
     image: "/projects/cloud/sky-route-planner.png",
     interactionId: "sky-route-planner",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "cloud-postcards",
@@ -171,7 +168,7 @@ export const CLOUD_PROJECTS: PortfolioProject[] = [
       "A magical postcard collection filled with the incredible places Cloud Maria discovered during her sky adventures.",
     image: "/projects/cloud/cloud-postcards.png",
     interactionId: "cloud-postcards",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
 ];

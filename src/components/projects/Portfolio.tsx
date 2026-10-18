@@ -13,7 +13,7 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
 
   return (
     <>
-      <section id="portfolio" className={`section ${styles.portfolio}`} aria-labelledby="portfolio-title">
+      <section id="portfolio" className={`section ${styles.portfolio}`} data-world={view.slug} aria-labelledby="portfolio-title">
         <div className="container">
           <header className={styles.head}>
             <p className="eyebrow">
@@ -100,11 +100,11 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
         </div>
       </section>
 
-      <section id="creations" className={`section ${styles.creations}`} aria-labelledby="creations-title">
+      <section id="creations" className={`section ${styles.creations}`} data-world={view.slug} aria-labelledby="creations-title">
         <div className="container">
           <header className={styles.head}>
             <p className="eyebrow">
-              <span aria-hidden="true">🌷</span> My Creations
+              <span aria-hidden="true">{theme.creationsIcon ?? "🌷"}</span> My Creations
             </p>
             <h2 id="creations-title">Things I’ve made</h2>
             <p>Three little creations from {character.name}’s {theme.workshop ?? "workshop"}. Try them all!</p>

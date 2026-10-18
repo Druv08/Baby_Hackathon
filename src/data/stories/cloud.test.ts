@@ -135,6 +135,20 @@ describe("Cloud portfolio data", () => {
       expect(p.image).toMatch(/^\/projects\/cloud\//);
     }
   });
+
+  it("marks all three projects live and playable, and the portfolio ready", () => {
+    expect(cloud().portfolioStatus).toBe("ready");
+    expect(cloud().profile).toBe(CLOUD_PROFILE);
+    expect(CLOUD_PROJECTS.every((p) => p.status === "ready" && p.implementation === "live" && p.interactionId === p.id)).toBe(true);
+    const view = loadFutureView("cloud")!;
+    expect(view.readiness.complete).toBe(true);
+    expect(view.portfolio.projects.map((p) => [p.id, p.playable, p.verifiedImage])).toEqual([
+      ["cloud-maker", true, "/projects/cloud/cloud-maker.png"],
+      ["sky-route-planner", true, "/projects/cloud/sky-route-planner.png"],
+      ["cloud-postcards", true, "/projects/cloud/cloud-postcards.png"],
+    ]);
+    expect(futurePathSchema.safeParse(cloud()).success).toBe(true);
+  });
 });
 
 describe("Blossom and Star are unchanged", () => {

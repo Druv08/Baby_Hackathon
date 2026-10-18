@@ -1,5 +1,8 @@
 "use client";
 
+import { CloudMaker } from "@/components/cloud/CloudMaker";
+import { CloudPostcards } from "@/components/cloud/CloudPostcards";
+import { SkyRoutePlanner } from "@/components/cloud/SkyRoutePlanner";
 import { ConstellationBuilder } from "@/components/star/ConstellationBuilder";
 import { DreamAtlas } from "@/components/star/DreamAtlas";
 import { StargazersTelescope } from "@/components/star/StargazersTelescope";
@@ -16,6 +19,10 @@ const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
   "constellation-builder": ConstellationBuilder,
   "dream-atlas": DreamAtlas,
   "stargazers-telescope": StargazersTelescope,
+  // Cloud Maria
+  "cloud-maker": CloudMaker,
+  "sky-route-planner": SkyRoutePlanner,
+  "cloud-postcards": CloudPostcards,
 };
 
 export function ProjectPlayground({ interactionId }: { interactionId: string }) {

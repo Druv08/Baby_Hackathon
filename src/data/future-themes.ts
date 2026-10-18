@@ -17,6 +17,8 @@ export interface CharacterTheme {
   journalTitle?: string;
   /** Where the creations come from, e.g. "garden". */
   workshop?: string;
+  /** Icon beside "My Creations"; defaults to the tulip. */
+  creationsIcon?: string;
 }
 
 export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
@@ -57,6 +59,7 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     portraitAlt: "Cloud Maria in aviator goggles and a fluffy sky-blue cloud outfit, ready to explore the skies.",
     journalTitle: "Travel Journal",
     workshop: "sky workshop",
+    creationsIcon: "🧭",
   },
   aqua: {
     label: "Aqua",
