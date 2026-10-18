@@ -1,0 +1,47 @@
+.footer {
+  margin-top: var(--space-8);
+  padding-block: var(--space-7);
+  background: linear-gradient(180deg, transparent, rgba(205, 184, 240, 0.35));
+  border-top: 1px dashed rgba(109, 79, 184, 0.3);
+  text-align: center;
+}
+
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  line-height: 1;
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ink-soft);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-5);
+  list-style: none;
+}
+
+.links a {
+  display: inline-block;
+  padding: var(--space-2);
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.small {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}

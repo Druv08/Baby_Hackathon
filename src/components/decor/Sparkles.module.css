@@ -1,0 +1,31 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.spark {
+  position: absolute;
+  background: radial-gradient(circle, #fff 0%, #ffe7a8 35%, rgba(255, 220, 140, 0) 70%);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-block: var(--space-6);
+  color: var(--pink);
+  font-size: 1.25rem;
+  letter-spacing: 0.5rem;
+}
+
+.divider span {
+  flex: 0 1 8rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+}

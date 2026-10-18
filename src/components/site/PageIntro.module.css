@@ -1,0 +1,43 @@
+.intro {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(var(--space-6), 6vw, var(--space-8)) var(--space-6);
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 210, 140, 0.35), transparent 60%);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+.inner h1 {
+  color: var(--pink-deep);
+  text-shadow: 0 0 24px rgba(247, 168, 196, 0.7);
+}
+
+.soon {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: clamp(var(--space-5), 5vw, var(--space-7));
+  border-radius: var(--radius-lg);
+  border: 3px dashed var(--lavender);
+  background: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.soonIcon {
+  font-size: 3rem;
+  line-height: 1;
+  animation: float 5s ease-in-out infinite;
+}
+
+.soonTitle {
+  color: var(--lavender-deep);
+}
