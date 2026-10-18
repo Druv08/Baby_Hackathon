@@ -13,14 +13,8 @@ import styles from "./GoldenSeed.module.css";
 export function HiddenSecret({ futureSlug, left, top }: { futureSlug: string; left: string; top: string }) {
   const secret = getSecretForFuture(futureSlug);
   const { progress, hydrated, collectSecret, secretCount } = useJourneyProgress();
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useSecretMessage();
   const [burst, setBurst] = useState(0);
-
-  useEffect(() => {
-    if (!message) return;
-    const timer = window.setTimeout(() => setMessage(null), 4500);
-    return () => window.clearTimeout(timer);
-  }, [message]);
 
   if (!secret) return null;
   const found = hydrated && isSecretCollected(progress, secret.id);
@@ -50,17 +44,35 @@ export function HiddenSecret({ futureSlug, left, top }: { futureSlug: string; le
         )}
       </button>
 
-      <div className={styles.toast} role="status" aria-live="polite" data-visible={message !== null}>
-        {message && (
-          <>
-            <span aria-hidden="true">🌟 </span>
-            <strong>{message}</strong>
-            <span className={styles.count}>
-              Secrets found: {secretCount} / {getAllSecrets().length}
-            </span>
-          </>
-        )}
-      </div>
+      <SecretToast message={message} secretCount={secretCount} />
     </>
+  );
+}
+
+/** A message that clears itself after a few seconds. */
+export function useSecretMessage() {
+  const [message, setMessage] = useState<string | null>(null);
+  useEffect(() => {
+    if (!message) return;
+    const timer = window.setTimeout(() => setMessage(null), 4500);
+    return () => window.clearTimeout(timer);
+  }, [message]);
+  return [message, setMessage] as const;
+}
+
+/** Shared "You found…" toast with the running secret count. */
+export function SecretToast({ message, secretCount }: { message: string | null; secretCount: number }) {
+  return (
+    <div className={styles.toast} role="status" aria-live="polite" data-visible={message !== null}>
+      {message && (
+        <>
+          <span aria-hidden="true">🌟 </span>
+          <strong>{message}</strong>
+          <span className={styles.count}>
+            Secrets found: {secretCount} / {getAllSecrets().length}
+          </span>
+        </>
+      )}
+    </div>
   );
 }

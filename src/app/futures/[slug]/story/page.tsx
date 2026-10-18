@@ -7,6 +7,7 @@ import { FloralDivider } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
 import { Portfolio } from "@/components/projects/Portfolio";
 import { FadeIn } from "@/components/story/FadeIn";
+import { HiddenConstellation } from "@/components/star/HiddenConstellation";
 import { HiddenSecret } from "@/components/story/GoldenSeed";
 import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
@@ -106,7 +107,7 @@ export default async function StoryPage({ params }: Params) {
         <OriginScene
           key={scene.id}
           scene={scene}
-          secret={SECRET_SPOTS[view.slug]?.sceneId === scene.id ? { slug: view.slug, ...SECRET_SPOTS[view.slug]! } : undefined}
+          secret={SECRET_SPOTS[view.slug]?.sceneId === scene.id ? { slug: view.slug, spot: SECRET_SPOTS[view.slug]! } : undefined}
         />
       ))}
 
@@ -182,10 +183,16 @@ export default async function StoryPage({ params }: Params) {
   );
 }
 
+type SecretSpot =
+  | { kind: "seed"; sceneId: number; left: string; top: string }
+  | { kind: "constellation"; sceneId: number };
+
 /** Where each future's hidden collectible is tucked into its story. */
-const SECRET_SPOTS: Partial<Record<string, { sceneId: number; left: string; top: string }>> = {
+const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
   // Among the blooming flowers on the left of "The Garden Wakes Up".
-  blossom: { sceneId: 4, left: "11%", top: "71%" },
+  blossom: { kind: "seed", sceneId: 4, left: "11%", top: "71%" },
+  // Three faint stars in the sky inside "The Forgotten Observatory".
+  star: { kind: "constellation", sceneId: 2 },
 };
 
 function OriginScene({
@@ -193,7 +200,7 @@ function OriginScene({
   secret,
 }: {
   scene: SceneView;
-  secret?: { slug: string; left: string; top: string };
+  secret?: { slug: string; spot: SecretSpot };
 }) {
   return (
     <section
@@ -215,7 +222,10 @@ function OriginScene({
             />
           )}
           <SceneInteraction id={scene.interactionId} />
-          {secret && <HiddenSecret futureSlug={secret.slug} left={secret.left} top={secret.top} />}
+          {secret?.spot.kind === "seed" && (
+            <HiddenSecret futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
+          )}
+          {secret?.spot.kind === "constellation" && <HiddenConstellation futureSlug={secret.slug} />}
         </FadeIn>
 
         <FadeIn className={styles.panel}>

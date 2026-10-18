@@ -18,16 +18,19 @@ export function LonelyStar() {
   const level = Math.min(twinkles, messages.length - 1);
   return (
     <>
-      <button
-        type="button"
-        className={styles.lonelyStar}
-        style={{ left: "76.5%", top: "17.5%" }}
-        data-level={level}
-        aria-label="Tap the lonely star"
-        onClick={() => setTwinkles((t) => t + 1)}
-      >
-        <span key={twinkles} className={styles.twinkle} aria-hidden="true" />
-      </button>
+      {/* Anchored to the illustration itself, not the whole frame. */}
+      <div className={styles.imageLayer}>
+        <button
+          type="button"
+          className={styles.lonelyStar}
+          style={{ left: "76.5%", top: "17.5%" }}
+          data-level={level}
+          aria-label="Tap the lonely star"
+          onClick={() => setTwinkles((t) => t + 1)}
+        >
+          <span key={twinkles} className={styles.twinkle} aria-hidden="true" />
+        </button>
+      </div>
       <p className={styles.caption} role="status">
         <span aria-hidden="true">✨ </span>
         {messages[level]}

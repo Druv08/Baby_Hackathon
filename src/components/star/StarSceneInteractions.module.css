@@ -1,4 +1,18 @@
 /* ── Scene 1: lonely star hotspot (over the illustration) ───────────── */
+.imageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  pointer-events: none;
+}
+
+.imageLayer > * {
+  pointer-events: auto;
+}
+
 .lonelyStar {
   position: absolute;
   z-index: 2;

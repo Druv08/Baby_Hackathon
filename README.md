@@ -260,3 +260,16 @@ Blossom is the complete example — copy its shape for the next future:
 Progress uses the shared journey store: opening the hero discovers the
 future, reaching scene 5 completes its story, and the hidden collectible is
 saved with `collectSecret`. Nothing new is stored in the database.
+
+### Star (second complete future)
+
+Star follows the same pattern as Blossom (`src/data/stories/star.ts`), with
+star-specific interactions in `src/components/star/`. A shared constellation
+engine (`src/lib/projects/constellation.ts`) powers the story scenes, the
+Constellation Builder and the Hidden Constellation secret; Bloom Book and the
+Dream Atlas share one pager (`src/lib/projects/pager.ts`).
+
+**Character art mapping:** the locked files `characters/3.png` and
+`characters/9.png` hold each other's design (Star = hooded cloak with a dream
+jar; Luna = witch hat holding a star), confirmed against both hero mockups.
+The files are untouched; `src/data/characters.ts` cross-maps them instead.
