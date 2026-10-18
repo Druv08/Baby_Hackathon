@@ -1,0 +1,83 @@
+.progress {
+  position: sticky;
+  top: calc(var(--header-height) + 0.5rem);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  margin-block: var(--space-4);
+  pointer-events: none;
+}
+
+.progress ol {
+  display: flex;
+  gap: var(--space-1);
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 250, 244, 0.9);
+  box-shadow: var(--shadow-soft);
+  list-style: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+
+.progress a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--pink);
+  background: var(--white);
+  color: var(--pink-deep);
+  font-weight: 800;
+}
+
+.progress a[data-done="true"] .dot {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.progress a[aria-current="step"] {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.progress a[aria-current="step"] .dot {
+  background: var(--pink-deep);
+  border-color: var(--pink-deep);
+  color: var(--white);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Only the current step shows its title, keeping the bar compact. */
+.label {
+  display: none;
+}
+
+.progress a[aria-current="step"] .label {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+  .progress a[aria-current="step"] .label {
+    display: none;
+  }
+
+  .progress a {
+    padding-right: 4px;
+  }
+}

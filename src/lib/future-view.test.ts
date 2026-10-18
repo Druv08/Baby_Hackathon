@@ -65,13 +65,20 @@ describe("loadFutureView", () => {
     }
   });
 
-  it("never exposes playable projects or interactions while nothing is live", () => {
+  it("never exposes a project as playable unless it is live", () => {
     for (const f of FUTURES) {
       const view = loadFutureView(f.slug)!;
-      expect(view.portfolio.projects.every((p) => !p.playable)).toBe(true);
-      expect(view.interactions).toEqual([]);
-      expect(view.sections.showcase).toBe(false);
-      expect(view.sections.interaction).toBe(false);
+      for (const p of view.portfolio.projects) {
+        expect(p.playable).toBe(p.implementation === "live" && p.interactionId !== undefined);
+      }
+      // Interactions come only from visible story scenes or live projects.
+      const allowed = [
+        ...view.story.scenes.flatMap((s) => (s.interactionId ? [s.interactionId] : [])),
+        ...view.portfolio.projects.flatMap((p) => (p.playable && p.interactionId ? [p.interactionId] : [])),
+      ];
+      expect(view.interactions).toEqual(allowed);
+      if (!view.readiness.portfolioReady) expect(view.sections.showcase).toBe(false);
+      if (view.interactions.length === 0) expect(view.sections.interaction).toBe(false);
     }
   });
 

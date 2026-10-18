@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { FloralDivider, Sparkles } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
 import { CHARACTER_THEMES, formNumber, themeStyle } from "@/data/future-themes";
-import { getAllFutures } from "@/lib/content";
+import { getAllFutures, storyHref } from "@/lib/content";
 import { loadFutureView } from "@/lib/future-view";
 import styles from "./page.module.css";
 
@@ -33,6 +33,7 @@ export default async function FuturePage({ params }: Params) {
 
   const { character, story, portfolio } = view;
   const theme = CHARACTER_THEMES[view.slug];
+  const enterHref = storyHref(view.slug);
 
   return (
     <div style={themeStyle(view.slug)}>
@@ -63,8 +64,8 @@ export default async function FuturePage({ params }: Params) {
             )}
 
             <div className={styles.actions}>
-              {story.canEnter ? (
-                <Link href={`/futures/${view.slug}/story`} className="btn btn-primary btn-large">
+              {story.canEnter && enterHref ? (
+                <Link href={enterHref} className="btn btn-primary btn-large">
                   Enter Story <span aria-hidden="true">→</span>
                 </Link>
               ) : (

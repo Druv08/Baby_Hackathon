@@ -1,0 +1,312 @@
+/* All overlays sit inside the scene image frame (position: relative). */
+
+/* ── Scene 1: wilted-flower hotspot ─────────────────────────────────── */
+.hotspot {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border: 2px dashed rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 220, 235, 0.35), rgba(255, 220, 235, 0));
+  cursor: pointer;
+  animation: hint 2.4s ease-in-out infinite;
+}
+
+.hotspot:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 3px;
+}
+
+.tremble {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.tremble[data-active="true"] {
+  animation: tremble 0.6s ease-in-out;
+  background: radial-gradient(circle, rgba(255, 190, 215, 0.45), transparent 70%);
+}
+
+.petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 14px;
+  border-radius: 60% 60% 60% 0;
+  background: #e9a3b8;
+  opacity: 0;
+}
+
+.tremble[data-active="true"] .petal {
+  animation: petalFall 1.6s ease-in forwards;
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes tremble {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes petalFall {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, 70px) rotate(160deg);
+  }
+}
+
+/* ── Shared caption and controls ────────────────────────────────────── */
+.caption {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 24px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(60, 28, 52, 0.78);
+  color: #fff8f1;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.controlBar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c2386f, #a33fa0);
+  color: #fff;
+  font: 800 1rem var(--font-body);
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(120, 30, 80, 0.35);
+}
+
+.control:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 3px;
+}
+
+.inlineCaption {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(60, 28, 52, 0.78);
+  color: #fff8f1;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* ── Scene 2: water drops ───────────────────────────────────────────── */
+.drops {
+  position: absolute;
+  width: 60px;
+  height: 90px;
+  pointer-events: none;
+}
+
+.drops span {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 12px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #8fd3ff);
+  opacity: 0;
+  animation: drip 1s ease-in forwards;
+}
+
+.drops span:nth-child(1) {
+  left: 4px;
+}
+.drops span:nth-child(2) {
+  left: 18px;
+}
+.drops span:nth-child(3) {
+  left: 30px;
+}
+.drops span:nth-child(4) {
+  left: 42px;
+}
+.drops span:nth-child(5) {
+  left: 52px;
+}
+
+@keyframes drip {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+}
+
+/* ── Scene 3: night-to-morning tint ─────────────────────────────────── */
+.night {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(20, 16, 60, 0.85), rgba(60, 40, 110, 0.55));
+  mix-blend-mode: multiply;
+  transition: opacity 1.2s ease;
+}
+
+.night[data-stage="0"] {
+  opacity: 0.85;
+}
+.night[data-stage="1"] {
+  opacity: 0.6;
+}
+.night[data-stage="2"] {
+  opacity: 0.3;
+}
+.night[data-stage="3"] {
+  opacity: 0;
+}
+
+/* ── Scene 4: blooming flowers ──────────────────────────────────────── */
+.bloom {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #ffe7a3 0 22%, transparent 23%),
+    conic-gradient(from 0deg, var(--petal) 0 14%, transparent 14% 20%, var(--petal) 20% 34%, transparent 34% 40%,
+      var(--petal) 40% 54%, transparent 54% 60%, var(--petal) 60% 74%, transparent 74% 80%, var(--petal) 80% 94%, transparent 94%);
+  filter: drop-shadow(0 0 6px rgba(255, 220, 240, 0.9));
+  transform: scale(0);
+  animation: pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0) rotate(-40deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* ── Scene 5: reveal petals ─────────────────────────────────────────── */
+.sparkleLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sparkleLayer span {
+  position: absolute;
+  top: -20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 60% 0 60% 0;
+  background: var(--c);
+  box-shadow: 0 0 10px var(--c);
+  opacity: 0;
+}
+
+.sparkleLayer[data-shown="true"] span {
+  animation: drift 5s ease-in infinite;
+}
+
+@keyframes drift {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(30px, 115%) rotate(240deg);
+  }
+}
+
+/* Phones: captions and controls move below the illustration so they
+   never cover it. */
+@media (max-width: 600px) {
+  .caption,
+  .controlBar {
+    position: static;
+    transform: none;
+    max-width: none;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 0;
+    background: #fffaf3;
+    color: var(--ink);
+    white-space: normal;
+  }
+
+  .caption {
+    font-size: 0.9rem;
+  }
+
+  .inlineCaption {
+    padding: 0;
+    background: none;
+    color: var(--ink);
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkleLayer[data-shown="true"] span {
+    animation: none;
+    opacity: 0.8;
+    top: auto;
+    bottom: 10%;
+  }
+}

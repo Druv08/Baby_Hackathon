@@ -44,6 +44,16 @@ export function isFutureStoryReady(slug: string): boolean {
   return getFutureBySlug(slug)?.storyStatus === "ready";
 }
 
+/** Futures whose story page exists (only `ready` stories get a route). */
+export function getStoryRouteSlugs(): string[] {
+  return FUTURES.filter((f) => f.storyStatus === "ready").map((f) => f.slug);
+}
+
+/** Link to a future's story page, or `undefined` while it isn't ready. */
+export function storyHref(slug: string): string | undefined {
+  return isFutureStoryReady(slug) ? `/futures/${slug}/story` : undefined;
+}
+
 /** Hero path only if the file has actually been supplied. */
 export function getHeroImage(slug: string): string | undefined {
   const hero = getFutureBySlug(slug)?.heroImage;

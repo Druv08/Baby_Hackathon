@@ -16,8 +16,7 @@ export const FUTURES: FuturePath[] = [
     characterId: 2,
     heroImage: "/heroes/blossom.png",
     storyCoverImage: "/heroes/blossom-story-cover.png",
-    // Draft until the story route is live and verified.
-    storyStatus: "draft",
+    storyStatus: "ready",
     portfolioStatus: "pending",
     storyIntro: BLOSSOM_STORY_INTRO,
     scenes: BLOSSOM_SCENES,

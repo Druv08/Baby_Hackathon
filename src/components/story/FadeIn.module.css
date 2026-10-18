@@ -1,0 +1,13 @@
+.fade {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade[data-armed="true"] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.fade[data-armed="shown"] {
+  opacity: 1;
+  transform: none;
+}
