@@ -43,6 +43,19 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/projects/blossom/dream-garden.png",
   "/projects/blossom/bloom-book.png",
   "/projects/blossom/butterfly-corner.png",
+
+  // Star story scenes (1–4: Normal Maria, 5: Star Maria) and observatory world.
+  "/stories/star/scene-1.png",
+  "/stories/star/scene-2.png",
+  "/stories/star/scene-3.png",
+  "/stories/star/scene-4.png",
+  "/stories/star/scene-5.png",
+  "/stories/star/background.png",
+
+  // Star project artwork.
+  "/projects/star/constellation-builder.png",
+  "/projects/star/dream-atlas.png",
+  "/projects/star/stargazers-telescope.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {

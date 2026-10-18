@@ -1,8 +1,11 @@
 import type { Character } from "@/types/character";
 
 /**
- * The nine locked Maria designs. IDs are permanent and match the canonical
- * `/characters/{id}.png` files. Taglines are transcribed from the hero designs.
+ * The nine locked Maria designs. IDs are permanent. Each points at its
+ * locked art in `/characters/`, which matches the id for every character
+ * except Star (3) and Luna (9): their canonical files hold each other's
+ * design (confirmed against both hero mockups), so they are cross-mapped here
+ * rather than renaming the locked files. Taglines come from the hero designs.
  */
 export const CHARACTERS: Character[] = [
   {
@@ -26,7 +29,8 @@ export const CHARACTERS: Character[] = [
     name: "Star Maria",
     profession: "Dream Mapper",
     tagline: "I can turn questions into discoveries.",
-    characterImage: "/characters/3.png",
+    // Design swap: the hooded dream-jar art (Star) is stored as 9.png.
+    characterImage: "/characters/9.png",
   },
   {
     id: 4,
@@ -74,6 +78,7 @@ export const CHARACTERS: Character[] = [
     name: "Luna Maria",
     profession: "Memory Keeper",
     tagline: "Every version of me is still me.",
-    characterImage: "/characters/9.png",
+    // Design swap: the witch-hat art (Luna) is stored as 3.png.
+    characterImage: "/characters/3.png",
   },
 ];

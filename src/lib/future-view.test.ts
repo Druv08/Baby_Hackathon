@@ -95,7 +95,7 @@ describe("buildFutureView with a ready story", () => {
     expect(view.story.scenes.map((s) => s.position)).toEqual([1, 2, 3, 4, 5]);
     expect(view.story.origin.map((s) => s.character.id)).toEqual([1, 1, 1, 1]);
     expect(view.story.reveal?.character.id).toBe(3);
-    expect(view.story.reveal?.character.characterImage).toBe("/characters/3.png");
+    expect(view.story.reveal?.character.characterImage).toBe("/characters/9.png"); // Star's design
     expect(view.sections.origin && view.sections.reveal).toBe(true);
   });
 

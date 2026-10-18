@@ -62,3 +62,36 @@ describe("Blossom artwork", () => {
     expect(isAssetVerified("/projects/blossom/unknown.png")).toBe(false);
   });
 });
+
+/** Star artwork, copied byte-for-byte from Folder 3 after visual inspection. */
+const STAR_ARTWORK: Record<string, string> = {
+  "/stories/star/scene-1.png": "a76ed16f530f66a95cd155b6ddf817f27897a535fb0b60fdbb960f0a3f028614",
+  "/stories/star/scene-2.png": "8d0cfd42ac59c7373c19d539233fbd9b1f5bde526a2bc07371336234d74668ba",
+  "/stories/star/scene-3.png": "7d4038328110229cf8096cc610a98ab1976e13cf90943422f2ec28d57b00ac44",
+  "/stories/star/scene-4.png": "a76d0cb0de273b59940706dcde6178bca8e490b774b203a38483ec8e6fed8b29",
+  "/stories/star/scene-5.png": "0b9a5e3b1a6f7c406b787865693b17487a32cc4b343d93f8e71347002aa326a3",
+  "/stories/star/background.png": "61145f6fa3cef44474cb9b815a17c9889296345b6c68ee322a0c5b530fabdeed",
+  "/projects/star/constellation-builder.png": "156991a9eed1f70d3254058dfdf7e756a988802b8e86a990ff6eee44636ae563",
+  "/projects/star/dream-atlas.png": "d8eb98bb64d71dc0fd70fa3dd10b83cb9281cd7195b23ab8b3a52eee14066c59",
+  "/projects/star/stargazers-telescope.png": "04adf2ac3326db123a949e4b8460f6183fdf46ce0c895be0273783eec86a8e8f",
+};
+
+describe("Star artwork", () => {
+  it.each(Object.entries(STAR_ARTWORK))("%s is the approved file and is registered", (path, hash) => {
+    expect(sha256(path)).toBe(hash);
+    expect(isAssetVerified(path)).toBe(true);
+  });
+});
+
+describe("Star / Luna design mapping", () => {
+  it("shows Star with the hooded dream-jar design and Luna with the witch hat, without touching the files", async () => {
+    const { CHARACTERS } = await import("./characters");
+    const star = CHARACTERS.find((c) => c.slug === "star")!;
+    const luna = CHARACTERS.find((c) => c.slug === "luna")!;
+    expect(star.id).toBe(3);
+    expect(luna.id).toBe(9);
+    expect(sha256(star.characterImage)).toBe(CANONICAL_CHARACTERS["/characters/9.png"]);
+    expect(sha256(luna.characterImage)).toBe(CANONICAL_CHARACTERS["/characters/3.png"]);
+    expect(star.characterImage).not.toBe(luna.characterImage);
+  });
+});

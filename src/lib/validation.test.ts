@@ -55,7 +55,9 @@ describe("shipped catalog", () => {
   });
 
   it("points every character at its canonical image", () => {
-    for (const c of CHARACTERS) expect(c.characterImage).toBe(`/characters/${c.id}.png`);
+    // Star (3) and Luna (9) are cross-mapped: their locked files hold each other's design.
+    const expected: Record<number, string> = { 3: "/characters/9.png", 9: "/characters/3.png" };
+    for (const c of CHARACTERS) expect(c.characterImage).toBe(expected[c.id] ?? `/characters/${c.id}.png`);
   });
 
   it("has exactly eight futures with unique slugs", () => {
