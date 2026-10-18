@@ -1,5 +1,6 @@
 import type { FuturePath } from "@/types/future";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
+import { STAR_PROFILE, STAR_PROJECTS, STAR_SCENES, STAR_STORY_INTRO } from "./stories/star";
 
 /**
  * The eight independent futures. To add content for one future, edit only its
@@ -28,33 +29,13 @@ export const FUTURES: FuturePath[] = [
     slug: "star",
     characterId: 3,
     heroImage: "/heroes/star.png",
-    storyStatus: "pending",
+    // Draft until the story page is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
-    projects: [
-      {
-        id: "constellation-builder",
-        title: "Constellation Builder",
-        description:
-          "Connect forgotten wishes and create your own constellation in Maria's night sky.",
-        status: "draft",
-        implementation: "proposed",
-      },
-      {
-        id: "little-star-atlas",
-        title: "Little Star Atlas",
-        description: "",
-        status: "pending",
-        implementation: "proposed",
-      },
-      {
-        id: "wish-observatory",
-        title: "Wish Observatory",
-        description: "",
-        status: "pending",
-        implementation: "proposed",
-      },
-    ],
+    storyIntro: STAR_STORY_INTRO,
+    scenes: STAR_SCENES,
+    profile: STAR_PROFILE,
+    projects: STAR_PROJECTS,
   },
   {
     id: 4,

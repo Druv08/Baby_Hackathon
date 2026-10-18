@@ -46,8 +46,8 @@ describe("Blossom portfolio", () => {
     expect(loadFutureView("blossom")!.readiness.complete).toBe(true);
   });
 
-  it("leaves the other seven futures' portfolios untouched", () => {
-    for (const f of FUTURES.filter((f) => f.slug !== "blossom")) {
+  it("leaves the futures without content untouched", () => {
+    for (const f of FUTURES.filter((f) => !["blossom", "star"].includes(f.slug))) {
       expect(f.portfolioStatus).toBe("pending");
       expect(f.profile).toBeUndefined();
       expect(f.projects.every((p) => p.implementation === "proposed")).toBe(true);
