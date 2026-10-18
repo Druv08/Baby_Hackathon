@@ -83,6 +83,39 @@ describe("Star artwork", () => {
   });
 });
 
+/** Cloud artwork, copied byte-for-byte from Folder 4 after visual inspection. */
+const CLOUD_ARTWORK: Record<string, string> = {
+  "/stories/cloud/scene-1.png": "ba88873856a1fe81e20c3c749c0e1ce2de6a9ba39be27a7fc0e4721d234db6f7",
+  "/stories/cloud/scene-2.png": "f67b88adc48564c67573fa5fe3863029a838f163efe0b6a393b0abd2cee53ba4",
+  "/stories/cloud/scene-3.png": "44923129866cdaa6db0c631cc9dd732431f46ee1c3181df59e389c60b0e92191",
+  "/stories/cloud/scene-4.png": "49d493dab15195b601ac59630ada9c77a9fb9c6cc99ab09e8e094c8e41e68a64",
+  "/stories/cloud/scene-5.png": "c20b8c30e2289698f5938e206bc4301969cb3a3e17c272013f68cc15940380b5",
+  "/stories/cloud/background.png": "c302caad549a0c116b5a8ecb8b96d1fa6e0ac9a5d54f5de76c789dc0cb543f06",
+  "/projects/cloud/cloud-maker.png": "d1b341274e8940714cf12c34464e57926900c41ee2773188967734a58bddbab7",
+  "/projects/cloud/sky-route-planner.png": "126df352435d21d9d69f05de2d7066b8bfe636971f14efcc98ffae004be6ccfb",
+  "/projects/cloud/cloud-postcards.png": "c01fb15a50319ed49506ce59631399e1dd2cd8243f7aa5431b1e1cdf28238b79",
+};
+
+describe("Cloud artwork", () => {
+  it.each(Object.entries(CLOUD_ARTWORK))("%s is the approved file and is registered", (path, hash) => {
+    expect(sha256(path)).toBe(hash);
+    expect(isAssetVerified(path)).toBe(true);
+  });
+
+  it("never reuses Star's celestial artwork", () => {
+    const starHashes = new Set(Object.values(STAR_ARTWORK));
+    for (const hash of Object.values(CLOUD_ARTWORK)) expect(starHashes.has(hash)).toBe(false);
+  });
+
+  it("Cloud Maria keeps her own locked design (4.png)", async () => {
+    const { CHARACTERS } = await import("./characters");
+    const cloud = CHARACTERS.find((c) => c.slug === "cloud")!;
+    expect(cloud.id).toBe(4);
+    expect(cloud.characterImage).toBe("/characters/4.png");
+    expect(sha256(cloud.characterImage)).toBe(CANONICAL_CHARACTERS["/characters/4.png"]);
+  });
+});
+
 describe("Star / Luna design mapping", () => {
   it("shows Star with the hooded dream-jar design and Luna with the witch hat, without touching the files", async () => {
     const { CHARACTERS } = await import("./characters");

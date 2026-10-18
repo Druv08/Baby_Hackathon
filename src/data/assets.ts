@@ -56,6 +56,19 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/projects/star/constellation-builder.png",
   "/projects/star/dream-atlas.png",
   "/projects/star/stargazers-telescope.png",
+
+  // Cloud story scenes (1–4: Normal Maria, 5: Cloud Maria) and sky-island world.
+  "/stories/cloud/scene-1.png",
+  "/stories/cloud/scene-2.png",
+  "/stories/cloud/scene-3.png",
+  "/stories/cloud/scene-4.png",
+  "/stories/cloud/scene-5.png",
+  "/stories/cloud/background.png",
+
+  // Cloud project artwork.
+  "/projects/cloud/cloud-maker.png",
+  "/projects/cloud/sky-route-planner.png",
+  "/projects/cloud/cloud-postcards.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {
