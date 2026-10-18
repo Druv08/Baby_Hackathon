@@ -13,6 +13,7 @@ import { PetalLayer } from "@/components/story/PetalLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
 import { StoryText } from "@/components/story/StoryText";
+import { isAssetVerified } from "@/data/assets";
 import { CHARACTER_THEMES, themeStyle } from "@/data/future-themes";
 import { getFutureBySlug, getStoryRouteSlugs } from "@/lib/content";
 import { loadFutureView, type SceneView } from "@/lib/future-view";
@@ -47,12 +48,24 @@ export default async function StoryPage({ params }: Params) {
   const intro = future.storyIntro;
   const theme = CHARACTER_THEMES[view.slug];
   const { origin, reveal } = view.story;
+  // Story-world landscape, by convention, only when the file was supplied.
+  const backdrop = `/stories/${view.slug}/background.png`;
+  const hasBackdrop = isAssetVerified(backdrop);
 
   return (
-    <div className={styles.world} style={themeStyle(view.slug)}>
+    <div className={styles.world} data-backdrop={hasBackdrop} style={themeStyle(view.slug)}>
       <RecordFutureVisit futureId={view.id} />
+      {hasBackdrop && (
+        // Fixed to the viewport (clipped to this page), so every scene scrolls
+        // over the same landscape — cover-cropped, never stretched.
+        <div className={styles.backdrop} aria-hidden="true">
+          <Image src={backdrop} alt="" fill priority sizes="100vw" className={styles.backdropImage} />
+          <div className={styles.backdropVeil} />
+        </div>
+      )}
       <PetalLayer />
 
+      <div className={styles.content}>
       {/* ── Introduction ─────────────────────────────────────────────── */}
       <section className={styles.intro} aria-labelledby="story-title">
         <div className={`container ${styles.introInner}`}>
@@ -105,7 +118,6 @@ export default async function StoryPage({ params }: Params) {
       >
         <div className="container">
           <header className={styles.revealHead}>
-            <p className={styles.sceneLabel}>Scene {reveal.id}</p>
             <h2 id={`scene-${reveal.id}-title`}>{reveal.title}</h2>
           </header>
 
@@ -164,6 +176,7 @@ export default async function StoryPage({ params }: Params) {
           Return to Eight Futures
         </Link>
       </nav>
+      </div>
     </div>
   );
 }
@@ -205,7 +218,6 @@ function OriginScene({
         </FadeIn>
 
         <FadeIn className={styles.panel}>
-          <p className={styles.sceneLabel}>Scene {scene.id}</p>
           <h2 id={`scene-${scene.id}-title`} className={styles.sceneTitle}>
             {scene.title}
           </h2>

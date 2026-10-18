@@ -1,19 +1,52 @@
 /*
- * The story world: a continuous garden-sunset atmosphere behind every
- * section (no supplied background image yet), so there are no seams.
+ * The story world. With a supplied landscape, it sits in a fixed layer so
+ * the whole story scrolls over one continuous scene; otherwise a soft
+ * garden-sunset gradient is used.
  */
 .world {
   position: relative;
   isolation: isolate;
+  /* Clips the fixed landscape to this page (it won't show behind the footer). */
+  clip-path: inset(0);
   background:
     radial-gradient(ellipse 80% 40% at 15% 8%, rgba(255, 214, 170, 0.55), transparent 60%),
     radial-gradient(ellipse 70% 35% at 90% 30%, rgba(247, 168, 196, 0.45), transparent 65%),
     radial-gradient(ellipse 80% 30% at 20% 60%, rgba(205, 184, 240, 0.4), transparent 65%),
-    radial-gradient(ellipse 70% 30% at 85% 85%, rgba(255, 200, 220, 0.5), transparent 65%),
     linear-gradient(180deg, #ffe9df 0%, #fde3ee 30%, #f6e2f7 60%, #fdeee6 100%);
 }
 
-.world > * {
+.world {
+  /* Height of the sticky story progress band (see StoryProgress). */
+  --story-nav-height: 3.75rem;
+}
+
+.world[data-backdrop="true"] {
+  background: #f6d9e4;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Cover-crop, centred on the lantern-lit path and waterfalls; never stretched. */
+.backdropImage {
+  object-fit: cover;
+  object-position: 50% 62%;
+}
+
+/* A light veil keeps the landscape vivid while cards and headings stay readable. */
+.backdropVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 246, 240, 0.28), rgba(255, 246, 240, 0.12) 40%, rgba(255, 240, 246, 0.3));
+}
+
+/* Everything readable sits above the landscape and petals. */
+.content {
   position: relative;
   z-index: 1;
 }
@@ -58,10 +91,18 @@
   box-shadow: var(--shadow-soft);
 }
 
+/* Translucent cream plate so the intro reads clearly over the landscape. */
 .introCopy {
   display: grid;
   justify-items: start;
   gap: var(--space-4);
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  border-radius: var(--radius-lg);
+  background: rgba(255, 250, 244, 0.86);
+  border: 2px solid rgba(242, 213, 196, 0.9);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .introTitle {
@@ -84,8 +125,8 @@
 /* ── Scenes ───────────────────────────────────────────────────────── */
 .scene,
 .reveal {
-  /* Clear the sticky header and story progress bar when jumping to a scene. */
-  scroll-margin-top: calc(var(--header-height) + 3.5rem);
+  /* Clear the sticky header and the story progress band when jumping to a scene. */
+  scroll-margin-top: calc(var(--header-height) + var(--story-nav-height) + 0.5rem);
 }
 
 .scene {
@@ -137,12 +178,6 @@
   box-shadow: var(--shadow-soft), inset 0 0 30px rgba(240, 200, 170, 0.25);
 }
 
-.sceneLabel {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--accent);
-}
-
 .sceneTitle {
   font-size: clamp(2.1rem, 3.6vw, 2.8rem);
   color: var(--ink);
@@ -157,8 +192,12 @@
 .revealHead {
   display: grid;
   justify-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-5);
+  width: fit-content;
+  margin: 0 auto var(--space-5);
+  padding: var(--space-2) var(--space-6);
+  border-radius: 999px;
+  background: rgba(255, 250, 244, 0.86);
+  box-shadow: var(--shadow-soft);
   text-align: center;
 }
 

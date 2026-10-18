@@ -1,44 +1,55 @@
+/*
+ * A full-width band pinned directly under the sticky site header. It has
+ * its own height in the layout (var(--story-nav-height), set by the story
+ * page) and a bottom margin, so it never sits on top of a story card.
+ */
 .progress {
   position: sticky;
-  top: calc(var(--header-height) + 0.5rem);
-  z-index: 20;
+  top: var(--header-height);
+  z-index: 40; /* below the site header (50), above story content */
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-block: var(--space-4);
-  pointer-events: none;
+  height: var(--story-nav-height, 3.75rem);
+  margin-bottom: var(--space-6);
+  padding-inline: var(--gutter);
+  /* Nearly opaque so text scrolling underneath doesn't ghost through. */
+  background: rgba(255, 250, 244, 0.97);
+  border-block: 1px solid rgba(194, 56, 111, 0.15);
+  box-shadow: 0 6px 18px rgba(120, 40, 80, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .progress ol {
   display: flex;
   gap: var(--space-1);
-  padding: 6px;
-  border-radius: 999px;
-  background: rgba(255, 250, 244, 0.9);
-  box-shadow: var(--shadow-soft);
   list-style: none;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  pointer-events: auto;
 }
 
 .progress a {
   display: flex;
   align-items: center;
   gap: 6px;
-  min-height: 36px;
-  padding: 4px 10px 4px 4px;
+  min-height: 40px;
+  padding: 4px 12px 4px 4px;
   border-radius: 999px;
   color: var(--ink-soft);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
+}
+
+.progress a:focus-visible {
+  outline: 3px solid var(--lavender-deep);
+  outline-offset: 2px;
 }
 
 .dot {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 2px solid var(--pink);
   background: var(--white);
@@ -63,7 +74,7 @@
   box-shadow: 0 0 12px var(--accent-glow);
 }
 
-/* Only the current step shows its title, keeping the bar compact. */
+/* Only the current step shows its title, keeping the band compact. */
 .label {
   display: none;
 }
@@ -78,6 +89,6 @@
   }
 
   .progress a {
-    padding-right: 4px;
+    padding: 4px;
   }
 }

@@ -121,10 +121,7 @@ export const BLOSSOM_PROFILE: CharacterProfile = {
   motto: "Every little flower deserves a chance to bloom.",
 };
 
-/**
- * Blossom Maria's three creations — each a small playable experience.
- * No Bloom Book artwork was supplied, so it has no image.
- */
+/** Blossom Maria's three creations — each a small playable experience. */
 export const BLOSSOM_PROJECTS: PortfolioProject[] = [
   {
     id: "dream-garden",
@@ -141,6 +138,7 @@ export const BLOSSOM_PROJECTS: PortfolioProject[] = [
     title: "Bloom Book",
     description:
       "Blossom Maria’s magical flower journal, filled with little discoveries, beautiful petals, and stories about the flowers she has cared for.",
+    image: "/projects/blossom/bloom-book.png",
     interactionId: "bloom-book",
     status: "ready",
     implementation: "live",

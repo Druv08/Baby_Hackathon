@@ -35,6 +35,8 @@ const BLOSSOM_ARTWORK: Record<string, string> = {
   "/stories/blossom/scene-5.png": "b80900104c24cc9c77fa83e769a997addafc9e6ec55dc84f7b6688eafcc3d9bc",
   "/projects/blossom/dream-garden.png": "51718a012c61cbc1ecdfe1588f10d1c6d697aa4cf3c16c5db34fdbe9118b9e04",
   "/projects/blossom/butterfly-corner.png": "07125c749f6b057205ac59954eed57a0779075b1f022a500013de8147118cac3",
+  "/projects/blossom/bloom-book.png": "fa53e53b180948a8cf207a264774a372d1983fd785023ce124ee4fd3cc2edc84",
+  "/stories/blossom/background.png": "bfdca3efb965010a2b40e0f1967709547fd0f53b735a5cd062511885fd1a4891",
 };
 
 describe("canonical character integrity", () => {
@@ -56,7 +58,7 @@ describe("Blossom artwork", () => {
   });
 
   it("does not register artwork that was never supplied", () => {
-    expect(isAssetVerified("/projects/blossom/bloom-book.png")).toBe(false);
-    expect(isAssetVerified("/stories/blossom/background.png")).toBe(false);
+    expect(isAssetVerified("/stories/blossom/scene-6.png")).toBe(false);
+    expect(isAssetVerified("/projects/blossom/unknown.png")).toBe(false);
   });
 });

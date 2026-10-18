@@ -36,8 +36,12 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/stories/blossom/scene-4.png",
   "/stories/blossom/scene-5.png",
 
-  // Blossom project artwork. (No Bloom Book or story-background art supplied yet.)
+  // Blossom story-world landscape (no characters, no text).
+  "/stories/blossom/background.png",
+
+  // Blossom project artwork.
   "/projects/blossom/dream-garden.png",
+  "/projects/blossom/bloom-book.png",
   "/projects/blossom/butterfly-corner.png",
 ]);
 

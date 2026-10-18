@@ -113,7 +113,8 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
               <li key={p.id} className={styles.card}>
                 <div className={styles.cardArt}>
                   {p.verifiedImage ? (
-                    <Image src={p.verifiedImage} alt="" width={1672} height={941} sizes="(max-width: 900px) 94vw, 380px" />
+                    // `fill` + cover handles both 16:9 and 4:3 artwork without distortion.
+                    <Image src={p.verifiedImage} alt="" fill sizes="(max-width: 900px) 94vw, 380px" />
                   ) : (
                     <span className={styles.cardFallback} aria-hidden="true">
                       📖

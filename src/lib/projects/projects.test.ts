@@ -32,7 +32,7 @@ describe("Blossom portfolio", () => {
   it("uses only supplied artwork for project images", () => {
     const [garden, book, butterflies] = loadFutureView("blossom")!.portfolio.projects;
     expect(garden.verifiedImage).toBe("/projects/blossom/dream-garden.png");
-    expect(book.image).toBeUndefined();
+    expect(book.verifiedImage).toBe("/projects/blossom/bloom-book.png");
     expect(butterflies.verifiedImage).toBe("/projects/blossom/butterfly-corner.png");
   });
 
