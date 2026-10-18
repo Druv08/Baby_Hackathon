@@ -11,7 +11,7 @@ function readyStar(): FuturePath {
     id,
     title: `Scene ${id}`,
     narration: `Narration ${id}`,
-    image: `/stories/star/scene-${id}.png`,
+    image: `/stories/test-fixture/scene-${id}.png`, // deliberately not a real file,
     characterId: id <= 4 ? 1 : 3,
     layout: id % 2 ? "text-left" : "text-right",
     interactionId: id === 5 ? "star-reveal" : undefined,
