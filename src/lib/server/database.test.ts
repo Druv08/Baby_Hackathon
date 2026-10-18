@@ -15,14 +15,25 @@ import { FUTURE_SLUGS } from "@/lib/memories/validation";
 
 const MIGRATIONS_DIR = join(process.cwd(), "supabase", "migrations");
 
-const SUPABASE_BOOTSTRAP = `
+const SUPABASE_ROLES = `
   create role anon nologin;
   create role authenticated nologin;
   create role service_role nologin bypassrls;
+`;
+
+// Older Supabase projects: new tables/functions are auto-granted to API roles.
+const SUPABASE_BOOTSTRAP = `
+  ${SUPABASE_ROLES}
   grant usage on schema public to anon, authenticated, service_role;
   alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
   alter default privileges in schema public grant all on functions to anon, authenticated, service_role;
 `;
+
+async function applyMigrations(target: PGlite) {
+  for (const file of readdirSync(MIGRATIONS_DIR).filter((f) => f.endsWith(".sql")).sort()) {
+    await target.exec(readFileSync(join(MIGRATIONS_DIR, file), "utf8"));
+  }
+}
 
 let db: PGlite;
 
@@ -44,9 +55,7 @@ async function insertMemory(values: Record<string, string | null>) {
 beforeAll(async () => {
   db = new PGlite();
   await db.exec(SUPABASE_BOOTSTRAP);
-  for (const file of readdirSync(MIGRATIONS_DIR).filter((f) => f.endsWith(".sql")).sort()) {
-    await db.exec(readFileSync(join(MIGRATIONS_DIR, file), "utf8"));
-  }
+  await applyMigrations(db);
 }, 60_000);
 
 afterAll(async () => {
@@ -172,5 +181,49 @@ describe("shared rate limiter", () => {
     await db.query("update rate_limits set window_start = now() - interval '11 minutes' where bucket = 'c'");
     const { rows } = await db.query<{ ok: boolean }>("select consume_rate_limit('c', 1, 600) as ok");
     expect(rows[0].ok).toBe(true);
+  });
+});
+
+// Newer Supabase projects: no automatic grants on tables created via SQL.
+// Regression test for "permission denied for table site_counters" (42501).
+describe("projects without automatic grants", () => {
+  let strict: PGlite;
+
+  beforeAll(async () => {
+    strict = new PGlite();
+    await strict.exec(SUPABASE_ROLES);
+    await applyMigrations(strict);
+    await strict.query(
+      "insert into memories (visitor_name, message, status) values ('A', 'approved one', 'approved'), ('B', 'pending one', 'pending')",
+    );
+  }, 60_000);
+
+  afterAll(async () => {
+    await strict?.close();
+  });
+
+  async function as<T>(role: string, sql: string): Promise<T[]> {
+    await strict.exec(`set role ${role}`);
+    try {
+      return (await strict.query<T>(sql)).rows;
+    } finally {
+      await strict.exec("reset role");
+    }
+  }
+
+  it("gives the service role everything the server needs", async () => {
+    await expect(as("service_role", "select * from site_counters")).resolves.toHaveLength(1);
+    await expect(as("service_role", "select id from memories")).resolves.toHaveLength(2);
+    await expect(as("service_role", "insert into memories (visitor_name, message) values ('S', 'hi')")).resolves.toBeDefined();
+    await expect(as("service_role", "select record_visit(gen_random_uuid())")).resolves.toHaveLength(1);
+    await expect(as("service_role", "select consume_rate_limit('k', 5, 60)")).resolves.toHaveLength(1);
+  });
+
+  it("still lets the public read approved memories only, and nothing else", async () => {
+    const rows = await as<{ message: string }>("anon", "select message from memories");
+    expect(rows.map((r) => r.message)).toEqual(["approved one"]);
+    await expect(as("anon", "insert into memories (visitor_name, message) values ('x', 'y')")).rejects.toThrow();
+    await expect(as("anon", "select * from site_counters")).rejects.toThrow();
+    await expect(as("anon", "select record_visit(gen_random_uuid())")).rejects.toThrow();
   });
 });

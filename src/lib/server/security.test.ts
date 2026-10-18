@@ -109,6 +109,10 @@ describe("database security", () => {
     expect(migrations).toMatch(/for select\s+to anon, authenticated\s+using \(status = 'approved'\)/);
     expect(migrations).not.toMatch(/for (insert|update|delete|all)\b/i);
     expect(migrations).toMatch(/revoke insert, update, delete, truncate on public\.memories from anon, authenticated/);
+    // Grants to the public roles are read-only.
+    for (const grant of migrations.match(/grant [^;]+ to [^;]*\b(anon|authenticated)\b[^;]*;/gi) ?? []) {
+      expect(grant).not.toMatch(/\b(insert|update|delete|truncate|all)\b/i);
+    }
   });
 });
 
