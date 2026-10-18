@@ -28,6 +28,17 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/heroes/forest.png",
   "/heroes/melody.png",
   "/heroes/luna.png",
+
+  // Blossom story scenes (scenes 1–4: Normal Maria, scene 5: Blossom Maria).
+  "/stories/blossom/scene-1.png",
+  "/stories/blossom/scene-2.png",
+  "/stories/blossom/scene-3.png",
+  "/stories/blossom/scene-4.png",
+  "/stories/blossom/scene-5.png",
+
+  // Blossom project artwork. (No Bloom Book or story-background art supplied yet.)
+  "/projects/blossom/dream-garden.png",
+  "/projects/blossom/butterfly-corner.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {
