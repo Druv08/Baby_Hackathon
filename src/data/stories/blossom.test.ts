@@ -81,8 +81,8 @@ describe("Blossom story content", () => {
 
 describe("other futures are untouched", () => {
   it("leaves the futures without content pending with no scenes", () => {
-    const others = FUTURES.filter((f) => !["blossom", "star", "cloud", "aqua", "inventor", "forest", "melody"].includes(f.slug));
-    expect(others).toHaveLength(1);
+    const others = FUTURES.filter((f) => !["blossom", "star", "cloud", "aqua", "inventor", "forest", "melody", "luna"].includes(f.slug));
+    expect(others).toHaveLength(0);
     for (const f of others) {
       expect({ slug: f.slug, status: f.storyStatus, scenes: f.scenes.length, intro: f.storyIntro }).toEqual({
         slug: f.slug,

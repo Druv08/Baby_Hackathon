@@ -1,5 +1,6 @@
 import { MELODY_PROFILE, MELODY_PROJECTS, MELODY_SCENES, MELODY_STORY_INTRO } from "./stories/melody";
 import type { FuturePath } from "@/types/future";
+import { LUNA_PROFILE, LUNA_PROJECTS, LUNA_SCENES, LUNA_STORY_INTRO } from "./stories/luna";
 import { AQUA_PROFILE, AQUA_PROJECTS, AQUA_SCENES, AQUA_STORY_INTRO } from "./stories/aqua";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
 import { CLOUD_PROFILE, CLOUD_PROJECTS, CLOUD_SCENES, CLOUD_STORY_INTRO } from "./stories/cloud";
@@ -106,9 +107,12 @@ export const FUTURES: FuturePath[] = [
     slug: "luna",
     characterId: 9,
     heroImage: "/heroes/luna.png",
-    storyStatus: "pending",
+    // Draft until the story page is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
-    projects: [],
+    storyIntro: LUNA_STORY_INTRO,
+    scenes: LUNA_SCENES,
+    profile: LUNA_PROFILE,
+    projects: LUNA_PROJECTS,
   },
 ];

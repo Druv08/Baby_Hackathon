@@ -33,6 +33,5 @@ describe("Melody content and artwork readiness", () => {
     ]);
     expect(MELODY_PROFILE.strengths).toContain("Empathy");
     expect(MELODY_PROFILE.motto).toBe("Every heart has a little song waiting to be heard.");
-    expect(getFutureBySlug("luna")).toMatchObject({ storyStatus: "pending", portfolioStatus: "pending", scenes: [], projects: [] });
   });
 });
