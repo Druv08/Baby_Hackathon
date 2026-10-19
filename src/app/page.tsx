@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 
 import { Sparkles } from "@/components/decor/Sparkles";
+import { PawIcon } from "@/components/site/PawIcon";
 import { FutureGrid } from "@/components/futures/FutureGrid";
 import { WelcomeBack } from "@/components/progress/WelcomeBack";
 import { CHARACTER_THEMES } from "@/data/future-themes";
@@ -31,7 +32,7 @@ export default function Home() {
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.copy}>
             <p className="eyebrow">
-              <span aria-hidden="true">🐾</span> 01 — The Beginning
+              <PawIcon /> 01 — The Beginning
             </p>
             <h1 id="hero-title" className={styles.title}>
               Hi, I&apos;m Maria!

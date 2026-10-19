@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { ambienceSlug } from "@/lib/ambience";
 import { isActivePath, NAV_LINKS } from "./nav-links";
+import { PawIcon } from "./PawIcon";
 import { SiteControls } from "./SiteControls";
 import styles from "./SiteHeader.module.css";
 
@@ -34,7 +36,7 @@ export function SiteHeader() {
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label="Maria — home">
-          Maria<span aria-hidden="true"> 🐾</span>
+          Maria <PawIcon slug={ambienceSlug(pathname)} size="0.9em" />
         </Link>
 
         <button
@@ -61,7 +63,7 @@ export function SiteHeader() {
                     className={styles.link}
                     aria-current={active ? "page" : undefined}
                   >
-                    <span className={styles.linkIcon} aria-hidden="true">{link.icon}</span>
+                    <span className={styles.linkIcon} aria-hidden="true">{link.icon === "paw" ? <PawIcon /> : link.icon}</span>
                     {link.label}
                   </Link>
                 </li>

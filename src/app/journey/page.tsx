@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { PawIcon } from "@/components/site/PawIcon";
 import { JourneyOverview, type JourneyFuture } from "@/components/progress/JourneyOverview";
 import { PageIntro } from "@/components/site/PageIntro";
 import { CHARACTER_THEMES } from "@/data/future-themes";
@@ -18,7 +19,7 @@ export default function JourneyPage() {
 
   return (
     <>
-      <PageIntro icon="🐾" eyebrow="Your adventure so far" title="My Journey">
+      <PageIntro icon={<PawIcon />} eyebrow="Your adventure so far" title="My Journey">
         <p>Your progress is saved on this device only — no sign-up needed.</p>
       </PageIntro>
       <section className="section" aria-label="Journey progress">
