@@ -142,8 +142,24 @@
   }
 }
 
-/* Tablets need the menu to leave room for the shared sound and Chaos controls. */
-@media (max-width: 1000px) {
+/* Narrow laptops: drop the little link icons so the five links and the
+   sound/Chaos controls still share one row. */
+@media (max-width: 900px) {
+  .inner {
+    gap: var(--space-2);
+  }
+
+  .linkIcon {
+    display: none;
+  }
+}
+
+/* Only tablets in portrait and phones fold the links into the menu. */
+@media (max-width: 820px) {
+  .linkIcon {
+    display: inline;
+  }
+
   .toggle {
     display: inline-flex;
   }

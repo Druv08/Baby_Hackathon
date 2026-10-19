@@ -39,8 +39,9 @@ describe("navbar", () => {
     expect(css).toMatch(/\.list \{[^}]*flex-wrap: nowrap/);
     expect(css).toMatch(/\.link \{[^}]*white-space: nowrap/);
   });
-  it("folds into the menu on tablets so the shared sound and Chaos controls remain accessible", () => {
-    expect(css).toMatch(/@media \(max-width: 1000px\) \{\s*\.toggle \{\s*display: inline-flex/);
-    expect(css).not.toMatch(/@media \(max-width: 960px\)/);
+  it("keeps the links and the sound/Chaos controls on one row down to 821px; only narrower screens use the menu", () => {
+    expect(css).toMatch(/@media \(max-width: 900px\) \{[^@]*\.linkIcon \{\s*display: none/);
+    expect(css).toMatch(/@media \(max-width: 820px\) \{[^@]*\.toggle \{\s*display: inline-flex/);
+    expect(css).not.toMatch(/@media \(max-width: (960|1000)px\) \{[^@]*\.toggle/);
   });
 });

@@ -60,7 +60,7 @@ export function SiteHeader() {
                     className={styles.link}
                     aria-current={active ? "page" : undefined}
                   >
-                    <span aria-hidden="true">{link.icon}</span>
+                    <span className={styles.linkIcon} aria-hidden="true">{link.icon}</span>
                     {link.label}
                   </Link>
                 </li>
