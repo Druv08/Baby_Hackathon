@@ -12,6 +12,7 @@ function useMoodPreview(enabled: boolean) {
   const player = useRef<HTMLAudioElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout | typeof setInterval>[]>([]);
   const ducked = useRef(false);
+  const request = useRef(0); // the newest play() wins; older ones are ignored
   const [playing, setPlaying] = useState<Mood | null>(null);
   const duck = (on: boolean) => {
     if (ducked.current === on) return;
@@ -39,13 +40,15 @@ function useMoodPreview(enabled: boolean) {
   };
   const play = (mood: Mood) => {
     stop();
+    const ticket = ++request.current;
     const audio = (player.current ??= new Audio());
     audio.src = MOOD_TRACKS[mood];
     audio.currentTime = 0;
     audio.volume = 0;
     duck(true);
     setPlaying(mood);
-    void audio.play().then(() => fade(audio, 0.6)).catch(() => stopRef.current());
+    // Switching songs aborts the previous play(); only this request's outcome counts.
+    void audio.play().then(() => { if (ticket === request.current) fade(audio, 0.6); }).catch(() => { if (ticket === request.current) stopRef.current(); });
     timers.current.push(setTimeout(() => fade(audio, 0, () => stopRef.current()), (PREVIEW_SECONDS - 1) * 1000));
   };
   useEffect(() => { if (!enabled) stopRef.current(); }, [enabled]);
