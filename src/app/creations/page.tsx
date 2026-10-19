@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PawIcon } from "@/components/site/PawIcon";
 import Link from "next/link";
 
 import { PageIntro } from "@/components/site/PageIntro";
@@ -25,7 +26,7 @@ export default function CreationsPage() {
             return (
               <article key={future.slug} className={styles.group} style={themeStyle(future.slug)}>
                 <h2 className={styles.groupTitle}>
-                  <span aria-hidden="true">{theme.icon} </span>
+                  <PawIcon slug={future.slug} />{" "}
                   {character?.name}
                 </h2>
                 {future.projects.length > 0 ? (

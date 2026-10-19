@@ -1,5 +1,6 @@
 "use client";
 
+import { PawIcon } from "@/components/site/PawIcon";
 import { useReducer, useState } from "react";
 
 import {
@@ -113,7 +114,7 @@ export function CloudSteps() {
             >
               <Puff />
               <span className={styles.paw} aria-hidden="true">
-                {climbed ? "🐾" : ""}
+                {climbed ? <PawIcon slug="cloud" /> : null}
               </span>
             </button>
           );
@@ -228,7 +229,7 @@ export function CloudBridge() {
     <div className={styles.panel} data-tone="sky">
       <div className={styles.bridge} data-complete={complete}>
         <span className={styles.cliff} aria-hidden="true">
-          🐾
+          <PawIcon slug="cloud" />
         </span>
         {BRIDGE_GAPS.map((size, i) => {
           const filled = state.placed[i];

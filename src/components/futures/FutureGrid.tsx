@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PawIcon } from "@/components/site/PawIcon";
 import Link from "next/link";
 
 import { CHARACTER_THEMES, formNumber, themeStyle } from "@/data/future-themes";
@@ -32,7 +33,7 @@ export function FutureGrid({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3"
               </div>
               <div className={styles.body}>
                 <Heading className={styles.name}>
-                  <span aria-hidden="true">{theme.icon} </span>
+                  <PawIcon slug={future.slug} />{" "}
                   {theme.label}
                 </Heading>
                 <p className={styles.profession}>{character.profession}</p>

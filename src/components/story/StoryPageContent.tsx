@@ -24,6 +24,7 @@ import { MoonlitLayer } from "@/components/story/MoonlitLayer";
 import { OceanLayer } from "@/components/story/OceanLayer";
 import { SkyLayer } from "@/components/story/SkyLayer";
 import { WorkshopLayer } from "@/components/story/WorkshopLayer";
+import { PawIcon } from "@/components/site/PawIcon";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
 import { StoryText } from "@/components/story/StoryText";
@@ -96,7 +97,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
             {intro && <p className={styles.introSubtitle}>{intro.subtitle}</p>}
             {intro && <p className={styles.introBlurb}>{intro.blurb}</p>}
             <a href="#scene-1" className="btn btn-primary btn-large">
-              <span aria-hidden="true">🐾</span> Start Story <span aria-hidden="true">→</span>
+              <PawIcon slug={slug} /> Start Story <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

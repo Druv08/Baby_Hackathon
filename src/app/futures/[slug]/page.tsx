@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PawIcon } from "@/components/site/PawIcon";
 import Image from "next/image";
 import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 import Link from "next/link";
@@ -53,7 +54,7 @@ export default async function FuturePage({ params }: Params) {
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.panel}>
             <p className="eyebrow">
-              <span aria-hidden="true">{theme.icon}</span> {formNumber(view.id)} — {theme.label} Form
+              <PawIcon slug={view.slug} /> {formNumber(view.id)} — {theme.label} Form
             </p>
             <h1 id="future-title" className={styles.title}>
               {character.profession}

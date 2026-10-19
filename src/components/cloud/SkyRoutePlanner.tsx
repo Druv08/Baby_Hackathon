@@ -1,5 +1,6 @@
 "use client";
 
+import { PawIcon } from "@/components/site/PawIcon";
 import { useReducer } from "react";
 
 import {
@@ -125,7 +126,7 @@ export function SkyRoutePlanner() {
             >
               <span className={styles.islandArt} aria-hidden="true">
                 {role === "start" ? "🚩" : role === "goal" ? "🏁" : ""}
-                {i.id === here && state.destination ? <span className={styles.paw}>🐾</span> : null}
+                {i.id === here && state.destination ? <span className={styles.paw}><PawIcon slug="cloud" /></span> : null}
               </span>
               <span className={styles.islandName}>{i.name}</span>
             </button>
