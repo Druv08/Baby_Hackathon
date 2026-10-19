@@ -142,7 +142,7 @@
   }
 }
 
-/* Only narrow screens fold the links into the menu button. */
+/* Tablets need the menu to leave room for the shared sound and Chaos controls. */
 @media (max-width: 1000px) {
   .toggle {
     display: inline-flex;
