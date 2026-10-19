@@ -83,6 +83,19 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/projects/aqua/ocean-discovery.png",
   "/projects/aqua/coral-care-garden.png",
   "/projects/aqua/turtles-safe-passage.png",
+
+  // Inventor story scenes (1–4: Normal Maria, 5: Inventor Maria) and workshop world.
+  "/stories/inventor/scene-1.png",
+  "/stories/inventor/scene-2.png",
+  "/stories/inventor/scene-3.png",
+  "/stories/inventor/scene-4.png",
+  "/stories/inventor/scene-5.png",
+  "/stories/inventor/background.png",
+
+  // Inventor project artwork.
+  "/projects/inventor/star-workshop.png",
+  "/projects/inventor/dream-lantern-lab.png",
+  "/projects/inventor/little-helper-machines.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {

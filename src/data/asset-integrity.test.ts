@@ -149,6 +149,44 @@ describe("Aqua artwork", () => {
   });
 });
 
+/** Inventor artwork, copied byte-for-byte from Folder 6 after visual inspection. */
+const INVENTOR_ARTWORK: Record<string, string> = {
+  "/stories/inventor/scene-1.png": "df7aa4b21206ddb7d777a213b1c8cc7d4a905002f0600fc8c8673cdb77b8eb20",
+  "/stories/inventor/scene-2.png": "e0c7dadd88d480886f4b2d7694ced973ec5d56a79f40039f31a42b96c1118273",
+  "/stories/inventor/scene-3.png": "83fa9a607f6041ca6012df558f0276381b3ad08d84e65c14d0803ffa895d14da",
+  "/stories/inventor/scene-4.png": "0d164622148321aead672939d5f07a33077536282c3cf980ece136326e77dd4f",
+  "/stories/inventor/scene-5.png": "900916552275ac488e5b9d9959c15b128326ab31c513b8f458df82d412e2114e",
+  "/stories/inventor/background.png": "094df0a47c1b2fdb05e8fba8f7195560e956f0b6efd633cff75fe6daab3c8cd8",
+  "/projects/inventor/star-workshop.png": "64766612e3f04a72a90fd505b1a682144a8b62aa24e325b6b432dba9cb56491b",
+  "/projects/inventor/dream-lantern-lab.png": "43311a4d0a54850d00437510c71aeaadfa7acadd7803257a92b6806f482e0786",
+  "/projects/inventor/little-helper-machines.png": "4af60ff9a36921acd5fdba47b15e4e47641572a68c13ac551ca2a3b1718c576f",
+};
+
+describe("Inventor artwork", () => {
+  it.each(Object.entries(INVENTOR_ARTWORK))("%s is the approved file and is registered", (path, hash) => {
+    expect(sha256(path)).toBe(hash);
+    expect(isAssetVerified(path)).toBe(true);
+  });
+
+  it("never reuses another world's artwork", () => {
+    const others = new Set([
+      ...Object.values(BLOSSOM_ARTWORK),
+      ...Object.values(STAR_ARTWORK),
+      ...Object.values(CLOUD_ARTWORK),
+      ...Object.values(AQUA_ARTWORK),
+    ]);
+    for (const hash of Object.values(INVENTOR_ARTWORK)) expect(others.has(hash)).toBe(false);
+  });
+
+  it("Inventor Maria keeps her own locked design (6.png)", async () => {
+    const { CHARACTERS } = await import("./characters");
+    const inventor = CHARACTERS.find((c) => c.slug === "inventor")!;
+    expect(inventor.id).toBe(6);
+    expect(inventor.characterImage).toBe("/characters/6.png");
+    expect(sha256(inventor.characterImage)).toBe(CANONICAL_CHARACTERS["/characters/6.png"]);
+  });
+});
+
 describe("Star / Luna design mapping", () => {
   it("shows Star with the hooded dream-jar design and Luna with the witch hat, without touching the files", async () => {
     const { CHARACTERS } = await import("./characters");
