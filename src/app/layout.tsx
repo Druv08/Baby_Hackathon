@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Caveat, Nunito } from "next/font/google";
 import "./globals.css";
 
+import { CharacterAmbience } from "@/components/site/CharacterAmbience";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SITE_CONFIG } from "@/data/site-config";
@@ -32,6 +33,7 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <CharacterAmbience />
       </body>
     </html>
   );

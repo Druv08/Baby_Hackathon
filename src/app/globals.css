@@ -295,3 +295,21 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Character paw cursor (set per page by CharacterAmbience). Only for precise
+   pointers; text fields keep the text cursor and canvases keep their own. */
+@media (pointer: fine) {
+  html[data-paw],
+  html[data-paw] a,
+  html[data-paw] button,
+  html[data-paw] [role="button"],
+  html[data-paw] label,
+  html[data-paw] summary,
+  html[data-paw] select {
+    cursor: var(--paw-cursor) 12 4, auto;
+  }
+
+  html[data-paw] button:disabled {
+    cursor: not-allowed;
+  }
+}
