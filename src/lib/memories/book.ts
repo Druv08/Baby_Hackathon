@@ -4,13 +4,13 @@ import type { FutureSlug } from "@/types/character";
 /**
  * Pure helpers shared by the Memory Book page and Luna's Moonlit Memory Book.
  * Both read and write the one moderated `/api/memories` backend; only
- * memories the API returns (approved ones) are ever shown.
+ * memories the API returns (published ones) are ever shown.
  */
 
 export type FutureFilter = FutureSlug | "all";
 
 export const RECEIVED_MESSAGE =
-  "Your little memory has been received! Once it's approved, your lantern will join the others in Maria's sky.";
+  "Your little memory has been received! Your lantern now glows with the others in Maria's sky.";
 
 /** Friendly copy for the API's error responses (429 rate limit, 503 unavailable, offline…). */
 export function sendErrorMessage(status: number, fallback: string): string {

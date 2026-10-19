@@ -8,7 +8,7 @@ import { checkRateLimits, hashClientKey, RATE_RULES } from "../rate-limit";
 
 const RECEIVED: MemorySubmittedResponse = {
   status: "received",
-  message: "Thank you! Maria will read your memory soon. It will appear once it has been reviewed.",
+  message: "Thank you! Your memory is now glowing in Maria's Memory Book.",
 };
 
 const MEMORY_RULES = [RATE_RULES.memoryPerIpBurst, RATE_RULES.memoryPerIpDaily, RATE_RULES.memoryGlobal];
@@ -49,7 +49,7 @@ export function createMemoriesHandlers(getBackend: () => Backend | null) {
       }
     },
 
-    /** POST /api/memories — stores a pending submission for moderation. */
+    /** POST /api/memories — validates, rate-limits and publishes a memory (auto-approved). */
     async POST(request: Request): Promise<Response> {
       const body = await readJsonBody(request, MEMORY_LIMITS.bodyMaxBytes);
       if (!body.ok) return body.response;
@@ -69,7 +69,7 @@ export function createMemoriesHandlers(getBackend: () => Backend | null) {
       if (parsed.data.website) return jsonResponse(RECEIVED, 202);
 
       try {
-        await backend.memories.insertPending({
+        await backend.memories.insertApproved({
           visitorName: parsed.data.visitorName,
           message: parsed.data.message,
           formSlug: parsed.data.formSlug,

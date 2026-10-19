@@ -15,13 +15,13 @@ const PAGE_SIZE = 6;
  * Moonlit Memory Book: a themed view of the site's one shared Memory Book
  * (the same hooks and API as the /memory-book page). It reads approved
  * memories (cursor pagination) and sends new ones through the existing
- * moderated API, where they wait as `pending` until approved.
+ * API, which publishes valid memories straight away.
  * Visitor text is rendered only as plain text.
  */
 export function MoonlitMemoryBook() {
   const [open, setOpen] = useState(false);
   const { memories, cursor, load, loadPage, refresh, refreshing, refreshError } = useMemoryFeed(PAGE_SIZE);
-  const { name, setName, message, setMessage, future, setFuture, website, setWebsite, errors, send, submit: onSubmit } = useMemorySubmit();
+  const { name, setName, message, setMessage, future, setFuture, website, setWebsite, errors, send, submit: onSubmit } = useMemorySubmit(() => void refresh());
   const ids = { name: useId(), message: useId(), future: useId(), website: useId() };
 
   function openBook() {
@@ -135,10 +135,10 @@ export function MoonlitMemoryBook() {
         </button>
         <p className={styles.status} role="status" data-tone={send.kind === "sent" ? "success" : send.kind === "error" ? "warn" : undefined}>
           {send.kind === "sent"
-            ? "Thank you! Your memory is waiting to be checked by a grown-up before it appears in the book."
+            ? "Thank you! Your memory now glows in the book."
             : send.kind === "error"
               ? send.message
-              : "Memories are checked before they appear, so the book stays kind and safe."}
+              : "Kind words only, please. Links aren’t allowed, so the book stays friendly and safe."}
         </p>
       </form>
     </div>

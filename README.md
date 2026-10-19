@@ -116,10 +116,11 @@ executable only by the service role.
 
 ### Moderating the Memory Book
 
-New memories are stored as `pending` and never shown until approved. There
-is deliberately **no** API for approving or rejecting. Moderate in the
-Supabase dashboard (Table Editor → `memories`, edit `status`), or in the
-SQL Editor:
+Valid memories are **auto-approved**: after validation (no links, name and
+length rules, honeypot) and rate limiting they are stored as `approved` and
+appear on the lake straight away. There is deliberately **no** public API to
+edit, reject or delete them. To hide one, set its `status` to `rejected` in
+the Supabase dashboard (Table Editor → `memories`) or the SQL Editor:
 
 ```sql
 -- Review the queue

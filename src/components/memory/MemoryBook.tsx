@@ -29,7 +29,7 @@ export function MemoryBook() {
   const [open, setOpen] = useState<PublicMemory | null>(null);
   const [featured, setFeatured] = useState<PublicMemory | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const form = useMemorySubmit();
+  const form = useMemorySubmit(() => void feed.refresh());
   const ids = { name: useId(), future: useId(), message: useId(), website: useId(), count: useId() };
   const length = [...form.message].length;
 
@@ -222,7 +222,7 @@ export function MemoryBook() {
                 ? RECEIVED_MESSAGE
                 : form.send.kind === "error"
                   ? form.send.message
-                  : "Every memory is checked by a grown-up before it glows on the lake, so the book stays kind and safe."}
+                  : "Kind words only, please. Links aren’t allowed, so the book stays friendly and safe."}
             </p>
           </form>
         </div>

@@ -28,7 +28,7 @@ export function createTestBackend() {
           // Return the full stored row (incl. status) to prove the handler strips it.
           .map((m) => ({ ...m }));
       },
-      async insertPending({ visitorName, message, formSlug }) {
+      async insertApproved({ visitorName, message, formSlug }) {
         guard();
         memories.push({
           id: crypto.randomUUID(),
@@ -36,7 +36,7 @@ export function createTestBackend() {
           message,
           formSlug,
           createdAt: new Date(Date.UTC(2026, 9, 18, 12, 0, memories.length)).toISOString(),
-          status: "pending",
+          status: "approved",
         });
       },
     },

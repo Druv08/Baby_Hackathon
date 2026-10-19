@@ -32,7 +32,7 @@ function seedApproved(n: number) {
 }
 
 describe("POST /api/memories", () => {
-  it("stores a valid submission as pending and returns a neutral receipt", async () => {
+  it("publishes a valid submission as approved and returns a receipt", async () => {
     const res = await post({ visitorName: "Mia", message: "I want to become an astronaut!", formSlug: "star" });
     expect(res.status).toBe(202);
     const body = await res.json();
@@ -40,7 +40,7 @@ describe("POST /api/memories", () => {
     expect(body).not.toHaveProperty("memory");
     expect(body).not.toHaveProperty("id");
     expect(t.memories).toHaveLength(1);
-    expect(t.memories[0]).toMatchObject({ visitorName: "Mia", formSlug: "star", status: "pending" });
+    expect(t.memories[0]).toMatchObject({ visitorName: "Mia", formSlug: "star", status: "approved" });
   });
 
   it("accepts a missing or null formSlug", async () => {
