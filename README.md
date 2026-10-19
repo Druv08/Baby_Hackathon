@@ -273,3 +273,23 @@ Dream Atlas share one pager (`src/lib/projects/pager.ts`).
 `characters/9.png` hold each other's design (Star = hooded cloak with a dream
 jar; Luna = witch hat holding a star), confirmed against both hero mockups.
 The files are untouched; `src/data/characters.ts` cross-maps them instead.
+
+### Cloud (third complete future)
+
+Cloud follows the same pattern (`src/data/stories/cloud.ts`), with its scene
+interactions, three creations and the Secret Rainbow Cloud in
+`src/components/cloud/`, and the floating-sky atmosphere in
+`src/components/story/SkyLayer.tsx`.
+
+### Aqua (fourth complete future)
+
+Aqua follows the same pattern (`src/data/stories/aqua.ts`), with its scene
+interactions, Ocean Discovery, Coral Care Garden, Turtle's Safe Passage and the
+Secret Ocean Pearl in `src/components/aqua/`, rules in
+`src/lib/projects/aqua-story.ts` and `aqua-projects.ts`, and the underwater
+atmosphere in `src/components/story/OceanLayer.tsx`.
+
+Aqua's scene and project artwork is 4:3 (1448 × 1086) rather than 16:9; the
+story page reads each world's illustration size from `SCENE_SIZES` in
+`src/app/futures/[slug]/story/page.tsx`, so overlays line up with the art.
+The pearl uses Aqua's existing secret id, `hidden-pearl`.

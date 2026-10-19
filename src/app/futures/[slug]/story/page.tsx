@@ -7,6 +7,7 @@ import { FloralDivider } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
 import { Portfolio } from "@/components/projects/Portfolio";
 import { FadeIn } from "@/components/story/FadeIn";
+import { OceanPearl } from "@/components/aqua/OceanPearl";
 import { RainbowCloud } from "@/components/cloud/RainbowCloud";
 import { HiddenConstellation } from "@/components/star/HiddenConstellation";
 import { HiddenSecret } from "@/components/story/GoldenSeed";
@@ -199,7 +200,8 @@ function AmbientLayer({ slug }: { slug: string }) {
 type SecretSpot =
   | { kind: "seed"; sceneId: number; left: string; top: string }
   | { kind: "constellation"; sceneId: number }
-  | { kind: "rainbow-cloud"; sceneId: number; left: string; top: string };
+  | { kind: "rainbow-cloud"; sceneId: number; left: string; top: string }
+  | { kind: "pearl"; sceneId: number; left: string; top: string };
 
 /** Where each future's hidden collectible is tucked into its story. */
 const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
@@ -209,6 +211,8 @@ const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
   star: { kind: "constellation", sceneId: 2 },
   // A tiny cloud drifting among the pink clouds of "Lost in the Endless Sky".
   cloud: { kind: "rainbow-cloud", sceneId: 3, left: "91%", top: "63%" },
+  // A tiny closed seashell in the coral at the bottom of "A Kingdom Beneath the Waves".
+  aqua: { kind: "pearl", sceneId: 2, left: "47%", top: "88%" },
 };
 
 /**
@@ -256,6 +260,7 @@ function OriginScene({
             <HiddenSecret futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
           )}
           {secret?.spot.kind === "constellation" && <HiddenConstellation futureSlug={secret.slug} />}
+          {secret?.spot.kind === "pearl" && <OceanPearl futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />}
           {secret?.spot.kind === "rainbow-cloud" && (
             <RainbowCloud futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
           )}
