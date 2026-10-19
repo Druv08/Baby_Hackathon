@@ -145,7 +145,6 @@
 /* ── B. Lake of Memories ─────────────────────────────────────────── */
 
 .lakeSection {
-  scroll-margin-top: var(--header-height);
   color: #f7ecff;
   background:
     radial-gradient(ellipse at 80% 0%, rgba(255, 236, 190, 0.25), transparent 35%),
@@ -430,7 +429,6 @@
 /* ── C. Leave your memory ────────────────────────────────────────── */
 
 .formSection {
-  scroll-margin-top: var(--header-height);
   background:
     radial-gradient(ellipse at 10% 20%, rgba(247, 168, 196, 0.3), transparent 45%),
     radial-gradient(ellipse at 90% 80%, rgba(205, 184, 240, 0.35), transparent 45%),

@@ -84,7 +84,7 @@
 
 .list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* all five links stay on one row on desktop */
   gap: var(--space-1);
   list-style: none;
 }
@@ -99,6 +99,7 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--ink);
+  white-space: nowrap;
   transition: background-color 0.2s ease;
 }
 
@@ -111,7 +112,23 @@
   box-shadow: 0 0 0 2px rgba(194, 56, 111, 0.35), 0 4px 16px rgba(247, 168, 196, 0.45);
 }
 
-@media (max-width: 920px) {
+/* Mid-width desktops (and scaled laptop screens): tighter pills so the row fits. */
+@media (max-width: 1180px) {
+  .inner {
+    gap: var(--space-3);
+  }
+
+  .list {
+    gap: 0;
+  }
+
+  .link {
+    gap: var(--space-1);
+    padding-inline: var(--space-3);
+  }
+}
+
+@media (max-width: 960px) {
   .toggle {
     display: inline-flex;
   }
