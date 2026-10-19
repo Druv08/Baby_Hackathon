@@ -1,0 +1,18 @@
+/* A real layout band reserves space for stickers: decorative motion never covers controls. */
+.chaos-ribbon { position: relative; z-index: 1; display: grid; grid-template-columns: auto 40px 40px minmax(0,1fr) 40px 40px auto; align-items: center; gap: clamp(.4rem, 1.3vw, 1rem); padding: 1rem max(1rem, calc((100% - 72rem) / 2)); background: var(--night); color: var(--paper); border-block: 3px dotted var(--gold); overflow: hidden; }
+.chaos-badge { padding: .5rem .7rem; border: 2px ridge var(--gold); background: var(--paper); color: var(--ink); font-weight: 900; font-size: .8rem; text-align: center; transform: rotate(-3deg); }
+.chaos-badge small { display: block; font-size: .7rem; font-weight: 600; }
+.chaos-sticker { text-align: center; font-size: 2rem; color: var(--gold); animation: chaos-bob 3s ease-in-out infinite alternate; }
+.chaos-second { color: var(--pink); animation-delay: -.7s; }
+.chaos-third { color: var(--lavender); animation-delay: -1.4s; }
+.chaos-fourth { animation-delay: -2.1s; }
+.chaos-message { font: 700 clamp(1.1rem, 2vw, 1.5rem) var(--font-display); text-align: center; }
+.chaos-stamp { padding: .5rem; border: 2px dotted var(--pink); font-size: .75rem; max-width: 115px; text-align: center; transform: rotate(3deg); }
+html[data-chaos="true"] [data-future-card] { border: 3px double var(--accent); animation: chaos-card 4s ease-in-out infinite alternate; }
+html[data-chaos="true"] li:nth-child(even) [data-future-card] { animation-delay: -2s; }
+html[data-chaos="true"] [data-future-card]:hover, html[data-chaos="true"] [data-future-card]:focus-visible { animation-play-state: paused; transform: translateY(-3px); }
+@keyframes chaos-bob { from { transform: translateY(-3px) rotate(-12deg); } to { transform: translateY(3px) rotate(12deg); } }
+@keyframes chaos-card { from { transform: rotate(-.4deg); box-shadow: 0 0 10px var(--accent-glow); } to { transform: rotate(.4deg) translateY(-3px); box-shadow: 0 0 22px var(--accent-glow); } }
+@media (max-width: 1000px) { .chaos-ribbon { grid-template-columns: auto 32px minmax(0,1fr) 32px; } .chaos-second, .chaos-fourth, .chaos-stamp { display: none; } }
+@media (max-width: 500px) { .chaos-ribbon { grid-template-columns: 28px minmax(0,1fr) 28px; gap: .4rem; padding: .7rem 1rem; } .chaos-badge { grid-column: 2; grid-row: 1; } .chaos-first { grid-column: 1; grid-row: 1; } .chaos-third { grid-column: 3; grid-row: 1; } .chaos-message { grid-column: 1/-1; font-size: 1.1rem; } }
+@media (prefers-reduced-motion: reduce) { .chaos-ribbon *, html[data-chaos="true"] [data-future-card] { animation: none !important; transform: none !important; } }

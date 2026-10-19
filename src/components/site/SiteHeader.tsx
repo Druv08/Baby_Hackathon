@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { isActivePath, NAV_LINKS } from "./nav-links";
+import { SiteControls } from "./SiteControls";
 import styles from "./SiteHeader.module.css";
 
 export function SiteHeader() {
@@ -67,6 +68,7 @@ export function SiteHeader() {
             })}
           </ul>
         </nav>
+        <SiteControls />
       </div>
     </header>
   );

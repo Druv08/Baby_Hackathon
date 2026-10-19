@@ -2,26 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { FREQUENCIES, NOTES, RECORDED_NOTE_FILES, type Instrument, type Note } from "@/lib/projects/melody";
-import { SOUND_STORAGE_KEY } from "@/lib/ambience";
+import { soundSettings } from "@/lib/sound-settings";
 
 // One optional sound setting shared by all Melody activities. No extra storage:
 // it starts from the site-wide sound preference, then the Melody toggle rules.
-let sound = false;
-let soundInitialised = false;
-const listeners = new Set<() => void>();
 const stopPlayers = new Set<() => void>();
-function subscribe(listener: () => void) {
-  if (!soundInitialised && typeof window !== "undefined") {
-    soundInitialised = true;
-    try {
-      sound = window.localStorage.getItem(SOUND_STORAGE_KEY) === "on";
-    } catch {
-      // Storage unavailable: stay silent until the visitor turns sound on.
-    }
-  }
-  listeners.add(listener);
-  return () => { listeners.delete(listener); };
-}
 
 /** While Melody plays, the site's background music steps back (see CharacterAmbience). */
 function duck(on: boolean) {
@@ -48,18 +33,19 @@ function loadSamples(ctx: BaseAudioContext): Promise<Record<Note, Sample>> {
 }
 
 export function useMelodyAudio() {
-  const enabled = useSyncExternalStore(subscribe, () => sound, () => false);
+  const enabled = useSyncExternalStore(soundSettings.subscribe, soundSettings.getEnabled, () => false);
   const context = useRef<AudioContext | null>(null);
   const voices = useRef<AudioScheduledSourceNode[]>([]);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const generation = useRef(0);
+  const ducked = useRef(false);
   const [active, setActive] = useState(-1);
   const [error, setError] = useState("");
   const region = useRef<HTMLDivElement>(null);
   const stop = useCallback(() => {
     generation.current++;
     timers.current.forEach(clearTimeout); timers.current = [];
-    if (voices.current.length) duck(false);
+    if (ducked.current) { duck(false); ducked.current = false; }
     voices.current.forEach(node => { try { node.stop(); } catch {} node.disconnect(); });
     voices.current = [];
     setActive(-1);
@@ -102,7 +88,7 @@ export function useMelodyAudio() {
 
   /** Starts (or resumes) audio inside the user's click; null when sound is off or unavailable. */
   const ready = useCallback(async (): Promise<AudioContext | null> => {
-    if (!sound) return null;
+    if (!soundSettings.getEnabled()) return null;
     stopPlayers.forEach(stopOther => { if (stopOther !== stop) stopOther(); });
     try {
       const ctx = context.current ?? (context.current = new AudioContext());
@@ -117,7 +103,7 @@ export function useMelodyAudio() {
   const tone = useCallback(async (note: Note, instrument: Instrument = "Soft piano") => {
     const ticket = generation.current;
     const ctx = await ready();
-    if (!ctx || ticket !== generation.current || !sound) return;
+    if (!ctx || ticket !== generation.current || !soundSettings.getEnabled()) return;
     voices.current.forEach(node => { try { node.stop(); } catch {} node.disconnect(); });
     voices.current = [];
     const node = await schedule(ctx, note, instrument, ctx.currentTime + 0.01);
@@ -139,6 +125,7 @@ export function useMelodyAudio() {
       if (instrument === "Recorded guitar") await loadSamples(ctx).catch(() => undefined);
       if (ticket !== generation.current) return;
       const start = ctx.currentTime + 0.05;
+      ducked.current = true;
       duck(true);
       for (const [i, note] of notes.entries()) {
         const node = await schedule(ctx, note, instrument, start + (i * beat) / 1000);
@@ -150,17 +137,19 @@ export function useMelodyAudio() {
 
   useEffect(() => {
     stopPlayers.add(stop);
-    const silence = () => { if (!sound) stop(); };
-    listeners.add(silence);
+    const silence = () => { if (!soundSettings.getEnabled()) stop(); };
+    const unsubscribe = soundSettings.subscribe(silence);
+    const element = region.current;
+    if (element) element.dataset.melodyAudio = "true";
     const hide = () => { if (document.hidden) stop(); };
     document.addEventListener("visibilitychange", hide);
     const observer = typeof IntersectionObserver !== "undefined" ? new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) stop(); }) : undefined;
     if (region.current) observer?.observe(region.current);
     return () => {
-      stopPlayers.delete(stop); listeners.delete(silence); document.removeEventListener("visibilitychange", hide); observer?.disconnect(); stop();
+      stopPlayers.delete(stop); unsubscribe(); if (element) delete element.dataset.melodyAudio; document.removeEventListener("visibilitychange", hide); observer?.disconnect(); stop();
       const ctx = context.current; context.current = null; if (ctx && ctx.state !== "closed") void ctx.close();
     };
   }, [stop]);
-  const toggle = () => { sound = !sound; listeners.forEach(listener => listener()); };
+  const toggle = () => soundSettings.setEnabled(!soundSettings.getPreference());
   return { enabled, toggle, tone, play, stop, active, error, region };
 }

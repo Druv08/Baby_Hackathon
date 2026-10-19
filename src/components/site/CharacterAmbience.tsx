@@ -1,133 +1,82 @@
-"use client";
+﻿"use client";
 
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useSyncExternalStore } from "react";
-
-import { AMBIENCE, SOUND_STORAGE_KEY, ambienceSlug } from "@/lib/ambience";
-import styles from "./CharacterAmbience.module.css";
-
-// One shared sound preference for the whole site (off until turned on).
-const listeners = new Set<() => void>();
-function readSound(): boolean {
-  try {
-    return window.localStorage.getItem(SOUND_STORAGE_KEY) === "on";
-  } catch {
-    return false;
-  }
-}
-function setSound(on: boolean) {
-  try {
-    window.localStorage.setItem(SOUND_STORAGE_KEY, on ? "on" : "off");
-  } catch {
-    // Storage blocked: the setting simply won't be remembered.
-  }
-  listeners.forEach((l) => l());
-}
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
+import { AMBIENCE, ambienceSlug } from "@/lib/ambience";
+import { soundSettings } from "@/lib/sound-settings";
 
 const CLICKABLE = "button, a[href], [role='button'], summary, input[type='checkbox'], input[type='radio'], select";
 
-/**
- * Character ambience for the current page: the matching paw cursor, click
- * sound and background music. Music only plays after the visitor turns
- * sound on (browsers block autoplay); one track at a time, switched or
- * stopped as the visitor moves between characters.
- */
+/** Preserves the team's assets; the header and Melody share this one mute setting. */
 export function CharacterAmbience() {
   const slug = ambienceSlug(usePathname());
   const ambience = AMBIENCE[slug];
-  const soundOn = useSyncExternalStore(subscribe, readSound, () => false);
-  const music = useRef<HTMLAudioElement | null>(null);
+  const enabled = useSyncExternalStore(soundSettings.subscribe, soundSettings.getEnabled, () => false);
+  const music = useRef<HTMLAudioElement>(null);
   const clicks = useRef(new Map<string, HTMLAudioElement>());
-  const current = useRef({ click: ambience.click, soundOn });
-  current.current = { click: ambience.click, soundOn };
+  const clickSource = useRef(ambience.click);
+  clickSource.current = ambience.click;
 
-  // Paw cursor for this character (pointer devices only, via CSS).
   useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.paw = slug;
-    root.style.setProperty("--paw-cursor", `url("${ambience.cursor}")`);
+    document.documentElement.dataset.paw = slug;
+    document.documentElement.style.setProperty("--paw-cursor", `url("${ambience.cursor}")`);
   }, [slug, ambience.cursor]);
 
-  // One click listener for the whole site; it reads the current character.
   useEffect(() => {
-    let last = 0;
-    function onClick(e: MouseEvent) {
-      const { click, soundOn: on } = current.current;
-      if (!on || !(e.target instanceof Element) || !e.target.closest(CLICKABLE)) return;
+    let last = -Infinity;
+    const cache = clicks.current;
+    const activate = (event: Event) => { if (event.isTrusted) soundSettings.activate(); };
+    function onClick(event: MouseEvent) {
+      if (!soundSettings.getEnabled() || !(event.target instanceof Element)) return;
+      if (!event.target.closest(CLICKABLE) || event.target.closest("[data-melody-audio]")) return;
       const now = performance.now();
-      if (now - last < 70) return; // ignore rapid repeats
+      if (now - last < 70) return;
       last = now;
-      let audio = clicks.current.get(click);
-      if (!audio) {
-        audio = new Audio(click);
-        audio.volume = 0.5;
-        clicks.current.set(click, audio);
-      }
-      // Restart the same element instead of stacking new ones.
+      cache.forEach(audio => audio.pause());
+      const src = clickSource.current;
+      let audio = cache.get(src);
+      if (!audio) { audio = new Audio(src); audio.volume = .5; cache.set(src, audio); }
       audio.currentTime = 0;
       void audio.play().catch(() => {});
     }
+    document.addEventListener("pointerdown", activate, { capture: true, passive: true });
+    document.addEventListener("keydown", activate, true);
     document.addEventListener("click", onClick);
-    const cache = clicks.current;
     return () => {
+      document.removeEventListener("pointerdown", activate, true);
+      document.removeEventListener("keydown", activate, true);
       document.removeEventListener("click", onClick);
-      cache.forEach((a) => a.pause());
+      cache.forEach(audio => { audio.pause(); audio.removeAttribute("src"); });
+      cache.clear();
     };
   }, []);
 
-  // Background music: one element, switched per character, only when sound is on.
   useEffect(() => {
     const audio = music.current;
     if (!audio) return;
-    if (!soundOn) {
-      audio.pause();
-      return;
-    }
+    clicks.current.forEach(click => click.pause());
+    audio.pause();
+    if (!enabled) return;
     if (audio.getAttribute("src") !== ambience.music) {
-      audio.pause();
       audio.src = ambience.music;
       audio.currentTime = 0;
     }
-    audio.volume = 0.3;
-    void audio.play().catch(() => {});
-  }, [soundOn, ambience.music]);
-
-  // Step the music back while a Melody activity is playing its own notes.
-  useEffect(() => {
-    function onDuck(e: Event) {
-      const audio = music.current;
-      if (audio) audio.volume = (e as CustomEvent<boolean>).detail ? 0.05 : 0.3;
-    }
-    window.addEventListener("maria:duck", onDuck);
-    return () => window.removeEventListener("maria:duck", onDuck);
-  }, []);
-
-  // Stop everything if the site shell unmounts.
-  useEffect(() => {
-    const audio = music.current;
-    return () => {
-      audio?.pause();
-      audio?.removeAttribute("src");
+    audio.volume = .3;
+    const play = () => {
+      if (!document.hidden && soundSettings.getEnabled()) void audio.play().catch(() => {});
+      else { audio.pause(); clicks.current.forEach(click => click.pause()); }
     };
+    play();
+    document.addEventListener("visibilitychange", play);
+    return () => { document.removeEventListener("visibilitychange", play); audio.pause(); };
+  }, [enabled, ambience.music]);
+
+  useEffect(() => {
+    const onDuck = (event: Event) => { if (music.current) music.current.volume = (event as CustomEvent<boolean>).detail ? .05 : .3; };
+    window.addEventListener("maria:duck", onDuck);
+    const audio = music.current;
+    return () => { window.removeEventListener("maria:duck", onDuck); audio?.pause(); audio?.removeAttribute("src"); };
   }, []);
 
-  return (
-    <>
-      <audio ref={music} loop preload="none" data-character={slug} aria-hidden="true" />
-      <button
-        type="button"
-        className={styles.toggle}
-        aria-pressed={soundOn}
-        aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
-        onClick={() => setSound(!soundOn)}
-      >
-        <span aria-hidden="true">{soundOn ? "🔊" : "🔇"}</span>
-        <span className={styles.label}>{soundOn ? "Sound on" : "Sound off"}</span>
-      </button>
-    </>
-  );
+  return <audio ref={music} loop preload="none" data-character={slug} data-background-audio aria-hidden="true" />;
 }

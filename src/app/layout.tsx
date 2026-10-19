@@ -3,6 +3,8 @@ import { Caveat, Nunito } from "next/font/google";
 import "./globals.css";
 
 import { CharacterAmbience } from "@/components/site/CharacterAmbience";
+import { CursorTrail } from "@/components/site/CursorTrail";
+import { ChaosMode } from "@/components/site/ChaosMode";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SITE_CONFIG } from "@/data/site-config";
@@ -31,9 +33,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
+        <ChaosMode />
         <main id="main">{children}</main>
         <SiteFooter />
         <CharacterAmbience />
+        <CursorTrail />
       </body>
     </html>
   );
