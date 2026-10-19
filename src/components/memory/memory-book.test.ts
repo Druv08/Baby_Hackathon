@@ -39,7 +39,8 @@ describe("navbar", () => {
     expect(css).toMatch(/\.list \{[^}]*flex-wrap: nowrap/);
     expect(css).toMatch(/\.link \{[^}]*white-space: nowrap/);
   });
-  it("switches to the mobile menu below 960px", () => {
-    expect(css).toMatch(/@media \(max-width: 960px\) \{\s*\.toggle \{\s*display: inline-flex/);
+  it("shows the full row down to 761px and only folds into the menu on narrow screens", () => {
+    expect(css).toMatch(/@media \(max-width: 760px\) \{\s*\.toggle \{\s*display: inline-flex/);
+    expect(css).not.toMatch(/@media \(max-width: 960px\)/);
   });
 });

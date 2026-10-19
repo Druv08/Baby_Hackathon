@@ -23,6 +23,7 @@
   line-height: 1;
   color: var(--pink-deep);
   text-decoration: none;
+  white-space: nowrap;
   text-shadow: 0 0 18px rgba(247, 168, 196, 0.9);
 }
 
@@ -128,7 +129,20 @@
   }
 }
 
-@media (max-width: 960px) {
+/* Small laptops and tablets in landscape: smaller text keeps the full row visible. */
+@media (max-width: 1000px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  .link {
+    padding-inline: var(--space-2);
+    font-size: 0.95rem;
+  }
+}
+
+/* Only narrow screens fold the links into the menu button. */
+@media (max-width: 760px) {
   .toggle {
     display: inline-flex;
   }
