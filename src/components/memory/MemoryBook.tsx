@@ -10,6 +10,7 @@ import type { PublicMemory } from "@/types/api";
 import styles from "./MemoryBook.module.css";
 import { useMemoryFeed, useMemorySubmit } from "./useMemoryBook";
 import { MemoryRefresh } from "./MemoryRefresh";
+import { MemoryStorybook } from "./MemoryStorybook";
 
 const PAGE_SIZE = 12;
 
@@ -67,6 +68,7 @@ export function MemoryBook() {
             ))}
           </fieldset>
           <MemoryRefresh refresh={feed.refresh} refreshing={feed.refreshing} refreshError={feed.refreshError} />
+          <MemoryStorybook key={filter} memories={shown} loading={feed.load === "loading"} unavailable={feed.load === "error"} />
 
           <div className={styles.lake} aria-busy={feed.load === "loading"}>
             {feed.load === "loading" && feed.memories.length === 0 && (
@@ -188,6 +190,7 @@ export function MemoryBook() {
             <label className={styles.field} htmlFor={ids.message}>
               Your memory or wish
               <textarea
+                data-resize-none
                 style={{ resize: "none" }}
                 id={ids.message}
                 className={styles.input}

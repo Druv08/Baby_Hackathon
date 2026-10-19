@@ -1,6 +1,8 @@
 import { GoldenNote } from "@/components/melody/GoldenNote";
+import { Nightlight } from "./Nightlight";
 import { MelodyLayer, MelodySceneInteraction } from "@/components/melody/MelodySceneInteractions";
 import Image from "next/image";
+import { CharacterExpression } from "@/components/characters/CharacterExpression";
 import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -61,8 +63,8 @@ export async function RenderStory({ params, preview = false }: Params & { previe
         // Fixed to the viewport (clipped to this page), so every scene scrolls
         // over the same landscape — cover-cropped, never stretched.
         <div className={styles.backdrop} aria-hidden="true">
-          <Image src={backdrop} alt="" fill priority sizes="100vw" className={styles.backdropImage} />
-          <div className={styles.backdropVeil} />
+          <Image src={backdrop} alt="" fill priority fetchPriority="high" quality={65} sizes="100vw" className={styles.backdropImage} />
+          <div className={styles.backdropVeil} data-theme-veil />
         </div>
       )}
       <AmbientLayer slug={view.slug} />
@@ -74,8 +76,8 @@ export async function RenderStory({ params, preview = false }: Params & { previe
         <div className={`container ${styles.introInner}`}>
           <div className={styles.introMaria}>
             <ReactivePortrait name={view.normalMaria.name}>
-            <Image
-              src={view.normalMaria.characterImage}
+            <CharacterExpression
+              characterId={view.normalMaria.id}
               alt={CHARACTER_THEMES.normal.portraitAlt}
               width={1086}
               height={1448}
@@ -104,6 +106,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
       </section>
 
       <StoryProgress scenes={view.story.scenes.map((s) => ({ id: s.id, title: s.title }))} />
+      {(view.slug === "star" || view.slug === "luna") && <Nightlight slug={view.slug} />}
 
       {/* ── Scenes 1–4: Normal Maria ─────────────────────────────────── */}
       {origin.map((scene) => (

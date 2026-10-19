@@ -71,6 +71,7 @@ export function SecretToast({ message, secretCount }: { message: string | null; 
           <span className={styles.count}>
             Secrets found: {secretCount} / {getAllSecrets().length}
           </span>
+          {secretCount === getAllSecrets().length && <a href="/journey#secret-ending">Your secret ending is ready →</a>}
         </>
       )}
     </div>

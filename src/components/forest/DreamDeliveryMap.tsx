@@ -1,6 +1,7 @@
 "use client";
 
-import { useReducer } from "react";
+import { useCallback, useReducer, useRef } from "react";
+import { routePoint } from "@/lib/projects/route-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import {
@@ -54,8 +55,14 @@ function message(s: DeliveryState): string {
  * that suit it, so the shortest line isn't always the right one.
  */
 export function DreamDeliveryMap() {
-  const map = useScrollReveal();
   const [state, dispatch] = useReducer(deliveryReducer, initialDelivery);
+  const traveler = useRef<SVGCircleElement>(null);
+  const moveTraveler = useCallback((progress: number) => {
+    const route = state.route.length > 1 ? state.route : bestRoute(state.traveler ?? "rabbit", state.destination ?? "oak-cottage")!;
+    const point = routePoint(route.map(place), progress);
+    traveler.current?.setAttribute("cx", String(point.x)); traveler.current?.setAttribute("cy", String(point.y));
+  }, [state.route, state.traveler, state.destination]);
+  const map = useScrollReveal(moveTraveler);
   const delivered = isDelivered(state);
   const here = state.route.at(-1);
   const onRoute = (a: PlaceId, b: PlaceId) =>
@@ -121,6 +128,7 @@ export function DreamDeliveryMap() {
               className={styles.routeReveal} data-route-ink data-used={onRoute(path.a, path.b)}
               data-usable={!state.traveler || canUse(state.traveler, path.kind)} />;
           })}
+          <circle ref={traveler} data-scroll-traveler cx="10" cy="78" r="1.7" fill="#fff5b9" stroke="#80530b" strokeWidth=".6" />
         </svg>
         {PLACES.map((p) => {
           const role = p.id === "entrance" ? "start" : p.id === state.destination ? "goal" : undefined;

@@ -268,6 +268,7 @@ export function CloudPostcards() {
           <label className={styles.messageLabel} htmlFor={messageId}>
             Your message
             <textarea
+              data-resize-none
               id={messageId}
               className={styles.messageInput}
               value={state.message}

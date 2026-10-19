@@ -4,3 +4,9 @@ html[data-palette="night"] body { background: radial-gradient(ellipse at top, #4
 html[data-palette="night"] body > header { background: #e9dff2; border-bottom-color: #b4a1d5; }
 html[data-palette="night"] body > footer { background: #e9dff2; }
 html[data-palette="night"] [data-home-veil] { background: linear-gradient(90deg, rgba(53, 32, 83, .42), rgba(53, 32, 83, .2)); }
+html[data-palette="night"] [data-world] { --accent-soft: #ede2f7; }
+html[data-palette="night"] main { background-color: rgba(44, 31, 69, .08); }
+html[data-palette="night"] [data-theme-veil] { background: linear-gradient(135deg, rgba(55, 32, 84, .36), rgba(27, 24, 58, .15)); }
+@media (prefers-reduced-motion: no-preference) {
+  body, body > header, body > footer, main, [data-home-veil] { transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
+}

@@ -30,7 +30,7 @@ export function StoryProgress({ scenes }: { scenes: { id: number; title: string 
       <ol>
         {scenes.map((s) => (
           <li key={s.id}>
-            <a href={`#scene-${s.id}`} aria-current={current === s.id ? "step" : undefined} data-done={current !== null && s.id < current}>
+            <a href={`#scene-${s.id}`} aria-label={`Scene ${s.id}: ${s.title}`} aria-current={current === s.id ? "step" : undefined} data-done={current !== null && s.id < current}>
               <span className={styles.dot} aria-hidden="true">
                 {s.id}
               </span>

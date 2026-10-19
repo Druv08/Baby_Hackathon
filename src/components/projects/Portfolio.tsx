@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CharacterExpression } from "@/components/characters/CharacterExpression";
 import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 
 import { CHARACTER_THEMES } from "@/data/future-themes";
@@ -29,8 +30,8 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
             <div className={styles.idCard}>
               <div className={styles.portrait}>
                 <ReactivePortrait name={character.name}>
-                <Image
-                  src={character.characterImage}
+                <CharacterExpression
+                  characterId={character.id}
                   alt={theme.portraitAlt}
                   width={1086}
                   height={1448}

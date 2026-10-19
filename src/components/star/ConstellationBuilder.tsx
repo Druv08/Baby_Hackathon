@@ -32,6 +32,7 @@ export function ConstellationBuilder() {
       >
         {(s, dispatch) => (
           <form
+            noValidate
             className={styles.nameForm}
             onSubmit={(e) => {
               e.preventDefault();

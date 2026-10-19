@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { CharacterChatLauncher } from "@/components/chat/CharacterChatLauncher";
+import { CharacterExpression } from "@/components/characters/CharacterExpression";
 import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 
 import { Sparkles } from "@/components/decor/Sparkles";
@@ -20,7 +22,7 @@ export default function Home() {
           alt=""
           fill
           priority
-          fetchPriority="high"
+          fetchPriority="low"
           quality={65}
           sizes="100vw"
           className={styles.heroBackground}
@@ -47,13 +49,15 @@ export default function Home() {
               Explore My Futures <span aria-hidden="true">→</span>
             </a>
             <WelcomeBack className={styles.welcome} />
+            <CharacterChatLauncher slug="normal" />
+            <a className="btn btn-secondary" href="/meet-maria">Meet Maria in 3D</a>
           </div>
 
           <div className={styles.portraitWrap}>
             <div className={styles.portrait}>
               <ReactivePortrait name={maria.name}>
-              <Image
-                src={maria.characterImage}
+              <CharacterExpression
+                characterId={maria.id}
                 alt={CHARACTER_THEMES.normal.portraitAlt}
                 width={1086}
                 height={1448}

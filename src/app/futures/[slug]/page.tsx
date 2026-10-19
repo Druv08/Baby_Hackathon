@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { CharacterChatLauncher } from "@/components/chat/CharacterChatLauncher";
 import { PawIcon } from "@/components/site/PawIcon";
 import Image from "next/image";
+import { CharacterExpression } from "@/components/characters/CharacterExpression";
 import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -39,16 +41,16 @@ export default async function FuturePage({ params }: Params) {
   const pathTitle = getFutureBySlug(view.slug)?.storyIntro?.title;
 
   return (
-    <div style={themeStyle(view.slug)}>
+    <div style={themeStyle(view.slug)} data-world={view.slug}>
       <RecordFutureVisit futureId={view.id} />
 
       <section className={styles.hero} aria-labelledby="future-title">
         {view.heroImage && (
           // The hero artwork contains baked-in text, so it is only used as a
           // heavily blurred, decorative backdrop here.
-          <Image src={view.heroImage} alt="" fill priority sizes="100vw" className={styles.backdrop} />
+          <Image src={view.heroImage} alt="" fill priority fetchPriority="high" quality={50} sizes="100vw" className={styles.backdrop} />
         )}
-        <div className={styles.veil} />
+        <div className={styles.veil} data-theme-veil />
         <Sparkles />
 
         <div className={`container ${styles.heroInner}`}>
@@ -68,7 +70,7 @@ export default async function FuturePage({ params }: Params) {
 
             <div className={styles.actions}>
               {story.canEnter && enterHref ? (
-                <Link href={enterHref} className="btn btn-primary btn-large">
+                <Link href={enterHref} prefetch={false} className="btn btn-primary btn-large">
                   Enter {pathTitle ?? "Story"} <span aria-hidden="true">→</span>
                 </Link>
               ) : (
@@ -84,13 +86,14 @@ export default async function FuturePage({ params }: Params) {
               <a href="#creations" className="btn btn-secondary">
                 Explore Creations <span aria-hidden="true">↓</span>
               </a>
+              <CharacterChatLauncher slug={view.slug} />
             </div>
           </div>
 
           <div className={styles.portrait}>
             <ReactivePortrait name={character.name}>
-            <Image
-              src={character.characterImage}
+            <CharacterExpression
+              characterId={character.id}
               alt={theme.portraitAlt}
               width={1086}
               height={1448}
@@ -121,7 +124,7 @@ export default async function FuturePage({ params }: Params) {
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   {project.description && <p>{project.description}</p>}
                   {project.playable && enterHref ? (
-                    <Link href={`${enterHref}#project-${project.id}`} className="btn btn-primary">
+                    <Link href={`${enterHref}#project-${project.id}`} prefetch={false} className="btn btn-primary">
                       Play {project.title} <span aria-hidden="true">→</span>
                     </Link>
                   ) : project.playable ? (

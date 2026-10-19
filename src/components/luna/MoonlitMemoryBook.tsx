@@ -106,6 +106,7 @@ export function MoonlitMemoryBook() {
         <label htmlFor={ids.message}>
           Your memory or message
           <textarea
+            data-resize-none
             style={{ resize: "none" }}
             id={ids.message}
             className={styles.input}

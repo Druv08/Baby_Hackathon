@@ -1,0 +1,3 @@
+.stack { display: grid; width: 100%; }
+.expression { grid-area: 1 / 1; transition: opacity .3s ease; }
+@media (prefers-reduced-motion: reduce) { .expression { transition: none; } }
