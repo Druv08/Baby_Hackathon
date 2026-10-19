@@ -374,3 +374,82 @@
   border-color: #7fd6ea;
   background: rgba(248, 254, 255, 0.94);
 }
+
+/* ── Inventor: a magical inventor's notebook ──────────────────────── */
+.portfolio[data-world="inventor"] .head,
+.creations[data-world="inventor"] .head {
+  background: rgba(58, 36, 20, 0.88);
+  color: #fff3dc;
+}
+
+.portfolio[data-world="inventor"] .head h2,
+.creations[data-world="inventor"] .head h2 {
+  color: #ffe6b0;
+  text-shadow: 0 0 18px rgba(255, 200, 110, 0.75);
+}
+
+.portfolio[data-world="inventor"] .head :global(.eyebrow),
+.creations[data-world="inventor"] .head :global(.eyebrow) {
+  color: #f3c97a;
+}
+
+/* Graph-paper notebook pages with a brass spine. */
+.portfolio[data-world="inventor"] .journal {
+  position: relative;
+  background:
+    linear-gradient(90deg, #c8963e 0 10px, #8a5a1c 10px 13px, transparent 13px),
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(154, 79, 18, 0.1) 23px 24px),
+    repeating-linear-gradient(90deg, transparent 0 23px, rgba(154, 79, 18, 0.07) 23px 24px),
+    #fff8ec;
+  border-color: #d9a441;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(217, 164, 65, 0.18);
+}
+
+/* A little brass gear stamp in the corner. */
+.portfolio[data-world="inventor"] .journal::after {
+  content: "⚙";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  font-size: 3rem;
+  line-height: 1;
+  color: rgba(200, 150, 62, 0.45);
+}
+
+.portfolio[data-world="inventor"] .portrait {
+  box-shadow: 0 0 0 3px #c8963e, 0 0 30px rgba(255, 200, 110, 0.55);
+}
+
+.portfolio[data-world="inventor"] .facts div {
+  border-bottom-color: #ecd2a4;
+}
+
+.portfolio[data-world="inventor"] .facts dt,
+.portfolio[data-world="inventor"] .page h3,
+.creations[data-world="inventor"] .card h3,
+.creations[data-world="inventor"] .playTitle {
+  color: #9a4f12;
+}
+
+.portfolio[data-world="inventor"] .tagline {
+  color: #b8741f;
+}
+
+.portfolio[data-world="inventor"] .chips li {
+  background: #fbecd2;
+  border: 1px solid #ecd2a4;
+}
+
+.portfolio[data-world="inventor"] .motto {
+  background: linear-gradient(135deg, #fbecd2, #fff6e4);
+  color: #9a4f12;
+}
+
+.creations[data-world="inventor"] .card {
+  border: 2px solid #ecd2a4;
+}
+
+.creations[data-world="inventor"] .playground {
+  border-color: #d9a441;
+  background: rgba(255, 250, 240, 0.95);
+}

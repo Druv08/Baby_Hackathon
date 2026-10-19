@@ -69,7 +69,7 @@ export const FUTURES: FuturePath[] = [
     characterId: 6,
     heroImage: "/heroes/inventor.png",
     storyStatus: "ready",
-    portfolioStatus: "pending",
+    portfolioStatus: "ready",
     storyIntro: INVENTOR_STORY_INTRO,
     scenes: INVENTOR_SCENES,
     profile: INVENTOR_PROFILE,

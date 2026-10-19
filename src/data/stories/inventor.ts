@@ -159,10 +159,7 @@ export const INVENTOR_PROFILE: CharacterProfile = {
   motto: "Every mistake teaches me something new.",
 };
 
-/**
- * Inventor Maria's three creations. Proposed until each playable module
- * exists; a project only becomes `live` once its interaction genuinely works.
- */
+/** Inventor Maria's three creations — each a small playable experience. */
 export const INVENTOR_PROJECTS: PortfolioProject[] = [
   {
     id: "star-workshop",
@@ -171,8 +168,8 @@ export const INVENTOR_PROJECTS: PortfolioProject[] = [
       "A magical workshop where visitors can help Inventor Maria repair broken machines, arrange gears and power wonderful star-filled inventions.",
     image: "/projects/inventor/star-workshop.png",
     interactionId: "star-workshop",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "dream-lantern-lab",
@@ -181,8 +178,8 @@ export const INVENTOR_PROJECTS: PortfolioProject[] = [
       "Design your own magical star lantern using Inventor Maria’s collection of glowing shapes, colors and enchanting lights.",
     image: "/projects/inventor/dream-lantern-lab.png",
     interactionId: "dream-lantern-lab",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "little-helper-machines",
@@ -191,7 +188,7 @@ export const INVENTOR_PROJECTS: PortfolioProject[] = [
       "Build adorable little clockwork helpers using Inventor Maria’s magical mechanical parts, then watch them perform helpful tasks.",
     image: "/projects/inventor/little-helper-machines.png",
     interactionId: "little-helper-machines",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
 ];

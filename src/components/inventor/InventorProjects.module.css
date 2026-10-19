@@ -1,0 +1,602 @@
+.game {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.status {
+  min-height: 3rem;
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: #fbecd2;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.status[data-tone="success"] {
+  background: #fff1b8;
+}
+
+.status[data-tone="warn"] {
+  background: #ffe2d2;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.primary,
+.secondary,
+.ghost,
+.option,
+.benchPart {
+  min-height: 44px;
+  border-radius: 999px;
+  font: 800 1rem var(--font-body);
+  cursor: pointer;
+}
+
+.primary {
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #e9a93c, #b8741f);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(160, 90, 20, 0.3);
+}
+
+.secondary {
+  padding: 8px 16px;
+  border: 2px solid #d9a441;
+  background: #fff;
+  color: var(--ink);
+}
+
+.ghost {
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 2px solid #ecd2a4;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.option[aria-pressed="true"],
+.benchPart[aria-pressed="true"] {
+  border-color: #b8741f;
+  background: #fbecd2;
+  box-shadow: 0 0 0 2px rgba(184, 116, 31, 0.25);
+}
+
+.primary:disabled,
+.secondary:disabled,
+.ghost:disabled,
+.option:disabled,
+.benchPart:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.primary:focus-visible,
+.secondary:focus-visible,
+.ghost:focus-visible,
+.option:focus-visible,
+.benchPart:focus-visible,
+.slot:focus-visible,
+.range:focus-visible {
+  outline: 3px solid #9a4f12;
+  outline-offset: 2px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.options legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 0;
+  font-weight: 800;
+  color: #9a4f12;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+/* ── Star Workshop ───────────────────────────────────────────────────── */
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.levels li {
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #f6ead6;
+  color: var(--ink-soft);
+  font-weight: 800;
+}
+
+.levels li[data-active="true"] {
+  background: #9a4f12;
+  color: #fff;
+}
+
+.levels li[data-done="true"] {
+  background: #d9efc8;
+  color: #2f5e1f;
+}
+
+.progress {
+  margin: -6px 0 0;
+  font-weight: 800;
+  color: #9a4f12;
+}
+
+/* Blueprint paper for the machine. */
+.blueprint {
+  display: grid;
+  gap: 10px;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 19px, rgba(255, 255, 255, 0.08) 19px 20px),
+    repeating-linear-gradient(90deg, transparent 0 19px, rgba(255, 255, 255, 0.08) 19px 20px),
+    #2c4a6e;
+  color: #f2f6ff;
+  transition: box-shadow 0.5s ease;
+}
+
+.blueprint[data-result="solved"] {
+  box-shadow: 0 0 0 3px #e9bd5c, 0 0 28px rgba(255, 210, 120, 0.8);
+}
+
+.blueprint[data-result="wrong"] {
+  animation: nudge 0.45s ease;
+}
+
+@keyframes nudge {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.blueprint h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #ffe6b0;
+}
+
+.goal {
+  margin: 0;
+}
+
+.machineRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.fixedPart {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin-top: 6px;
+}
+
+.slot {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 92px;
+  padding: 6px 4px;
+  border: 2px dashed rgba(255, 230, 176, 0.75);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f2f6ff;
+  cursor: pointer;
+}
+
+.slot[data-filled="true"] {
+  border-style: solid;
+  background: rgba(255, 230, 176, 0.12);
+}
+
+.slot:disabled {
+  cursor: default;
+}
+
+.slotEmpty {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dotted rgba(255, 230, 176, 0.5);
+}
+
+.slotLabel {
+  font: 700 0.75rem var(--font-body);
+  text-align: center;
+}
+
+.partIcon {
+  width: 60px;
+  height: 60px;
+  overflow: visible;
+}
+
+.benchPart .partIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.spinGear {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.spinGear[data-spinning="true"] {
+  animation: spin 2.4s linear infinite;
+}
+
+.spinGear[data-reverse="true"] {
+  animation-direction: reverse;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.springBounce {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: boing 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes boing {
+  to {
+    transform: scaleX(0.8);
+  }
+}
+
+.coreGlow {
+  filter: drop-shadow(0 0 4px #ffd36a);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.beltRun {
+  animation: belt 0.6s linear infinite;
+}
+
+@keyframes belt {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+.crankTurn {
+  transform-box: fill-box;
+  transform-origin: 30% 60%;
+  animation: spin 2s linear infinite;
+}
+
+.bench {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.benchPart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px 4px 6px;
+  border: 2px solid #ecd2a4;
+  background: #fffaf0;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* ── Dream Lantern Lab ───────────────────────────────────────────────── */
+.lanternLayout,
+.helperLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.lanternStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: var(--space-4);
+  min-height: 300px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 50% 30%, #3b2a4e, #1d1428 75%);
+  overflow: hidden;
+}
+
+.halo {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--light), transparent 65%);
+  transform: translate(-50%, -50%) scale(calc(0.6 + var(--k) * 0.7));
+  opacity: calc(var(--k) * 0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s ease;
+}
+
+.lanternSvg {
+  position: relative;
+  width: min(60%, 220px);
+  height: auto;
+  filter: drop-shadow(0 0 calc(var(--k) * 22px) var(--light));
+  animation: sway 4s ease-in-out infinite alternate;
+  transform-origin: 50% 0;
+}
+
+.lanternStage[data-on="false"] .lanternSvg {
+  filter: none;
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+.lanternBody {
+  transition: fill 0.4s ease, fill-opacity 0.4s ease, stroke 0.4s ease;
+}
+
+.flame {
+  animation: flicker 1.6s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes flicker {
+  to {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+}
+
+.lanternCaption {
+  position: relative;
+  margin-top: 8px;
+  color: #f6ecff;
+  font-weight: 800;
+  text-align: center;
+}
+
+.lanternControls {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.rangeLabel {
+  display: grid;
+  gap: 6px;
+  font-weight: 800;
+  color: #9a4f12;
+}
+
+.range {
+  width: 100%;
+  min-height: 44px;
+  accent-color: #b8741f;
+}
+
+/* ── Little Helper Machines ──────────────────────────────────────────── */
+.helperStage {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #fbecd2, #f3d9ae);
+  overflow: hidden;
+}
+
+.helperSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.helperTag {
+  margin: 0;
+  padding: 6px 12px;
+  background: rgba(122, 85, 50, 0.85);
+  color: #fff6e4;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+/* The helper travels to its task, then does it. */
+.helper[data-running="true"] {
+  animation: travel 1.8s ease-in-out forwards;
+}
+
+@keyframes travel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(96px);
+  }
+}
+
+.helperStage[data-move="propeller"] .helper[data-running="true"] {
+  animation-name: fly;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0);
+  }
+  40% {
+    transform: translate(40px, -18px);
+  }
+  100% {
+    transform: translate(96px, -12px);
+  }
+}
+
+.helperStage[data-move="legs"] .legs {
+  animation: step 0.4s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+@keyframes step {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+.propeller {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: whirl 0.5s linear infinite;
+}
+
+@keyframes whirl {
+  50% {
+    transform: scaleX(0.3);
+  }
+}
+
+.box[data-done="true"] {
+  animation: shelve 1s ease-in-out 1.6s forwards;
+}
+
+@keyframes shelve {
+  to {
+    transform: translate(12px, -26px);
+  }
+}
+
+.hook {
+  transition: fill 0.6s ease 1.6s;
+}
+
+.flower {
+  transition: r 0.8s ease 1.6s, fill 0.8s ease 1.6s;
+}
+
+@media (max-width: 900px) {
+  .lanternLayout,
+  .helperLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .lanternStage {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 600px) {
+  .slot {
+    width: 74px;
+  }
+
+  .partIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .fixedPart {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinGear[data-spinning="true"],
+  .springBounce,
+  .coreGlow,
+  .beltRun,
+  .crankTurn,
+  .blueprint[data-result="wrong"],
+  .lanternSvg,
+  .flame,
+  .helper[data-running="true"],
+  .helperStage[data-move="legs"] .legs,
+  .propeller,
+  .box[data-done="true"] {
+    animation: none;
+  }
+
+  /* Without motion, the finished task still shows its result. */
+  .helper[data-running="true"] {
+    transform: translateX(96px);
+  }
+
+  .box[data-done="true"] {
+    transform: translate(12px, -26px);
+  }
+
+  .halo,
+  .lanternBody,
+  .hook,
+  .flower {
+    transition: none;
+  }
+}
