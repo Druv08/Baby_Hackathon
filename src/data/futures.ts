@@ -1,4 +1,5 @@
 import type { FuturePath } from "@/types/future";
+import { AQUA_PROFILE, AQUA_PROJECTS, AQUA_SCENES, AQUA_STORY_INTRO } from "./stories/aqua";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
 import { CLOUD_PROFILE, CLOUD_PROJECTS, CLOUD_SCENES, CLOUD_STORY_INTRO } from "./stories/cloud";
 import { STAR_PROFILE, STAR_PROJECTS, STAR_SCENES, STAR_STORY_INTRO } from "./stories/star";
@@ -54,19 +55,13 @@ export const FUTURES: FuturePath[] = [
     slug: "aqua",
     characterId: 5,
     heroImage: "/heroes/aqua.png",
-    storyStatus: "pending",
+    // Draft until the story page is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
-    projects: [
-      {
-        id: "ocean-discovery",
-        title: "Ocean Discovery",
-        description:
-          "Dive into Maria's underwater world and meet the amazing sea friends she protects.",
-        status: "draft",
-        implementation: "proposed",
-      },
-    ],
+    storyIntro: AQUA_STORY_INTRO,
+    scenes: AQUA_SCENES,
+    profile: AQUA_PROFILE,
+    projects: AQUA_PROJECTS,
   },
   {
     id: 6,
