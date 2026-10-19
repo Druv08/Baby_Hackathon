@@ -11,8 +11,8 @@ export default function Home() {
   const maria = getCharacterById(1)!;
 
   return (
-    <>
-      <section className={styles.hero} aria-labelledby="hero-title">
+    <div className={styles.world}>
+      <div className={styles.worldBackground} aria-hidden="true">
         <Image
           src="/heroes/maria-background.png"
           alt=""
@@ -22,6 +22,8 @@ export default function Home() {
           className={styles.heroBackground}
         />
         <div className={styles.heroVeil} aria-hidden="true" />
+      </div>
+      <section className={styles.hero} aria-labelledby="hero-title">
         <Sparkles />
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.copy}>
@@ -76,6 +78,6 @@ export default function Home() {
           <FutureGrid />
         </div>
       </section>
-    </>
+    </div>
   );
 }

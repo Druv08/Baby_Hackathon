@@ -1,9 +1,22 @@
+.world {
+  position: relative;
+  isolation: isolate;
+}
+
+.worldBackground {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .hero {
   position: relative;
   overflow: hidden;
   padding-block: clamp(var(--space-6), 6vw, var(--space-8));
-  background: var(--paper-deep);
-  isolation: isolate;
+  min-height: calc(100svh - var(--header-height));
+  display: grid;
+  align-items: center;
 }
 
 .heroBackground {
@@ -109,6 +122,13 @@
   gap: var(--space-3);
   margin-bottom: var(--space-6);
   text-align: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 248, 242, 0.94);
+  border: 2px solid var(--white);
 }
 
 @media (max-width: 800px) {
