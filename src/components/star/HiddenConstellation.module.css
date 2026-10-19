@@ -1,0 +1,76 @@
+/* Sits exactly over the 1672×941 illustration at the top of the frame. */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  pointer-events: none;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lines line {
+  stroke: #ffe39a;
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.8;
+}
+
+.layer[data-glowing="true"] .lines line {
+  stroke-width: 3;
+  opacity: 1;
+  filter: drop-shadow(0 0 4px #ffd36a);
+}
+
+/* 44px touch targets around barely visible stars. */
+.star {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.star span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px;
+  background: radial-gradient(circle, #fffbe8, rgba(255, 238, 180, 0) 70%);
+  border-radius: 50%;
+  opacity: 0.55;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.star:hover span,
+.star:focus-visible span,
+.star[aria-pressed="true"] span {
+  opacity: 1;
+  transform: scale(1.8);
+}
+
+.star:focus-visible {
+  outline: 2px solid #fff3c4;
+  outline-offset: -8px;
+}
+
+.layer[data-glowing="true"] .star span {
+  opacity: 1;
+  transform: scale(2);
+  box-shadow: 0 0 10px 3px rgba(255, 224, 138, 0.9);
+}

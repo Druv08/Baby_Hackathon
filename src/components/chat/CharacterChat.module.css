@@ -1,0 +1,15 @@
+.dialog { width: min(94vw, 38rem); max-height: 88svh; padding: 0; border: 2px solid var(--accent); border-radius: var(--radius-lg); background: var(--paper); color: var(--ink); box-shadow: var(--shadow-soft); overflow: auto; }
+.dialog::backdrop { background: #20152bb3; }
+.header { display: flex; align-items: center; gap: .8rem; padding: 1rem; border-bottom: 1px solid var(--lavender); }
+.header img { object-fit: cover; border-radius: 50%; width: 48px; height: 60px; }
+.header h2 { font-size: 1.8rem; }.header p { font-size: .85rem; }
+.close { min-width: 44px; min-height: 44px; margin-left: auto; border-radius: 50%; border: 1px solid var(--accent); background: var(--paper); color: var(--ink); font-size: 1.8rem; cursor: pointer; flex-shrink: 0; }
+.log { max-height: 38svh; min-height: 12rem; overflow: auto; padding: 1rem; display: flex; flex-direction: column; gap: .8rem; scroll-padding: 1rem; }
+.bubble { max-width: 94%; padding: .8rem 1rem; border-radius: 1rem 1rem 1rem .2rem; background: var(--accent-soft); overflow-wrap: anywhere; }
+.bubble[data-speaker="You"] { margin-left: auto; background: #fff; border: 1px solid var(--lavender); border-radius: 1rem 1rem .2rem 1rem; }
+.bubble strong { font-size: .8rem; }.bubble a { display: inline-flex; min-height: 44px; align-items: center; color: var(--accent); font-weight: 800; }
+.suggestions { display: flex; gap: .4rem; padding: .75rem 1rem; overflow-x: auto; }
+.suggestions button { min-height: 44px; flex: 0 0 auto; padding: .4rem .8rem; border: 1px solid var(--lavender); border-radius: 2rem; color: var(--ink); background: var(--paper); font: inherit; cursor: pointer; }
+.form { padding: .8rem 1rem 1rem; border-top: 1px solid var(--lavender); }.form > div { display: flex; gap: .5rem; margin-top: .3rem; }
+.form label { font-weight: 800; }.form input { width: 100%; min-width: 0; padding: .65rem; border: 1px solid var(--lavender-deep); border-radius: 1rem; color: var(--ink); background: #fff; font: inherit; }.form p { min-height: 2.5rem; font-size: .8rem; margin-top: .5rem; }
+.dialog button:hover { filter: brightness(.95); }.dialog :focus-visible { outline: 3px solid var(--lavender-deep); outline-offset: 2px; }

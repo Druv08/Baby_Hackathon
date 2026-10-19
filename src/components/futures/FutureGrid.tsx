@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PawIcon } from "@/components/site/PawIcon";
 import Link from "next/link";
 
 import { CHARACTER_THEMES, formNumber, themeStyle } from "@/data/future-themes";
@@ -16,13 +17,14 @@ export function FutureGrid({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3"
         const theme = CHARACTER_THEMES[future.slug];
         return (
           <li key={future.slug} style={themeStyle(future.slug)}>
-            <Link href={`/futures/${future.slug}`} className={styles.card}>
+            <Link href={`/futures/${future.slug}`} className={styles.card} data-future-card={future.slug}>
               <div className={styles.portrait}>
                 <Image
                   src={character.characterImage}
                   alt={theme.portraitAlt}
                   width={1086}
                   height={1448}
+                  fetchPriority="low"
                   sizes="(max-width: 600px) 45vw, (max-width: 1100px) 30vw, 260px"
                 />
                 <span className={styles.number} aria-hidden="true">
@@ -31,7 +33,7 @@ export function FutureGrid({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3"
               </div>
               <div className={styles.body}>
                 <Heading className={styles.name}>
-                  <span aria-hidden="true">{theme.icon} </span>
+                  <PawIcon slug={future.slug} />{" "}
                   {theme.label}
                 </Heading>
                 <p className={styles.profession}>{character.profession}</p>

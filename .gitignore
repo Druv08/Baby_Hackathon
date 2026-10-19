@@ -42,3 +42,8 @@ next-env.d.ts
 
 # allow the documented env template
 !.env.example
+
+# cloudflare (OpenNext build output, local wrangler state and local secrets)
+/.open-next/
+/.wrangler/
+.dev.vars*

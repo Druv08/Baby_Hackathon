@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { CharacterChatLauncher } from "@/components/chat/CharacterChatLauncher";
+import { CharacterExpression } from "@/components/characters/CharacterExpression";
+import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 
 import { Sparkles } from "@/components/decor/Sparkles";
+import { PawIcon } from "@/components/site/PawIcon";
 import { FutureGrid } from "@/components/futures/FutureGrid";
 import { WelcomeBack } from "@/components/progress/WelcomeBack";
 import { CHARACTER_THEMES } from "@/data/future-themes";
@@ -11,13 +15,26 @@ export default function Home() {
   const maria = getCharacterById(1)!;
 
   return (
-    <>
+    <div className={styles.world}>
+      <div className={styles.worldBackground} aria-hidden="true">
+        <Image
+          src="/heroes/maria-background.png"
+          alt=""
+          fill
+          priority
+          fetchPriority="low"
+          quality={65}
+          sizes="100vw"
+          className={styles.heroBackground}
+        />
+        <div className={styles.heroVeil} data-home-veil aria-hidden="true" />
+      </div>
       <section className={styles.hero} aria-labelledby="hero-title">
         <Sparkles />
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.copy}>
             <p className="eyebrow">
-              <span aria-hidden="true">🐾</span> 01 — The Beginning
+              <PawIcon /> 01 — The Beginning
             </p>
             <h1 id="hero-title" className={styles.title}>
               Hi, I&apos;m Maria!
@@ -32,18 +49,24 @@ export default function Home() {
               Explore My Futures <span aria-hidden="true">→</span>
             </a>
             <WelcomeBack className={styles.welcome} />
+            <CharacterChatLauncher slug="normal" />
+            <a className="btn btn-secondary" href="/meet-maria">Meet Maria in 3D</a>
           </div>
 
           <div className={styles.portraitWrap}>
             <div className={styles.portrait}>
-              <Image
-                src={maria.characterImage}
+              <ReactivePortrait name={maria.name}>
+              <CharacterExpression
+                characterId={maria.id}
                 alt={CHARACTER_THEMES.normal.portraitAlt}
                 width={1086}
                 height={1448}
                 priority
-                sizes="(max-width: 800px) 80vw, 420px"
+                fetchPriority="high"
+                quality={60}
+                sizes="(max-width: 480px) 68vw, (max-width: 800px) 320px, 420px"
               />
+              </ReactivePortrait>
             </div>
             <p className={styles.sign} aria-hidden="true">
               A new journey begins…
@@ -67,6 +90,6 @@ export default function Home() {
           <FutureGrid />
         </div>
       </section>
-    </>
+    </div>
   );
 }

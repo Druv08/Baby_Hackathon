@@ -1,0 +1,4 @@
+.container { width: 100%; }
+.portrait { display: block; width: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; color: inherit; cursor: inherit; transform-origin: 50% 80%; transform: rotate(var(--portrait-tilt, 0deg)); transition: transform 180ms ease-out; touch-action: manipulation; }
+.portrait:focus-visible { outline: 3px solid var(--accent); outline-offset: -5px; }
+@media (prefers-reduced-motion: reduce) { .portrait { transform: none; transition: none; } }

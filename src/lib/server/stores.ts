@@ -12,7 +12,7 @@ import type { FutureSlug } from "@/types/character";
 export interface MemoryStore {
   /** Approved memories only, newest first, strictly older than `before`. */
   listApproved(query: { limit: number; before?: string }): Promise<PublicMemory[]>;
-  /** Inserts a submission; status is always `pending` (database default). */
+  /** Inserts a submission explicitly as pending, independent of database defaults. */
   insertPending(memory: { visitorName: string; message: string; formSlug: FutureSlug | null }): Promise<void>;
 }
 
@@ -75,7 +75,7 @@ export function createSupabaseStores(db: SupabaseClient): {
       async insertPending({ visitorName, message, formSlug }) {
         const { error } = await db
           .from("memories")
-          .insert({ visitor_name: visitorName, message, form_slug: formSlug });
+          .insert({ visitor_name: visitorName, message, form_slug: formSlug, status: "pending" });
         if (error) throw error;
       },
     },

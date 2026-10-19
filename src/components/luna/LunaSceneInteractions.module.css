@@ -1,0 +1,367 @@
+/* Sits exactly over the 1672×941 illustration at the top of the frame. */
+.imageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.imageLayer > button {
+  pointer-events: auto;
+}
+
+/* ── Scene 1: the fading lantern ─────────────────────────────────────── */
+.lantern {
+  position: absolute;
+  width: 11%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 2px dashed rgba(255, 236, 190, 0.9);
+  border-radius: 14px;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  animation: hint 2.6s ease-in-out infinite;
+}
+
+.lantern:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 3px;
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.05;
+  }
+}
+
+/* Flickers on, shows a faint memory, then fades again. */
+.flicker {
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 228, 160, 0.85), rgba(255, 200, 120, 0) 65%);
+  animation: flicker 2.6s ease-out forwards;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 0.4;
+  }
+  34% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.silhouette {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 46%;
+  fill: rgba(120, 80, 40, 0.55);
+  transform: translate(-50%, -50%);
+}
+
+.flicker i,
+.floaters i {
+  position: absolute;
+  bottom: 30%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, rgba(255, 220, 140, 0) 70%);
+  box-shadow: 0 0 8px rgba(255, 220, 140, 0.9);
+  animation: rise 2s ease-out forwards;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-90px);
+  }
+}
+
+/* ── Scene 3: the lantern that lights with a story ───────────────────── */
+.approachRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lanternIcon {
+  flex: none;
+  width: 54px;
+}
+
+.lanternIcon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lanternGlass {
+  fill: #4a4270;
+  transition: fill 0.8s ease, filter 0.8s ease;
+}
+
+.lanternIcon[data-glowing="true"] .lanternGlass {
+  fill: #ffe08a;
+  filter: drop-shadow(0 0 6px #ffd36a);
+}
+
+.approaches {
+  display: grid;
+  gap: 8px;
+  flex: 1;
+}
+
+.approach {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 2px solid #b9a7e6;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #f6f1ff;
+  font: 700 0.95rem var(--font-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.approach[aria-pressed="true"] {
+  border-color: #ffe08a;
+  background: rgba(255, 224, 138, 0.16);
+}
+
+/* ── Scene 4: lake glow and floating lanterns ────────────────────────── */
+.lakeGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 40% at 40% 80%, rgba(255, 220, 140, 0.45), rgba(255, 220, 140, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.imageLayer[data-done="true"] .lakeGlow {
+  opacity: 1;
+}
+
+.floaters {
+  position: absolute;
+  inset: 0;
+}
+
+.floaters i {
+  width: 12px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(#fff3c4, #ffc861);
+  animation: float 3.2s ease-out infinite;
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-140px);
+  }
+}
+
+.lanterns {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.miniLantern {
+  width: 22px;
+  height: 30px;
+  border-radius: 6px;
+  border: 2px solid #8a6a3a;
+  background: #3a3460;
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+
+.miniLantern[data-lit="true"] {
+  background: #ffe08a;
+  box-shadow: 0 0 16px rgba(255, 214, 120, 0.9);
+}
+
+.matchGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.column {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.memoryCard {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 2px dashed #b9a7e6;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f6f1ff;
+  font: 700 0.92rem var(--font-body);
+  cursor: pointer;
+}
+
+.memoryCard[data-matched="true"] {
+  border-style: solid;
+  border-color: #ffe08a;
+  background: rgba(255, 224, 138, 0.18);
+}
+
+/* ── Panels below the illustration ───────────────────────────────────── */
+.caption {
+  margin: 0;
+  padding: 10px 14px;
+  background: #2b2452;
+  color: #f6f1ff;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #2f2858, #221c42);
+  color: #f6f1ff;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.inline,
+.counter {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.counter {
+  color: #cdbcff;
+}
+
+.inline[data-tone="good"] {
+  color: #ffe08a;
+}
+
+.inline[data-tone="gentle"] {
+  color: #ffd2e2;
+}
+
+.keepsake {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 14px;
+  border: 2px solid #b9a7e6;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #f6f1ff;
+  font: 800 0.95rem var(--font-body);
+  cursor: pointer;
+}
+
+.keepsake[aria-pressed="true"] {
+  background: #ffe08a;
+  border-color: #ffe08a;
+  color: #2b2452;
+}
+
+.keepsake[data-found="true"]:not([aria-pressed="true"]) {
+  border-color: #ffe08a;
+}
+
+.keepsake:disabled,
+.memoryCard:disabled {
+  cursor: default;
+}
+
+.ghost {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: #cdbcff;
+  font: 700 0.95rem var(--font-body);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.keepsake:focus-visible,
+.approach:focus-visible,
+.memoryCard:focus-visible,
+.ghost:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .matchGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lantern,
+  .flicker,
+  .flicker i,
+  .floaters i {
+    animation: none;
+  }
+
+  .flicker {
+    opacity: 0.6;
+  }
+
+  .lanternGlass,
+  .lakeGlow,
+  .miniLantern {
+    transition: none;
+  }
+}

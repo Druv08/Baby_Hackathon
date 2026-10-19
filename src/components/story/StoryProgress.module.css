@@ -1,0 +1,94 @@
+/*
+ * A full-width band pinned directly under the sticky site header. It has
+ * its own height in the layout (var(--story-nav-height), set by the story
+ * page) and a bottom margin, so it never sits on top of a story card.
+ */
+.progress {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 40; /* below the site header (50), above story content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--story-nav-height, 3.75rem);
+  margin-bottom: var(--space-6);
+  padding-inline: var(--gutter);
+  /* Opaque so text scrolling underneath never ghosts through. */
+  background: #fffaf4;
+  border-block: 1px solid rgba(194, 56, 111, 0.15);
+  box-shadow: 0 6px 18px rgba(120, 40, 80, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.progress ol {
+  display: flex;
+  gap: var(--space-1);
+  list-style: none;
+}
+
+.progress a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.progress a:focus-visible {
+  outline: 3px solid var(--lavender-deep);
+  outline-offset: 2px;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--pink);
+  background: var(--white);
+  color: var(--pink-deep);
+  font-weight: 800;
+}
+
+.progress a[data-done="true"] .dot {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.progress a[aria-current="step"] {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.progress a[aria-current="step"] .dot {
+  background: var(--pink-deep);
+  border-color: var(--pink-deep);
+  color: var(--white);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Only the current step shows its title, keeping the band compact. */
+.label {
+  display: none;
+}
+
+.progress a[aria-current="step"] .label {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+  .progress a[aria-current="step"] .label {
+    display: none;
+  }
+
+  .progress a {
+    padding: 4px;
+  }
+}

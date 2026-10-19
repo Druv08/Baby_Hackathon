@@ -1,0 +1,14 @@
+.section { margin-block: var(--space-7); padding: var(--space-5); background: var(--paper); border: 2px solid var(--lavender); border-radius: var(--radius-lg); }
+.heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+.area { --light-x: 50%; --light-y: 50%; position: relative; isolation: isolate; min-height: clamp(240px, 40vw, 390px); overflow: hidden; margin-top: 1rem; border-radius: var(--radius); border: 2px solid var(--lavender); }
+.area > img { object-fit: cover; }
+.shade, .dreams { position: absolute; inset: 0; pointer-events: none; }
+.shade { background: rgba(20, 15, 45, .3); }
+.area[data-nightlight="true"] { touch-action: none; }
+.area[data-nightlight="true"] .shade { background: radial-gradient(circle 150px at var(--light-x) var(--light-y), transparent 12%, rgba(18, 12, 42, .9) 100%); }
+.dreams { opacity: 0; }
+.area[data-nightlight="true"] .dreams { opacity: 1; mask-image: radial-gradient(circle 145px at var(--light-x) var(--light-y), #000 30%, transparent 100%); }
+.dreams > span { position: absolute; color: #fff3ac; font-size: 3rem; text-align: center; transform: translate(-50%, -50%); text-shadow: 0 0 14px #ffbc54; }
+.dreams small { display: block; font-size: 1rem; font-weight: 800; background: #2a1f4a; border-radius: 1rem; padding: .15rem .6rem; white-space: nowrap; }
+.status { min-height: 3.5rem; padding-top: .75rem; }
+.area:focus-visible { outline: 3px solid var(--lavender-deep); outline-offset: 3px; }

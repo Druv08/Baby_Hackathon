@@ -241,3 +241,102 @@ const count = useVisitCounter(); // null while loading or unavailable → hide t
 - `src/lib/server/supabase.integration.test.ts`: live Supabase tests,
   including a truly concurrent counter test. **Skipped** unless
   `SUPABASE_INTEGRATION_TESTS=1` and credentials are set.
+
+## Story pages (Blossom is the reference)
+
+A future gets a story page at `/futures/<slug>/story` as soon as its
+`storyStatus` is `ready`; until then its hero shows "Story Coming Soon".
+Blossom is the complete example — copy its shape for the next future:
+
+| Piece | Where |
+|---|---|
+| Intro, five scenes, profile, three projects | `src/data/stories/blossom.ts` |
+| Wiring into the future | `src/data/futures.ts` (Blossom entry) |
+| Scene and project artwork | `public/stories/blossom/`, `public/projects/blossom/` (listed in `src/data/assets.ts`) |
+| Per-scene interactions (by `interactionId`) | `src/components/story/SceneInteraction.tsx` |
+| Playable creations (by `interactionId`) | `src/components/projects/ProjectPlayground.tsx`, rules in `src/lib/projects/` |
+| Where the hidden secret sits | `SECRET_SPOTS` in `src/app/futures/[slug]/story/page.tsx` |
+
+Progress uses the shared journey store: opening the hero discovers the
+future, reaching scene 5 completes its story, and the hidden collectible is
+saved with `collectSecret`. Nothing new is stored in the database.
+
+### Star (second complete future)
+
+Star follows the same pattern as Blossom (`src/data/stories/star.ts`), with
+star-specific interactions in `src/components/star/`. A shared constellation
+engine (`src/lib/projects/constellation.ts`) powers the story scenes, the
+Constellation Builder and the Hidden Constellation secret; Bloom Book and the
+Dream Atlas share one pager (`src/lib/projects/pager.ts`).
+
+**Character art mapping:** the locked files `characters/3.png` and
+`characters/9.png` hold each other's design (Star = hooded cloak with a dream
+jar; Luna = witch hat holding a star), confirmed against both hero mockups.
+The files are untouched; `src/data/characters.ts` cross-maps them instead.
+
+### Cloud (third complete future)
+
+Cloud follows the same pattern (`src/data/stories/cloud.ts`), with its scene
+interactions, three creations and the Secret Rainbow Cloud in
+`src/components/cloud/`, and the floating-sky atmosphere in
+`src/components/story/SkyLayer.tsx`.
+
+### Aqua (fourth complete future)
+
+Aqua follows the same pattern (`src/data/stories/aqua.ts`), with its scene
+interactions, Ocean Discovery, Coral Care Garden, Turtle's Safe Passage and the
+Secret Ocean Pearl in `src/components/aqua/`, rules in
+`src/lib/projects/aqua-story.ts` and `aqua-projects.ts`, and the underwater
+atmosphere in `src/components/story/OceanLayer.tsx`.
+
+Aqua's scene and project artwork is 4:3 (1448 × 1086) rather than 16:9; the
+story page reads each world's illustration size from `SCENE_SIZES` in
+`src/app/futures/[slug]/story/page.tsx`, so overlays line up with the art.
+The pearl uses Aqua's existing secret id, `hidden-pearl`.
+
+### Inventor (fifth complete future)
+
+Inventor follows the same pattern (`src/data/stories/inventor.ts`), with its
+scene interactions, Star Workshop, Dream Lantern Lab, Little Helper Machines
+and the Golden Cog secret in `src/components/inventor/` (gears drawn by the
+shared `GearSvg.tsx`), rules in `src/lib/projects/inventor-story.ts` and
+`inventor-projects.ts`, and the workshop atmosphere in
+`src/components/story/WorkshopLayer.tsx`. The Golden Cog uses Inventor's
+existing secret id, `secret-gear`.
+
+### Forest (sixth complete future)
+
+Forest follows the same pattern (`src/data/stories/forest.ts`), with its
+scene interactions, Dream Delivery Map, Forest Friends Field Guide,
+Whispering Signpost Workshop and the Golden Acorn secret in
+`src/components/forest/`, rules in `src/lib/projects/forest-story.ts` and
+`forest-projects.ts`, and the woodland atmosphere in
+`src/components/story/ForestLayer.tsx`. The Golden Acorn uses Forest's
+existing secret id, `hidden-leaf`.
+
+**Artwork still to supply:** Folder 7 had no scene 5 illustration and no
+Whispering Signpost Workshop artwork. Until they arrive, scene 5 shows the
+locked `characters/7.png` (portrait-sized) and the signpost card shows a drawn
+sign. To add them: copy the files to `public/stories/forest/scene-5.png` and
+`public/projects/forest/whispering-signpost-workshop.png`, register both in
+`src/data/assets.ts`, and set the two `image` fields in
+`src/data/stories/forest.ts`.
+
+### Luna (the ninth character)
+
+Luna follows the same pattern (`src/data/stories/luna.ts`), with its scene
+interactions, Moonlit Memory Book, Memory Lantern Studio, The Keepsake Cabinet
+and the Silver Memory Key secret in `src/components/luna/`, rules in
+`src/lib/projects/luna-story.ts` and `luna-projects.ts`, and the moonlit
+atmosphere in `src/components/story/MoonlitLayer.tsx`.
+
+- The **Moonlit Memory Book** is a themed view of the one shared Memory Book:
+  it uses `fetchMemories` / `submitMemory` and the same validation, so new
+  memories stay `pending` until moderated. No new table or route.
+- Lantern drafts are saved only in the visitor's browser
+  (`maria:luna-lantern`) and are never posted.
+- The Silver Memory Key uses Luna's existing secret id, `memory-star`.
+- **Artwork still to supply:** Folder 9 had no scene 5 illustration, so the
+  reveal shows Luna's locked design (stored as `characters/3.png`; see the
+  Star/Luna note above). To add it, copy it to `public/stories/luna/scene-5.png`,
+  register it in `src/data/assets.ts` and set scene 5's `image`.

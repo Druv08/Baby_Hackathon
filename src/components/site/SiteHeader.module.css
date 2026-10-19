@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 248, 242, 0.82);
+  background: #fff8f2; /* solid so scrolled text never ghosts through */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(194, 56, 111, 0.12);
@@ -18,11 +18,13 @@
 
 .logo {
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  white-space: nowrap;
   font-weight: 700;
   line-height: 1;
   color: var(--pink-deep);
   text-decoration: none;
+  white-space: nowrap;
   text-shadow: 0 0 18px rgba(247, 168, 196, 0.9);
 }
 
@@ -84,7 +86,7 @@
 
 .list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* all five links stay on one row on desktop */
   gap: var(--space-1);
   list-style: none;
 }
@@ -99,6 +101,7 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--ink);
+  white-space: nowrap;
   transition: background-color 0.2s ease;
 }
 
@@ -111,7 +114,52 @@
   box-shadow: 0 0 0 2px rgba(194, 56, 111, 0.35), 0 4px 16px rgba(247, 168, 196, 0.45);
 }
 
-@media (max-width: 920px) {
+/* Mid-width desktops (and scaled laptop screens): tighter pills so the row fits. */
+@media (max-width: 1180px) {
+  .inner {
+    gap: var(--space-3);
+  }
+
+  .list {
+    gap: 0;
+  }
+
+  .link {
+    gap: var(--space-1);
+    padding-inline: var(--space-3);
+  }
+}
+
+/* Small laptops and tablets in landscape: smaller text keeps the full row visible. */
+@media (max-width: 1000px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  .link {
+    padding-inline: var(--space-2);
+    font-size: 0.95rem;
+  }
+}
+
+/* Narrow laptops: drop the little link icons so the five links and the
+   sound/Chaos controls still share one row. */
+@media (max-width: 900px) {
+  .inner {
+    gap: var(--space-2);
+  }
+
+  .linkIcon {
+    display: none;
+  }
+}
+
+/* Leave room for sound, Chaos Mode and palette controls on tablets. */
+@media (max-width: 1000px) {
+  .linkIcon {
+    display: inline;
+  }
+
   .toggle {
     display: inline-flex;
   }
@@ -140,4 +188,14 @@
     width: 100%;
     font-size: 1.15rem;
   }
+}
+
+@media (max-width: 600px) {
+  .inner { gap: .5rem; }
+  .logo span { display: none; }
+  .toggle { padding-inline: .75rem; }
+}
+@media (max-width: 380px) {
+  .toggle { min-width: 44px; justify-content: center; }
+  .toggle > span:last-child { display: none; }
 }

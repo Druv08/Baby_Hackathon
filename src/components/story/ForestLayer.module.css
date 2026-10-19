@@ -1,0 +1,140 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Leaves drift down, swaying side to side. */
+.leaf {
+  position: absolute;
+  top: -24px;
+  width: 14px;
+  height: 9px;
+  border-radius: 0 100% 0 100%;
+  opacity: 0;
+  animation: drift linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes drift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  5% {
+    opacity: 0.9;
+  }
+  25% {
+    transform: translate(30px, 25vh) rotate(120deg);
+  }
+  50% {
+    transform: translate(-20px, 52vh) rotate(220deg);
+  }
+  75% {
+    transform: translate(26px, 80vh) rotate(320deg);
+  }
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 108vh) rotate(400deg);
+  }
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 60% 0 60% 0;
+  background: #ffb7cf;
+  opacity: 0;
+  animation: fall 22s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  4% {
+    opacity: 0.85;
+  }
+  45% {
+    opacity: 0.7;
+    transform: translate(14vw, 100vh) rotate(320deg);
+  }
+  46%,
+  100% {
+    opacity: 0;
+    transform: translate(14vw, 100vh) rotate(320deg);
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff6b0;
+  box-shadow: 0 0 8px 3px rgba(255, 240, 140, 0.75);
+  animation: glow 6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: translate(0, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(14px, -18px);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-6px, -30px);
+  }
+}
+
+/* Warm lantern glows that flicker softly. */
+.lantern {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  margin: -45px 0 0 -45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 140, 0.5), rgba(255, 214, 140, 0) 70%);
+  animation: flicker 5s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.9;
+  }
+  44% {
+    opacity: 0.7;
+  }
+  48% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    display: none;
+  }
+}

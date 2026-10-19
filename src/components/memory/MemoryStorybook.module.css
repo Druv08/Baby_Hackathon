@@ -1,0 +1,21 @@
+.section { margin-block: 1.5rem 2rem; }
+.cover { display: grid; justify-items: center; gap: .4rem; width: min(100%, 28rem); margin: auto; padding: 1.5rem; border: 3px double var(--gold); border-radius: .6rem 1.6rem 1.6rem .6rem; background: #49315d; color: #fff1d6; box-shadow: inset 9px 0 #30213d, var(--shadow-soft); font: inherit; cursor: pointer; }
+.cover > span:first-child { color: var(--gold); font-size: 2.5rem; }
+.cover strong { font: 700 2.2rem var(--font-display); }
+.cover:hover { background: #5b3d73; }
+.reader { margin-top: 1.5rem; min-width: 0; touch-action: pan-y; }
+.reader:focus-visible, .cover:focus-visible { outline: 3px solid var(--lavender-deep); outline-offset: 5px; }
+.spread { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); min-height: 320px; perspective: 1400px; filter: drop-shadow(0 10px 18px #39234326); }
+.page { display: flex; flex-direction: column; gap: 1rem; min-width: 0; padding: clamp(1rem, 3vw, 2.5rem); color: #45263c; background: linear-gradient(90deg, #f1e3cb, #fff9ec 6%, #fff9ec 92%, #eee0ca); border: 1px solid #cfbca0; border-radius: .3rem; overflow-wrap: anywhere; }
+.page h3 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+.page p { white-space: pre-wrap; }
+.page small { margin-top: auto; color: #71534b; }
+.flower { color: #a83d74; font-size: 1.8rem; }
+.leaf { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); transform-origin: left center; backface-visibility: hidden; animation: turn-forward .4s ease-in-out forwards; pointer-events: none; }
+.leaf[data-direction="backward"] { transform-origin: right center; animation-name: turn-back; }
+.controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem; margin-top: 1rem; }
+.controls p { font-weight: 800; }
+@keyframes turn-forward { from { transform: rotateY(0); filter: brightness(1); } to { transform: rotateY(-100deg); filter: brightness(.7); } }
+@keyframes turn-back { from { transform: rotateY(0); } to { transform: rotateY(100deg); } }
+@media (max-width: 699px) { .spread, .leaf { grid-template-columns: minmax(0, 1fr); } .controls { justify-content: center; } }
+@media (prefers-reduced-motion: reduce) { .leaf { display: none; animation: none; } }

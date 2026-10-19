@@ -106,3 +106,4 @@
     grid-template-columns: 1fr;
   }
 }
+.ending { display: grid; justify-items: center; gap: 1rem; padding: clamp(1rem, 4vw, 2.5rem); text-align: center; background: var(--paper); border: 3px double var(--gold); border-radius: var(--radius-lg); scroll-margin-top: 100px; } .ending img { max-width: 100%; height: auto; } .ending ul { display: flex; flex-wrap: wrap; gap: .5rem 1rem; list-style: none; justify-content: center; } .ending li { background: var(--accent-soft); border-radius: 1rem; padding: .35rem .8rem; }

@@ -13,6 +13,12 @@ export interface CharacterTheme {
   accentGlow: string;
   /** Describes `/characters/{id}.png` for screen readers. */
   portraitAlt: string;
+  /** Portfolio heading, e.g. "Garden Journal". */
+  journalTitle?: string;
+  /** Where the creations come from, e.g. "garden". */
+  workshop?: string;
+  /** Icon beside "My Creations"; defaults to the tulip. */
+  creationsIcon?: string;
 }
 
 export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
@@ -31,6 +37,8 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#fde3ee",
     accentGlow: "rgba(247, 168, 196, 0.65)",
     portraitAlt: "Blossom Maria in a pink flowered bonnet and cape, holding a basket of blossoms beside a butterfly.",
+    journalTitle: "Garden Journal",
+    workshop: "garden",
   },
   star: {
     label: "Star",
@@ -39,6 +47,8 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#ece4fb",
     accentGlow: "rgba(150, 120, 230, 0.55)",
     portraitAlt: "Star Maria in a starry purple hooded cloak, holding a glowing jar of stars.",
+    journalTitle: "Stargazing Journal",
+    workshop: "observatory",
   },
   cloud: {
     label: "Cloud",
@@ -47,6 +57,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#e2f0fc",
     accentGlow: "rgba(120, 180, 240, 0.55)",
     portraitAlt: "Cloud Maria in aviator goggles and a fluffy sky-blue cloud outfit, ready to explore the skies.",
+    journalTitle: "Travel Journal",
+    workshop: "sky workshop",
+    creationsIcon: "🧭",
   },
   aqua: {
     label: "Aqua",
@@ -55,6 +68,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#dff5f5",
     accentGlow: "rgba(90, 200, 210, 0.5)",
     portraitAlt: "Aqua Maria in a sea-blue seashell bonnet and pearls, hugging a baby sea turtle.",
+    journalTitle: "Ocean Journal",
+    workshop: "ocean workshop",
+    creationsIcon: "🐚",
   },
   inventor: {
     label: "Inventor",
@@ -63,6 +79,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#fdebd8",
     accentGlow: "rgba(246, 170, 90, 0.55)",
     portraitAlt: "Inventor Maria in brass goggles and a leather tool apron, holding up a glowing star.",
+    journalTitle: "Inventor’s Notebook",
+    workshop: "star workshop",
+    creationsIcon: "⚙️",
   },
   forest: {
     label: "Forest",
@@ -71,8 +90,14 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#e5f3df",
     accentGlow: "rgba(130, 190, 110, 0.5)",
     portraitAlt: "Forest Maria in a leafy green hooded cloak with flowers, holding a hand-drawn map.",
+    journalTitle: "Explorer’s Journal",
+    workshop: "woodland workshop",
+    creationsIcon: "🍃",
   },
   melody: {
+    journalTitle: "Musician's Journal",
+    workshop: "lullaby workshop",
+    creationsIcon: "\u266b",
     label: "Melody",
     icon: "🎵",
     accent: "#8a3f9e",
@@ -87,6 +112,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#e7e3fa",
     accentGlow: "rgba(130, 110, 220, 0.55)",
     portraitAlt: "Luna Maria in a purple wizard hat with a crescent moon and a starry cape, holding a glowing star.",
+    journalTitle: "Celestial Journal",
+    workshop: "memory workshop",
+    creationsIcon: "🌙",
   },
 };
 

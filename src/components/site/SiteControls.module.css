@@ -1,0 +1,6 @@
+.controls { display: flex; flex-shrink: 0; align-items: center; gap: .35rem; }
+.controls button { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; min-width: 44px; min-height: 44px; padding: .4rem .65rem; border: 1px solid var(--lavender); border-radius: var(--radius-pill); background: var(--paper); color: var(--ink); font: 700 .8rem var(--font-body); white-space: nowrap; cursor: pointer; }
+.controls button:hover { background: var(--accent-soft); }
+.controls button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.controls button:focus-visible { outline: 3px solid var(--lavender-deep); outline-offset: 2px; }
+@media (max-width: 1440px) { .label { display: none; } }

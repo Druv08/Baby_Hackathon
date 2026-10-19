@@ -11,7 +11,7 @@ function readyStar(): FuturePath {
     id,
     title: `Scene ${id}`,
     narration: `Narration ${id}`,
-    image: `/stories/star/scene-${id}.png`,
+    image: `/stories/test-fixture/scene-${id}.png`, // deliberately not a real file
     characterId: id <= 4 ? 1 : 3,
     layout: id % 2 ? "text-left" : "text-right",
     interactionId: id === 5 ? "star-reveal" : undefined,
@@ -20,6 +20,9 @@ function readyStar(): FuturePath {
     ...FUTURES.find((f) => f.slug === "star")!,
     storyStatus: "ready",
     scenes,
+    // Synthetic fixture: no real projects, so playability is controlled per test.
+    projects: [],
+    portfolioStatus: "pending",
   };
   futurePathSchema.parse(future); // the fixture itself must be valid
   return future;
@@ -50,10 +53,10 @@ describe("loadFutureView", () => {
     expect(loadFutureView("blossom")!.storyCoverImage).toBe("/heroes/blossom-story-cover.png");
   });
 
-  it("keeps pending stories usable with a hero but no story content", () => {
-    for (const f of FUTURES) {
+  it("keeps unfinished stories usable with a hero but no story content", () => {
+    for (const f of FUTURES.filter((f) => f.storyStatus !== "ready")) {
       const view = loadFutureView(f.slug)!;
-      expect(view.story.status).toBe("pending");
+      expect(view.story.status).not.toBe("ready");
       expect(view.story.canEnter).toBe(false);
       expect(view.story.scenes).toEqual([]);
       expect(view.story.reveal).toBeUndefined();
@@ -65,13 +68,20 @@ describe("loadFutureView", () => {
     }
   });
 
-  it("never exposes playable projects or interactions while nothing is live", () => {
+  it("never exposes a project as playable unless it is live", () => {
     for (const f of FUTURES) {
       const view = loadFutureView(f.slug)!;
-      expect(view.portfolio.projects.every((p) => !p.playable)).toBe(true);
-      expect(view.interactions).toEqual([]);
-      expect(view.sections.showcase).toBe(false);
-      expect(view.sections.interaction).toBe(false);
+      for (const p of view.portfolio.projects) {
+        expect(p.playable).toBe(p.implementation === "live" && p.interactionId !== undefined);
+      }
+      // Interactions come only from visible story scenes or live projects.
+      const allowed = [
+        ...view.story.scenes.flatMap((s) => (s.interactionId ? [s.interactionId] : [])),
+        ...view.portfolio.projects.flatMap((p) => (p.playable && p.interactionId ? [p.interactionId] : [])),
+      ];
+      expect(view.interactions).toEqual(allowed);
+      if (!view.readiness.portfolioReady) expect(view.sections.showcase).toBe(false);
+      if (view.interactions.length === 0) expect(view.sections.interaction).toBe(false);
     }
   });
 
@@ -88,7 +98,7 @@ describe("buildFutureView with a ready story", () => {
     expect(view.story.scenes.map((s) => s.position)).toEqual([1, 2, 3, 4, 5]);
     expect(view.story.origin.map((s) => s.character.id)).toEqual([1, 1, 1, 1]);
     expect(view.story.reveal?.character.id).toBe(3);
-    expect(view.story.reveal?.character.characterImage).toBe("/characters/3.png");
+    expect(view.story.reveal?.character.characterImage).toBe("/characters/9.png"); // Star's design
     expect(view.sections.origin && view.sections.reveal).toBe(true);
   });
 

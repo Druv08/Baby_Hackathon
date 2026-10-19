@@ -1,0 +1,30 @@
+.activity { padding: clamp(1rem, 3vw, 2rem); background: var(--paper); color: var(--ink); border: 2px solid var(--lavender); border-radius: var(--radius); position: relative; }
+.activity p { margin-block: .8rem; line-height: 1.65; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; margin-block: 1rem; }
+.activity button, .activity select { font: inherit; color: var(--ink); background: var(--paper); border: 2px solid var(--lavender); border-radius: var(--radius-sm); min-height: 44px; padding: .5rem .8rem; cursor: pointer; }
+.activity button:hover { background: var(--accent-soft); }
+.activity button:focus-visible, .activity select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.activity button:disabled { opacity: .5; cursor: default; }
+.activity [aria-pressed="true"], .activity [data-active="true"] { background: var(--accent-soft); border-color: var(--accent); box-shadow: 0 0 16px var(--accent-glow); }
+.score { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .6rem; margin-block: 1rem; }
+.step { display: grid; gap: .35rem; text-align: center; min-width: 0; }
+.step select { width: 100%; }
+.flowers { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .5rem; }
+.flowers button { min-height: 85px; padding: .4rem; border-color: var(--flower); }
+.flowers [data-active="true"] { background: var(--flower); transform: translateY(-4px); }
+.flower { display: block; font-size: 2rem; }
+.pulse { animation: flowerPulse .65s ease-out; }
+@keyframes flowerPulse { from { opacity: .3; transform: scale(.75); } 50% { opacity: 1; transform: scale(1.2); } to { opacity: .5; transform: scale(1); } }
+.preview { min-height: 200px; display: grid; place-items: center; background: var(--night); border-radius: var(--radius); margin-block: 1rem; }
+.box { width: min(220px,80%); min-height: 130px; display: grid; place-items: center; background: var(--light); color: var(--night); border: 5px double var(--gold); border-radius: 45% 45% 20% 20%; box-shadow: 0 0 30px var(--light); text-align: center; padding: 1rem; transition: border-radius .3s; }
+.box[data-shape="Star Box"] { border-radius: 12% 45%; }
+.box[data-shape="Flower Box"] { border-radius: 50%; }
+.dream { font-size: 2rem; animation: shimmer 2s ease-in-out infinite alternate; }
+.scene { margin-top: 1rem; }
+.secret { position: absolute; right: 8%; top: 16%; z-index: 4; color: var(--gold); background: var(--night); border: 1px solid var(--gold); border-radius: 50%; width: 44px; height: 44px; cursor: pointer; font-size: 1.5rem; }
+.ambient { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.ambient span { position: absolute; color: var(--gold); font-size: 1.5rem; animation: drift 10s ease-in-out infinite; opacity: .5; }
+@keyframes drift { 50% { transform: translateY(-30px) rotate(10deg); opacity: .9; } }
+@keyframes shimmer { to { opacity: .65; transform: translateY(-4px); } }
+@media (max-width: 480px) { .score { grid-template-columns: repeat(2,minmax(0,1fr)); } .flowers { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (prefers-reduced-motion: reduce) { .activity *, .ambient span { animation: none !important; transition: none !important; transform: none !important; } }

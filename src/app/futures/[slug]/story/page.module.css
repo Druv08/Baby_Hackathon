@@ -1,0 +1,827 @@
+/*
+ * The story world. With a supplied landscape, it sits in a fixed layer so
+ * the whole story scrolls over one continuous scene; otherwise a soft
+ * garden-sunset gradient is used.
+ */
+.world {
+  position: relative;
+  isolation: isolate;
+  /* Clips the fixed landscape to this page (it won't show behind the footer). */
+  clip-path: inset(0);
+  background:
+    radial-gradient(ellipse 80% 40% at 15% 8%, rgba(255, 214, 170, 0.55), transparent 60%),
+    radial-gradient(ellipse 70% 35% at 90% 30%, rgba(247, 168, 196, 0.45), transparent 65%),
+    radial-gradient(ellipse 80% 30% at 20% 60%, rgba(205, 184, 240, 0.4), transparent 65%),
+    linear-gradient(180deg, #ffe9df 0%, #fde3ee 30%, #f6e2f7 60%, #fdeee6 100%);
+}
+
+.world {
+  /* Height of the sticky story progress band (see StoryProgress). */
+  --story-nav-height: 3.75rem;
+}
+
+.world[data-backdrop="true"] {
+  background: #f6d9e4;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Cover-crop, centred on the lantern-lit path and waterfalls; never stretched. */
+.backdropImage {
+  object-fit: cover;
+  object-position: 50% 62%;
+}
+
+/* A light veil keeps the landscape vivid while cards and headings stay readable. */
+.backdropVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 246, 240, 0.28), rgba(255, 246, 240, 0.12) 40%, rgba(255, 240, 246, 0.3));
+}
+
+/* Everything readable sits above the landscape and petals. */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Introduction ─────────────────────────────────────────────────── */
+.intro {
+  padding-block: clamp(var(--space-6), 6vw, var(--space-8));
+}
+
+.introInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(var(--space-5), 5vw, var(--space-8));
+}
+
+.introMaria {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 22rem);
+  filter: drop-shadow(0 18px 30px rgba(194, 56, 111, 0.25));
+}
+
+.introMaria img {
+  width: 100%;
+  height: auto;
+}
+
+.introSign {
+  position: absolute;
+  left: -0.5rem;
+  bottom: 6%;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #f3dcc0;
+  border: 2px solid #c79a6b;
+  color: #6b4226;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  transform: rotate(-5deg);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Translucent cream plate so the intro reads clearly over the landscape. */
+.introCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  border-radius: var(--radius-lg);
+  background: rgba(255, 250, 244, 0.86);
+  border: 2px solid rgba(242, 213, 196, 0.9);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.introTitle {
+  font-size: clamp(3.2rem, 8vw, 5.5rem);
+  color: var(--pink-deep);
+  text-shadow: 0 0 26px rgba(247, 168, 196, 0.8);
+}
+
+.introSubtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  color: var(--lavender-deep);
+}
+
+.introBlurb {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+}
+
+/* ── Scenes ───────────────────────────────────────────────────────── */
+.scene,
+.reveal {
+  /* Clear the sticky header and the story progress band when jumping to a scene. */
+  scroll-margin-top: calc(var(--header-height) + var(--story-nav-height) + 0.5rem);
+}
+
+.scene {
+  padding-block: clamp(var(--space-6), 5vw, var(--space-8));
+}
+
+.sceneInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(var(--space-5), 4vw, var(--space-7));
+}
+
+/* text-left: narration first, illustration second */
+.scene[data-layout="text-left"] .sceneInner {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+}
+
+.scene[data-layout="text-left"] .panel {
+  order: -1;
+}
+
+.frame,
+.revealFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 6px solid var(--white);
+  box-shadow: 0 20px 50px rgba(120, 40, 80, 0.22), 0 0 0 3px var(--pink);
+  background: var(--accent-soft);
+}
+
+.frame img,
+.revealFrame img {
+  width: 100%;
+  height: auto;
+}
+
+/* Parchment reading panel: never text-on-illustration. */
+.panel {
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(var(--space-5), 3vw, var(--space-6));
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 230, 200, 0.6), transparent 40%),
+    #fffaf3;
+  border: 2px solid #f2d5c4;
+  box-shadow: var(--shadow-soft), inset 0 0 30px rgba(240, 200, 170, 0.25);
+}
+
+.sceneTitle {
+  font-size: clamp(2.1rem, 3.6vw, 2.8rem);
+  color: var(--ink);
+}
+
+/* ── Reveal ───────────────────────────────────────────────────────── */
+.reveal {
+  padding-block: clamp(var(--space-6), 5vw, var(--space-8));
+  background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(255, 214, 140, 0.45), transparent 70%);
+}
+
+.revealHead {
+  display: grid;
+  justify-items: center;
+  width: fit-content;
+  margin: 0 auto var(--space-5);
+  padding: var(--space-2) var(--space-6);
+  border-radius: 999px;
+  background: rgba(255, 250, 244, 0.86);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.revealHead h2 {
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  color: var(--pink-deep);
+  text-shadow: 0 0 22px rgba(247, 168, 196, 0.8);
+}
+
+.revealFrame {
+  max-width: 68rem;
+  margin-inline: auto;
+  box-shadow: 0 0 0 3px var(--pink), 0 0 60px rgba(255, 200, 120, 0.55), 0 24px 60px rgba(120, 40, 80, 0.25);
+}
+
+.revealBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: clamp(var(--space-5), 4vw, var(--space-7));
+  max-width: 68rem;
+  margin: var(--space-6) auto 0;
+}
+
+.characterCard {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #fff, #fde3ee);
+  box-shadow: var(--shadow-soft), 0 0 40px var(--accent-glow);
+  text-align: center;
+}
+
+.cardPortrait {
+  width: min(100%, 15rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 5px solid var(--white);
+  box-shadow: 0 0 0 3px var(--pink), 0 0 30px rgba(255, 200, 120, 0.6);
+}
+
+.cardPortrait img {
+  width: 100%;
+  height: auto;
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--pink-deep);
+}
+
+.cardName span {
+  color: var(--ink);
+}
+
+.cardTagline {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--lavender-deep);
+}
+
+.return {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .introInner,
+  .sceneInner,
+  .scene[data-layout="text-left"] .sceneInner,
+  .revealBody {
+    grid-template-columns: 1fr;
+  }
+
+  /* Illustration first, then its narration, on every scene. */
+  .scene[data-layout="text-left"] .panel {
+    order: 0;
+  }
+
+  .introMaria {
+    width: min(65%, 16rem);
+  }
+}
+
+/* ── Star: night-time observatory world ───────────────────────────── */
+.world[data-world="star"][data-backdrop="true"] {
+  background: #1b1540;
+}
+
+/* Keep the night sky deep and starry rather than washing it out. */
+.world[data-world="star"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(18, 12, 48, 0.2), rgba(18, 12, 48, 0.05) 45%, rgba(18, 12, 48, 0.3));
+}
+
+.world[data-world="star"] .backdropImage {
+  object-position: 50% 45%;
+}
+
+.world[data-world="star"] .introTitle {
+  color: #5b3fa8;
+  text-shadow: 0 0 26px rgba(190, 160, 255, 0.8);
+}
+
+/* Star frames get a golden rim, like the observatory brass. */
+.world[data-world="star"] .frame,
+.world[data-world="star"] .revealFrame {
+  box-shadow: 0 0 0 3px #d8b25e, 0 20px 50px rgba(10, 6, 40, 0.45), 0 0 40px rgba(255, 214, 120, 0.25);
+}
+
+/* ── Cloud: floating sky-island world ─────────────────────────────── */
+.world[data-world="cloud"][data-backdrop="true"] {
+  background: #f3dde6;
+}
+
+/* Keep the islands bright and airy; only a whisper of veil. */
+.world[data-world="cloud"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(240, 248, 255, 0.18), rgba(255, 246, 240, 0.06) 45%, rgba(255, 240, 246, 0.24));
+}
+
+/* Centre on the floating islands and the waterfalls. */
+.world[data-world="cloud"] .backdropImage {
+  object-position: 45% 40%;
+}
+
+.world[data-world="cloud"] .introTitle {
+  color: #2f6fb0;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.95);
+}
+
+/* Frosted reading panels with a sky-blue edge. */
+.world[data-world="cloud"] .panel {
+  background:
+    radial-gradient(circle at 0 0, rgba(214, 234, 252, 0.7), transparent 45%),
+    rgba(255, 251, 246, 0.94);
+  border-color: #cfe2f4;
+}
+
+/* Cloud frames get a sky-blue and brass rim, like an explorer's porthole. */
+.world[data-world="cloud"] .frame,
+.world[data-world="cloud"] .revealFrame {
+  box-shadow: 0 0 0 3px #9cc8ef, 0 20px 50px rgba(47, 90, 140, 0.25), 0 0 34px rgba(255, 230, 180, 0.35);
+}
+
+/* ── Aqua: the Forgotten Ocean Kingdom ────────────────────────────── */
+.world[data-world="aqua"][data-backdrop="true"] {
+  background: #0d4a6b;
+}
+
+/* A light blue-green veil keeps the reef vivid and deepens toward the floor. */
+.world[data-world="aqua"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(10, 60, 100, 0.08), rgba(10, 60, 100, 0.12) 50%, rgba(8, 40, 70, 0.32));
+}
+
+/* Centre on the palace arches and the sunlit path. */
+.world[data-world="aqua"] .backdropImage {
+  object-position: 50% 45%;
+}
+
+/* Deep-ocean intro card with pearl-white headings. */
+.world[data-world="aqua"] .introCopy,
+.world[data-world="aqua"] .revealHead {
+  background: rgba(10, 48, 82, 0.82);
+  border-color: rgba(125, 220, 235, 0.55);
+}
+
+.world[data-world="aqua"] .introTitle,
+.world[data-world="aqua"] .revealHead h2 {
+  color: #f6fdff;
+  text-shadow: 0 0 22px rgba(110, 230, 245, 0.85);
+}
+
+.world[data-world="aqua"] .introSubtitle,
+.world[data-world="aqua"] .introCopy :global(.eyebrow) {
+  color: #9be7f5;
+}
+
+.world[data-world="aqua"] .introBlurb {
+  color: #e2f5fb;
+}
+
+/* Pearl reading panels with a turquoise edge and a little shell. */
+.world[data-world="aqua"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 100% 0, rgba(155, 231, 245, 0.35), transparent 40%),
+    rgba(250, 254, 255, 0.95);
+  border-color: #9be7f5;
+  box-shadow: var(--shadow-soft), 0 0 30px rgba(95, 208, 230, 0.25);
+}
+
+.world[data-world="aqua"] .panel::after {
+  content: "🐚";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
+.world[data-world="aqua"] .sceneTitle {
+  color: #0e4a6e;
+}
+
+/* Maria's spoken lines glow softly in turquoise. */
+.world[data-world="aqua"] .panel p[class] {
+  border-left-color: #3fc1d9;
+  color: #0e6a85;
+  text-shadow: 0 0 14px rgba(95, 208, 230, 0.35);
+}
+
+/* Turquoise and golden rims, like sunlight through water. */
+.world[data-world="aqua"] .frame,
+.world[data-world="aqua"] .revealFrame {
+  box-shadow: 0 0 0 3px #5fd0e6, 0 20px 50px rgba(5, 40, 70, 0.4), 0 0 40px rgba(255, 224, 150, 0.3);
+}
+
+/* The 4:3 reveal stays within a laptop screen. */
+.world[data-world="aqua"] .revealFrame {
+  max-width: 50rem;
+}
+
+/* Gentle floating, like drifting in calm water. */
+.world[data-world="aqua"] .frame {
+  animation: float 7s ease-in-out infinite;
+}
+
+.world[data-world="aqua"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3.5s;
+}
+
+.world[data-world="aqua"] .introMaria {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Uses translate (not transform) so it combines with the fade-in. */
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+.world[data-world="aqua"] .characterCard {
+  background: linear-gradient(180deg, #ffffff, #dcf6fb);
+}
+
+.world[data-world="aqua"] .cardPortrait {
+  box-shadow: 0 0 0 3px #5fd0e6, 0 0 30px rgba(255, 224, 150, 0.6);
+}
+
+.world[data-world="aqua"] .cardName {
+  color: #0e6a85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="aqua"] .frame,
+  .world[data-world="aqua"] .introMaria {
+    animation: none;
+  }
+}
+
+/* ── Inventor: the Forgotten Star Workshop ────────────────────────── */
+.world[data-world="inventor"][data-backdrop="true"] {
+  background: #3a2414;
+}
+
+/* A warm amber veil keeps the workshop glowing without washing it out. */
+.world[data-world="inventor"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(40, 20, 8, 0.12), rgba(40, 20, 8, 0.05) 45%, rgba(40, 20, 8, 0.3));
+}
+
+/* Centre on the great window and the hanging star lanterns. */
+.world[data-world="inventor"] .backdropImage {
+  object-position: 55% 40%;
+}
+
+.world[data-world="inventor"] .introTitle {
+  color: #9a4f12;
+  text-shadow: 0 0 22px rgba(255, 210, 120, 0.85);
+}
+
+.world[data-world="inventor"] .introSubtitle {
+  color: #6b3f1c;
+}
+
+/* Warm parchment notebook panels with a golden border and a little gear. */
+.world[data-world="inventor"] .introCopy,
+.world[data-world="inventor"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 220, 160, 0.55), transparent 40%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(160, 110, 60, 0.08) 31px 32px),
+    #fff8ec;
+  border-color: #d9a441;
+  box-shadow: var(--shadow-soft), 0 0 0 1px rgba(138, 90, 28, 0.15), 0 10px 30px rgba(60, 30, 10, 0.25);
+}
+
+.world[data-world="inventor"] .panel::after {
+  content: "⚙️";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.25rem;
+  opacity: 0.6;
+}
+
+.world[data-world="inventor"] .sceneTitle,
+.world[data-world="inventor"] .panel {
+  color: #3d2410;
+}
+
+/* Maria's spoken lines in warm copper. */
+.world[data-world="inventor"] .panel p[class] {
+  border-left-color: #d9a441;
+  color: #9a4f12;
+}
+
+/* Brass frames, like an inventor's display case. */
+.world[data-world="inventor"] .frame,
+.world[data-world="inventor"] .revealFrame {
+  border-color: #fff3dc;
+  box-shadow: 0 0 0 3px #c8963e, 0 20px 50px rgba(40, 20, 8, 0.45), 0 0 40px rgba(255, 200, 110, 0.35);
+}
+
+.world[data-world="inventor"] .revealHead {
+  background: rgba(58, 36, 20, 0.86);
+}
+
+.world[data-world="inventor"] .revealHead h2 {
+  color: #ffe6b0;
+  text-shadow: 0 0 22px rgba(255, 200, 110, 0.85);
+}
+
+/* A gentle breathing motion on the illustrations (translate, so it combines with the fade-in). */
+.world[data-world="inventor"] .frame {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.world[data-world="inventor"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3s;
+}
+
+.world[data-world="inventor"] .introMaria {
+  animation: breathe 5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.world[data-world="inventor"] .characterCard {
+  background: linear-gradient(180deg, #fffaf0, #f9e2bd);
+}
+
+.world[data-world="inventor"] .cardPortrait {
+  box-shadow: 0 0 0 3px #c8963e, 0 0 30px rgba(255, 200, 110, 0.6);
+}
+
+.world[data-world="inventor"] .cardName {
+  color: #9a4f12;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="inventor"] .frame,
+  .world[data-world="inventor"] .introMaria {
+    animation: none;
+  }
+}
+
+/* A portrait reveal (character art) stays a sensible size. */
+.revealFrame[data-portrait="true"] {
+  max-width: min(26rem, 100%);
+}
+
+/* ── Forest: the Whispering Forest ────────────────────────────────── */
+.world[data-world="forest"][data-backdrop="true"] {
+  background: #4a5a32;
+}
+
+/* A soft green-gold veil keeps the forest vivid behind the reading panels. */
+.world[data-world="forest"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(40, 60, 30, 0.06), rgba(40, 60, 30, 0.04) 45%, rgba(30, 45, 20, 0.28));
+}
+
+/* Centre on the waterfalls and the lantern-lit bridge. */
+.world[data-world="forest"] .backdropImage {
+  object-position: 50% 55%;
+}
+
+.world[data-world="forest"] .introTitle {
+  color: #3f6b2a;
+  text-shadow: 0 0 22px rgba(255, 240, 180, 0.95);
+}
+
+.world[data-world="forest"] .introSubtitle {
+  color: #8a5a2c;
+}
+
+/* Parchment storybook panels with a leafy edge and a blossom. */
+.world[data-world="forest"] .introCopy,
+.world[data-world="forest"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 0 0, rgba(205, 230, 170, 0.55), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(255, 210, 225, 0.4), transparent 35%),
+    #fffaee;
+  border-color: #a9c98a;
+  box-shadow: var(--shadow-soft), 0 0 0 1px rgba(95, 140, 60, 0.15), 0 10px 30px rgba(40, 60, 20, 0.2);
+}
+
+.world[data-world="forest"] .panel::after {
+  content: "🍃";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.2rem;
+  opacity: 0.75;
+}
+
+.world[data-world="forest"] .sceneTitle {
+  color: #2f4a22;
+}
+
+/* Spoken lines in warm woodland gold. */
+.world[data-world="forest"] .panel p[class] {
+  border-left-color: #8fbf5a;
+  color: #6b4a1e;
+}
+
+.world[data-world="forest"] .frame,
+.world[data-world="forest"] .revealFrame {
+  border-color: #fffaee;
+  box-shadow: 0 0 0 3px #8fbf5a, 0 20px 50px rgba(30, 45, 20, 0.35), 0 0 36px rgba(255, 220, 140, 0.35);
+}
+
+.world[data-world="forest"] .revealHead {
+  background: rgba(47, 74, 34, 0.86);
+}
+
+.world[data-world="forest"] .revealHead h2 {
+  color: #fff3d0;
+  text-shadow: 0 0 22px rgba(255, 220, 140, 0.85);
+}
+
+/* Gentle bobbing on the illustrations (translate, so it combines with the fade-in). */
+.world[data-world="forest"] .frame {
+  animation: bob 7s ease-in-out infinite;
+}
+
+.world[data-world="forest"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3.5s;
+}
+
+.world[data-world="forest"] .introMaria {
+  animation: bob 6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.world[data-world="forest"] .characterCard {
+  background: linear-gradient(180deg, #fffaee, #e6f1d2);
+}
+
+.world[data-world="forest"] .cardPortrait {
+  box-shadow: 0 0 0 3px #8fbf5a, 0 0 30px rgba(255, 220, 140, 0.6);
+}
+
+.world[data-world="forest"] .cardName {
+  color: #3f6b2a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="forest"] .frame,
+  .world[data-world="forest"] .introMaria {
+    animation: none;
+  }
+}
+.previewNotice {
+  margin: 1rem var(--gutter);
+  padding: 1rem 1.25rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--lavender);
+  border-radius: var(--radius-sm);
+  line-height: 1.6;
+}
+
+/* ── Luna: the Moonlit Village of Memories ────────────────────────── */
+.world[data-world="luna"][data-backdrop="true"] {
+  background: #241d4a;
+}
+
+/* A gentle night veil keeps the lanterns glowing without hiding the moon. */
+.world[data-world="luna"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(20, 14, 50, 0.1), rgba(20, 14, 50, 0.06) 45%, rgba(20, 14, 50, 0.32));
+}
+
+/* Centre on the moon, the bridge and the lantern-lit lake. */
+.world[data-world="luna"] .backdropImage {
+  object-position: 55% 50%;
+}
+
+/* Translucent navy intro card with a lavender edge. */
+.world[data-world="luna"] .introCopy,
+.world[data-world="luna"] .revealHead {
+  background: rgba(30, 24, 66, 0.85);
+  border-color: rgba(185, 167, 230, 0.6);
+}
+
+.world[data-world="luna"] .introTitle,
+.world[data-world="luna"] .revealHead h2 {
+  color: #fdf8ff;
+  text-shadow: 0 0 22px rgba(205, 188, 255, 0.85);
+}
+
+.world[data-world="luna"] .introSubtitle,
+.world[data-world="luna"] .introCopy :global(.eyebrow) {
+  color: #ffe08a;
+}
+
+.world[data-world="luna"] .introBlurb {
+  color: #ece6ff;
+}
+
+/* Cream parchment reading panels with a lavender border and a little moon. */
+.world[data-world="luna"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 100% 0, rgba(205, 188, 255, 0.45), transparent 35%),
+    #fffaf3;
+  border-color: #cdbcff;
+  box-shadow: var(--shadow-soft), 0 0 30px rgba(155, 130, 230, 0.25);
+}
+
+.world[data-world="luna"] .panel::after {
+  content: "🌙";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.world[data-world="luna"] .sceneTitle {
+  color: #3b2c74;
+}
+
+/* Spoken lines with a soft golden glow. */
+.world[data-world="luna"] .panel p[class] {
+  border-left-color: #c9a2f0;
+  color: #5b3fa8;
+  text-shadow: 0 0 12px rgba(255, 220, 140, 0.35);
+}
+
+.world[data-world="luna"] .frame,
+.world[data-world="luna"] .revealFrame {
+  border-color: #fffaf3;
+  box-shadow: 0 0 0 3px #b9a7e6, 0 20px 50px rgba(20, 14, 50, 0.45), 0 0 40px rgba(255, 214, 140, 0.3);
+}
+
+/* Gentle floating on the illustrations (translate, so it combines with the fade-in). */
+.world[data-world="luna"] .frame {
+  animation: moonFloat 7s ease-in-out infinite;
+}
+
+.world[data-world="luna"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3.5s;
+}
+
+.world[data-world="luna"] .introMaria {
+  animation: moonFloat 6s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.world[data-world="luna"] .characterCard {
+  background: linear-gradient(180deg, #fffaf3, #ebe3ff);
+}
+
+.world[data-world="luna"] .cardPortrait {
+  box-shadow: 0 0 0 3px #b9a7e6, 0 0 30px rgba(255, 214, 140, 0.6);
+}
+
+.world[data-world="luna"] .cardName {
+  color: #5b3fa8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="luna"] .frame,
+  .world[data-world="luna"] .introMaria {
+    animation: none;
+  }
+}

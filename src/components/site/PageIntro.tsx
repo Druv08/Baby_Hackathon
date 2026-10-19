@@ -8,7 +8,7 @@ export function PageIntro({
   title,
   children,
 }: {
-  icon: string;
+  icon: React.ReactNode;
   eyebrow: string;
   title: string;
   children?: React.ReactNode;
@@ -28,7 +28,7 @@ export function PageIntro({
 }
 
 /** An intentional "not built yet" card, with somewhere useful to go next. */
-export function ComingSoon({ icon, title, children }: { icon: string; title: string; children: React.ReactNode }) {
+export function ComingSoon({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
     <div className={styles.soon}>
       <p className={styles.soonIcon} aria-hidden="true">

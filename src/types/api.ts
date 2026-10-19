@@ -19,6 +19,8 @@ export interface MemorySubmission {
   visitorName: string;
   message: string;
   formSlug?: FutureSlug | null;
+  /** Honeypot field; real visitors leave it empty. */
+  website?: string;
 }
 
 export interface MemorySubmittedResponse {

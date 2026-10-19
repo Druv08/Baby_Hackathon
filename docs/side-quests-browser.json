@@ -1,0 +1,360 @@
+{
+  "mode": "Live GETs; browser-isolated public writes",
+  "marker": "sidequest-fe6d9419-29ab-4055-8bab-5f1e3a2eed75",
+  "results": [
+    {
+      "name": "no automatic audio on load",
+      "ok": true
+    },
+    {
+      "name": "real database count in footer",
+      "ok": true,
+      "detail": 44
+    },
+    {
+      "name": "session posts exactly one visit",
+      "ok": true
+    },
+    {
+      "name": "Chaos Mode turns on",
+      "ok": true
+    },
+    {
+      "name": "Chaos Mode no overflow 1920",
+      "ok": true
+    },
+    {
+      "name": "header controls accessible 1920",
+      "ok": true
+    },
+    {
+      "name": "Chaos Mode no overflow 1366",
+      "ok": true
+    },
+    {
+      "name": "header controls accessible 1366",
+      "ok": true
+    },
+    {
+      "name": "Chaos Mode no overflow 768",
+      "ok": true
+    },
+    {
+      "name": "header controls accessible 768",
+      "ok": true
+    },
+    {
+      "name": "Chaos Mode no overflow 390",
+      "ok": true
+    },
+    {
+      "name": "header controls accessible 390",
+      "ok": true
+    },
+    {
+      "name": "Chaos Mode respects reduced motion",
+      "ok": true
+    },
+    {
+      "name": "cursor trail hidden for reduced motion",
+      "ok": true
+    },
+    {
+      "name": "teammate background track starts on explicit gesture",
+      "ok": true
+    },
+    {
+      "name": "music changes to Cloud with one player",
+      "ok": true
+    },
+    {
+      "name": "click sound matches Cloud",
+      "ok": true
+    },
+    {
+      "name": "old track paused on route change",
+      "ok": true
+    },
+    {
+      "name": "global mute pauses music",
+      "ok": true
+    },
+    {
+      "name": "mute survives reload",
+      "ok": true
+    },
+    {
+      "name": "remembered sound does not autoplay before a new gesture",
+      "ok": true
+    },
+    {
+      "name": "character route and cursor normal",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles normal",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor blossom",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles blossom",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor star",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles star",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor cloud",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles cloud",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor aqua",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles aqua",
+      "ok": true,
+      "detail": {
+        "particles": 2,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor inventor",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles inventor",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor forest",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles forest",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor melody",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles melody",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "character route and cursor luna",
+      "ok": true
+    },
+    {
+      "name": "bounded themed particles luna",
+      "ok": true,
+      "detail": {
+        "particles": 1,
+        "fine": true
+      }
+    },
+    {
+      "name": "particles expire",
+      "ok": true
+    },
+    {
+      "name": "touch trail disabled",
+      "ok": true
+    },
+    {
+      "name": "Melody uses global mute",
+      "ok": true
+    },
+    {
+      "name": "Melody updates from header sound toggle",
+      "ok": true
+    },
+    {
+      "name": "Melody project audio still works",
+      "ok": true
+    },
+    {
+      "name": "global mute stops Melody playback",
+      "ok": true
+    },
+    {
+      "name": "invalid form does not submit",
+      "ok": true
+    },
+    {
+      "name": "isolated guestbook submission accepts pending response",
+      "ok": true,
+      "detail": "Your little memory has been received! Once it's approved, your lantern will join the others in Maria's sky."
+    },
+    {
+      "name": "pending memory not added to lantern wall",
+      "ok": true
+    },
+    {
+      "name": "manual refresh reads approved feed",
+      "ok": true
+    },
+    {
+      "name": "Luna shares the same refresh functionality",
+      "ok": true
+    },
+    {
+      "name": "Luna submission waits for moderation",
+      "ok": true,
+      "detail": "Thank you! Your memory is waiting to be checked by a grown-up before it appears in the book."
+    },
+    {
+      "name": "approved lantern rendered from shared feed",
+      "ok": true
+    },
+    {
+      "name": "lantern opens accessible dialog and treats text literally",
+      "ok": true
+    },
+    {
+      "name": "newly approved lantern appears on refresh",
+      "ok": true
+    },
+    {
+      "name": "new approved lantern appears by polling",
+      "ok": true
+    },
+    {
+      "name": "counter handles API outage without invented count",
+      "ok": true
+    },
+    {
+      "name": "no route-change visit increments",
+      "ok": true
+    }
+  ],
+  "problems": [],
+  "liveApiResponses": [
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/memories",
+      "status": 202
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/memories",
+      "status": 202
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 200
+    },
+    {
+      "endpoint": "/api/visits",
+      "status": 503
+    }
+  ]
+}

@@ -22,6 +22,35 @@ export interface FuturePath {
 
   scenes: StoryScene[];
   projects: PortfolioProject[];
+
+  /** Introduction screen shown before scene 1. */
+  storyIntro?: StoryIntro;
+  /** Character sheet shown in the portfolio. */
+  profile?: CharacterProfile;
+}
+
+export interface StoryIntro {
+  /** e.g. "Blossom Path" */
+  title: string;
+  /** e.g. "How Maria became the Garden Keeper" */
+  subtitle: string;
+  blurb: string;
+}
+
+export interface CharacterProfile {
+  species: string;
+  /** Longer profession line for the portfolio; defaults to the character's. */
+  profession?: string;
+  personality: string[];
+  specialTalent: string;
+  home: string;
+  theme: string;
+  /** Paragraphs, first person. */
+  about: string[];
+  whatIDo: string;
+  strengths: string[];
+  journey: string;
+  motto: string;
 }
 
 /** What the frontend can safely show for a future right now. */

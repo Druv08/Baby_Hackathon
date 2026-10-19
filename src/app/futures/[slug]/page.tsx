@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { CharacterChatLauncher } from "@/components/chat/CharacterChatLauncher";
+import { PawIcon } from "@/components/site/PawIcon";
 import Image from "next/image";
+import { CharacterExpression } from "@/components/characters/CharacterExpression";
+import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { FloralDivider, Sparkles } from "@/components/decor/Sparkles";
 import { RecordFutureVisit } from "@/components/progress/RecordFutureVisit";
 import { CHARACTER_THEMES, formNumber, themeStyle } from "@/data/future-themes";
-import { getAllFutures } from "@/lib/content";
+import { getAllFutures, getFutureBySlug, storyHref } from "@/lib/content";
 import { loadFutureView } from "@/lib/future-view";
 import styles from "./page.module.css";
 
@@ -33,24 +37,26 @@ export default async function FuturePage({ params }: Params) {
 
   const { character, story, portfolio } = view;
   const theme = CHARACTER_THEMES[view.slug];
+  const enterHref = storyHref(view.slug);
+  const pathTitle = getFutureBySlug(view.slug)?.storyIntro?.title;
 
   return (
-    <div style={themeStyle(view.slug)}>
+    <div style={themeStyle(view.slug)} data-world={view.slug}>
       <RecordFutureVisit futureId={view.id} />
 
       <section className={styles.hero} aria-labelledby="future-title">
         {view.heroImage && (
           // The hero artwork contains baked-in text, so it is only used as a
           // heavily blurred, decorative backdrop here.
-          <Image src={view.heroImage} alt="" fill priority sizes="100vw" className={styles.backdrop} />
+          <Image src={view.heroImage} alt="" fill priority fetchPriority="high" quality={50} sizes="100vw" className={styles.backdrop} />
         )}
-        <div className={styles.veil} />
+        <div className={styles.veil} data-theme-veil />
         <Sparkles />
 
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.panel}>
             <p className="eyebrow">
-              <span aria-hidden="true">{theme.icon}</span> {formNumber(view.id)} — {theme.label} Form
+              <PawIcon slug={view.slug} /> {formNumber(view.id)} — {theme.label} Form
             </p>
             <h1 id="future-title" className={styles.title}>
               {character.profession}
@@ -63,9 +69,9 @@ export default async function FuturePage({ params }: Params) {
             )}
 
             <div className={styles.actions}>
-              {story.canEnter ? (
-                <Link href={`/futures/${view.slug}/story`} className="btn btn-primary btn-large">
-                  Enter Story <span aria-hidden="true">→</span>
+              {story.canEnter && enterHref ? (
+                <Link href={enterHref} prefetch={false} className="btn btn-primary btn-large">
+                  Enter {pathTitle ?? "Story"} <span aria-hidden="true">→</span>
                 </Link>
               ) : (
                 <div className={styles.comingSoon}>
@@ -80,18 +86,21 @@ export default async function FuturePage({ params }: Params) {
               <a href="#creations" className="btn btn-secondary">
                 Explore Creations <span aria-hidden="true">↓</span>
               </a>
+              <CharacterChatLauncher slug={view.slug} />
             </div>
           </div>
 
           <div className={styles.portrait}>
-            <Image
-              src={character.characterImage}
+            <ReactivePortrait name={character.name}>
+            <CharacterExpression
+              characterId={character.id}
               alt={theme.portraitAlt}
               width={1086}
               height={1448}
               priority
               sizes="(max-width: 860px) 70vw, 400px"
             />
+            </ReactivePortrait>
           </div>
         </div>
       </section>
@@ -114,7 +123,11 @@ export default async function FuturePage({ params }: Params) {
                 <li key={project.id} className={styles.project}>
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   {project.description && <p>{project.description}</p>}
-                  {project.playable ? (
+                  {project.playable && enterHref ? (
+                    <Link href={`${enterHref}#project-${project.id}`} prefetch={false} className="btn btn-primary">
+                      Play {project.title} <span aria-hidden="true">→</span>
+                    </Link>
+                  ) : project.playable ? (
                     <span className="badge">Ready to play</span>
                   ) : (
                     <span className="badge">

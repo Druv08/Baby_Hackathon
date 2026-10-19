@@ -1,0 +1,133 @@
+{
+    "sourceCommit":  "f02487d8835c35c43e9d97a70ebe3976f94d39b1",
+    "environment":  "Local Next.js optimized production build; Microsoft Edge headless; standard Lighthouse mobile and desktop presets",
+    "reports":  [
+                    {
+                        "mode":  "mobile",
+                        "requestedUrl":  "http://localhost:3000/",
+                        "finalDisplayedUrl":  "http://localhost:3000/",
+                        "fetchTime":  "2026-10-19T12:13:37.815Z",
+                        "lighthouseVersion":  "13.5.0",
+                        "scores":  {
+                                       "performance":  88,
+                                       "accessibility":  100,
+                                       "best-practices":  100,
+                                       "seo":  100
+                                   },
+                        "metrics":  {
+                                        "firstContentfulPaintMs":  1119.085,
+                                        "largestContentfulPaintMs":  3747.17,
+                                        "totalBlockingTimeMs":  148.5,
+                                        "cumulativeLayoutShift":  0
+                                    },
+                        "remainingAudits":  [
+                                                {
+                                                    "id":  "first-contentful-paint",
+                                                    "title":  "First Contentful Paint",
+                                                    "displayValue":  "1.1Â s"
+                                                },
+                                                {
+                                                    "id":  "largest-contentful-paint",
+                                                    "title":  "Largest Contentful Paint",
+                                                    "displayValue":  "3.7Â s"
+                                                },
+                                                {
+                                                    "id":  "total-blocking-time",
+                                                    "title":  "Total Blocking Time",
+                                                    "displayValue":  "150Â ms"
+                                                },
+                                                {
+                                                    "id":  "max-potential-fid",
+                                                    "title":  "Max Potential First Input Delay",
+                                                    "displayValue":  "310Â ms"
+                                                },
+                                                {
+                                                    "id":  "interactive",
+                                                    "title":  "Time to Interactive",
+                                                    "displayValue":  "3.9Â s"
+                                                },
+                                                {
+                                                    "id":  "unused-css-rules",
+                                                    "title":  "Reduce unused CSS",
+                                                    "displayValue":  "Est savings of 34Â KiB"
+                                                },
+                                                {
+                                                    "id":  "image-delivery-insight",
+                                                    "title":  "Improve image delivery",
+                                                    "displayValue":  "Est savings of 6Â KiB"
+                                                },
+                                                {
+                                                    "id":  "legacy-javascript-insight",
+                                                    "title":  "Legacy JavaScript",
+                                                    "displayValue":  "Est savings of 14Â KiB"
+                                                },
+                                                {
+                                                    "id":  "network-dependency-tree-insight",
+                                                    "title":  "Network dependency tree",
+                                                    "displayValue":  null
+                                                },
+                                                {
+                                                    "id":  "render-blocking-insight",
+                                                    "title":  "Render-blocking requests",
+                                                    "displayValue":  "Est savings of 320Â ms"
+                                                }
+                                            ]
+                    },
+                    {
+                        "mode":  "desktop",
+                        "requestedUrl":  "http://localhost:3000/",
+                        "finalDisplayedUrl":  "http://localhost:3000/",
+                        "fetchTime":  "2026-10-19T12:14:10.712Z",
+                        "lighthouseVersion":  "13.5.0",
+                        "scores":  {
+                                       "performance":  100,
+                                       "accessibility":  100,
+                                       "best-practices":  100,
+                                       "seo":  100
+                                   },
+                        "metrics":  {
+                                        "firstContentfulPaintMs":  289.7057,
+                                        "largestContentfulPaintMs":  761.26425,
+                                        "totalBlockingTimeMs":  0,
+                                        "cumulativeLayoutShift":  0
+                                    },
+                        "remainingAudits":  [
+                                                {
+                                                    "id":  "largest-contentful-paint",
+                                                    "title":  "Largest Contentful Paint",
+                                                    "displayValue":  "0.8Â s"
+                                                },
+                                                {
+                                                    "id":  "unused-css-rules",
+                                                    "title":  "Reduce unused CSS",
+                                                    "displayValue":  "Est savings of 34Â KiB"
+                                                },
+                                                {
+                                                    "id":  "unused-javascript",
+                                                    "title":  "Reduce unused JavaScript",
+                                                    "displayValue":  "Est savings of 92Â KiB"
+                                                },
+                                                {
+                                                    "id":  "image-delivery-insight",
+                                                    "title":  "Improve image delivery",
+                                                    "displayValue":  "Est savings of 52Â KiB"
+                                                },
+                                                {
+                                                    "id":  "legacy-javascript-insight",
+                                                    "title":  "Legacy JavaScript",
+                                                    "displayValue":  "Est savings of 14Â KiB"
+                                                },
+                                                {
+                                                    "id":  "network-dependency-tree-insight",
+                                                    "title":  "Network dependency tree",
+                                                    "displayValue":  null
+                                                },
+                                                {
+                                                    "id":  "render-blocking-insight",
+                                                    "title":  "Render-blocking requests",
+                                                    "displayValue":  "Est savings of 80Â ms"
+                                                }
+                                            ]
+                    }
+                ]
+}

@@ -35,15 +35,17 @@ describe("content helpers", () => {
     }
   });
 
-  it("handles pending futures with no scenes", () => {
-    expect(getStoryScenes("luna")).toEqual([]);
-    expect(isFutureStoryReady("luna")).toBe(false);
-    expect(getFutureReadiness("luna")).toEqual({
-      heroAvailable: true,
-      storyReady: false,
-      portfolioReady: false,
-      complete: false,
-    });
+  it("only reports a story or portfolio as ready when its status is ready", () => {
+    // Every future now has content, so check the rule across all of them.
+    for (const f of getAllFutures()) {
+      expect(isFutureStoryReady(f.slug)).toBe(f.storyStatus === "ready");
+      expect(getFutureReadiness(f.slug)).toMatchObject({
+        heroAvailable: true,
+        storyReady: f.storyStatus === "ready",
+        portfolioReady: f.portfolioStatus === "ready",
+      });
+      expect(getStoryScenes(f.slug)).toBe(f.scenes);
+    }
   });
 
   it("only exposes hero images that are verified", () => {
@@ -52,7 +54,9 @@ describe("content helpers", () => {
 
   it("does not report proposed projects as playable", () => {
     for (const f of getAllFutures()) {
-      for (const p of f.projects) expect(isProjectPlayable(p)).toBe(false);
+      for (const p of f.projects) {
+        if (p.implementation !== "live") expect(isProjectPlayable(p)).toBe(false);
+      }
     }
     expect(
       isProjectPlayable({ id: "x", title: "X", description: "", status: "ready", implementation: "live", interactionId: "x" }),

@@ -1,0 +1,6 @@
+.env*
+.open-next
+.wrangler
+.next
+node_modules
+.dev.vars*

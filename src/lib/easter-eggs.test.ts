@@ -37,12 +37,12 @@ describe("secret registry", () => {
     const expected = {
       blossom: "Golden Seed",
       star: "Hidden Constellation",
-      cloud: "Secret Cloud",
-      aqua: "Hidden Pearl",
-      inventor: "Secret Gear",
-      forest: "Hidden Leaf",
+      cloud: "Secret Rainbow Cloud",
+      aqua: "Secret Ocean Pearl",
+      inventor: "Golden Cog",
+      forest: "Golden Acorn",
       melody: "Secret Note",
-      luna: "Memory Star",
+      luna: "Silver Memory Key",
     };
     for (const f of FUTURES) {
       const secret = getSecretForFuture(f.slug)!;

@@ -6,7 +6,7 @@ import {
   NORMAL_MARIA_ID,
   type Character,
 } from "@/types/character";
-import type { FuturePath } from "@/types/future";
+import type { CharacterProfile, FuturePath, StoryIntro } from "@/types/future";
 import type { PortfolioProject } from "@/types/project";
 import type { StoryScene } from "@/types/story";
 import { MIN_PORTFOLIO_PROJECTS, STORY_CONVENTION } from "@/data/site-config";
@@ -70,6 +70,28 @@ export const portfolioProjectSchema = z
     }
   }) satisfies z.ZodType<PortfolioProject>;
 
+const nonEmpty = z.string().trim().min(1);
+
+export const storyIntroSchema = z.object({
+  title: nonEmpty,
+  subtitle: nonEmpty,
+  blurb: nonEmpty,
+}) satisfies z.ZodType<StoryIntro>;
+
+export const characterProfileSchema = z.object({
+  species: nonEmpty,
+  profession: nonEmpty.optional(),
+  personality: z.array(nonEmpty).min(1),
+  specialTalent: nonEmpty,
+  home: nonEmpty,
+  theme: nonEmpty,
+  about: z.array(nonEmpty).min(1),
+  whatIDo: nonEmpty,
+  strengths: z.array(nonEmpty).min(1),
+  journey: nonEmpty,
+  motto: nonEmpty,
+}) satisfies z.ZodType<CharacterProfile>;
+
 export const futurePathSchema = z
   .object({
     id: futureIdSchema,
@@ -81,6 +103,8 @@ export const futurePathSchema = z
     portfolioStatus: contentStatusSchema,
     scenes: z.array(storySceneSchema),
     projects: z.array(portfolioProjectSchema),
+    storyIntro: storyIntroSchema.optional(),
+    profile: characterProfileSchema.optional(),
   })
   .superRefine((f, ctx) => {
     if (f.id !== f.characterId) {

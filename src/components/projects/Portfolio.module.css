@@ -1,0 +1,614 @@
+.portfolio,
+.creations {
+  scroll-margin-top: calc(var(--header-height) + var(--story-nav-height, 0px) + 1rem);
+}
+
+/* Cream plate keeps headings readable over the story-world landscape. */
+.head {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto var(--space-6);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 250, 244, 0.88);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.head h2 {
+  color: var(--pink-deep);
+}
+
+/* ── Garden journal ───────────────────────────────────────────────── */
+.journal {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(var(--space-5), 4vw, var(--space-7));
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  border-radius: var(--radius-lg);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(220, 170, 150, 0.15) 31px 32px),
+    #fffaf3;
+  border: 2px solid #f2d5c4;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(240, 200, 170, 0.25);
+}
+
+.idCard {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--space-4);
+}
+
+.portrait {
+  width: min(100%, 17rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 6px solid var(--white);
+  box-shadow: 0 0 0 3px var(--pink), 0 0 30px rgba(255, 200, 120, 0.5);
+  transform: rotate(-2deg);
+}
+
+.portrait img {
+  width: 100%;
+  height: auto;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.facts div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px dashed #ecd4bd;
+}
+
+.facts dt {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--lavender-deep);
+  text-align: center;
+}
+
+.pages {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.page {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.page h3 {
+  color: var(--accent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.chips li {
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+
+.motto {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #fde3ee, #f3e9ff);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1.25;
+  color: var(--pink-deep);
+  transform: rotate(-1deg);
+}
+
+.motto footer {
+  margin-top: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* ── Creations ────────────────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.card h3 {
+  color: var(--accent);
+}
+
+.cardArt {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(160deg, #e86a9b, #b9427a);
+}
+
+/* Cover-crop toward the lower middle, where each creation sits
+   (e.g. the open Bloom Book journal in its 4:3 artwork). */
+.cardArt img {
+  object-fit: cover;
+  object-position: 50% 68%;
+}
+
+.cardFallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 3.5rem;
+}
+
+.playground {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+  padding: clamp(var(--space-5), 3vw, var(--space-6));
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  border: 3px dashed color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: var(--shadow-soft);
+  scroll-margin-top: calc(var(--header-height) + var(--story-nav-height, 0px) + 1rem);
+}
+
+.playTitle {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  color: var(--accent);
+}
+
+.playIntro {
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .journal,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .facts div {
+    grid-template-columns: 7rem 1fr;
+  }
+}
+
+/* ── Cloud: an explorer's travel journal ──────────────────────────── */
+.portfolio[data-world="cloud"] .head h2,
+.creations[data-world="cloud"] .head h2 {
+  color: #2f6fb0;
+}
+
+.portfolio[data-world="cloud"] .journal {
+  position: relative;
+  background:
+    radial-gradient(ellipse 18% 9% at 92% 6%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(ellipse 14% 7% at 86% 9%, rgba(255, 255, 255, 0.9), transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(127, 178, 229, 0.16) 31px 32px),
+    linear-gradient(160deg, #f1f8ff 0%, #fffaf3 45%, #fff1e6 100%);
+  border-color: #cfe2f4;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(156, 200, 239, 0.25);
+}
+
+/* A golden compass rose in the journal's corner. */
+.portfolio[data-world="cloud"] .journal::after {
+  content: "";
+  position: absolute;
+  right: clamp(12px, 2vw, 24px);
+  bottom: clamp(12px, 2vw, 24px);
+  width: clamp(56px, 7vw, 84px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #d9b25f;
+  background:
+    conic-gradient(from 0deg, #e7c35a 0 6%, transparent 6% 19%, #e7c35a 19% 31%, transparent 31% 44%, #e7c35a 44% 56%, transparent 56% 69%, #e7c35a 69% 81%, transparent 81% 94%, #e7c35a 94%),
+    radial-gradient(circle, #fff8e6 0 30%, transparent 31%);
+  clip-path: circle(50%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.portfolio[data-world="cloud"] .portrait {
+  box-shadow: 0 0 0 3px #9cc8ef, 0 0 30px rgba(255, 220, 160, 0.55);
+}
+
+.portfolio[data-world="cloud"] .facts div {
+  border-bottom-color: #cfe2f4;
+}
+
+.portfolio[data-world="cloud"] .facts dt,
+.portfolio[data-world="cloud"] .page h3,
+.creations[data-world="cloud"] .card h3,
+.creations[data-world="cloud"] .playTitle {
+  color: #2f6fb0;
+}
+
+.portfolio[data-world="cloud"] .tagline {
+  color: #3d78b8;
+}
+
+.portfolio[data-world="cloud"] .chips li {
+  background: #ffe6d2;
+}
+
+.portfolio[data-world="cloud"] .motto {
+  background: linear-gradient(135deg, #e2f0fc, #ffe9d9);
+  color: #2f6fb0;
+}
+
+/* Little airship-trail flourish under the creations heading. */
+.creations[data-world="cloud"] .head::after {
+  content: "· · · ☁ · · · 🎈 · · · ☁ · · ·";
+  color: #9cc8ef;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.creations[data-world="cloud"] .card {
+  border: 2px solid #e2f0fc;
+}
+
+.creations[data-world="cloud"] .playground {
+  border-color: #9cc8ef;
+  background: rgba(250, 253, 255, 0.92);
+}
+
+/* ── Aqua: an enchanted ocean journal ─────────────────────────────── */
+.portfolio[data-world="aqua"] .head,
+.creations[data-world="aqua"] .head {
+  background: rgba(10, 48, 82, 0.86);
+  color: #e2f5fb;
+}
+
+.portfolio[data-world="aqua"] .head h2,
+.creations[data-world="aqua"] .head h2 {
+  color: #f6fdff;
+  text-shadow: 0 0 18px rgba(110, 230, 245, 0.8);
+}
+
+.portfolio[data-world="aqua"] .head :global(.eyebrow),
+.creations[data-world="aqua"] .head :global(.eyebrow) {
+  color: #9be7f5;
+}
+
+.portfolio[data-world="aqua"] .journal {
+  position: relative;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(155, 231, 245, 0.45), transparent 22%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(95, 208, 230, 0.15) 31px 32px),
+    linear-gradient(160deg, #f0fbfe 0%, #fbfeff 50%, #fff6ec 100%);
+  border-color: #9be7f5;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(95, 208, 230, 0.2);
+}
+
+/* Seashell and pearl corners. */
+.portfolio[data-world="aqua"] .journal::before {
+  content: "🐚";
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+
+.portfolio[data-world="aqua"] .journal::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  width: 22px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #e8eef7 45%, #c9d6ea);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 28px -6px 0 -6px #f1f5fb, 48px 2px 0 -8px #e9f0f8;
+}
+
+.portfolio[data-world="aqua"] .portrait {
+  box-shadow: 0 0 0 3px #5fd0e6, 0 0 30px rgba(255, 224, 150, 0.55);
+}
+
+.portfolio[data-world="aqua"] .facts div {
+  border-bottom-color: #b6e8f2;
+}
+
+.portfolio[data-world="aqua"] .facts dt,
+.portfolio[data-world="aqua"] .page h3,
+.creations[data-world="aqua"] .card h3,
+.creations[data-world="aqua"] .playTitle {
+  color: #137a9a;
+}
+
+.portfolio[data-world="aqua"] .tagline {
+  color: #0e6a85;
+}
+
+.portfolio[data-world="aqua"] .chips li {
+  background: #d8f4f9;
+}
+
+.portfolio[data-world="aqua"] .motto {
+  background: linear-gradient(135deg, #dcf6fb, #fff1e0);
+  color: #0e6a85;
+}
+
+.creations[data-world="aqua"] .card {
+  border: 2px solid #d8f4f9;
+}
+
+.creations[data-world="aqua"] .playground {
+  border-color: #7fd6ea;
+  background: rgba(248, 254, 255, 0.94);
+}
+
+/* ── Inventor: a magical inventor's notebook ──────────────────────── */
+.portfolio[data-world="inventor"] .head,
+.creations[data-world="inventor"] .head {
+  background: rgba(58, 36, 20, 0.88);
+  color: #fff3dc;
+}
+
+.portfolio[data-world="inventor"] .head h2,
+.creations[data-world="inventor"] .head h2 {
+  color: #ffe6b0;
+  text-shadow: 0 0 18px rgba(255, 200, 110, 0.75);
+}
+
+.portfolio[data-world="inventor"] .head :global(.eyebrow),
+.creations[data-world="inventor"] .head :global(.eyebrow) {
+  color: #f3c97a;
+}
+
+/* Graph-paper notebook pages with a brass spine. */
+.portfolio[data-world="inventor"] .journal {
+  position: relative;
+  background:
+    linear-gradient(90deg, #c8963e 0 10px, #8a5a1c 10px 13px, transparent 13px),
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(154, 79, 18, 0.1) 23px 24px),
+    repeating-linear-gradient(90deg, transparent 0 23px, rgba(154, 79, 18, 0.07) 23px 24px),
+    #fff8ec;
+  border-color: #d9a441;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(217, 164, 65, 0.18);
+}
+
+/* A little brass gear stamp in the corner. */
+.portfolio[data-world="inventor"] .journal::after {
+  content: "⚙";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  font-size: 3rem;
+  line-height: 1;
+  color: rgba(200, 150, 62, 0.45);
+}
+
+.portfolio[data-world="inventor"] .portrait {
+  box-shadow: 0 0 0 3px #c8963e, 0 0 30px rgba(255, 200, 110, 0.55);
+}
+
+.portfolio[data-world="inventor"] .facts div {
+  border-bottom-color: #ecd2a4;
+}
+
+.portfolio[data-world="inventor"] .facts dt,
+.portfolio[data-world="inventor"] .page h3,
+.creations[data-world="inventor"] .card h3,
+.creations[data-world="inventor"] .playTitle {
+  color: #9a4f12;
+}
+
+.portfolio[data-world="inventor"] .tagline {
+  color: #b8741f;
+}
+
+.portfolio[data-world="inventor"] .chips li {
+  background: #fbecd2;
+  border: 1px solid #ecd2a4;
+}
+
+.portfolio[data-world="inventor"] .motto {
+  background: linear-gradient(135deg, #fbecd2, #fff6e4);
+  color: #9a4f12;
+}
+
+.creations[data-world="inventor"] .card {
+  border: 2px solid #ecd2a4;
+}
+
+.creations[data-world="inventor"] .playground {
+  border-color: #d9a441;
+  background: rgba(255, 250, 240, 0.95);
+}
+
+/* Card artwork drawn by the project itself (until its illustration arrives). */
+.cardDrawn {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* ── Forest: a woodland explorer's journal ────────────────────────── */
+.portfolio[data-world="forest"] .head,
+.creations[data-world="forest"] .head {
+  background: rgba(47, 74, 34, 0.88);
+  color: #f6fbef;
+}
+
+.portfolio[data-world="forest"] .head h2,
+.creations[data-world="forest"] .head h2 {
+  color: #fff3d0;
+  text-shadow: 0 0 18px rgba(255, 220, 140, 0.7);
+}
+
+.portfolio[data-world="forest"] .head :global(.eyebrow),
+.creations[data-world="forest"] .head :global(.eyebrow) {
+  color: #cfe6a8;
+}
+
+/* Field-journal pages with a leafy corner. */
+.portfolio[data-world="forest"] .journal {
+  position: relative;
+  background:
+    radial-gradient(circle at 100% 0, rgba(169, 201, 138, 0.5), transparent 20%),
+    radial-gradient(circle at 0 100%, rgba(255, 200, 220, 0.4), transparent 22%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(95, 140, 60, 0.12) 31px 32px),
+    #fffaee;
+  border-color: #a9c98a;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(169, 201, 138, 0.25);
+}
+
+.portfolio[data-world="forest"] .journal::after {
+  content: "🍃🌸";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.portfolio[data-world="forest"] .portrait {
+  box-shadow: 0 0 0 3px #8fbf5a, 0 0 30px rgba(255, 220, 140, 0.55);
+}
+
+.portfolio[data-world="forest"] .facts div {
+  border-bottom-color: #cfe2b8;
+}
+
+.portfolio[data-world="forest"] .facts dt,
+.portfolio[data-world="forest"] .page h3,
+.creations[data-world="forest"] .card h3,
+.creations[data-world="forest"] .playTitle {
+  color: #3f6b2a;
+}
+
+.portfolio[data-world="forest"] .tagline {
+  color: #6b4a1e;
+}
+
+.portfolio[data-world="forest"] .chips li {
+  background: #e6f1d2;
+}
+
+.portfolio[data-world="forest"] .motto {
+  background: linear-gradient(135deg, #e6f1d2, #ffeef4);
+  color: #3f6b2a;
+}
+
+.creations[data-world="forest"] .card {
+  border: 2px solid #e6f1d2;
+}
+
+.creations[data-world="forest"] .playground {
+  border-color: #a9c98a;
+  background: rgba(255, 252, 244, 0.95);
+}
+
+/* ── Luna: a magical celestial journal ────────────────────────────── */
+.portfolio[data-world="luna"] .head,
+.creations[data-world="luna"] .head {
+  background: rgba(30, 24, 66, 0.88);
+  color: #ece6ff;
+}
+
+.portfolio[data-world="luna"] .head h2,
+.creations[data-world="luna"] .head h2 {
+  color: #fdf8ff;
+  text-shadow: 0 0 18px rgba(205, 188, 255, 0.8);
+}
+
+.portfolio[data-world="luna"] .head :global(.eyebrow),
+.creations[data-world="luna"] .head :global(.eyebrow) {
+  color: #ffe08a;
+}
+
+/* Starry journal pages with a golden moon in the corner. */
+.portfolio[data-world="luna"] .journal {
+  position: relative;
+  background:
+    radial-gradient(circle at 96% 6%, #fff1c2 0 2.4%, rgba(255, 241, 194, 0.5) 2.6%, transparent 7%),
+    radial-gradient(circle at 0 100%, rgba(205, 188, 255, 0.45), transparent 25%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(155, 130, 230, 0.12) 31px 32px),
+    #fffaf3;
+  border-color: #cdbcff;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(205, 188, 255, 0.25);
+}
+
+.portfolio[data-world="luna"] .journal::after {
+  content: "✦ ✧ ✦";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  color: rgba(201, 162, 74, 0.7);
+  letter-spacing: 0.3em;
+}
+
+.portfolio[data-world="luna"] .portrait {
+  box-shadow: 0 0 0 3px #b9a7e6, 0 0 30px rgba(255, 214, 140, 0.55);
+}
+
+.portfolio[data-world="luna"] .facts div {
+  border-bottom-color: #ddd2fb;
+}
+
+.portfolio[data-world="luna"] .facts dt,
+.portfolio[data-world="luna"] .page h3,
+.creations[data-world="luna"] .card h3,
+.creations[data-world="luna"] .playTitle {
+  color: #4b3596;
+}
+
+.portfolio[data-world="luna"] .tagline {
+  color: #7b5cd6;
+}
+
+.portfolio[data-world="luna"] .chips li {
+  background: #ece6ff;
+}
+
+.portfolio[data-world="luna"] .motto {
+  background: linear-gradient(135deg, #ece6ff, #fff1d6);
+  color: #4b3596;
+}
+
+.creations[data-world="luna"] .card {
+  border: 2px solid #ece6ff;
+}
+
+.creations[data-world="luna"] .playground {
+  border-color: #b9a7e6;
+  background: rgba(253, 251, 255, 0.95);
+}

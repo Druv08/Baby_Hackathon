@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import { NAV_LINKS } from "./nav-links";
+import { PawIcon } from "./PawIcon";
+import { VisitOdometer } from "./VisitOdometer";
 import styles from "./SiteFooter.module.css";
 
 export function SiteFooter() {
@@ -8,9 +10,10 @@ export function SiteFooter() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <p className={styles.brand}>
-          Maria<span aria-hidden="true"> 🐾</span>
+          Maria <PawIcon size="0.9em" />
         </p>
         <p className={styles.tagline}>Eight dreams, one heart.</p>
+        <VisitOdometer />
         <nav aria-label="Footer">
           <ul className={styles.links}>
             {NAV_LINKS.map((link) => (

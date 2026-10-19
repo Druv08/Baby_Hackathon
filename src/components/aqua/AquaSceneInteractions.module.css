@@ -1,0 +1,390 @@
+/* Sits exactly over the 1448×1086 (4:3) illustration at the top of the frame. */
+.imageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1448 / 1086;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.imageLayer > button {
+  pointer-events: auto;
+}
+
+/* ── Scene 1: magical bubble ─────────────────────────────────────────── */
+.brighten {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 45% 45%, rgba(190, 245, 255, 0.4), rgba(190, 245, 255, 0) 70%);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.imageLayer[data-level="2"] .brighten,
+.imageLayer[data-level="3"] .brighten {
+  opacity: 1;
+}
+
+.bubble {
+  position: absolute;
+  width: 46%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 3px dashed rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  animation: hint 3s ease-in-out infinite;
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.bubble[data-level="1"],
+.bubble[data-level="2"],
+.bubble[data-level="3"] {
+  border-style: solid;
+  border-color: rgba(200, 250, 255, 0.95);
+  box-shadow: 0 0 30px 8px rgba(160, 235, 255, 0.6), inset 0 0 40px rgba(200, 250, 255, 0.45);
+}
+
+.bubble:focus-visible,
+.hotspot:focus-visible,
+.knot:focus-visible {
+  outline: 3px solid #ffe08a;
+  outline-offset: 3px;
+}
+
+.rising {
+  position: absolute;
+  inset: 0;
+}
+
+.rising i,
+.celebrate i {
+  position: absolute;
+  bottom: 30%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(180, 240, 255, 0.2) 60%);
+  animation: rise 1.8s ease-out forwards;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.1);
+  }
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.03;
+  }
+}
+
+/* A soft golden ring that picks out the little turtle. */
+.turtleRing {
+  position: absolute;
+  width: 16%;
+  aspect-ratio: 1;
+  border: 3px solid rgba(255, 224, 138, 0.95);
+  border-radius: 50%;
+  box-shadow: 0 0 22px rgba(255, 224, 138, 0.8);
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.turtleRing[data-on="true"] {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 14px rgba(255, 224, 138, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 224, 138, 1);
+  }
+}
+
+/* ── Scene 2: creature hotspots ──────────────────────────────────────── */
+.hotspot {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  padding: 0;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(120, 220, 240, 0.18);
+  box-shadow: 0 0 16px rgba(140, 230, 255, 0.7);
+  cursor: pointer;
+  animation: hint 2.4s ease-in-out infinite;
+}
+
+.hotspot span {
+  position: absolute;
+  inset: 30%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.hotspot[data-met="true"] {
+  border-color: #ffe08a;
+}
+
+.hotspot[aria-pressed="true"] {
+  background: rgba(255, 224, 138, 0.35);
+  box-shadow: 0 0 26px 6px rgba(255, 224, 138, 0.85);
+}
+
+/* ── Scene 3: tangle points ──────────────────────────────────────────── */
+.knot {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  padding: 0;
+  border: 3px dashed #ffb27a;
+  border-radius: 50%;
+  background: rgba(20, 50, 80, 0.55);
+  color: #fff;
+  font: 900 1rem var(--font-body);
+  cursor: pointer;
+  animation: hint 2.4s ease-in-out infinite;
+}
+
+.knot[data-inspected="true"] {
+  border-style: solid;
+  border-color: #ffe08a;
+  background: rgba(255, 196, 92, 0.85);
+  color: #3b2a10;
+  box-shadow: 0 0 20px rgba(255, 214, 120, 0.9);
+}
+
+/* ── Scene 4: reef recovery ──────────────────────────────────────────── */
+.dull {
+  position: absolute;
+  inset: 0;
+  -webkit-backdrop-filter: saturate(0.35) brightness(0.88);
+  backdrop-filter: saturate(0.35) brightness(0.88);
+  transition: opacity 1s ease;
+}
+
+.imageLayer[data-progress="1"] .dull {
+  opacity: 0.66;
+}
+.imageLayer[data-progress="2"] .dull {
+  opacity: 0.33;
+}
+.imageLayer[data-progress="3"] .dull {
+  opacity: 0;
+}
+
+.imageLayer[data-clean="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 70%, rgba(255, 200, 150, 0.28), rgba(255, 200, 150, 0) 70%);
+  animation: warm 1.6s ease forwards;
+}
+
+@keyframes warm {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.marker {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px dashed #ff9f7a;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 150, 110, 0.7);
+  animation: hint 2.2s ease-in-out infinite;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.marker[data-gone="true"] {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.5);
+}
+
+.celebrate {
+  position: absolute;
+  inset: 0;
+}
+
+.celebrate .turtleRing {
+  opacity: 1;
+}
+
+.fish {
+  position: absolute;
+  left: -12%;
+  width: 10%;
+  height: auto;
+  animation: swim 4.5s ease-in-out infinite;
+}
+
+@keyframes swim {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1250%);
+    opacity: 0;
+  }
+}
+
+/* ── Panels and captions below the illustration ──────────────────────── */
+.caption {
+  margin: 0;
+  padding: 10px 14px;
+  background: #0f3a5c;
+  color: #f2fbff;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #0f3a5c, #0b2d4a);
+  color: #f2fbff;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.inline,
+.counter {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.counter {
+  color: #9be7f5;
+}
+
+.inline[data-done="true"] {
+  color: #ffe08a;
+}
+
+.chip,
+.step {
+  min-height: 44px;
+  padding: 6px 14px;
+  border: 2px solid #5fd0e6;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f2fbff;
+  font: 800 0.95rem var(--font-body);
+  cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+  background: #ffe08a;
+  border-color: #ffe08a;
+  color: #2a2410;
+}
+
+.step[data-done="true"] {
+  background: rgba(95, 208, 230, 0.25);
+  border-style: solid;
+}
+
+.step:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ghost {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: #9be7f5;
+  font: 700 0.95rem var(--font-body);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.chip:focus-visible,
+.step:focus-visible,
+.ghost:focus-visible {
+  outline: 3px solid #ffe08a;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .hotspot,
+  .knot,
+  .marker,
+  .turtleRing[data-on="true"],
+  .rising i,
+  .celebrate i,
+  .fish,
+  .imageLayer[data-clean="true"]::after {
+    animation: none;
+  }
+
+  .fish {
+    left: 40%;
+  }
+
+  .brighten,
+  .dull,
+  .marker,
+  .turtleRing {
+    transition: none;
+  }
+}

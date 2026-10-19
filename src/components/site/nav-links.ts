@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
   { href: "/", label: "Home", icon: "🏠" },
-  { href: "/journey", label: "My Journey", icon: "🐾" },
+  { href: "/journey", label: "My Journey", icon: "paw" },
   { href: "/forms", label: "My Forms", icon: "⭐" },
   { href: "/creations", label: "My Creations", icon: "📦" },
   { href: "/memory-book", label: "Memory Book", icon: "📖" },
