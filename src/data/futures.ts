@@ -56,7 +56,7 @@ export const FUTURES: FuturePath[] = [
     characterId: 5,
     heroImage: "/heroes/aqua.png",
     storyStatus: "ready",
-    portfolioStatus: "pending",
+    portfolioStatus: "ready",
     storyIntro: AQUA_STORY_INTRO,
     scenes: AQUA_SCENES,
     profile: AQUA_PROFILE,

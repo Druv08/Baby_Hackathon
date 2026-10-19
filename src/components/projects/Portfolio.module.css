@@ -287,3 +287,90 @@
   border-color: #9cc8ef;
   background: rgba(250, 253, 255, 0.92);
 }
+
+/* ── Aqua: an enchanted ocean journal ─────────────────────────────── */
+.portfolio[data-world="aqua"] .head,
+.creations[data-world="aqua"] .head {
+  background: rgba(10, 48, 82, 0.86);
+  color: #e2f5fb;
+}
+
+.portfolio[data-world="aqua"] .head h2,
+.creations[data-world="aqua"] .head h2 {
+  color: #f6fdff;
+  text-shadow: 0 0 18px rgba(110, 230, 245, 0.8);
+}
+
+.portfolio[data-world="aqua"] .head :global(.eyebrow),
+.creations[data-world="aqua"] .head :global(.eyebrow) {
+  color: #9be7f5;
+}
+
+.portfolio[data-world="aqua"] .journal {
+  position: relative;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(155, 231, 245, 0.45), transparent 22%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(95, 208, 230, 0.15) 31px 32px),
+    linear-gradient(160deg, #f0fbfe 0%, #fbfeff 50%, #fff6ec 100%);
+  border-color: #9be7f5;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(95, 208, 230, 0.2);
+}
+
+/* Seashell and pearl corners. */
+.portfolio[data-world="aqua"] .journal::before {
+  content: "🐚";
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+
+.portfolio[data-world="aqua"] .journal::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  width: 22px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #e8eef7 45%, #c9d6ea);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 28px -6px 0 -6px #f1f5fb, 48px 2px 0 -8px #e9f0f8;
+}
+
+.portfolio[data-world="aqua"] .portrait {
+  box-shadow: 0 0 0 3px #5fd0e6, 0 0 30px rgba(255, 224, 150, 0.55);
+}
+
+.portfolio[data-world="aqua"] .facts div {
+  border-bottom-color: #b6e8f2;
+}
+
+.portfolio[data-world="aqua"] .facts dt,
+.portfolio[data-world="aqua"] .page h3,
+.creations[data-world="aqua"] .card h3,
+.creations[data-world="aqua"] .playTitle {
+  color: #137a9a;
+}
+
+.portfolio[data-world="aqua"] .tagline {
+  color: #0e6a85;
+}
+
+.portfolio[data-world="aqua"] .chips li {
+  background: #d8f4f9;
+}
+
+.portfolio[data-world="aqua"] .motto {
+  background: linear-gradient(135deg, #dcf6fb, #fff1e0);
+  color: #0e6a85;
+}
+
+.creations[data-world="aqua"] .card {
+  border: 2px solid #d8f4f9;
+}
+
+.creations[data-world="aqua"] .playground {
+  border-color: #7fd6ea;
+  background: rgba(248, 254, 255, 0.94);
+}

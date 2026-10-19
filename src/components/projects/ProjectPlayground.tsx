@@ -1,5 +1,8 @@
 "use client";
 
+import { CoralCareGarden } from "@/components/aqua/CoralCareGarden";
+import { OceanDiscovery } from "@/components/aqua/OceanDiscovery";
+import { TurtlesSafePassage } from "@/components/aqua/TurtlesSafePassage";
 import { CloudMaker } from "@/components/cloud/CloudMaker";
 import { CloudPostcards } from "@/components/cloud/CloudPostcards";
 import { SkyRoutePlanner } from "@/components/cloud/SkyRoutePlanner";
@@ -23,6 +26,10 @@ const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
   "cloud-maker": CloudMaker,
   "sky-route-planner": SkyRoutePlanner,
   "cloud-postcards": CloudPostcards,
+  // Aqua Maria
+  "ocean-discovery": OceanDiscovery,
+  "coral-care-garden": CoralCareGarden,
+  "turtles-safe-passage": TurtlesSafePassage,
 };
 
 export function ProjectPlayground({ interactionId }: { interactionId: string }) {

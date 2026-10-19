@@ -146,10 +146,7 @@ export const AQUA_PROFILE: CharacterProfile = {
   motto: "The ocean is everyone’s home. Let’s protect it together.",
 };
 
-/**
- * Aqua Maria's three creations. Proposed until each playable module exists;
- * a project only becomes `live` once its interaction genuinely works.
- */
+/** Aqua Maria's three creations — each a small playable experience. */
 export const AQUA_PROJECTS: PortfolioProject[] = [
   {
     id: "ocean-discovery",
@@ -158,8 +155,8 @@ export const AQUA_PROJECTS: PortfolioProject[] = [
       "Explore Aqua Maria’s magical underwater kingdom, discover fascinating sea creatures, and collect little ocean discoveries along the way.",
     image: "/projects/aqua/ocean-discovery.png",
     interactionId: "ocean-discovery",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "coral-care-garden",
@@ -168,8 +165,8 @@ export const AQUA_PROJECTS: PortfolioProject[] = [
       "A magical underwater garden Maria created to help damaged coral reefs recover and give little sea creatures a safer home.",
     image: "/projects/aqua/coral-care-garden.png",
     interactionId: "coral-care-garden",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "turtles-safe-passage",
@@ -178,7 +175,7 @@ export const AQUA_PROJECTS: PortfolioProject[] = [
       "Help Aqua Maria guide her little turtle friend through a magical underwater route filled with beautiful reefs, ocean currents and hidden obstacles.",
     image: "/projects/aqua/turtles-safe-passage.png",
     interactionId: "turtles-safe-passage",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
 ];
