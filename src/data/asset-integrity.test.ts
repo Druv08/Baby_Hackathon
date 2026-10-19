@@ -204,9 +204,9 @@ describe("Forest artwork", () => {
     expect(isAssetVerified(path)).toBe(true);
   });
 
-  it("does not register the two images that were not supplied", () => {
+  it("registers the supplied signpost art while the reveal illustration remains missing", () => {
     expect(isAssetVerified("/stories/forest/scene-5.png")).toBe(false);
-    expect(isAssetVerified("/projects/forest/whispering-signpost-workshop.png")).toBe(false);
+    expect(isAssetVerified("/projects/forest/whispering-signpost-workshop.png")).toBe(true);
   });
 
   it("never reuses another world's artwork", () => {

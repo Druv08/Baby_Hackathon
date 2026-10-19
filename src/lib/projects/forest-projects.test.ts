@@ -123,7 +123,7 @@ describe("Forest portfolio readiness", () => {
     expect(view.portfolio.projects.map((p) => [p.id, p.playable, p.verifiedImage])).toEqual([
       ["dream-delivery-map", true, "/projects/forest/dream-delivery-map.png"],
       ["forest-friends-field-guide", true, "/projects/forest/forest-friends-field-guide.png"],
-      ["whispering-signpost-workshop", true, undefined],
+      ["whispering-signpost-workshop", true, "/projects/forest/whispering-signpost-workshop.png"],
     ]);
     expect(futurePathSchema.safeParse(forest).success).toBe(true);
   });

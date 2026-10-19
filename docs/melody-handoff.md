@@ -1,5 +1,7 @@
 # Melody Maria implementation report
 
+Main-page update: At the user's request, Melody now uses the standard active **Enter Melody Path** action on her main character page. The story and portfolio are ready, project links reach `/futures/melody/story`, and the old preview URL redirects there. Melody's own purple theme and artwork remain unchanged. The earlier review notes below preserve the supplied-illustration differences for reference; they no longer gate entry.
+
 Project-picture update: The user selected the supplied songbook image for Rhythm Garden and the guitar performance image for Moonlight Music Box. These now replace the two SVG card previews. Only the story scene artwork corrections remain pending; the original implementation report below records the earlier review state.
 
 Melody's story, portfolio and three musical activities are implemented on `feature/forest-story`. The experience remains an explicitly labeled artwork preview because the supplied files do not fully match the brief. The normal `/futures/melody/story` route stays unavailable until those gaps are resolved; other futures retain their readiness rules.

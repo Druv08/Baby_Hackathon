@@ -6,10 +6,10 @@ import { isAssetVerified } from "@/data/assets";
 import { futurePathSchema } from "@/lib/validation";
 
 describe("Melody content and artwork readiness", () => {
-  it("keeps the complete story draft until mismatched artwork is replaced", () => {
-    expect(getFutureBySlug("melody")).toMatchObject({ id: 8, characterId: 8, storyStatus: "draft", portfolioStatus: "draft" });
-    expect(loadFutureView("melody")!.story.canEnter).toBe(false);
-    expect(loadFutureView("melody", { includeDrafts: true })!.story.scenes).toHaveLength(5);
+  it("opens the complete story and portfolio from the main character page", () => {
+    expect(getFutureBySlug("melody")).toMatchObject({ id: 8, characterId: 8, storyStatus: "ready", portfolioStatus: "ready" });
+    expect(loadFutureView("melody")!.story.canEnter).toBe(true);
+    expect(loadFutureView("melody")!.story.scenes).toHaveLength(5);
     expect(futurePathSchema.safeParse(getFutureBySlug("melody")).success).toBe(true);
   });
   it("preserves origin/reveal identity, scene order, narration and alternating layouts", () => {

@@ -103,7 +103,7 @@ export const MELODY_PROJECTS: PortfolioProject[] = [
     "description": "A magical garden where glowing flowers create musical notes and visitors can repeat little melodies to make the garden bloom.",
     "image": "/projects/melody/supplied-dream-songbook.png",
     "interactionId": "rhythm-garden",
-    "status": "draft",
+    "status": "ready",
     "implementation": "live"
   },
   {
@@ -112,7 +112,7 @@ export const MELODY_PROJECTS: PortfolioProject[] = [
     "description": "Design a magical music box with glowing stars, gentle melodies and a tiny dream world hidden inside.",
     "image": "/projects/melody/supplied-performance.png",
     "interactionId": "moonlight-music-box",
-    "status": "draft",
+    "status": "ready",
     "implementation": "live"
   }
 ];

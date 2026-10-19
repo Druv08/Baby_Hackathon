@@ -36,11 +36,12 @@ const check = (name, ok, detail = '') => results.push({ name, ok: !!ok, detail }
 await Promise.all([send('Page.enable'), send('Runtime.enable')]);
 await send('Emulation.setDeviceMetricsOverride', { width: W, height: H, deviceScaleFactor: 1, mobile: W < 500 });
 await go('/futures/melody');
-check('preview entry from existing hero', await ev("!!document.querySelector('a[href=\"/futures/melody/preview\"]')"));
+check('active story entry from existing hero', await ev("!!document.querySelector('a[href=\"/futures/melody/story\"]')"));
+check('hero no longer says coming soon', await ev("!document.body.innerText.includes('Story Coming Soon')"));
 await ev("localStorage.removeItem('maria:journey-progress')");
-await go('/futures/melody/preview');
+await go('/futures/melody/story');
 check('five story scenes', await ev("document.querySelectorAll('[data-scene]').length === 5"));
-check('draft disclosure', await ev("document.body.innerText.includes('Melody Path preview')"));
+check('main story has no preview notice', await ev("!document.body.innerText.includes('Melody Path preview')"));
 check('no horizontal overflow', await ev('document.documentElement.scrollWidth <= innerWidth'));
 check('all sound starts off', await ev("![...document.querySelectorAll('button')].some(b => b.textContent === 'Sound on')"));
 const project = id => 'document.getElementById('+JSON.stringify('project-'+id)+')';
@@ -108,7 +109,7 @@ await clickEl("document.querySelector('button[aria-label=\"Secret Note (already 
 check('one canonical secret',await ev("JSON.parse(localStorage.getItem('maria:journey-progress')).easterEggsFound.join() === '8'"));
 await ev("document.querySelector('p[data-done]').scrollIntoView({block:'center',behavior:'instant'})");await sleep(500);
 check('completion stored independently',await ev("JSON.parse(localStorage.getItem('maria:journey-progress')).completedStories.join() === '8'"));
-await go('/futures/melody/preview');
+await go('/futures/melody/story');
 check('progress survives reload',await ev("JSON.parse(localStorage.getItem('maria:journey-progress')).completedStories.join() === '8'"));
 await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
 check('reduced motion disables floating notes',await ev("getComputedStyle(document.querySelector('[class*=ambient] span')).animationName==='none'"));
