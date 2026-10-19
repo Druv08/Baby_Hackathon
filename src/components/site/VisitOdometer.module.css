@@ -1,0 +1,8 @@
+.counter { display: grid; justify-items: center; gap: .5rem; padding: 1rem 1.5rem; border: 2px ridge var(--lavender); border-radius: var(--radius-sm); background: var(--paper); box-shadow: var(--shadow-soft); max-width: 100%; }
+.label { font: 700 1.5rem var(--font-display); color: var(--ink); }
+.digits { display: flex; gap: 3px; padding: 6px; border: 3px inset var(--lavender); border-radius: 5px; background: var(--night); }
+.window { display: block; overflow: hidden; height: 2.25rem; width: 1.45rem; background: #3a2c51; color: var(--gold); font: 800 1.7rem/2.25rem monospace; text-align: center; }
+.reel { display: flex; flex-direction: column; transition: transform 1s cubic-bezier(.2,.8,.2,1); }
+.reel span { display: block; height: 2.25rem; flex-shrink: 0; }
+.counter small, .unavailable { font-size: .8rem; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { .reel { transition: none; } }

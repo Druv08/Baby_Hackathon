@@ -30,18 +30,26 @@ export function useMemoryFeed(pageSize: number) {
   const [memories, setMemories] = useState<PublicMemory[]>([]);
   const [cursor, setCursor] = useState<string | null>(null);
   const [load, setLoad] = useState<LoadState>("idle");
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshError, setRefreshError] = useState(false);
+  const busy = useRef(false);
+  const hasOlderPages = useRef(false);
   const mounted = useMounted();
 
   const loadPage = useCallback(
     async (before?: string): Promise<PublicMemory[] | null> => {
+      if (busy.current) return null;
+      busy.current = true;
       setLoad("loading");
       const result = await fetchMemories({ limit: pageSize, before });
+      busy.current = false;
       if (!mounted.current) return null;
       if (!result.ok) {
         setLoad("error");
         return null;
       }
       setMemories((prev) => (before ? mergePages(prev, result.data.memories) : result.data.memories));
+      hasOlderPages.current = !!before;
       setCursor(result.data.nextCursor);
       setLoad("ready");
       return result.data.memories;
@@ -49,7 +57,31 @@ export function useMemoryFeed(pageSize: number) {
     [pageSize, mounted],
   );
 
-  return { memories, cursor, load, loadPage, loadMore: () => (cursor ? loadPage(cursor) : Promise.resolve(null)) };
+  const refresh = useCallback(async () => {
+    if (busy.current) return;
+    busy.current = true;
+    setRefreshing(true);
+    const result = await fetchMemories({ limit: pageSize });
+    busy.current = false;
+    if (!mounted.current) return;
+    setRefreshing(false);
+    setRefreshError(!result.ok);
+    if (!result.ok) return;
+    setMemories(prev => hasOlderPages.current ? mergePages(result.data.memories, prev) : result.data.memories);
+    if (!hasOlderPages.current) setCursor(result.data.nextCursor);
+    setLoad("ready");
+  }, [pageSize, mounted]);
+
+  const started = load !== "idle";
+  useEffect(() => {
+    if (!started) return;
+    const update = () => { if (!document.hidden) void refresh(); };
+    const timer = setInterval(update, 45_000);
+    window.addEventListener("focus", update);
+    return () => { clearInterval(timer); window.removeEventListener("focus", update); };
+  }, [started, refresh]);
+
+  return { memories, cursor, load, loadPage, refresh, refreshing, refreshError, loadMore: () => (cursor ? loadPage(cursor) : Promise.resolve(null)) };
 }
 
 export type SendState = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };

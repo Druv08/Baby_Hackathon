@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 
 import { useMemoryFeed, useMemorySubmit } from "@/components/memory/useMemoryBook";
+import { MemoryRefresh } from "@/components/memory/MemoryRefresh";
 import { CHARACTER_THEMES } from "@/data/future-themes";
 import { FUTURE_SLUGS, MEMORY_LIMITS } from "@/lib/memories/validation";
 import type { FutureSlug } from "@/types/character";
@@ -19,7 +20,7 @@ const PAGE_SIZE = 6;
  */
 export function MoonlitMemoryBook() {
   const [open, setOpen] = useState(false);
-  const { memories, cursor, load, loadPage } = useMemoryFeed(PAGE_SIZE);
+  const { memories, cursor, load, loadPage, refresh, refreshing, refreshError } = useMemoryFeed(PAGE_SIZE);
   const { name, setName, message, setMessage, future, setFuture, website, setWebsite, errors, send, submit: onSubmit } = useMemorySubmit();
   const ids = { name: useId(), message: useId(), future: useId(), website: useId() };
 
@@ -44,6 +45,7 @@ export function MoonlitMemoryBook() {
     <div className={styles.game}>
       <section className={styles.bookPages} aria-label="Shared memories">
         <h4 className={styles.bookHeading}>Memories from Maria’s friends</h4>
+        <MemoryRefresh refresh={refresh} refreshing={refreshing} refreshError={refreshError} />
         {load === "loading" && memories.length === 0 && <p className={styles.muted}>Opening the pages…</p>}
         {load === "error" && (
           <p className={styles.notice} role="status">
@@ -104,6 +106,7 @@ export function MoonlitMemoryBook() {
         <label htmlFor={ids.message}>
           Your memory or message
           <textarea
+            style={{ resize: "none" }}
             id={ids.message}
             className={styles.input}
             rows={3}

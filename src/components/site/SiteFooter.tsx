@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { NAV_LINKS } from "./nav-links";
+import { VisitOdometer } from "./VisitOdometer";
 import styles from "./SiteFooter.module.css";
 
 export function SiteFooter() {
@@ -11,6 +12,7 @@ export function SiteFooter() {
           Maria<span aria-hidden="true"> 🐾</span>
         </p>
         <p className={styles.tagline}>Eight dreams, one heart.</p>
+        <VisitOdometer />
         <nav aria-label="Footer">
           <ul className={styles.links}>
             {NAV_LINKS.map((link) => (

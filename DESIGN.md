@@ -35,5 +35,7 @@ Portfolio owns journals and projects; SceneInteraction owns optional story activ
 
 Native HTML select owns the small note, instrument and difficulty lists. Operating-system popup appearance and standard keyboard behavior are intentional. No custom listbox or application-owned menu is needed for these short lists.
 
+The header owns site effects through SiteControls. SoundSettings is the single persistent mute owner for teammate audio and Melody's projects; a remembered sound preference still waits for a new document gesture before audio plays. Chaos Mode is opt-in and keeps its stickers in a reserved ribbon, with bounded card motion. CursorTrail preserves the paw cursors and draws at most 24 brief particles on precise mouse devices, with no trail for touch or reduced motion. VisitOdometer consumes the existing session counter, never invents values, and leaves unavailable counts as text. Guestbook refresh is owned by useMemoryFeed and shared by the global Memory Book and Luna; only approved API responses populate the lanterns.
+
 ## Do's and Don'ts
 Keep canonical designs unchanged. Only scene 5 reveals Melody's outfit. Report mismatched artwork and keep incomplete content draft. Respect reduced motion; never duplicate progress storage.
