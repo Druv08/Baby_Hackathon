@@ -1,96 +1,31 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useId, useState } from "react";
 
+import { useMemoryFeed, useMemorySubmit } from "@/components/memory/useMemoryBook";
 import { CHARACTER_THEMES } from "@/data/future-themes";
-import { fetchMemories, submitMemory } from "@/lib/api-client";
-import { FUTURE_SLUGS, MEMORY_LIMITS, fieldErrors, memorySubmissionSchema } from "@/lib/memories/validation";
-import type { PublicMemory } from "@/types/api";
+import { FUTURE_SLUGS, MEMORY_LIMITS } from "@/lib/memories/validation";
 import type { FutureSlug } from "@/types/character";
 import styles from "./LunaProjects.module.css";
 
 const PAGE_SIZE = 6;
 
-type LoadState = "idle" | "loading" | "ready" | "error";
-type SendState = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
-
-/** Friendly copy for the API's error codes (429 rate limit, 503 unavailable…). */
-function sendErrorMessage(status: number, fallback: string): string {
-  if (status === 429) return "Lots of memories are arriving right now. Please wait a few minutes and try again.";
-  if (status === 503) return "The Memory Book is resting right now. Please try again a little later.";
-  if (status === 0) return "You seem to be offline. Your memory hasn’t been sent yet.";
-  return fallback;
-}
-
 /**
- * Moonlit Memory Book: a themed view of the site's one shared Memory Book.
- * It reads approved memories (cursor pagination) and sends new ones through
- * the existing moderated API, where they wait as `pending` until approved.
+ * Moonlit Memory Book: a themed view of the site's one shared Memory Book
+ * (the same hooks and API as the /memory-book page). It reads approved
+ * memories (cursor pagination) and sends new ones through the existing
+ * moderated API, where they wait as `pending` until approved.
  * Visitor text is rendered only as plain text.
  */
 export function MoonlitMemoryBook() {
   const [open, setOpen] = useState(false);
-  const [memories, setMemories] = useState<PublicMemory[]>([]);
-  const [cursor, setCursor] = useState<string | null>(null);
-  const [load, setLoad] = useState<LoadState>("idle");
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const [future, setFuture] = useState<FutureSlug | "">("");
-  const [website, setWebsite] = useState(""); // honeypot
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [send, setSend] = useState<SendState>({ kind: "idle" });
-  const mounted = useRef(true);
+  const { memories, cursor, load, loadPage } = useMemoryFeed(PAGE_SIZE);
+  const { name, setName, message, setMessage, future, setFuture, website, setWebsite, errors, send, submit: onSubmit } = useMemorySubmit();
   const ids = { name: useId(), message: useId(), future: useId(), website: useId() };
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
-
-  const loadPage = useCallback(async (before?: string) => {
-    setLoad("loading");
-    const result = await fetchMemories({ limit: PAGE_SIZE, before });
-    if (!mounted.current) return;
-    if (!result.ok) {
-      setLoad("error");
-      return;
-    }
-    setMemories((prev) => (before ? [...prev, ...result.data.memories] : result.data.memories));
-    setCursor(result.data.nextCursor);
-    setLoad("ready");
-  }, []);
 
   function openBook() {
     setOpen(true);
     if (load === "idle") void loadPage();
-  }
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    // Check with the same rules the server uses before sending.
-    const parsed = memorySubmissionSchema.safeParse({ visitorName: name, message, formSlug: future || null, website });
-    if (!parsed.success) {
-      setErrors(fieldErrors(parsed.error));
-      return;
-    }
-    setErrors({});
-    setSend({ kind: "sending" });
-    const result = await submitMemory({
-      visitorName: parsed.data.visitorName,
-      message: parsed.data.message,
-      formSlug: parsed.data.formSlug,
-      ...(website ? { website } : {}),
-    });
-    if (!mounted.current) return;
-    if (result.ok) {
-      setSend({ kind: "sent" });
-      setMessage("");
-      return;
-    }
-    if (result.error.fields) setErrors(result.error.fields);
-    setSend({ kind: "error", message: sendErrorMessage(result.status, result.error.message) });
   }
 
   if (!open) {

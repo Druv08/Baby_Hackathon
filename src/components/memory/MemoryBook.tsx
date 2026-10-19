@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { CHARACTER_THEMES } from "@/data/future-themes";
-import { filterByFuture, formatMemoryDate, pickFeatured, type FutureFilter } from "@/lib/memories/book";
-import { FUTURE_SLUGS } from "@/lib/memories/validation";
+import { RECEIVED_MESSAGE, filterByFuture, formatMemoryDate, pickFeatured, type FutureFilter } from "@/lib/memories/book";
+import { FUTURE_SLUGS, MEMORY_LIMITS } from "@/lib/memories/validation";
+import type { FutureSlug } from "@/types/character";
 import type { PublicMemory } from "@/types/api";
 import styles from "./MemoryBook.module.css";
-import { useMemoryFeed } from "./useMemoryBook";
+import { useMemoryFeed, useMemorySubmit } from "./useMemoryBook";
 
 const PAGE_SIZE = 12;
 
@@ -17,8 +18,8 @@ function futureLabel(memory: PublicMemory): string | null {
 
 /**
  * The interactive parts of the Memory Book page: the Lake of Memories
- * (approved memories as lanterns) and a featured memory. Visitor text is
- * only ever rendered as plain text.
+ * (approved memories as lanterns), the "leave a memory" form and a featured
+ * memory. Visitor text is only ever rendered as plain text.
  */
 export function MemoryBook() {
   const feed = useMemoryFeed(PAGE_SIZE);
@@ -27,6 +28,9 @@ export function MemoryBook() {
   const [open, setOpen] = useState<PublicMemory | null>(null);
   const [featured, setFeatured] = useState<PublicMemory | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const form = useMemorySubmit();
+  const ids = { name: useId(), future: useId(), message: useId(), website: useId(), count: useId() };
+  const length = [...form.message].length;
 
   // First page on arrival; the featured memory is chosen from it.
   useEffect(() => {
@@ -140,6 +144,85 @@ export function MemoryBook() {
             </article>
           )}
         </dialog>
+      </section>
+
+      {/* ── C. Leave your memory ───────────────────────────────── */}
+      <section id="leave-memory" className={`section ${styles.formSection}`} aria-labelledby="leave-title">
+        <div className="container">
+          <form className={styles.parchment} onSubmit={form.submit} noValidate>
+            <h2 id="leave-title">
+              <span aria-hidden="true">🖋️</span> Leave Your Memory
+            </h2>
+
+            <label className={styles.field} htmlFor={ids.name}>
+              Your name
+              <input
+                id={ids.name}
+                className={styles.input}
+                value={form.name}
+                maxLength={MEMORY_LIMITS.visitorNameMax}
+                autoComplete="nickname"
+                required
+                aria-invalid={!!form.errors.visitorName}
+                aria-describedby={form.errors.visitorName ? `${ids.name}-err` : undefined}
+                onChange={(e) => form.setName(e.target.value)}
+              />
+            </label>
+            {form.errors.visitorName && <p id={`${ids.name}-err`} className={styles.fieldError}>{form.errors.visitorName}</p>}
+
+            <label className={styles.field} htmlFor={ids.future}>
+              Favorite Maria future
+              <select id={ids.future} className={styles.input} value={form.future} onChange={(e) => form.setFuture(e.target.value as FutureSlug | "")}>
+                <option value="">I can’t choose just one!</option>
+                {FUTURE_SLUGS.map((slug) => (
+                  <option key={slug} value={slug}>
+                    {CHARACTER_THEMES[slug].icon} {CHARACTER_THEMES[slug].label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {form.errors.formSlug && <p className={styles.fieldError}>{form.errors.formSlug}</p>}
+
+            <label className={styles.field} htmlFor={ids.message}>
+              Your memory or wish
+              <textarea
+                id={ids.message}
+                className={styles.input}
+                rows={4}
+                value={form.message}
+                maxLength={MEMORY_LIMITS.messageMax}
+                required
+                aria-invalid={!!form.errors.message}
+                aria-describedby={[ids.count, form.errors.message ? `${ids.message}-err` : ""].filter(Boolean).join(" ")}
+                onChange={(e) => form.setMessage(e.target.value)}
+              />
+            </label>
+            <p id={ids.count} className={styles.counter} data-near={length > MEMORY_LIMITS.messageMax - 20}>
+              {length} / {MEMORY_LIMITS.messageMax} characters
+            </p>
+            {form.errors.message && <p id={`${ids.message}-err`} className={styles.fieldError}>{form.errors.message}</p>}
+
+            {/* Honeypot: hidden from people, filled in by bots. */}
+            <div className={styles.honeypot} aria-hidden="true">
+              <label htmlFor={ids.website}>
+                Website
+                <input id={ids.website} tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => form.setWebsite(e.target.value)} />
+              </label>
+            </div>
+
+            <button type="submit" className="btn btn-primary btn-large" disabled={form.send.kind === "sending"}>
+              {form.send.kind === "sending" ? "Sending your lantern…" : <><span aria-hidden="true">🏮</span> Send My Memory</>}
+            </button>
+            {form.send.kind === "sent" && <span className={styles.risingLantern} aria-hidden="true" />}
+            <p className={styles.status} role="status" data-tone={form.send.kind === "sent" ? "success" : form.send.kind === "error" ? "warn" : undefined}>
+              {form.send.kind === "sent"
+                ? RECEIVED_MESSAGE
+                : form.send.kind === "error"
+                  ? form.send.message
+                  : "Every memory is checked by a grown-up before it glows on the lake, so the book stays kind and safe."}
+            </p>
+          </form>
+        </div>
       </section>
 
       {/* ── D. Featured memory ──────────────────────────────────── */}
