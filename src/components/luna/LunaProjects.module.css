@@ -1,0 +1,478 @@
+.game {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.status {
+  min-height: 3rem;
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: #ece6ff;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.status[data-tone="success"] {
+  background: #fff1c2;
+}
+
+.status[data-tone="warn"] {
+  background: #ffe2ea;
+}
+
+.muted {
+  margin: 0;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.primary,
+.secondary,
+.ghost,
+.option {
+  min-height: 44px;
+  border-radius: 999px;
+  font: 800 1rem var(--font-body);
+  cursor: pointer;
+}
+
+.primary {
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #7b5cd6, #4b3596);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(75, 53, 150, 0.3);
+}
+
+.secondary {
+  padding: 8px 16px;
+  border: 2px solid #b9a7e6;
+  background: #fff;
+  color: var(--ink);
+}
+
+.ghost {
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.linkButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #4b3596;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 2px solid #ddd2fb;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.option[aria-pressed="true"] {
+  border-color: #4b3596;
+  background: #ece6ff;
+  box-shadow: 0 0 0 2px rgba(75, 53, 150, 0.2);
+}
+
+.primary:disabled,
+.secondary:disabled,
+.ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.primary:focus-visible,
+.secondary:focus-visible,
+.ghost:focus-visible,
+.linkButton:focus-visible,
+.option:focus-visible,
+.closedBook:focus-visible,
+.compartment:focus-visible,
+.memoryChoice:focus-visible,
+.input:focus-visible {
+  outline: 3px solid #4b3596;
+  outline-offset: 2px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.options legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 0;
+  font-weight: 800;
+  color: #4b3596;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 2px solid #ddd2fb;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 600 1rem var(--font-body);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+.counter {
+  margin: -6px 0 0;
+  justify-self: end;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.fieldError {
+  margin: -6px 0 0;
+  color: #b0305a;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ── Moonlit Memory Book ─────────────────────────────────────────────── */
+.closedBook {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: min(100%, 24rem);
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-4);
+  border: 0;
+  border-radius: 10px 22px 22px 10px;
+  background: linear-gradient(90deg, #3b2c74 0 14px, #5b44a8 14px);
+  color: #fff8ec;
+  font: 700 1rem var(--font-body);
+  box-shadow: 0 12px 30px rgba(40, 24, 90, 0.35);
+  cursor: pointer;
+}
+
+.closedBook span:first-child {
+  font-size: 3rem;
+}
+
+.closedBook strong {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+}
+
+.bookPages,
+.memoryForm {
+  display: grid;
+  gap: 10px;
+  padding: var(--space-5);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(205, 188, 255, 0.4), transparent 30%),
+    #fffaf3;
+  border: 2px solid #ddd2fb;
+}
+
+.memoryForm label {
+  display: grid;
+  gap: 4px;
+  font-weight: 800;
+  color: #4b3596;
+}
+
+.bookHeading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #3b2c74;
+}
+
+.memories {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.memory {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border-left: 4px solid #c9a2f0;
+  box-shadow: 0 2px 8px rgba(60, 40, 120, 0.08);
+}
+
+.memoryText {
+  margin: 0;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.memoryBy {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.notice {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #ffe2ea;
+  font-weight: 700;
+}
+
+/* Visually hidden honeypot that stays out of the tab order. */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ── Memory Lantern Studio ───────────────────────────────────────────── */
+.studioLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.lake {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 18%, #fff8e1 0 6%, rgba(255, 248, 225, 0.4) 7%, transparent 14%),
+    linear-gradient(180deg, #2b2058 0%, #4a3a8a 55%, #3a5a9a 56%, #22305e 100%);
+}
+
+.floatingLantern {
+  display: block;
+  width: min(46%, 170px);
+  animation: bob 4s ease-in-out infinite, appear 0.5s ease;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0.3;
+    scale: 0.85;
+  }
+}
+
+.lanternArt {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 18px var(--glow));
+}
+
+.lanternNote {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 250, 243, 0.92);
+  color: #3b2c74;
+  font-weight: 700;
+  transform: translateX(-50%);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.controlsColumn {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.textLabel {
+  display: grid;
+  gap: 4px;
+  font-weight: 800;
+  color: #4b3596;
+}
+
+/* ── The Keepsake Cabinet ────────────────────────────────────────────── */
+.cabinet {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px 16px 10px 10px;
+  background: linear-gradient(180deg, #5a3a28, #3c2618);
+  box-shadow: inset 0 0 0 3px #8a5e3c, 0 10px 24px rgba(40, 20, 10, 0.3);
+  transition: box-shadow 0.8s ease;
+}
+
+.cabinet[data-done="true"] {
+  box-shadow: inset 0 0 0 3px #e9c46a, 0 0 30px rgba(255, 214, 120, 0.85);
+}
+
+.compartment {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-height: 96px;
+  padding: 10px 6px;
+  border: 2px solid #8a5e3c;
+  border-radius: 10px;
+  background: #2a1a10;
+  color: #fff3dc;
+  font: 700 0.85rem var(--font-body);
+  cursor: pointer;
+  transition: background 0.4s ease, transform 0.3s ease;
+}
+
+.compartment[data-open="true"] {
+  background: radial-gradient(circle at 50% 35%, #ffe6b0, #b5835a 70%);
+  color: #3c2618;
+}
+
+.compartment[aria-pressed="true"] {
+  transform: translateY(-4px);
+  border-color: #ffe08a;
+  box-shadow: 0 0 16px rgba(255, 224, 138, 0.8);
+}
+
+.compartment[data-matched="true"] {
+  border-color: #ffe08a;
+  background: radial-gradient(circle at 50% 35%, #fff6d0, #f0c35a 75%);
+  cursor: default;
+}
+
+.compartmentInner {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.compartmentLabel {
+  text-align: center;
+}
+
+.clue {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fffaf3;
+  border-left: 4px solid #c9a2f0;
+}
+
+.memoryChoices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.memoryChoice {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 2px dashed #b9a7e6;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 700 0.95rem var(--font-body);
+  cursor: pointer;
+}
+
+.memoryChoice[data-matched="true"] {
+  border-style: solid;
+  border-color: #e9c46a;
+  background: #fff6dc;
+  cursor: default;
+}
+
+.progress {
+  margin: 0;
+  font-weight: 800;
+  color: #4b3596;
+}
+
+@media (max-width: 900px) {
+  .studioLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .lake {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cabinet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .memoryChoices {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatingLantern {
+    animation: none;
+  }
+
+  .compartment,
+  .cabinet {
+    transition: none;
+  }
+}

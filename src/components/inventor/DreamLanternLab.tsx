@@ -16,7 +16,7 @@ import styles from "./InventorProjects.module.css";
 
 const SHAPE_PATH: Record<LanternShape, string> = {
   star: "M50 14 L60.6 38 L86 39 L66 55 L73 80 L50 66 L27 80 L34 55 L14 39 L39.4 38 Z",
-  moon: "M62 16 A34 34 0 1 0 62 84 A27 27 0 1 1 62 16 Z",
+  moon: "M62 16 A34 34 0 1 0 62 84 A22 34 0 1 1 62 16 Z",
   crystal: "M50 12 L74 34 L66 78 L34 78 L26 34 Z M26 34 L74 34 M50 12 L42 34 L50 78 L58 34 Z",
 };
 

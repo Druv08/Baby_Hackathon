@@ -173,8 +173,9 @@ export const LUNA_PROFILE: CharacterProfile = {
 };
 
 /**
- * Luna Maria's three creations. Proposed until each playable module exists;
- * a project only becomes `live` once its interaction genuinely works.
+ * Luna Maria's three creations — each a small playable experience. The
+ * Moonlit Memory Book is a themed view of the site's one shared, moderated
+ * Memory Book (same API and table), not a separate store.
  */
 export const LUNA_PROJECTS: PortfolioProject[] = [
   {
@@ -184,8 +185,8 @@ export const LUNA_PROJECTS: PortfolioProject[] = [
       "A magical memory book where visitors can share their favorite moments from Maria’s world and discover little messages left by others.",
     image: "/projects/luna/moonlit-memory-book.png",
     interactionId: "moonlit-memory-book",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "memory-lantern-studio",
@@ -193,8 +194,8 @@ export const LUNA_PROJECTS: PortfolioProject[] = [
     description: "Design a beautiful magical lantern to hold a little memory of your own.",
     image: "/projects/luna/memory-lantern-studio.png",
     interactionId: "memory-lantern-studio",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "keepsake-cabinet",
@@ -203,7 +204,7 @@ export const LUNA_PROJECTS: PortfolioProject[] = [
       "Explore Luna Maria’s magical cabinet of treasured objects and discover the wonderful memories hidden inside them.",
     image: "/projects/luna/keepsake-cabinet.png",
     interactionId: "keepsake-cabinet",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
 ];

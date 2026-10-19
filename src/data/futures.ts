@@ -108,7 +108,7 @@ export const FUTURES: FuturePath[] = [
     characterId: 9,
     heroImage: "/heroes/luna.png",
     storyStatus: "ready",
-    portfolioStatus: "pending",
+    portfolioStatus: "ready",
     storyIntro: LUNA_STORY_INTRO,
     scenes: LUNA_SCENES,
     profile: LUNA_PROFILE,

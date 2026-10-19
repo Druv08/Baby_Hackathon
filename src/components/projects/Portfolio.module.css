@@ -536,3 +536,79 @@
   border-color: #a9c98a;
   background: rgba(255, 252, 244, 0.95);
 }
+
+/* ── Luna: a magical celestial journal ────────────────────────────── */
+.portfolio[data-world="luna"] .head,
+.creations[data-world="luna"] .head {
+  background: rgba(30, 24, 66, 0.88);
+  color: #ece6ff;
+}
+
+.portfolio[data-world="luna"] .head h2,
+.creations[data-world="luna"] .head h2 {
+  color: #fdf8ff;
+  text-shadow: 0 0 18px rgba(205, 188, 255, 0.8);
+}
+
+.portfolio[data-world="luna"] .head :global(.eyebrow),
+.creations[data-world="luna"] .head :global(.eyebrow) {
+  color: #ffe08a;
+}
+
+/* Starry journal pages with a golden moon in the corner. */
+.portfolio[data-world="luna"] .journal {
+  position: relative;
+  background:
+    radial-gradient(circle at 96% 6%, #fff1c2 0 2.4%, rgba(255, 241, 194, 0.5) 2.6%, transparent 7%),
+    radial-gradient(circle at 0 100%, rgba(205, 188, 255, 0.45), transparent 25%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(155, 130, 230, 0.12) 31px 32px),
+    #fffaf3;
+  border-color: #cdbcff;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(205, 188, 255, 0.25);
+}
+
+.portfolio[data-world="luna"] .journal::after {
+  content: "✦ ✧ ✦";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  color: rgba(201, 162, 74, 0.7);
+  letter-spacing: 0.3em;
+}
+
+.portfolio[data-world="luna"] .portrait {
+  box-shadow: 0 0 0 3px #b9a7e6, 0 0 30px rgba(255, 214, 140, 0.55);
+}
+
+.portfolio[data-world="luna"] .facts div {
+  border-bottom-color: #ddd2fb;
+}
+
+.portfolio[data-world="luna"] .facts dt,
+.portfolio[data-world="luna"] .page h3,
+.creations[data-world="luna"] .card h3,
+.creations[data-world="luna"] .playTitle {
+  color: #4b3596;
+}
+
+.portfolio[data-world="luna"] .tagline {
+  color: #7b5cd6;
+}
+
+.portfolio[data-world="luna"] .chips li {
+  background: #ece6ff;
+}
+
+.portfolio[data-world="luna"] .motto {
+  background: linear-gradient(135deg, #ece6ff, #fff1d6);
+  color: #4b3596;
+}
+
+.creations[data-world="luna"] .card {
+  border: 2px solid #ece6ff;
+}
+
+.creations[data-world="luna"] .playground {
+  border-color: #b9a7e6;
+  background: rgba(253, 251, 255, 0.95);
+}

@@ -9,6 +9,9 @@ import { DreamDeliveryMap } from "@/components/forest/DreamDeliveryMap";
 import { ForestFieldGuide } from "@/components/forest/ForestFieldGuide";
 import { SignpostThumbnail, SignpostWorkshop } from "@/components/forest/SignpostWorkshop";
 import { DreamLanternLab } from "@/components/inventor/DreamLanternLab";
+import { KeepsakeCabinet } from "@/components/luna/KeepsakeCabinet";
+import { MemoryLanternStudio } from "@/components/luna/MemoryLanternStudio";
+import { MoonlitMemoryBook } from "@/components/luna/MoonlitMemoryBook";
 import { LittleHelperMachines } from "@/components/inventor/LittleHelperMachines";
 import { StarWorkshop } from "@/components/inventor/StarWorkshop";
 import { CloudPostcards } from "@/components/cloud/CloudPostcards";
@@ -48,6 +51,10 @@ const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
   "dream-delivery-map": DreamDeliveryMap,
   "forest-friends-field-guide": ForestFieldGuide,
   "whispering-signpost-workshop": SignpostWorkshop,
+  // Luna Maria
+  "moonlit-memory-book": MoonlitMemoryBook,
+  "memory-lantern-studio": MemoryLanternStudio,
+  "keepsake-cabinet": KeepsakeCabinet,
 };
 
 /**
