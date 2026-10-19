@@ -13,6 +13,15 @@ export default function Home() {
   return (
     <>
       <section className={styles.hero} aria-labelledby="hero-title">
+        <Image
+          src="/heroes/maria-background.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.heroBackground}
+        />
+        <div className={styles.heroVeil} aria-hidden="true" />
         <Sparkles />
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.copy}>
