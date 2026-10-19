@@ -6,6 +6,7 @@ import { FREQUENCIES, type Instrument, type Note } from "@/lib/projects/melody";
 // One optional sound setting shared by all Melody activities. No extra storage.
 let sound = false;
 const listeners = new Set<() => void>();
+const stopPlayers = new Set<() => void>();
 function subscribe(listener: () => void) { listeners.add(listener); return () => { listeners.delete(listener); }; }
 export function useMelodyAudio() {
   const enabled = useSyncExternalStore(subscribe, () => sound, () => false);
@@ -25,6 +26,7 @@ export function useMelodyAudio() {
   }, []);
   const tone = useCallback(async (note: Note, instrument: Instrument = "Soft piano") => {
     if (!sound) return;
+    stopPlayers.forEach(stopOther => { if (stopOther !== stop) stopOther(); });
     const ticket = generation.current;
     try {
       const ctx = context.current ?? (context.current = new AudioContext());
@@ -45,7 +47,7 @@ export function useMelodyAudio() {
       oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); voices.current = voices.current.filter(n => n !== oscillator); };
       voices.current.push(oscillator);
     } catch { setError("Sound is unavailable in this browser. You can still follow the glowing notes."); }
-  }, []);
+  }, [stop]);
   const play = useCallback((notes: readonly Note[], instrument: Instrument = "Soft piano", beat = 500, onStep?: (step: number) => void, onEnd?: () => void) => {
     stop();
     // Start/resume inside the user gesture, before any timers.
@@ -57,6 +59,7 @@ export function useMelodyAudio() {
     timers.current.push(setTimeout(() => { stop(); onEnd?.(); }, notes.length * beat));
   }, [stop, tone]);
   useEffect(() => {
+    stopPlayers.add(stop);
     const silence = () => { if (!sound) stop(); };
     listeners.add(silence);
     const hide = () => { if (document.hidden) stop(); };
@@ -64,7 +67,7 @@ export function useMelodyAudio() {
     const observer = typeof IntersectionObserver !== "undefined" ? new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) stop(); }) : undefined;
     if (region.current) observer?.observe(region.current);
     return () => {
-      listeners.delete(silence); document.removeEventListener("visibilitychange", hide); observer?.disconnect(); stop();
+      stopPlayers.delete(stop); listeners.delete(silence); document.removeEventListener("visibilitychange", hide); observer?.disconnect(); stop();
       const ctx = context.current; context.current = null; if (ctx && ctx.state !== "closed") void ctx.close();
     };
   }, [stop]);

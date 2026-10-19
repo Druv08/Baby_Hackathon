@@ -701,3 +701,12 @@
     animation: none;
   }
 }
+.previewNotice {
+  margin: 1rem var(--gutter);
+  padding: 1rem 1.25rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--lavender);
+  border-radius: var(--radius-sm);
+  line-height: 1.6;
+}

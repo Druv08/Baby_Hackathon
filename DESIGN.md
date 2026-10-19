@@ -33,5 +33,7 @@ Reuse panel radii and pill buttons.
 ## Components
 Portfolio owns journals and projects; SceneInteraction owns optional story activities; the journey store owns discovery, completion and secrets. A shared Melody audio hook owns optional sound and cancellable playback. All activities work silently and by keyboard. Stop audio on mute, reset, navigation, document hiding and leaving a project viewport.
 
+Native HTML select owns the small note, instrument and difficulty lists. Operating-system popup appearance and standard keyboard behavior are intentional. No custom listbox or application-owned menu is needed for these short lists.
+
 ## Do's and Don'ts
 Keep canonical designs unchanged. Only scene 5 reveals Melody's outfit. Report mismatched artwork and keep incomplete content draft. Respect reduced motion; never duplicate progress storage.

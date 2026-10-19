@@ -1,3 +1,4 @@
+import { GoldenNote } from "@/components/melody/GoldenNote";
 import { MelodyLayer, MelodySceneInteraction } from "@/components/melody/MelodySceneInteractions";
 import Image from "next/image";
 import Link from "next/link";
@@ -63,7 +64,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
       <AmbientLayer slug={view.slug} />
 
       <div className={styles.content}>
-      {preview && <p className="container" role="status">Melody story preview ? artwork for scenes 2 and 3, Rhythm Garden and Moonlight Music Box is awaiting correction. Supplied illustrations are shown for review.</p>}
+      {preview && <aside className={styles.previewNotice} role="status"><strong>Melody Path preview</strong> · Artwork for scenes 2 and 3, Rhythm Garden and Moonlight Music Box is awaiting correction. Supplied illustrations are shown for review.</aside>}
       {/* ── Introduction ─────────────────────────────────────────────── */}
       <section className={styles.intro} aria-labelledby="story-title">
         <div className={`container ${styles.introInner}`}>
@@ -256,6 +257,7 @@ function OriginScene({
               sizes="(max-width: 900px) 94vw, 60vw"
             />
           )}
+          {scene.interactionId === "melody-chime" && <GoldenNote />}
           {!scene.interactionId?.startsWith("melody-") && <SceneInteraction id={scene.interactionId} />}
           {secret?.spot.kind === "seed" && (
             <HiddenSecret futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
@@ -283,6 +285,11 @@ function OriginScene({
 
 /** Descriptions of each illustration for screen readers. */
 const SCENE_ALT: Record<string, string> = {
+  "/stories/melody/scene-1.png": "Maria in her pink floral scarf sits beside a sad little bunny on a lantern-lit village street beneath the moon.",
+  "/stories/melody/scene-2.png": "Maria in her pink floral scarf explores a moonlit village with bridges, waterfalls and golden lanterns. Preview artwork awaiting the guitar discovery scene.",
+  "/stories/melody/scene-3.png": "Maria in her pink floral scarf thinks beside a guitar beneath a sleeping child's window. Preview artwork awaiting the scene with the bunny.",
+  "/stories/melody/scene-4.png": "Maria in her pink floral scarf plays a little guitar while golden notes drift through the village and animals gather around her.",
+  "/stories/melody/scene-5.png": "Melody Maria in her lavender floral bonnet and lace dress plays her decorated guitar for the villagers beneath the moon.",
   "/stories/blossom/scene-1.png":
     "Maria, in her pink floral scarf, looks worried as she gently touches a wilted flower in a forgotten garden.",
   "/stories/blossom/scene-2.png": "Maria waters a newly planted seed with a little watering can among drooping flowers.",

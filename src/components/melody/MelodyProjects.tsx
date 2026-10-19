@@ -50,7 +50,7 @@ export function RhythmGarden() {
       if (result === "wrong") { setPhase("wrong"); setMessage("That flower was different. Replay the same sequence and try again."); }
       else if (result === "complete") { setPhase("won"); setMessage("The garden blooms! Start the next round for a longer melody."); }
       else setMessage(`${next.length} of ${sequence.length} flowers matched.`);
-    }}><span className={styles.flower} aria-hidden="true">✿</span>{flower} · {NOTES[i]}</button>)}</div>
+    }}><span key={`${i}-${audio.active}`} className={`${styles.flower} ${phase === "watch" && sequence[audio.active] === i ? styles.pulse : ""}`} aria-hidden="true">✿</span>{flower} · {NOTES[i]}</button>)}</div>
     <div className={styles.toolbar}>
       <button type="button" disabled={phase === "watch" || phase === "answer"} onClick={() => { const nextRound = phase === "won" ? round + 1 : round; setRound(nextRound); const pattern = makeFlowerSequence(Math.min(12, difficulty + nextRound + 1)); setSequence(pattern); show(pattern); }}>{phase === "won" ? "Next round" : "Start round"}</button>
       <button type="button" disabled={!sequence.length} onClick={() => show(sequence)}>Replay sequence</button>

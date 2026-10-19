@@ -1,0 +1,191 @@
+﻿{
+  "width": 390,
+  "results": [
+    {
+      "name": "preview entry from existing hero",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "five story scenes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "draft disclosure",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "all sound starts off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "background remains fixed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 1 clear of sticky navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 1 artwork loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 2 clear of sticky navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 2 artwork loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 3 clear of sticky navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 3 artwork loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 4 clear of sticky navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 4 artwork loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 5 clear of sticky navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "scene 5 artwork loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "sequencer starts with selected note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "sequencer stops",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "actual selected frequency plays",
+      "ok": true,
+      "detail": "[440]"
+    },
+    {
+      "name": "music box timbre uses higher octave",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "play works with keyboard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mute stops playback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "leaving project stops playback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "reset restores first note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "garden visual sequence shown",
+      "ok": true,
+      "detail": "3,0"
+    },
+    {
+      "name": "garden recognizes correct sequence",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "garden replay permits answers",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "garden wrong choice feedback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "garden reset",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "music box live preview",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "music box selected melody",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "closing stops melody",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "box reset",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "one canonical secret",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "completion stored independently",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "progress survives reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion disables floating notes",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "problems": []
+}

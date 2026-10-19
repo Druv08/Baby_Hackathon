@@ -13,6 +13,8 @@
 .flowers button { min-height: 85px; padding: .4rem; border-color: var(--flower); }
 .flowers [data-active="true"] { background: var(--flower); transform: translateY(-4px); }
 .flower { display: block; font-size: 2rem; }
+.pulse { animation: flowerPulse .65s ease-out; }
+@keyframes flowerPulse { from { opacity: .3; transform: scale(.75); } 50% { opacity: 1; transform: scale(1.2); } to { opacity: .5; transform: scale(1); } }
 .preview { min-height: 200px; display: grid; place-items: center; background: var(--night); border-radius: var(--radius); margin-block: 1rem; }
 .box { width: min(220px,80%); min-height: 130px; display: grid; place-items: center; background: var(--light); color: var(--night); border: 5px double var(--gold); border-radius: 45% 45% 20% 20%; box-shadow: 0 0 30px var(--light); text-align: center; padding: 1rem; transition: border-radius .3s; }
 .box[data-shape="Star Box"] { border-radius: 12% 45%; }
