@@ -110,6 +110,16 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   // Forest project artwork.
   "/projects/forest/dream-delivery-map.png",
   "/projects/forest/forest-friends-field-guide.png",
+  // Melody supplied images; unrelated project art retains descriptive names.
+  "/stories/melody/scene-1.png",
+  "/stories/melody/scene-2.png",
+  "/stories/melody/scene-3.png",
+  "/stories/melody/scene-4.png",
+  "/stories/melody/scene-5.png",
+  "/stories/melody/background.png",
+  "/projects/melody/lullaby-lab.png",
+  "/projects/melody/supplied-performance.png",
+  "/projects/melody/supplied-dream-songbook.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {
