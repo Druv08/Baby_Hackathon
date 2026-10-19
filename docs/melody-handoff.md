@@ -1,5 +1,7 @@
 # Melody Maria implementation report
 
+Project-picture update: The user selected the supplied songbook image for Rhythm Garden and the guitar performance image for Moonlight Music Box. These now replace the two SVG card previews. Only the story scene artwork corrections remain pending; the original implementation report below records the earlier review state.
+
 Melody's story, portfolio and three musical activities are implemented on `feature/forest-story`. The experience remains an explicitly labeled artwork preview because the supplied files do not fully match the brief. The normal `/futures/melody/story` route stays unavailable until those gaps are resolved; other futures retain their readiness rules.
 
 Open `/futures/melody`, then **Preview Melody Path (artwork in progress)**, or open `/futures/melody/preview` directly. Preview metadata disables indexing. To publish the final story, supply the missing illustrations and pass the existing readiness validation before marking the content ready.

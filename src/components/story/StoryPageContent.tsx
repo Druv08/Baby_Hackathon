@@ -64,7 +64,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
       <AmbientLayer slug={view.slug} />
 
       <div className={styles.content}>
-      {preview && <aside className={styles.previewNotice} role="status"><strong>Melody Path preview</strong> · Artwork for scenes 2 and 3, Rhythm Garden and Moonlight Music Box is awaiting correction. Supplied illustrations are shown for review.</aside>}
+      {preview && <aside className={styles.previewNotice} role="status"><strong>Melody Path preview</strong> · Artwork for scenes 2 and 3 is awaiting correction. Supplied illustrations are shown for review.</aside>}
       {/* ── Introduction ─────────────────────────────────────────────── */}
       <section className={styles.intro} aria-labelledby="story-title">
         <div className={`container ${styles.introInner}`}>

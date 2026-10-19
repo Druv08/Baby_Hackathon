@@ -1,5 +1,7 @@
 # Melody artwork review
 
+Update: The user explicitly selected the supplied songbook picture for Rhythm Garden and the supplied guitar performance picture for Moonlight Music Box. Both project cards now display those original pictures in place of the SVG previews. The initial review below records the original brief comparison; the project-picture selections supersede its missing-project-art recommendation.
+
 All nine images were visually inspected and copied unmodified. Original files remain in Folder 8. Canonical characters and hero artwork are unchanged.
 
 | Source | Destination |

@@ -23,10 +23,14 @@ describe("Melody content and artwork readiness", () => {
     }
     expect(isAssetVerified("/stories/melody/background.png")).toBe(true);
   });
-  it("registers three functioning creations without mislabeling unrelated artwork", () => {
+  it("registers three functioning creations with the supplied project pictures", () => {
     expect(MELODY_PROJECTS.map(p => p.id)).toEqual(["lullaby-lab", "rhythm-garden", "moonlight-music-box"]);
     expect(MELODY_PROJECTS.every(p => p.implementation === "live")).toBe(true);
-    expect(MELODY_PROJECTS.map(p => p.image)).toEqual(["/projects/melody/lullaby-lab.png", undefined, undefined]);
+    expect(MELODY_PROJECTS.map(p => p.image)).toEqual([
+      "/projects/melody/lullaby-lab.png",
+      "/projects/melody/supplied-dream-songbook.png",
+      "/projects/melody/supplied-performance.png",
+    ]);
     expect(MELODY_PROFILE.strengths).toContain("Empathy");
     expect(MELODY_PROFILE.motto).toBe("Every heart has a little song waiting to be heard.");
     expect(getFutureBySlug("luna")).toMatchObject({ storyStatus: "pending", portfolioStatus: "pending", scenes: [], projects: [] });
