@@ -96,6 +96,20 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/projects/inventor/star-workshop.png",
   "/projects/inventor/dream-lantern-lab.png",
   "/projects/inventor/little-helper-machines.png",
+
+  // Forest story scenes 1–4 (Normal Maria) and the Whispering Forest world.
+  // Not yet supplied (do not register until the files exist):
+  //   /stories/forest/scene-5.png  (Forest Maria reveal)
+  //   /projects/forest/whispering-signpost-workshop.png
+  "/stories/forest/scene-1.png",
+  "/stories/forest/scene-2.png",
+  "/stories/forest/scene-3.png",
+  "/stories/forest/scene-4.png",
+  "/stories/forest/background.png",
+
+  // Forest project artwork.
+  "/projects/forest/dream-delivery-map.png",
+  "/projects/forest/forest-friends-field-guide.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {

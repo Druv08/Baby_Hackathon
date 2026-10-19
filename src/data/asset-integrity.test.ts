@@ -187,6 +187,48 @@ describe("Inventor artwork", () => {
   });
 });
 
+/** Forest artwork, copied byte-for-byte from Folder 7 after visual inspection. */
+const FOREST_ARTWORK: Record<string, string> = {
+  "/stories/forest/scene-1.png": "2f61fb028835d7c226a5d881fea896f153965bfb9d6692f5b2f74ef171ff97ec",
+  "/stories/forest/scene-2.png": "992eb21287d1a87a00e3f109aca41a026b1fbff7d0f6ff3da3f912ee192b1278",
+  "/stories/forest/scene-3.png": "24dffc187e22ef76f40bdc17a662c02a55a8ddb865c835f43ada7d1a4877bd7a",
+  "/stories/forest/scene-4.png": "e50f8f74a33babe99e9ea0e94fd0e37398b0c11a74998758e9d46e58c06ed410",
+  "/stories/forest/background.png": "263b40c7544411e574454f43431f8c609a8af94f9ee682cb8f4b8060a8658a3b",
+  "/projects/forest/dream-delivery-map.png": "a22956946e3b7d4e96b691b8654bf58c4915ed73e45263c7f96a641394cd0613",
+  "/projects/forest/forest-friends-field-guide.png": "12090806debdfd0adb089917256b43066d429867f82667d0e3017f688ae9ad0d",
+};
+
+describe("Forest artwork", () => {
+  it.each(Object.entries(FOREST_ARTWORK))("%s is the approved file and is registered", (path, hash) => {
+    expect(sha256(path)).toBe(hash);
+    expect(isAssetVerified(path)).toBe(true);
+  });
+
+  it("does not register the two images that were not supplied", () => {
+    expect(isAssetVerified("/stories/forest/scene-5.png")).toBe(false);
+    expect(isAssetVerified("/projects/forest/whispering-signpost-workshop.png")).toBe(false);
+  });
+
+  it("never reuses another world's artwork", () => {
+    const others = new Set([
+      ...Object.values(BLOSSOM_ARTWORK),
+      ...Object.values(STAR_ARTWORK),
+      ...Object.values(CLOUD_ARTWORK),
+      ...Object.values(AQUA_ARTWORK),
+      ...Object.values(INVENTOR_ARTWORK),
+    ]);
+    for (const hash of Object.values(FOREST_ARTWORK)) expect(others.has(hash)).toBe(false);
+  });
+
+  it("Forest Maria keeps her own locked design (7.png)", async () => {
+    const { CHARACTERS } = await import("./characters");
+    const forest = CHARACTERS.find((c) => c.slug === "forest")!;
+    expect(forest.id).toBe(7);
+    expect(forest.characterImage).toBe("/characters/7.png");
+    expect(sha256(forest.characterImage)).toBe(CANONICAL_CHARACTERS["/characters/7.png"]);
+  });
+});
+
 describe("Star / Luna design mapping", () => {
   it("shows Star with the hooded dream-jar design and Luna with the witch hat, without touching the files", async () => {
     const { CHARACTERS } = await import("./characters");
