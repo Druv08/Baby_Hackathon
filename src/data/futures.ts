@@ -82,7 +82,7 @@ export const FUTURES: FuturePath[] = [
     characterId: 7,
     heroImage: "/heroes/forest.png",
     storyStatus: "ready",
-    portfolioStatus: "pending",
+    portfolioStatus: "ready",
     storyIntro: FOREST_STORY_INTRO,
     scenes: FOREST_SCENES,
     profile: FOREST_PROFILE,

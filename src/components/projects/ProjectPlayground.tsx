@@ -4,6 +4,9 @@ import { CoralCareGarden } from "@/components/aqua/CoralCareGarden";
 import { OceanDiscovery } from "@/components/aqua/OceanDiscovery";
 import { TurtlesSafePassage } from "@/components/aqua/TurtlesSafePassage";
 import { CloudMaker } from "@/components/cloud/CloudMaker";
+import { DreamDeliveryMap } from "@/components/forest/DreamDeliveryMap";
+import { ForestFieldGuide } from "@/components/forest/ForestFieldGuide";
+import { SignpostThumbnail, SignpostWorkshop } from "@/components/forest/SignpostWorkshop";
 import { DreamLanternLab } from "@/components/inventor/DreamLanternLab";
 import { LittleHelperMachines } from "@/components/inventor/LittleHelperMachines";
 import { StarWorkshop } from "@/components/inventor/StarWorkshop";
@@ -37,7 +40,24 @@ const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
   "star-workshop": StarWorkshop,
   "dream-lantern-lab": DreamLanternLab,
   "little-helper-machines": LittleHelperMachines,
+  // Forest Maria
+  "dream-delivery-map": DreamDeliveryMap,
+  "forest-friends-field-guide": ForestFieldGuide,
+  "whispering-signpost-workshop": SignpostWorkshop,
 };
+
+/**
+ * Card artwork drawn by a project's own code, used only while its supplied
+ * illustration is missing (a real rendering, never a placeholder emoji).
+ */
+const THUMBNAILS: Record<string, () => React.ReactElement> = {
+  "whispering-signpost-workshop": SignpostThumbnail,
+};
+
+export function ProjectThumbnail({ interactionId }: { interactionId?: string }) {
+  const Thumb = interactionId ? THUMBNAILS[interactionId] : undefined;
+  return Thumb ? <Thumb /> : null;
+}
 
 export function ProjectPlayground({ interactionId }: { interactionId: string }) {
   const Playground = PLAYGROUNDS[interactionId];

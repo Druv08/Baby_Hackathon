@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CHARACTER_THEMES } from "@/data/future-themes";
 import type { FutureView } from "@/lib/future-view";
 import type { CharacterProfile } from "@/types/future";
-import { ProjectPlayground } from "./ProjectPlayground";
+import { ProjectPlayground, ProjectThumbnail } from "./ProjectPlayground";
 import styles from "./Portfolio.module.css";
 
 /** Character sheet and playable creations, shown after a story's reveal. */
@@ -117,6 +117,10 @@ export function Portfolio({ view, profile }: { view: FutureView; profile: Charac
                   {p.verifiedImage ? (
                     // `fill` + cover handles both 16:9 and 4:3 artwork without distortion.
                     <Image src={p.verifiedImage} alt="" fill sizes="(max-width: 900px) 94vw, 380px" />
+                  ) : p.interactionId && p.playable ? (
+                    <span className={styles.cardDrawn} aria-hidden="true">
+                      <ProjectThumbnail interactionId={p.interactionId} />
+                    </span>
                   ) : (
                     <span className={styles.cardFallback} aria-hidden="true">
                       📖

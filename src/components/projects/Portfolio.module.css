@@ -453,3 +453,86 @@
   border-color: #d9a441;
   background: rgba(255, 250, 240, 0.95);
 }
+
+/* Card artwork drawn by the project itself (until its illustration arrives). */
+.cardDrawn {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* ── Forest: a woodland explorer's journal ────────────────────────── */
+.portfolio[data-world="forest"] .head,
+.creations[data-world="forest"] .head {
+  background: rgba(47, 74, 34, 0.88);
+  color: #f6fbef;
+}
+
+.portfolio[data-world="forest"] .head h2,
+.creations[data-world="forest"] .head h2 {
+  color: #fff3d0;
+  text-shadow: 0 0 18px rgba(255, 220, 140, 0.7);
+}
+
+.portfolio[data-world="forest"] .head :global(.eyebrow),
+.creations[data-world="forest"] .head :global(.eyebrow) {
+  color: #cfe6a8;
+}
+
+/* Field-journal pages with a leafy corner. */
+.portfolio[data-world="forest"] .journal {
+  position: relative;
+  background:
+    radial-gradient(circle at 100% 0, rgba(169, 201, 138, 0.5), transparent 20%),
+    radial-gradient(circle at 0 100%, rgba(255, 200, 220, 0.4), transparent 22%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(95, 140, 60, 0.12) 31px 32px),
+    #fffaee;
+  border-color: #a9c98a;
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(169, 201, 138, 0.25);
+}
+
+.portfolio[data-world="forest"] .journal::after {
+  content: "🍃🌸";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.portfolio[data-world="forest"] .portrait {
+  box-shadow: 0 0 0 3px #8fbf5a, 0 0 30px rgba(255, 220, 140, 0.55);
+}
+
+.portfolio[data-world="forest"] .facts div {
+  border-bottom-color: #cfe2b8;
+}
+
+.portfolio[data-world="forest"] .facts dt,
+.portfolio[data-world="forest"] .page h3,
+.creations[data-world="forest"] .card h3,
+.creations[data-world="forest"] .playTitle {
+  color: #3f6b2a;
+}
+
+.portfolio[data-world="forest"] .tagline {
+  color: #6b4a1e;
+}
+
+.portfolio[data-world="forest"] .chips li {
+  background: #e6f1d2;
+}
+
+.portfolio[data-world="forest"] .motto {
+  background: linear-gradient(135deg, #e6f1d2, #ffeef4);
+  color: #3f6b2a;
+}
+
+.creations[data-world="forest"] .card {
+  border: 2px solid #e6f1d2;
+}
+
+.creations[data-world="forest"] .playground {
+  border-color: #a9c98a;
+  background: rgba(255, 252, 244, 0.95);
+}

@@ -167,10 +167,7 @@ export const FOREST_PROFILE: CharacterProfile = {
   motto: "Every journey deserves a little kindness.",
 };
 
-/**
- * Forest Maria's three creations. Proposed until each playable module exists;
- * a project only becomes `live` once its interaction genuinely works.
- */
+/** Forest Maria's three creations — each a small playable experience. */
 export const FOREST_PROJECTS: PortfolioProject[] = [
   {
     id: "dream-delivery-map",
@@ -179,8 +176,8 @@ export const FOREST_PROJECTS: PortfolioProject[] = [
       "A magical map Forest Maria created to help woodland creatures deliver little messages and find safe pathways through the Whispering Forest.",
     image: "/projects/forest/dream-delivery-map.png",
     interactionId: "dream-delivery-map",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "forest-friends-field-guide",
@@ -189,8 +186,8 @@ export const FOREST_PROJECTS: PortfolioProject[] = [
       "An enchanted journal containing the forest creatures Maria met, the places they live, and the paths they love exploring.",
     image: "/projects/forest/forest-friends-field-guide.png",
     interactionId: "forest-friends-field-guide",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
   {
     id: "whispering-signpost-workshop",
@@ -199,7 +196,7 @@ export const FOREST_PROJECTS: PortfolioProject[] = [
       "Create your own magical forest signpost using Forest Maria’s collection of wooden signs, flowers, leaves and woodland decorations.",
     // Artwork not supplied yet (see the note at the top of this file).
     interactionId: "whispering-signpost-workshop",
-    status: "draft",
-    implementation: "proposed",
+    status: "ready",
+    implementation: "live",
   },
 ];
