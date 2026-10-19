@@ -79,6 +79,7 @@ export default async function FuturePage({ params }: Params) {
                   </p>
                 </div>
               )}
+              {view.slug === "melody" && <Link href="/futures/melody/preview" className="btn btn-secondary">Preview Melody Path (artwork in progress)</Link>}
               <a href="#creations" className="btn btn-secondary">
                 Explore Creations <span aria-hidden="true">↓</span>
               </a>
