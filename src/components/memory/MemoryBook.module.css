@@ -417,6 +417,10 @@
   overflow-wrap: anywhere;
 }
 
+.featuredMessage p {
+  margin: 0;
+}
+
 .featuredBy {
   margin: 0;
   font-weight: 700;

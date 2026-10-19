@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { MemoryBook } from "@/components/memory/MemoryBook";
 import { CHARACTER_THEMES } from "@/data/future-themes";
 import { getCharacterById } from "@/lib/content";
-import styles from "./page.module.css";
+import styles from "@/components/memory/MemoryBook.module.css";
 
 export const metadata: Metadata = {
   title: "Memory Book",
@@ -54,6 +55,9 @@ export default function MemoryBookPage() {
           </div>
         </div>
       </section>
+
+      {/* ── B–D. Lake of Memories, leave a memory, featured memory ── */}
+      <MemoryBook />
 
       {/* ── E. Maria's thank you ────────────────────────────────────── */}
       <section className={`section ${styles.thanks}`} aria-labelledby="thanks-title">
