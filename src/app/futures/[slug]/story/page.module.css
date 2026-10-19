@@ -349,3 +349,124 @@
 .world[data-world="cloud"] .revealFrame {
   box-shadow: 0 0 0 3px #9cc8ef, 0 20px 50px rgba(47, 90, 140, 0.25), 0 0 34px rgba(255, 230, 180, 0.35);
 }
+
+/* ── Aqua: the Forgotten Ocean Kingdom ────────────────────────────── */
+.world[data-world="aqua"][data-backdrop="true"] {
+  background: #0d4a6b;
+}
+
+/* A light blue-green veil keeps the reef vivid and deepens toward the floor. */
+.world[data-world="aqua"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(10, 60, 100, 0.08), rgba(10, 60, 100, 0.12) 50%, rgba(8, 40, 70, 0.32));
+}
+
+/* Centre on the palace arches and the sunlit path. */
+.world[data-world="aqua"] .backdropImage {
+  object-position: 50% 45%;
+}
+
+/* Deep-ocean intro card with pearl-white headings. */
+.world[data-world="aqua"] .introCopy,
+.world[data-world="aqua"] .revealHead {
+  background: rgba(10, 48, 82, 0.82);
+  border-color: rgba(125, 220, 235, 0.55);
+}
+
+.world[data-world="aqua"] .introTitle,
+.world[data-world="aqua"] .revealHead h2 {
+  color: #f6fdff;
+  text-shadow: 0 0 22px rgba(110, 230, 245, 0.85);
+}
+
+.world[data-world="aqua"] .introSubtitle,
+.world[data-world="aqua"] .introCopy :global(.eyebrow) {
+  color: #9be7f5;
+}
+
+.world[data-world="aqua"] .introBlurb {
+  color: #e2f5fb;
+}
+
+/* Pearl reading panels with a turquoise edge and a little shell. */
+.world[data-world="aqua"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 100% 0, rgba(155, 231, 245, 0.35), transparent 40%),
+    rgba(250, 254, 255, 0.95);
+  border-color: #9be7f5;
+  box-shadow: var(--shadow-soft), 0 0 30px rgba(95, 208, 230, 0.25);
+}
+
+.world[data-world="aqua"] .panel::after {
+  content: "🐚";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
+.world[data-world="aqua"] .sceneTitle {
+  color: #0e4a6e;
+}
+
+/* Maria's spoken lines glow softly in turquoise. */
+.world[data-world="aqua"] .panel p[class] {
+  border-left-color: #3fc1d9;
+  color: #0e6a85;
+  text-shadow: 0 0 14px rgba(95, 208, 230, 0.35);
+}
+
+/* Turquoise and golden rims, like sunlight through water. */
+.world[data-world="aqua"] .frame,
+.world[data-world="aqua"] .revealFrame {
+  box-shadow: 0 0 0 3px #5fd0e6, 0 20px 50px rgba(5, 40, 70, 0.4), 0 0 40px rgba(255, 224, 150, 0.3);
+}
+
+/* The 4:3 reveal stays within a laptop screen. */
+.world[data-world="aqua"] .revealFrame {
+  max-width: 50rem;
+}
+
+/* Gentle floating, like drifting in calm water. */
+.world[data-world="aqua"] .frame {
+  animation: float 7s ease-in-out infinite;
+}
+
+.world[data-world="aqua"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3.5s;
+}
+
+.world[data-world="aqua"] .introMaria {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Uses translate (not transform) so it combines with the fade-in. */
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+.world[data-world="aqua"] .characterCard {
+  background: linear-gradient(180deg, #ffffff, #dcf6fb);
+}
+
+.world[data-world="aqua"] .cardPortrait {
+  box-shadow: 0 0 0 3px #5fd0e6, 0 0 30px rgba(255, 224, 150, 0.6);
+}
+
+.world[data-world="aqua"] .cardName {
+  color: #0e6a85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="aqua"] .frame,
+  .world[data-world="aqua"] .introMaria {
+    animation: none;
+  }
+}

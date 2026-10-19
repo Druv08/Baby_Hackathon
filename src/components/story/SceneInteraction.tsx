@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { MagicBubble, ReefCleanup, SeaCreatures, TangledNet } from "@/components/aqua/AquaSceneInteractions";
 import { CloudBridge, CloudSteps, WindChimes, WorriedCloud } from "@/components/cloud/CloudSceneInteractions";
 import {
   ConnectDreams,
@@ -50,6 +51,17 @@ export function SceneInteraction({ id }: { id?: string }) {
       return <CloudBridge />;
     case "cloud-reveal":
       return <RevealSparkles variant="clouds" />;
+    // Aqua Maria
+    case "magic-bubble":
+      return <MagicBubble />;
+    case "sea-creatures":
+      return <SeaCreatures />;
+    case "tangled-net":
+      return <TangledNet />;
+    case "reef-cleanup":
+      return <ReefCleanup />;
+    case "aqua-reveal":
+      return <RevealSparkles variant="bubbles" />;
     default:
       return null;
   }
@@ -184,9 +196,10 @@ function BloomFlowers() {
 
 /**
  * Scene 5: soft golden-and-pink petals (golden stars for Star, rising cloud
- * puffs and a brightening sky for Cloud) when the reveal appears.
+ * puffs and a brightening sky for Cloud, rising bubbles in turquoise and
+ * golden light for Aqua) when the reveal appears.
  */
-function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" }) {
+function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" | "bubbles" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {

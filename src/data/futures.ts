@@ -55,8 +55,7 @@ export const FUTURES: FuturePath[] = [
     slug: "aqua",
     characterId: 5,
     heroImage: "/heroes/aqua.png",
-    // Draft until the story page is live and verified.
-    storyStatus: "draft",
+    storyStatus: "ready",
     portfolioStatus: "pending",
     storyIntro: AQUA_STORY_INTRO,
     scenes: AQUA_SCENES,

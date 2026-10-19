@@ -377,3 +377,60 @@
     transition: none;
   }
 }
+
+/* Aqua reveal: turquoise and golden light, with bubbles rising. */
+.sparkleLayer[data-variant="bubbles"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 45% 35%, rgba(120, 235, 240, 0.32), rgba(120, 235, 240, 0) 70%),
+    radial-gradient(ellipse 40% 30% at 55% 10%, rgba(255, 224, 150, 0.4), rgba(255, 224, 150, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.sparkleLayer[data-variant="bubbles"][data-shown="true"]::before {
+  opacity: 1;
+}
+
+.sparkleLayer[data-variant="bubbles"] span {
+  top: auto;
+  bottom: -24px;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.85), rgba(160, 235, 245, 0.15) 60%);
+  box-shadow: 0 0 8px rgba(160, 235, 245, 0.7);
+}
+
+.sparkleLayer[data-variant="bubbles"][data-shown="true"] span {
+  animation: bubbleUp 5.5s ease-in infinite;
+}
+
+@keyframes bubbleUp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(16px, -340px) scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkleLayer[data-variant="bubbles"][data-shown="true"] span {
+    animation: none;
+    opacity: 0.85;
+    bottom: 8%;
+  }
+
+  .sparkleLayer[data-variant="bubbles"]::before {
+    transition: none;
+  }
+}

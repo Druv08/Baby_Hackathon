@@ -68,6 +68,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#dff5f5",
     accentGlow: "rgba(90, 200, 210, 0.5)",
     portraitAlt: "Aqua Maria in a sea-blue seashell bonnet and pearls, hugging a baby sea turtle.",
+    journalTitle: "Ocean Journal",
+    workshop: "ocean workshop",
+    creationsIcon: "🐚",
   },
   inventor: {
     label: "Inventor",

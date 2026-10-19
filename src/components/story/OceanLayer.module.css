@@ -1,0 +1,125 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Slow, soft water movement over the whole scene. */
+.shimmer {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(ellipse 30% 12% at 30% 20%, rgba(220, 250, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 25% 10% at 70% 35%, rgba(220, 250, 255, 0.14), transparent 70%),
+    radial-gradient(ellipse 35% 14% at 50% 60%, rgba(220, 250, 255, 0.1), transparent 70%);
+  animation: water 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes water {
+  from {
+    transform: translate(-3%, -1%) scale(1);
+  }
+  to {
+    transform: translate(3%, 2%) scale(1.05);
+  }
+}
+
+/* Sunlight rays from the surface, swaying gently. */
+.ray {
+  position: absolute;
+  top: -10%;
+  height: 90%;
+  background: linear-gradient(180deg, rgba(255, 250, 220, 0.35), rgba(255, 250, 220, 0));
+  transform-origin: 50% 0;
+  transform: rotate(12deg);
+  filter: blur(6px);
+  animation: sway 9s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(8deg);
+    opacity: 0.55;
+  }
+  to {
+    transform: rotate(16deg);
+    opacity: 1;
+  }
+}
+
+.bubble {
+  position: absolute;
+  bottom: -30px;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.75), rgba(180, 240, 255, 0.12) 60%);
+  animation: rise linear infinite;
+  will-change: transform;
+}
+
+@keyframes rise {
+  from {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(12px, -55vh);
+  }
+  to {
+    transform: translate(-8px, -112vh);
+    opacity: 0.6;
+  }
+}
+
+.jelly {
+  position: absolute;
+  width: 46px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 190, 240, 0.7));
+  animation: drift ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes drift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(40px, -18vh);
+  }
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, rgba(255, 240, 210, 0) 70%);
+  box-shadow: 0 0 8px rgba(255, 240, 210, 0.9);
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    display: none;
+  }
+}

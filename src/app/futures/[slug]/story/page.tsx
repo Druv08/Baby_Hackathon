@@ -13,6 +13,7 @@ import { HiddenSecret } from "@/components/story/GoldenSeed";
 import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
 import { StarfieldLayer } from "@/components/story/StarfieldLayer";
+import { OceanLayer } from "@/components/story/OceanLayer";
 import { SkyLayer } from "@/components/story/SkyLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
@@ -52,6 +53,7 @@ export default async function StoryPage({ params }: Params) {
   const intro = future.storyIntro;
   const theme = CHARACTER_THEMES[view.slug];
   const { origin, reveal } = view.story;
+  const size = sceneSize(view.slug);
   // Story-world landscape, by convention, only when the file was supplied.
   const backdrop = `/stories/${view.slug}/background.png`;
   const hasBackdrop = isAssetVerified(backdrop);
@@ -109,6 +111,7 @@ export default async function StoryPage({ params }: Params) {
         <OriginScene
           key={scene.id}
           scene={scene}
+          size={size}
           secret={SECRET_SPOTS[view.slug]?.sceneId === scene.id ? { slug: view.slug, spot: SECRET_SPOTS[view.slug]! } : undefined}
         />
       ))}
@@ -130,8 +133,8 @@ export default async function StoryPage({ params }: Params) {
               <Image
                 src={reveal.verifiedImage}
                 alt={SCENE_ALT[reveal.image ?? ""] ?? reveal.title}
-                width={1672}
-                height={941}
+                width={size.width}
+                height={size.height}
                 sizes="(max-width: 1100px) 94vw, 1100px"
               />
             )}
@@ -189,6 +192,7 @@ export default async function StoryPage({ params }: Params) {
 function AmbientLayer({ slug }: { slug: string }) {
   if (slug === "star") return <StarfieldLayer />;
   if (slug === "cloud") return <SkyLayer />;
+  if (slug === "aqua") return <OceanLayer />;
   return <PetalLayer />;
 }
 
@@ -207,11 +211,25 @@ const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
   cloud: { kind: "rainbow-cloud", sceneId: 3, left: "91%", top: "63%" },
 };
 
+/**
+ * Pixel size of a world's scene illustrations. Most worlds are 16:9; Aqua's
+ * are 4:3. Overlays on each world's art use the same ratio.
+ */
+const SCENE_SIZES: Partial<Record<string, { width: number; height: number }>> = {
+  aqua: { width: 1448, height: 1086 },
+};
+
+function sceneSize(slug: string) {
+  return SCENE_SIZES[slug] ?? { width: 1672, height: 941 };
+}
+
 function OriginScene({
   scene,
+  size,
   secret,
 }: {
   scene: SceneView;
+  size: { width: number; height: number };
   secret?: { slug: string; spot: SecretSpot };
 }) {
   return (
@@ -228,8 +246,8 @@ function OriginScene({
             <Image
               src={scene.verifiedImage}
               alt={SCENE_ALT[scene.image ?? ""] ?? scene.title}
-              width={1672}
-              height={941}
+              width={size.width}
+              height={size.height}
               sizes="(max-width: 900px) 94vw, 60vw"
             />
           )}
@@ -279,4 +297,14 @@ const SCENE_ALT: Record<string, string> = {
     "Maria happily guides glowing cloud platforms into a bridge between two floating islands as golden wind chimes ring.",
   "/stories/cloud/scene-5.png":
     "Cloud Maria in her light-blue aviator hood, brass goggles and cloud-trimmed scarf, holding up a cloud jar as she strides across a golden cloud bridge.",
+  "/stories/aqua/scene-1.png":
+    "Maria, in her pink floral scarf, floats inside a shimmering magic bubble during an underwater storm, reaching toward a frightened baby sea turtle.",
+  "/stories/aqua/scene-2.png":
+    "Maria swims beside the little turtle past glowing jellyfish toward an underwater kingdom, where pale coral is tangled in old fishing nets.",
+  "/stories/aqua/scene-3.png":
+    "Maria carefully studies a fishing net caught around pale, damaged coral while the worried little turtle waits beside her.",
+  "/stories/aqua/scene-4.png":
+    "Maria happily lifts the tangled net away from the reef as the little turtle reaches for her paw and colorful fish return.",
+  "/stories/aqua/scene-5.png":
+    "Aqua Maria in her turquoise ocean hood and dress decorated with shells, pearls and starfish, hugging the little turtle in the glowing underwater kingdom.",
 };
