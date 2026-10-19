@@ -19,6 +19,7 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/characters/9.png",
 
   // Hero / landing screens.
+  "/heroes/maria-background.png",
   "/heroes/blossom-story-cover.png",
   "/heroes/blossom.png",
   "/heroes/star.png",
@@ -120,6 +121,20 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/projects/melody/lullaby-lab.png",
   "/projects/melody/supplied-performance.png",
   "/projects/melody/supplied-dream-songbook.png",
+
+  // Luna story scenes 1–4 (Normal Maria) and the Moonlit Village of Memories.
+  // Not yet supplied (do not register until the file exists):
+  //   /stories/luna/scene-5.png  (Luna Maria reveal)
+  "/stories/luna/scene-1.png",
+  "/stories/luna/scene-2.png",
+  "/stories/luna/scene-3.png",
+  "/stories/luna/scene-4.png",
+  "/stories/luna/background.png",
+
+  // Luna project artwork (1448×1086).
+  "/projects/luna/moonlit-memory-book.png",
+  "/projects/luna/memory-lantern-studio.png",
+  "/projects/luna/keepsake-cabinet.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {

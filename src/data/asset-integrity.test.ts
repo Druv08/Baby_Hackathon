@@ -229,6 +229,40 @@ describe("Forest artwork", () => {
   });
 });
 
+/** Luna artwork, copied byte-for-byte from Folder 9 after visual inspection. */
+const LUNA_ARTWORK: Record<string, string> = {
+  "/stories/luna/scene-1.png": "cf1c9d1c4eeb2ba146840219e23eacd8b2197135ec5c00b2ae2b6d8ed73ddaad",
+  "/stories/luna/scene-2.png": "3f274a3d3cd9ded33f3e87a0431b785c0b20ce5644063e940649edbd327197f5",
+  "/stories/luna/scene-3.png": "88768f9e0bf98bef3fba84a1f1414118b3cb7ef0f582f339138c1d0c4afb58b1",
+  "/stories/luna/scene-4.png": "c87a59be8380bc663e1e5d869d01d21228e3b7b595f9ce3378c32b09092a9ce3",
+  "/stories/luna/background.png": "66a708f2b2be8af086f7638f673bb815da11ea9b9270687c5d573dbf1b78e641",
+  "/projects/luna/moonlit-memory-book.png": "2f5a11a1cdc0ac83154fcbd39724d3577b12dc129df6ab4bb244f6ca747cce5c",
+  "/projects/luna/memory-lantern-studio.png": "4f192200a0e43f805ea52c28d08adbfecf2492fdc083d68a16849aa731b946c3",
+  "/projects/luna/keepsake-cabinet.png": "8afdf132b83df9ff79af7d1467903c825fa4546d77c67dc0b3675d9bb0ad30dd",
+};
+
+describe("Luna artwork", () => {
+  it.each(Object.entries(LUNA_ARTWORK))("%s is the approved file and is registered", (path, hash) => {
+    expect(sha256(path)).toBe(hash);
+    expect(isAssetVerified(path)).toBe(true);
+  });
+
+  it("does not register the scene 5 illustration that was not supplied", () => {
+    expect(isAssetVerified("/stories/luna/scene-5.png")).toBe(false);
+  });
+
+  it("never reuses Star's (or any other world's) artwork", () => {
+    const others = new Set([
+      ...Object.values(BLOSSOM_ARTWORK),
+      ...Object.values(STAR_ARTWORK),
+      ...Object.values(CLOUD_ARTWORK),
+      ...Object.values(AQUA_ARTWORK),
+      ...Object.values(INVENTOR_ARTWORK),
+    ]);
+    for (const hash of Object.values(LUNA_ARTWORK)) expect(others.has(hash)).toBe(false);
+  });
+});
+
 describe("Star / Luna design mapping", () => {
   it("shows Star with the hooded dream-jar design and Luna with the witch hat, without touching the files", async () => {
     const { CHARACTERS } = await import("./characters");
