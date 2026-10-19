@@ -293,3 +293,13 @@ Aqua's scene and project artwork is 4:3 (1448 × 1086) rather than 16:9; the
 story page reads each world's illustration size from `SCENE_SIZES` in
 `src/app/futures/[slug]/story/page.tsx`, so overlays line up with the art.
 The pearl uses Aqua's existing secret id, `hidden-pearl`.
+
+### Inventor (fifth complete future)
+
+Inventor follows the same pattern (`src/data/stories/inventor.ts`), with its
+scene interactions, Star Workshop, Dream Lantern Lab, Little Helper Machines
+and the Golden Cog secret in `src/components/inventor/` (gears drawn by the
+shared `GearSvg.tsx`), rules in `src/lib/projects/inventor-story.ts` and
+`inventor-projects.ts`, and the workshop atmosphere in
+`src/components/story/WorkshopLayer.tsx`. The Golden Cog uses Inventor's
+existing secret id, `secret-gear`.

@@ -39,7 +39,7 @@ describe("secret registry", () => {
       star: "Hidden Constellation",
       cloud: "Secret Rainbow Cloud",
       aqua: "Secret Ocean Pearl",
-      inventor: "Secret Gear",
+      inventor: "Golden Cog",
       forest: "Hidden Leaf",
       melody: "Secret Note",
       luna: "Memory Star",
