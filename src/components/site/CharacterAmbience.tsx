@@ -96,6 +96,16 @@ export function CharacterAmbience() {
     void audio.play().catch(() => {});
   }, [soundOn, ambience.music]);
 
+  // Step the music back while a Melody activity is playing its own notes.
+  useEffect(() => {
+    function onDuck(e: Event) {
+      const audio = music.current;
+      if (audio) audio.volume = (e as CustomEvent<boolean>).detail ? 0.05 : 0.3;
+    }
+    window.addEventListener("maria:duck", onDuck);
+    return () => window.removeEventListener("maria:duck", onDuck);
+  }, []);
+
   // Stop everything if the site shell unmounts.
   useEffect(() => {
     const audio = music.current;

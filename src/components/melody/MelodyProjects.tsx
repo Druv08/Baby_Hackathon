@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
-import { checkFlower, DEFAULT_SCORE, makeFlowerSequence, MELODIES, NOTES, type Instrument, type Note } from "@/lib/projects/melody";
+import { checkFlower, DEFAULT_SCORE, INSTRUMENTS, makeFlowerSequence, MELODIES, NOTES, type Instrument, type Note } from "@/lib/projects/melody";
 import { SoundControl } from "./MusicalControls";
 import { useMelodyAudio } from "./useMelodyAudio";
 import styles from "./Melody.module.css";
@@ -9,16 +9,16 @@ import styles from "./Melody.module.css";
 export function LullabyLab() {
   const audio = useMelodyAudio();
   const [score, setScore] = useState<Note[]>([...DEFAULT_SCORE]);
-  const [instrument, setInstrument] = useState<Instrument>("Soft piano");
+  const [instrument, setInstrument] = useState<Instrument>("Recorded guitar");
   return <div className={styles.activity} ref={audio.region}>
     <p>Choose a note for each of eight steps, pick an instrument, then play your lullaby. Glowing steps show the melody even with sound off.</p>
     <div className={styles.toolbar}><SoundControl audio={audio} />
-      <label>Instrument <select value={instrument} onChange={e => { audio.stop(); setInstrument(e.target.value as Instrument); }}>{["Soft piano", "Music box", "Gentle bell"].map(name => <option key={name}>{name}</option>)}</select></label>
+      <label>Instrument <select value={instrument} onChange={e => { audio.stop(); setInstrument(e.target.value as Instrument); }}>{INSTRUMENTS.map(name => <option key={name}>{name}</option>)}</select></label>
     </div>
     <div className={styles.score}>{score.map((note, index) => <label className={styles.step} key={index} data-active={audio.active === index}>
       Step {index + 1}<select aria-label={`Step ${index + 1} note`} value={note} onChange={e => { audio.stop(); setScore(score.map((n, i) => i === index ? e.target.value as Note : n)); }}>{NOTES.map(n => <option key={n}>{n}</option>)}</select>
     </label>)}</div>
-    <div className={styles.toolbar}><button type="button" onClick={() => audio.play(score, instrument)}>Play melody</button><button type="button" onClick={audio.stop}>Stop</button><button type="button" onClick={() => { audio.stop(); setScore([...DEFAULT_SCORE]); setInstrument("Soft piano"); }}>Reset composition</button></div>
+    <div className={styles.toolbar}><button type="button" onClick={() => audio.play(score, instrument, instrument === "Recorded guitar" ? 650 : 500)}>Play melody</button><button type="button" onClick={audio.stop}>Stop</button><button type="button" onClick={() => { audio.stop(); setScore([...DEFAULT_SCORE]); setInstrument("Recorded guitar"); }}>Reset composition</button></div>
     <p role="status">{audio.active < 0 ? "Your lullaby is ready to play." : `Step ${audio.active + 1}: ${score[audio.active]}`}</p>
   </div>;
 }
