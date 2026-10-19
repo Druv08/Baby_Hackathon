@@ -20,7 +20,7 @@ export const SECRETS: readonly SecretCollectible[] = [
   { id: "secret-gear", futureSlug: "inventor", characterId: 6, name: "Golden Cog", unlockMessage: "You found the Golden Cog!" },
   { id: "hidden-leaf", futureSlug: "forest", characterId: 7, name: "Golden Acorn", unlockMessage: "You found the Golden Acorn!" },
   { id: "secret-note", futureSlug: "melody", characterId: 8, name: "Secret Note", unlockMessage: "You found the Secret Note!" },
-  { id: "memory-star", futureSlug: "luna", characterId: 9, name: "Memory Star", unlockMessage: "You found the Memory Star!" },
+  { id: "memory-star", futureSlug: "luna", characterId: 9, name: "Silver Memory Key", unlockMessage: "You found the Silver Memory Key!" },
 ];
 
 export const SECRET_ENDING = {

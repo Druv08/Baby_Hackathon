@@ -1,0 +1,140 @@
+/* Sits exactly over the 1672×941 illustration at the top of the frame. */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  pointer-events: none;
+}
+
+/* A 44px+ target around a key that blends into the chests. */
+.key {
+  position: absolute;
+  width: 48px;
+  height: 44px;
+  margin: -22px 0 0 -24px;
+  padding: 10px 6px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #d9dde6;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.key:focus-visible {
+  outline: 2px solid #fff3c4;
+  outline-offset: 0;
+}
+
+.keyArt {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+  transition: opacity 0.3s ease, filter 0.4s ease, color 0.4s ease;
+}
+
+.key:hover .keyArt,
+.key:focus-visible .keyArt {
+  opacity: 1;
+}
+
+/* Found: the key glows silver-white. */
+.key[data-found="true"] {
+  color: #f4f6ff;
+}
+
+.key[data-found="true"] .keyArt {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px rgba(205, 188, 255, 0.95));
+}
+
+/* A miniature memory chest that opens above the key. */
+.chest {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 56px;
+  height: 64px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #8a5e3c, #5a3a28);
+  border: 2px solid #e9c46a;
+}
+
+.lid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  height: 12px;
+  border-radius: 8px 8px 2px 2px;
+  background: linear-gradient(180deg, #9a6c48, #6a4630);
+  border: 2px solid #e9c46a;
+  transform-origin: 0 100%;
+  animation: open 0.7s ease forwards;
+}
+
+@keyframes open {
+  to {
+    transform: rotate(-55deg);
+  }
+}
+
+/* The glowing memory: Normal Maria, the beginning of every path. */
+.memory {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle, #fff6d8, #ffd27a);
+  box-shadow: 0 0 14px 4px rgba(255, 224, 150, 0.85);
+  transform: translateX(-50%) translateY(10px) scale(0.4);
+  opacity: 0;
+  animation: rise 0.9s ease 0.4s forwards;
+}
+
+.memory img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lid {
+    animation: none;
+    transform: rotate(-55deg);
+  }
+
+  .memory {
+    animation: none;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px) scale(1);
+  }
+
+  .keyArt {
+    transition: none;
+  }
+}

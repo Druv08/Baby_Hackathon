@@ -42,7 +42,7 @@ describe("secret registry", () => {
       inventor: "Golden Cog",
       forest: "Golden Acorn",
       melody: "Secret Note",
-      luna: "Memory Star",
+      luna: "Silver Memory Key",
     };
     for (const f of FUTURES) {
       const secret = getSecretForFuture(f.slug)!;

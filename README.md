@@ -321,3 +321,22 @@ sign. To add them: copy the files to `public/stories/forest/scene-5.png` and
 `public/projects/forest/whispering-signpost-workshop.png`, register both in
 `src/data/assets.ts`, and set the two `image` fields in
 `src/data/stories/forest.ts`.
+
+### Luna (the ninth character)
+
+Luna follows the same pattern (`src/data/stories/luna.ts`), with its scene
+interactions, Moonlit Memory Book, Memory Lantern Studio, The Keepsake Cabinet
+and the Silver Memory Key secret in `src/components/luna/`, rules in
+`src/lib/projects/luna-story.ts` and `luna-projects.ts`, and the moonlit
+atmosphere in `src/components/story/MoonlitLayer.tsx`.
+
+- The **Moonlit Memory Book** is a themed view of the one shared Memory Book:
+  it uses `fetchMemories` / `submitMemory` and the same validation, so new
+  memories stay `pending` until moderated. No new table or route.
+- Lantern drafts are saved only in the visitor's browser
+  (`maria:luna-lantern`) and are never posted.
+- The Silver Memory Key uses Luna's existing secret id, `memory-star`.
+- **Artwork still to supply:** Folder 9 had no scene 5 illustration, so the
+  reveal shows Luna's locked design (stored as `characters/3.png`; see the
+  Star/Luna note above). To add it, copy it to `public/stories/luna/scene-5.png`,
+  register it in `src/data/assets.ts` and set scene 5's `image`.
