@@ -470,3 +470,117 @@
     animation: none;
   }
 }
+
+/* ── Inventor: the Forgotten Star Workshop ────────────────────────── */
+.world[data-world="inventor"][data-backdrop="true"] {
+  background: #3a2414;
+}
+
+/* A warm amber veil keeps the workshop glowing without washing it out. */
+.world[data-world="inventor"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(40, 20, 8, 0.12), rgba(40, 20, 8, 0.05) 45%, rgba(40, 20, 8, 0.3));
+}
+
+/* Centre on the great window and the hanging star lanterns. */
+.world[data-world="inventor"] .backdropImage {
+  object-position: 55% 40%;
+}
+
+.world[data-world="inventor"] .introTitle {
+  color: #9a4f12;
+  text-shadow: 0 0 22px rgba(255, 210, 120, 0.85);
+}
+
+.world[data-world="inventor"] .introSubtitle {
+  color: #6b3f1c;
+}
+
+/* Warm parchment notebook panels with a golden border and a little gear. */
+.world[data-world="inventor"] .introCopy,
+.world[data-world="inventor"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 220, 160, 0.55), transparent 40%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(160, 110, 60, 0.08) 31px 32px),
+    #fff8ec;
+  border-color: #d9a441;
+  box-shadow: var(--shadow-soft), 0 0 0 1px rgba(138, 90, 28, 0.15), 0 10px 30px rgba(60, 30, 10, 0.25);
+}
+
+.world[data-world="inventor"] .panel::after {
+  content: "⚙️";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.25rem;
+  opacity: 0.6;
+}
+
+.world[data-world="inventor"] .sceneTitle,
+.world[data-world="inventor"] .panel {
+  color: #3d2410;
+}
+
+/* Maria's spoken lines in warm copper. */
+.world[data-world="inventor"] .panel p[class] {
+  border-left-color: #d9a441;
+  color: #9a4f12;
+}
+
+/* Brass frames, like an inventor's display case. */
+.world[data-world="inventor"] .frame,
+.world[data-world="inventor"] .revealFrame {
+  border-color: #fff3dc;
+  box-shadow: 0 0 0 3px #c8963e, 0 20px 50px rgba(40, 20, 8, 0.45), 0 0 40px rgba(255, 200, 110, 0.35);
+}
+
+.world[data-world="inventor"] .revealHead {
+  background: rgba(58, 36, 20, 0.86);
+}
+
+.world[data-world="inventor"] .revealHead h2 {
+  color: #ffe6b0;
+  text-shadow: 0 0 22px rgba(255, 200, 110, 0.85);
+}
+
+/* A gentle breathing motion on the illustrations (translate, so it combines with the fade-in). */
+.world[data-world="inventor"] .frame {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.world[data-world="inventor"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3s;
+}
+
+.world[data-world="inventor"] .introMaria {
+  animation: breathe 5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.world[data-world="inventor"] .characterCard {
+  background: linear-gradient(180deg, #fffaf0, #f9e2bd);
+}
+
+.world[data-world="inventor"] .cardPortrait {
+  box-shadow: 0 0 0 3px #c8963e, 0 0 30px rgba(255, 200, 110, 0.6);
+}
+
+.world[data-world="inventor"] .cardName {
+  color: #9a4f12;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="inventor"] .frame,
+  .world[data-world="inventor"] .introMaria {
+    animation: none;
+  }
+}

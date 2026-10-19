@@ -16,6 +16,7 @@ import { PetalLayer } from "@/components/story/PetalLayer";
 import { StarfieldLayer } from "@/components/story/StarfieldLayer";
 import { OceanLayer } from "@/components/story/OceanLayer";
 import { SkyLayer } from "@/components/story/SkyLayer";
+import { WorkshopLayer } from "@/components/story/WorkshopLayer";
 import { SceneInteraction } from "@/components/story/SceneInteraction";
 import { StoryProgress } from "@/components/story/StoryProgress";
 import { StoryText } from "@/components/story/StoryText";
@@ -194,6 +195,7 @@ function AmbientLayer({ slug }: { slug: string }) {
   if (slug === "star") return <StarfieldLayer />;
   if (slug === "cloud") return <SkyLayer />;
   if (slug === "aqua") return <OceanLayer />;
+  if (slug === "inventor") return <WorkshopLayer />;
   return <PetalLayer />;
 }
 
@@ -312,4 +314,14 @@ const SCENE_ALT: Record<string, string> = {
     "Maria happily lifts the tangled net away from the reef as the little turtle reaches for her paw and colorful fish return.",
   "/stories/aqua/scene-5.png":
     "Aqua Maria in her turquoise ocean hood and dress decorated with shells, pearls and starfish, hugging the little turtle in the glowing underwater kingdom.",
+  "/stories/inventor/scene-1.png":
+    "Maria, in her pink floral scarf, crouches on a cobbled street at night beside a flickering star lantern, as a trail of sparks drifts toward a glowing workshop.",
+  "/stories/inventor/scene-2.png":
+    "Maria stands on a wooden stool reading an old instruction book beside an enormous golden machine with a little Dream Spark trapped among its gears.",
+  "/stories/inventor/scene-3.png":
+    "Maria sits on the workshop floor holding a broken brass mechanism, thinking hard, surrounded by scattered gears, springs, pencils and sketches.",
+  "/stories/inventor/scene-4.png":
+    "Maria happily turns a golden gear on the machine as the Dream Spark floats free in a swirl of light and the village lanterns glow outside.",
+  "/stories/inventor/scene-5.png":
+    "Inventor Maria in her brown mechanic apron, leather goggles and star-patterned red scarf, holding up a glowing star in the restored workshop.",
 };

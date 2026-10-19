@@ -434,3 +434,74 @@
     transition: none;
   }
 }
+
+/* Inventor reveal: hanging lanterns glow, golden gears turn and warm sparkles fall. */
+.sparkleLayer[data-variant="gears"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 38% 8%, rgba(255, 214, 120, 0.55), rgba(255, 214, 120, 0) 10%),
+    radial-gradient(circle at 60% 18%, rgba(255, 214, 120, 0.5), rgba(255, 214, 120, 0) 9%),
+    radial-gradient(circle at 86% 12%, rgba(255, 214, 120, 0.5), rgba(255, 214, 120, 0) 10%),
+    radial-gradient(ellipse 60% 50% at 35% 55%, rgba(255, 200, 120, 0.22), rgba(255, 200, 120, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.sparkleLayer[data-variant="gears"][data-shown="true"]::before {
+  opacity: 1;
+  animation: lanterns 3.5s ease-in-out 1.8s infinite alternate;
+}
+
+@keyframes lanterns {
+  to {
+    opacity: 0.7;
+  }
+}
+
+.revealGears {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+}
+
+.revealGear {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.revealGear[data-spinning="true"] {
+  animation: revealSpin 9s linear infinite;
+}
+
+.revealGear[data-reverse="true"] {
+  animation-direction: reverse;
+}
+
+@keyframes revealSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sparkleLayer[data-variant="gears"] span {
+  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  background: radial-gradient(circle, #fff, #ffd27a 45%, rgba(255, 210, 122, 0) 72%);
+  box-shadow: 0 0 10px rgba(255, 210, 122, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealGear[data-spinning="true"],
+  .sparkleLayer[data-variant="gears"][data-shown="true"]::before {
+    animation: none;
+  }
+
+  .sparkleLayer[data-variant="gears"]::before {
+    transition: none;
+  }
+}

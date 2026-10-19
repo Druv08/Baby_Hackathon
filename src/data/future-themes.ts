@@ -79,6 +79,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#fdebd8",
     accentGlow: "rgba(246, 170, 90, 0.55)",
     portraitAlt: "Inventor Maria in brass goggles and a leather tool apron, holding up a glowing star.",
+    journalTitle: "Inventor’s Notebook",
+    workshop: "star workshop",
+    creationsIcon: "⚙️",
   },
   forest: {
     label: "Forest",

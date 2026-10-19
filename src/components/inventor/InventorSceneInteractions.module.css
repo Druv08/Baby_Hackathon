@@ -1,0 +1,456 @@
+/* Sits exactly over the 1672×941 illustration at the top of the frame. */
+.imageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.imageLayer > button {
+  pointer-events: auto;
+}
+
+/* ── Scene 1: the fading lantern ─────────────────────────────────────── */
+.dusk {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 30% 70%, rgba(20, 10, 50, 0), rgba(20, 10, 50, 0.35) 80%);
+  animation: dim 6s ease-in-out infinite;
+}
+
+@keyframes dim {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.lantern {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  padding: 0;
+  border: 2px dashed rgba(255, 230, 170, 0.9);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  animation: hint 2.6s ease-in-out infinite;
+}
+
+.lantern:focus-visible,
+.part:focus-visible,
+.slot:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 3px;
+}
+
+.flare {
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* Bright for a moment, a few flickers, then it fades again. */
+.flare[data-active="true"] {
+  background: radial-gradient(circle, rgba(255, 236, 170, 0.95), rgba(255, 200, 100, 0) 65%);
+  animation: flicker 1.8s ease-out forwards;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  38% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  58% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.07;
+  }
+}
+
+/* ── Scene 2: machine part hotspots ──────────────────────────────────── */
+.part {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  padding: 0;
+  border: 3px solid #fff3c4;
+  border-radius: 50%;
+  background: rgba(90, 50, 20, 0.6);
+  color: #fff3c4;
+  font: 900 1.05rem var(--font-body);
+  box-shadow: 0 0 16px rgba(255, 210, 120, 0.8);
+  cursor: pointer;
+  animation: hint 2.4s ease-in-out infinite;
+}
+
+.part[data-learned="true"] {
+  background: #e9bd5c;
+  color: #4a2e10;
+}
+
+.part[aria-pressed="true"] {
+  box-shadow: 0 0 0 4px rgba(255, 243, 196, 0.8), 0 0 26px rgba(255, 210, 120, 1);
+}
+
+/* ── Scene 3: gear board ─────────────────────────────────────────────── */
+.gearBoard {
+  position: relative;
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 15px, rgba(255, 255, 255, 0.05) 15px 16px),
+    repeating-linear-gradient(90deg, transparent 0 15px, rgba(255, 255, 255, 0.05) 15px 16px),
+    #2c4a6e;
+  transition: box-shadow 0.5s ease;
+}
+
+.gearBoard[data-state="right"] {
+  box-shadow: 0 0 0 3px #e9bd5c, 0 0 24px rgba(255, 210, 120, 0.8);
+}
+
+.gearBoard[data-state="wrong"] {
+  animation: nudge 0.45s ease;
+}
+
+@keyframes nudge {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.gearBoard svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.slots {
+  position: absolute;
+  inset: 0;
+}
+
+.slot {
+  position: absolute;
+  top: 50%;
+  width: 22%;
+  height: 90%;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.slot:disabled {
+  cursor: default;
+}
+
+.gear {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.gear[data-spinning="true"] {
+  animation: spin 3s linear infinite;
+}
+
+.gear[data-spinning="true"][data-reverse="true"] {
+  animation-direction: reverse;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.trayGear {
+  width: 28px;
+  height: 28px;
+}
+
+/* ── Scene 4: activation ─────────────────────────────────────────────── */
+.machine {
+  border-radius: 14px;
+  background: linear-gradient(180deg, #3a2414, #24160c);
+}
+
+.machine svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chamberLight {
+  fill: #6b4a2a;
+  transition: fill 0.6s ease, filter 0.6s ease;
+}
+
+.machine[data-running="true"] .chamberLight {
+  fill: #fff1b8;
+  filter: drop-shadow(0 0 3px #ffd36a);
+}
+
+.machine[data-running="true"] {
+  box-shadow: 0 0 22px rgba(255, 210, 120, 0.7);
+}
+
+.spring {
+  transform-box: fill-box;
+  transform-origin: 0 50%;
+}
+
+.machine[data-running="true"] .spring {
+  animation: boing 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes boing {
+  to {
+    transform: scaleX(0.85);
+  }
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 75% 55%, rgba(255, 220, 140, 0.45), rgba(255, 220, 140, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.imageLayer[data-running="true"] .glow {
+  opacity: 1;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+}
+
+.particles i {
+  position: absolute;
+  bottom: 18%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, rgba(255, 220, 140, 0) 70%);
+  box-shadow: 0 0 8px rgba(255, 220, 140, 0.9);
+  animation: float 2.4s ease-out infinite;
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-140px);
+  }
+}
+
+/* The Dream Spark rises out of the machine. */
+.spark {
+  position: absolute;
+  left: 83%;
+  top: 62%;
+  width: 26px;
+  height: 26px;
+  margin: -13px;
+  background: radial-gradient(circle, #fff, #ffe08a 45%, rgba(255, 224, 138, 0) 72%);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: rise 2.6s ease-out forwards;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0) scale(0.6);
+  }
+  to {
+    transform: translateY(-48%) scale(1.4);
+    top: 14%;
+  }
+}
+
+/* ── Panels and captions below the illustration ──────────────────────── */
+.caption {
+  margin: 0;
+  padding: 10px 14px;
+  background: #3a2414;
+  color: #fff6e4;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #3a2414, #2a190d);
+  color: #fff6e4;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline,
+.counter {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.counter {
+  color: #f3c97a;
+}
+
+.inline[data-tone="good"] {
+  color: #ffe08a;
+}
+
+.inline[data-tone="gentle"] {
+  color: #ffd2b0;
+}
+
+.chip,
+.step,
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 14px;
+  border: 2px solid #c8963e;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff6e4;
+  font: 800 0.95rem var(--font-body);
+  cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+  background: #e9bd5c;
+  border-color: #e9bd5c;
+  color: #3a2414;
+}
+
+.action {
+  border-color: transparent;
+  background: linear-gradient(135deg, #e9a93c, #b8741f);
+  color: #fff;
+}
+
+.step[data-done="true"] {
+  background: rgba(233, 189, 92, 0.22);
+}
+
+.chip:disabled,
+.step:disabled,
+.action:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ghost {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: #f3c97a;
+  font: 700 0.95rem var(--font-body);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.chip:focus-visible,
+.step:focus-visible,
+.action:focus-visible,
+.ghost:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dusk,
+  .lantern,
+  .part,
+  .gear[data-spinning="true"],
+  .gearBoard[data-state="wrong"],
+  .machine[data-running="true"] .spring,
+  .particles i {
+    animation: none;
+  }
+
+  .flare[data-active="true"] {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .spark {
+    animation: none;
+    top: 14%;
+  }
+
+  .glow,
+  .chamberLight {
+    transition: none;
+  }
+}

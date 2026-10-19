@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { MagicBubble, ReefCleanup, SeaCreatures, TangledNet } from "@/components/aqua/AquaSceneInteractions";
 import { CloudBridge, CloudSteps, WindChimes, WorriedCloud } from "@/components/cloud/CloudSceneInteractions";
+import { Gear } from "@/components/inventor/GearSvg";
+import { FlickerLantern, GearChallenge, MachineActivation, MachineDiagram } from "@/components/inventor/InventorSceneInteractions";
 import {
   ConnectDreams,
   LonelyStar,
@@ -62,6 +64,17 @@ export function SceneInteraction({ id }: { id?: string }) {
       return <ReefCleanup />;
     case "aqua-reveal":
       return <RevealSparkles variant="bubbles" />;
+    // Inventor Maria
+    case "flicker-lantern":
+      return <FlickerLantern />;
+    case "machine-diagram":
+      return <MachineDiagram />;
+    case "gear-challenge":
+      return <GearChallenge />;
+    case "machine-activation":
+      return <MachineActivation />;
+    case "inventor-reveal":
+      return <RevealSparkles variant="gears" />;
     default:
       return null;
   }
@@ -197,9 +210,10 @@ function BloomFlowers() {
 /**
  * Scene 5: soft golden-and-pink petals (golden stars for Star, rising cloud
  * puffs and a brightening sky for Cloud, rising bubbles in turquoise and
- * golden light for Aqua) when the reveal appears.
+ * golden light for Aqua, turning golden gears, glowing lanterns and warm
+ * sparkles for Inventor) when the reveal appears.
  */
-function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" | "bubbles" }) {
+function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" | "bubbles" | "gears" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {
@@ -211,6 +225,13 @@ function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" |
   }, []);
   return (
     <div ref={ref} className={styles.sparkleLayer} data-shown={shown} data-variant={variant} aria-hidden="true">
+      {variant === "gears" && (
+        <svg className={styles.revealGears} viewBox="0 0 100 56" preserveAspectRatio="xMidYMid slice">
+          <Gear cx={3.5} cy={52.5} r={4.5} teeth={12} spinning={shown} className={styles.revealGear} />
+          <Gear cx={9.6} cy={53.6} r={2.6} teeth={8} spinning={shown} reverse className={styles.revealGear} />
+          <Gear cx={96.5} cy={3.5} r={4} teeth={11} spinning={shown} reverse className={styles.revealGear} />
+        </svg>
+      )}
       {Array.from({ length: 14 }, (_, i) => (
         <span
           key={i}

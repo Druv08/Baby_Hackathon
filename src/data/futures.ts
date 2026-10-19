@@ -68,8 +68,7 @@ export const FUTURES: FuturePath[] = [
     slug: "inventor",
     characterId: 6,
     heroImage: "/heroes/inventor.png",
-    // Draft until the story page is live and verified.
-    storyStatus: "draft",
+    storyStatus: "ready",
     portfolioStatus: "pending",
     storyIntro: INVENTOR_STORY_INTRO,
     scenes: INVENTOR_SCENES,
