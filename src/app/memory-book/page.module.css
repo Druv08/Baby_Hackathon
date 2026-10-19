@@ -1,0 +1,675 @@
+/* Memory Book: moonlit lake, golden lanterns, parchment and blossoms. */
+
+.page {
+  --lantern: #ffd27a;
+  --lantern-deep: #e99a3c;
+  --lake: #1d1840;
+  --parchment: #fff6e6;
+  --parchment-edge: #ecd3a8;
+  overflow-x: clip;
+}
+
+/* ── A. Hero ─────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-height: clamp(30rem, 78vh, 46rem);
+  padding-block: var(--space-8);
+  overflow: hidden;
+  color: var(--white);
+  text-align: center;
+}
+
+.heroImage {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+
+.heroVeil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(29, 24, 64, 0.55), rgba(29, 24, 64, 0.2) 70%),
+    linear-gradient(to bottom, rgba(29, 24, 64, 0.35), transparent 40%, rgba(29, 24, 64, 0.75));
+}
+
+.heroInner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  max-width: 46rem;
+}
+
+.eyebrow {
+  margin: 0;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: rgba(29, 24, 64, 0.55);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  color: #fff3d6;
+  text-shadow: 0 0 28px rgba(255, 196, 105, 0.9), 0 2px 6px rgba(29, 24, 64, 0.6);
+}
+
+.subtitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: #ffe2ef;
+  text-shadow: 0 2px 8px rgba(29, 24, 64, 0.8);
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 6px rgba(29, 24, 64, 0.9);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.ghostLight {
+  background: rgba(29, 24, 64, 0.55);
+  border-color: rgba(255, 210, 122, 0.8);
+  color: #fff3d6;
+}
+
+.ghostLight:hover {
+  box-shadow: 0 0 22px rgba(255, 196, 105, 0.6);
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8);
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+.petal {
+  position: absolute;
+  top: -5%;
+  width: 12px;
+  height: 9px;
+  border-radius: 80% 0 80% 0;
+  background: linear-gradient(135deg, #ffd1e2, #f39bbd);
+  opacity: 0.85;
+  animation: drift 13s linear infinite;
+}
+
+/* ── Shared section headings ─────────────────────────────────────── */
+
+.head {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.head h2 {
+  margin: 0;
+}
+
+.head p {
+  margin: 0;
+  max-width: 38rem;
+}
+
+/* ── B. Lake of Memories ─────────────────────────────────────────── */
+
+.lakeSection {
+  scroll-margin-top: var(--header-height);
+  color: #f7ecff;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(255, 236, 190, 0.25), transparent 35%),
+    linear-gradient(to bottom, #2a1f4a 0%, #322764 45%, var(--lake) 100%);
+}
+
+.lakeSection .head h2 {
+  color: #fff3d6;
+  text-shadow: 0 0 22px rgba(255, 196, 105, 0.7);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  border: 0;
+}
+
+.filters legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.chip {
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid rgba(255, 210, 122, 0.45);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7ecff;
+  font: 700 1rem var(--font-body);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chip:hover {
+  background: rgba(255, 210, 122, 0.18);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--lantern);
+  border-color: var(--lantern);
+  color: var(--ink);
+  box-shadow: 0 0 18px rgba(255, 196, 105, 0.6);
+}
+
+.lake {
+  position: relative;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(to bottom, transparent 55%, rgba(120, 140, 255, 0.12) 56%, rgba(29, 24, 64, 0.2) 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 196, 105, 0.15), transparent 60%);
+  box-shadow: inset 0 0 0 1px rgba(255, 210, 122, 0.18);
+}
+
+.lanterns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: var(--space-6) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lanternItem {
+  display: grid;
+  justify-items: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+.lantern {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 10rem;
+  padding: var(--space-4) var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: 1.4rem 1.4rem 1rem 1rem;
+  background: radial-gradient(circle at 50% 35%, #fff3d0, var(--lantern) 55%, var(--lantern-deep));
+  color: var(--ink);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 26px rgba(255, 196, 105, 0.55), inset 0 -6px 0 rgba(180, 95, 30, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lantern::before {
+  content: "";
+  position: absolute;
+  top: -0.6rem;
+  width: 45%;
+  height: 0.6rem;
+  border-radius: 0.4rem 0.4rem 0 0;
+  background: #8a5a2b;
+}
+
+.lantern:hover,
+.lantern:focus-visible {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 0 40px rgba(255, 210, 122, 0.95), inset 0 -6px 0 rgba(180, 95, 30, 0.25);
+}
+
+.lanternIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.lanternName {
+  max-width: 100%;
+  overflow: hidden;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lanternFuture {
+  font-size: 0.85rem;
+  color: #6e4a2a;
+}
+
+.reflection {
+  width: 60%;
+  height: 0.9rem;
+  margin-top: var(--space-2);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 210, 122, 0.55), transparent 70%);
+  filter: blur(2px);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+.state {
+  max-width: 34rem;
+  margin: var(--space-4) auto;
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.state p {
+  margin: 0 0 var(--space-3);
+}
+
+.state p:last-child {
+  margin-bottom: 0;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+.lightButton {
+  border-color: rgba(255, 210, 122, 0.7);
+  background: rgba(29, 24, 64, 0.6);
+  color: #fff3d6;
+}
+
+/* Memory card (native <dialog>: Escape and focus handling built in). */
+
+.dialog {
+  width: min(32rem, calc(100vw - 2 * var(--gutter)));
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--ink);
+}
+
+.dialog::backdrop {
+  background: rgba(29, 24, 64, 0.7);
+  backdrop-filter: blur(3px);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(var(--space-5), 5vw, var(--space-7));
+  border: 3px solid var(--parchment-edge);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 210, 122, 0.35), transparent 40%),
+    var(--parchment);
+  box-shadow: 0 0 50px rgba(255, 196, 105, 0.5);
+}
+
+.card h3 {
+  margin: 0;
+  padding-right: var(--space-7);
+  color: var(--pink-deep);
+}
+
+.cardMessage {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.35;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.cardMeta {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 2px solid var(--parchment-edge);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  font: 700 1.3rem var(--font-body);
+  cursor: pointer;
+}
+
+/* ── D. Featured memory ──────────────────────────────────────────── */
+
+.featuredSection {
+  background: linear-gradient(to bottom, var(--lake), #3a2c63 60%, var(--paper));
+}
+
+.featured {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: clamp(var(--space-6), 6vw, var(--space-8)) clamp(var(--space-5), 5vw, var(--space-7));
+  border: 3px solid rgba(255, 210, 122, 0.9);
+  border-radius: 45% 45% 2rem 2rem / 30% 30% 2rem 2rem;
+  background: radial-gradient(circle at 50% 30%, #fffaf0, #ffe7b5 60%, #f7c983);
+  box-shadow: 0 0 60px rgba(255, 196, 105, 0.6), 0 0 0 10px rgba(255, 210, 122, 0.15);
+  text-align: center;
+}
+
+.featured h2 {
+  margin: 0;
+  color: var(--pink-deep);
+}
+
+.featuredMessage {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.3;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.featuredBy {
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* ── C. Leave your memory ────────────────────────────────────────── */
+
+.formSection {
+  scroll-margin-top: var(--header-height);
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(247, 168, 196, 0.3), transparent 45%),
+    radial-gradient(ellipse at 90% 80%, rgba(205, 184, 240, 0.35), transparent 45%),
+    var(--paper);
+}
+
+.parchment {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  max-width: 38rem;
+  margin-inline: auto;
+  padding: clamp(var(--space-5), 5vw, var(--space-7));
+  border: 3px solid var(--parchment-edge);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(rgba(236, 211, 168, 0.18) 1px, transparent 1px) 0 0 / 100% 2.2rem,
+    var(--parchment);
+  box-shadow: var(--shadow-soft), inset 0 0 40px rgba(236, 211, 168, 0.45);
+}
+
+.parchment h2 {
+  margin: 0;
+  text-align: center;
+  color: var(--pink-deep);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+  font-weight: 700;
+}
+
+.input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--parchment-edge);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+  font: 400 1.05rem var(--font-body);
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--lavender-deep);
+  outline-offset: 1px;
+}
+
+textarea.input {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.counter {
+  margin: 0;
+  justify-self: end;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.counter[data-near="true"] {
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.fieldError {
+  margin: 0;
+  color: #a3204f;
+  font-weight: 700;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.status {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: rgba(205, 184, 240, 0.25);
+  text-align: center;
+}
+
+.status[data-tone="success"] {
+  background: rgba(255, 210, 122, 0.35);
+  font-weight: 700;
+}
+
+.status[data-tone="warn"] {
+  background: rgba(247, 168, 196, 0.35);
+}
+
+.status:empty {
+  display: none;
+}
+
+.risingLantern {
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  width: 3rem;
+  height: 3.6rem;
+  margin-left: -1.5rem;
+  border-radius: 1rem 1rem 0.8rem 0.8rem;
+  background: radial-gradient(circle at 50% 35%, #fff3d0, var(--lantern) 55%, var(--lantern-deep));
+  box-shadow: 0 0 40px 10px rgba(255, 196, 105, 0.7);
+  pointer-events: none;
+  animation: rise 3.4s ease-out forwards;
+}
+
+/* ── E. Thank you ────────────────────────────────────────────────── */
+
+.thanks {
+  background: radial-gradient(ellipse at 30% 50%, rgba(255, 210, 140, 0.35), transparent 55%), var(--paper);
+}
+
+.thanksInner {
+  display: grid;
+  grid-template-columns: minmax(12rem, 18rem) 1fr;
+  align-items: center;
+  gap: clamp(var(--space-5), 5vw, var(--space-8));
+  max-width: 58rem;
+}
+
+.thanksArt {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 210, 122, 0.55), transparent 70%);
+}
+
+.thanksArt img {
+  width: 100%;
+  height: auto;
+}
+
+.thanksCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.thanksCopy h2,
+.thanksCopy p {
+  margin: 0;
+}
+
+.thanksCopy h2 {
+  color: var(--pink-deep);
+}
+
+.thanksCopy p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.thanksGlow {
+  font-family: var(--font-display);
+  font-size: 1.8rem !important;
+  color: var(--lavender-deep);
+}
+
+@media (max-width: 700px) {
+  .thanksInner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .thanksArt {
+    width: min(15rem, 70vw);
+  }
+
+  .thanksCopy {
+    justify-items: center;
+  }
+
+  .lanterns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── Motion ──────────────────────────────────────────────────────── */
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(6vw, 110vh) rotate(540deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; transform: scaleX(1); }
+  50% { opacity: 0.9; transform: scaleX(1.15); }
+}
+
+@keyframes rise {
+  0% { opacity: 0; transform: translateY(0) scale(0.6); }
+  15% { opacity: 1; transform: translateY(-1rem) scale(1); }
+  100% { opacity: 0; transform: translateY(-18rem) scale(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .petal,
+  .lanternItem,
+  .reflection,
+  .risingLantern {
+    animation: none;
+  }
+
+  .petal {
+    display: none;
+  }
+
+  .risingLantern {
+    opacity: 0;
+  }
+
+  .lantern,
+  .lantern:hover,
+  .lantern:focus-visible {
+    transition: none;
+    transform: none;
+  }
+}
