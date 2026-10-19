@@ -116,6 +116,39 @@ describe("Cloud artwork", () => {
   });
 });
 
+/** Aqua artwork, copied byte-for-byte from Folder 5 after visual inspection. */
+const AQUA_ARTWORK: Record<string, string> = {
+  "/stories/aqua/scene-1.png": "a00765a5576a76e394c0fb02c62e2251b4b8eef2da6ec5e38873a36103fb7d6b",
+  "/stories/aqua/scene-2.png": "874d59f7d434cede6b53bfda7f2bcf3131a3451a3ba3f9262c2039dc6d2b2d1d",
+  "/stories/aqua/scene-3.png": "b233f42b9d6490c270e2e3f5caef4171cff16a0785a1e0502630e64885e5b8ca",
+  "/stories/aqua/scene-4.png": "7f8e6415cfe5e6f3191dec7763cebe03cc4352e442255e5377bd85642a626ea0",
+  "/stories/aqua/scene-5.png": "795cf61e838b74e43e83a161ecae96c4f987a1efe813560f745384ffac736770",
+  "/stories/aqua/background.png": "5fa35fd05a7886dac62cce6e2bed047725689247f53cf519d6c43f742f210de6",
+  "/projects/aqua/ocean-discovery.png": "478d6847c6a85a740dcf0b0a3ed13cc7011df51ca2b5e5dfb57cc27b72f80b63",
+  "/projects/aqua/coral-care-garden.png": "6668824a98a66f8a758f2b3fb4b5e14739461d563883ebda7cfb5b7f5568b8a8",
+  "/projects/aqua/turtles-safe-passage.png": "5516a74526b019970e0d75b932bf762e877d6f04e0020b041a800d74be2ac3f4",
+};
+
+describe("Aqua artwork", () => {
+  it.each(Object.entries(AQUA_ARTWORK))("%s is the approved file and is registered", (path, hash) => {
+    expect(sha256(path)).toBe(hash);
+    expect(isAssetVerified(path)).toBe(true);
+  });
+
+  it("never reuses another world's artwork", () => {
+    const others = new Set([...Object.values(BLOSSOM_ARTWORK), ...Object.values(STAR_ARTWORK), ...Object.values(CLOUD_ARTWORK)]);
+    for (const hash of Object.values(AQUA_ARTWORK)) expect(others.has(hash)).toBe(false);
+  });
+
+  it("Aqua Maria keeps her own locked design (5.png)", async () => {
+    const { CHARACTERS } = await import("./characters");
+    const aqua = CHARACTERS.find((c) => c.slug === "aqua")!;
+    expect(aqua.id).toBe(5);
+    expect(aqua.characterImage).toBe("/characters/5.png");
+    expect(sha256(aqua.characterImage)).toBe(CANONICAL_CHARACTERS["/characters/5.png"]);
+  });
+});
+
 describe("Star / Luna design mapping", () => {
   it("shows Star with the hooded dream-jar design and Luna with the witch hat, without touching the files", async () => {
     const { CHARACTERS } = await import("./characters");

@@ -69,6 +69,20 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   "/projects/cloud/cloud-maker.png",
   "/projects/cloud/sky-route-planner.png",
   "/projects/cloud/cloud-postcards.png",
+
+  // Aqua story scenes (1–4: Normal Maria, 5: Aqua Maria) and underwater world.
+  // Scenes and project art are 1448×1086 (4:3); the background is 1672×941.
+  "/stories/aqua/scene-1.png",
+  "/stories/aqua/scene-2.png",
+  "/stories/aqua/scene-3.png",
+  "/stories/aqua/scene-4.png",
+  "/stories/aqua/scene-5.png",
+  "/stories/aqua/background.png",
+
+  // Aqua project artwork.
+  "/projects/aqua/ocean-discovery.png",
+  "/projects/aqua/coral-care-garden.png",
+  "/projects/aqua/turtles-safe-passage.png",
 ]);
 
 export function isAssetVerified(path: string | undefined): path is AssetPath {
