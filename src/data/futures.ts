@@ -2,6 +2,7 @@ import type { FuturePath } from "@/types/future";
 import { AQUA_PROFILE, AQUA_PROJECTS, AQUA_SCENES, AQUA_STORY_INTRO } from "./stories/aqua";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
 import { CLOUD_PROFILE, CLOUD_PROJECTS, CLOUD_SCENES, CLOUD_STORY_INTRO } from "./stories/cloud";
+import { INVENTOR_PROFILE, INVENTOR_PROJECTS, INVENTOR_SCENES, INVENTOR_STORY_INTRO } from "./stories/inventor";
 import { STAR_PROFILE, STAR_PROJECTS, STAR_SCENES, STAR_STORY_INTRO } from "./stories/star";
 
 /**
@@ -67,18 +68,13 @@ export const FUTURES: FuturePath[] = [
     slug: "inventor",
     characterId: 6,
     heroImage: "/heroes/inventor.png",
-    storyStatus: "pending",
+    // Draft until the story page is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
-    projects: [
-      {
-        id: "star-workshop",
-        title: "Star Workshop",
-        description: "Where broken dreams become new possibilities.",
-        status: "draft",
-        implementation: "proposed",
-      },
-    ],
+    storyIntro: INVENTOR_STORY_INTRO,
+    scenes: INVENTOR_SCENES,
+    profile: INVENTOR_PROFILE,
+    projects: INVENTOR_PROJECTS,
   },
   {
     id: 7,
