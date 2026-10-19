@@ -1,19 +1,33 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 
-import { MagicBubble, ReefCleanup, SeaCreatures, TangledNet } from "@/components/aqua/AquaSceneInteractions";
-import { CloudBridge, CloudSteps, WindChimes, WorriedCloud } from "@/components/cloud/CloudSceneInteractions";
-import { RouteChoice, SafeRouteMap, ShiftingMap, TurningSignpost } from "@/components/forest/ForestSceneInteractions";
+const MagicBubble = dynamic(() => import("@/components/aqua/AquaSceneInteractions").then(m => m.MagicBubble));
+const ReefCleanup = dynamic(() => import("@/components/aqua/AquaSceneInteractions").then(m => m.ReefCleanup));
+const SeaCreatures = dynamic(() => import("@/components/aqua/AquaSceneInteractions").then(m => m.SeaCreatures));
+const TangledNet = dynamic(() => import("@/components/aqua/AquaSceneInteractions").then(m => m.TangledNet));
+const CloudBridge = dynamic(() => import("@/components/cloud/CloudSceneInteractions").then(m => m.CloudBridge));
+const CloudSteps = dynamic(() => import("@/components/cloud/CloudSceneInteractions").then(m => m.CloudSteps));
+const WindChimes = dynamic(() => import("@/components/cloud/CloudSceneInteractions").then(m => m.WindChimes));
+const WorriedCloud = dynamic(() => import("@/components/cloud/CloudSceneInteractions").then(m => m.WorriedCloud));
+const RouteChoice = dynamic(() => import("@/components/forest/ForestSceneInteractions").then(m => m.RouteChoice));
+const SafeRouteMap = dynamic(() => import("@/components/forest/ForestSceneInteractions").then(m => m.SafeRouteMap));
+const ShiftingMap = dynamic(() => import("@/components/forest/ForestSceneInteractions").then(m => m.ShiftingMap));
+const TurningSignpost = dynamic(() => import("@/components/forest/ForestSceneInteractions").then(m => m.TurningSignpost));
 import { Gear } from "@/components/inventor/GearSvg";
-import { FadingLantern, KeepsakeClues, MemoryMatch, StoryBehind } from "@/components/luna/LunaSceneInteractions";
-import { FlickerLantern, GearChallenge, MachineActivation, MachineDiagram } from "@/components/inventor/InventorSceneInteractions";
-import {
-  ConnectDreams,
-  LonelyStar,
-  TelescopePeek,
-  UnfinishedConstellation,
-} from "@/components/star/StarSceneInteractions";
+const FadingLantern = dynamic(() => import("@/components/luna/LunaSceneInteractions").then(m => m.FadingLantern));
+const KeepsakeClues = dynamic(() => import("@/components/luna/LunaSceneInteractions").then(m => m.KeepsakeClues));
+const MemoryMatch = dynamic(() => import("@/components/luna/LunaSceneInteractions").then(m => m.MemoryMatch));
+const StoryBehind = dynamic(() => import("@/components/luna/LunaSceneInteractions").then(m => m.StoryBehind));
+const FlickerLantern = dynamic(() => import("@/components/inventor/InventorSceneInteractions").then(m => m.FlickerLantern));
+const GearChallenge = dynamic(() => import("@/components/inventor/InventorSceneInteractions").then(m => m.GearChallenge));
+const MachineActivation = dynamic(() => import("@/components/inventor/InventorSceneInteractions").then(m => m.MachineActivation));
+const MachineDiagram = dynamic(() => import("@/components/inventor/InventorSceneInteractions").then(m => m.MachineDiagram));
+const ConnectDreams = dynamic(() => import("@/components/star/StarSceneInteractions").then(m => m.ConnectDreams));
+const LonelyStar = dynamic(() => import("@/components/star/StarSceneInteractions").then(m => m.LonelyStar));
+const TelescopePeek = dynamic(() => import("@/components/star/StarSceneInteractions").then(m => m.TelescopePeek));
+const UnfinishedConstellation = dynamic(() => import("@/components/star/StarSceneInteractions").then(m => m.UnfinishedConstellation));
 import styles from "./SceneInteraction.module.css";
 
 /**

@@ -22,7 +22,7 @@ export default function MariaStudio() {
     catch { setFailed(true); return; }
     renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     renderer.setClearColor("#f4eaf6");
-    renderer.domElement.setAttribute("aria-label", "Interactive three-dimensional Maria prototype. Use the buttons below as an alternative to dragging.");
+    renderer.domElement.setAttribute("aria-label", "Interactive three-dimensional Maria. Use the buttons below as an alternative to dragging.");
     renderer.domElement.setAttribute("role", "img");
     element.appendChild(renderer.domElement);
     const scene = new THREE.Scene();
