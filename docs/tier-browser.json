@@ -1,0 +1,168 @@
+{
+    "origin":  "http://localhost:3000",
+    "recordedAt":  "2026-10-19T12:15:20.491Z",
+    "results":  [
+                    {
+                        "name":  "canonical portrait follows mouse without replacing its asset",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "portrait returns to rest on pointer exit",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "night changes visible palette",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "night preference survives reload",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "touch greeting works",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "portrait respects reduced motion",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 320",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 390",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 768",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 1000",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 1024",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 1366",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "home and controls fit 1920",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "story has five scenes and native smooth scrolling",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "story progress follows visible scene",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "scene link animates scrolling to its destination",
+                        "ok":  true,
+                        "detail":  {
+                                       "early":  2357,
+                                       "late":  3340
+                                   }
+                    },
+                    {
+                        "name":  "SVG route ink synchronizes with actual scrolling",
+                        "ok":  true,
+                        "detail":  {
+                                       "first":  0.033,
+                                       "next":  0.716
+                                   }
+                    },
+                    {
+                        "name":  "rabbit cannot use flight destination",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "delivery rejects unsuitable fallen log",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "playable delivery game reaches real win condition",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "route ink fully shown with reduced motion",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "Lullaby Lab produces eight real musical oscillator notes",
+                        "ok":  true,
+                        "detail":  [
+                                       261.63,
+                                       329.63,
+                                       392,
+                                       329.63,
+                                       293.66,
+                                       261.63,
+                                       440,
+                                       392
+                                   ]
+                    },
+                    {
+                        "name":  "global mute cancels every scheduled note immediately",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "discoverable musical Easter egg recorded",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "returning visitor gets saved personalized progress greeting",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 1366 /futures/forest/story",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 1366 /futures/melody/story",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 1366 /memory-book",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 768 /futures/forest/story",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 768 /futures/melody/story",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 768 /memory-book",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 390 /futures/forest/story",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 390 /futures/melody/story",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "responsive 390 /memory-book",
+                        "ok":  true
+                    },
+                    {
+                        "name":  "live moderated feed and counter respond successfully",
+                        "ok":  true
+                    }
+                ],
+    "problems":  [
+
+                 ],
+    "sourceCommit":  "f02487d8835c35c43e9d97a70ebe3976f94d39b1"
+}
