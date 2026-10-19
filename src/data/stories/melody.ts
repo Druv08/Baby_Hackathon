@@ -95,7 +95,7 @@ export const MELODY_PROJECTS: PortfolioProject[] = [
     "image": "/projects/melody/lullaby-lab.png",
     "interactionId": "lullaby-lab",
     "status": "ready",
-    "implementation": "in-progress"
+    "implementation": "live"
   },
   {
     "id": "rhythm-garden",
@@ -103,7 +103,7 @@ export const MELODY_PROJECTS: PortfolioProject[] = [
     "description": "A magical garden where glowing flowers create musical notes and visitors can repeat little melodies to make the garden bloom.",
     "interactionId": "rhythm-garden",
     "status": "draft",
-    "implementation": "in-progress"
+    "implementation": "live"
   },
   {
     "id": "moonlight-music-box",
@@ -111,6 +111,6 @@ export const MELODY_PROJECTS: PortfolioProject[] = [
     "description": "Design a magical music box with glowing stars, gentle melodies and a tiny dream world hidden inside.",
     "interactionId": "moonlight-music-box",
     "status": "draft",
-    "implementation": "in-progress"
+    "implementation": "live"
   }
 ];

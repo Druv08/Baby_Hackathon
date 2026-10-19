@@ -95,6 +95,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     creationsIcon: "🍃",
   },
   melody: {
+    journalTitle: "Musician's Journal",
+    workshop: "lullaby workshop",
+    creationsIcon: "\u266b",
     label: "Melody",
     icon: "🎵",
     accent: "#8a3f9e",

@@ -1,5 +1,6 @@
 "use client";
 
+import { LullabyLab, RhythmGarden, MoonlightMusicBox, GardenThumbnail, MusicBoxThumbnail } from "@/components/melody/MelodyProjects";
 import { CoralCareGarden } from "@/components/aqua/CoralCareGarden";
 import { OceanDiscovery } from "@/components/aqua/OceanDiscovery";
 import { TurtlesSafePassage } from "@/components/aqua/TurtlesSafePassage";
@@ -21,6 +22,9 @@ import { DreamGarden } from "./DreamGarden";
 
 /** Interactive modules by `interactionId`. Only live projects get mounted. */
 const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
+  "lullaby-lab": LullabyLab,
+  "rhythm-garden": RhythmGarden,
+  "moonlight-music-box": MoonlightMusicBox,
   "dream-garden": DreamGarden,
   "bloom-book": BloomBook,
   "butterfly-corner": ButterflyCorner,
@@ -51,6 +55,8 @@ const PLAYGROUNDS: Record<string, () => React.ReactElement> = {
  * illustration is missing (a real rendering, never a placeholder emoji).
  */
 const THUMBNAILS: Record<string, () => React.ReactElement> = {
+  "rhythm-garden": GardenThumbnail,
+  "moonlight-music-box": MusicBoxThumbnail,
   "whispering-signpost-workshop": SignpostThumbnail,
 };
 
