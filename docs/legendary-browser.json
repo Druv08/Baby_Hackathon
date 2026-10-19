@@ -1,0 +1,608 @@
+{
+  "recordedAt": "2026-10-19T15:54:45.266Z",
+  "origin": "http://localhost:3000",
+  "mode": "Read-only live APIs; browser-isolated guestbook fixtures",
+  "results": [
+    {
+      "name": "no WebGL renderer on initial homepage",
+      "ok": true
+    },
+    {
+      "name": "approved Normal expression changes with night palette",
+      "ok": true
+    },
+    {
+      "name": "night and approved expression persist on reload",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction normal",
+      "ok": true
+    },
+    {
+      "name": "character dialogue normal",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error normal",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally normal",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus normal",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout normal",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction blossom",
+      "ok": true
+    },
+    {
+      "name": "character dialogue blossom",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error blossom",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally blossom",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus blossom",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout blossom",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction star",
+      "ok": true
+    },
+    {
+      "name": "character dialogue star",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error star",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally star",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus star",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout star",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction cloud",
+      "ok": true
+    },
+    {
+      "name": "character dialogue cloud",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error cloud",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally cloud",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus cloud",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout cloud",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction aqua",
+      "ok": true
+    },
+    {
+      "name": "character dialogue aqua",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error aqua",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally aqua",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus aqua",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout aqua",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction inventor",
+      "ok": true
+    },
+    {
+      "name": "character dialogue inventor",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error inventor",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally inventor",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus inventor",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout inventor",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction forest",
+      "ok": true
+    },
+    {
+      "name": "character dialogue forest",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error forest",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally forest",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus forest",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout forest",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction melody",
+      "ok": true
+    },
+    {
+      "name": "character dialogue melody",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error melody",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally melody",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus melody",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout melody",
+      "ok": true
+    },
+    {
+      "name": "pointer reaction luna",
+      "ok": true
+    },
+    {
+      "name": "character dialogue luna",
+      "ok": true
+    },
+    {
+      "name": "empty conversation input has inline error luna",
+      "ok": true
+    },
+    {
+      "name": "chat treats visitor text literally luna",
+      "ok": true
+    },
+    {
+      "name": "chat closes and returns focus luna",
+      "ok": true
+    },
+    {
+      "name": "touch greeting and phone layout luna",
+      "ok": true
+    },
+    {
+      "name": "all nine authored personalities differ",
+      "ok": true
+    },
+    {
+      "name": "chat makes no API calls",
+      "ok": true
+    },
+    {
+      "name": "contextual name greeting uses saved progress",
+      "ok": true
+    },
+    {
+      "name": "five ordered scenes and origin identity blossom",
+      "ok": true
+    },
+    {
+      "name": "scene progress blossom 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress blossom 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress blossom 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress blossom 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "five ordered scenes and origin identity star",
+      "ok": true
+    },
+    {
+      "name": "scene progress star 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress star 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress star 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress star 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "nightlight pointer finds dream star",
+      "ok": true
+    },
+    {
+      "name": "nightlight keyboard star",
+      "ok": true
+    },
+    {
+      "name": "nightlight touch star",
+      "ok": true
+    },
+    {
+      "name": "nightlight disables star",
+      "ok": true
+    },
+    {
+      "name": "five ordered scenes and origin identity cloud",
+      "ok": true
+    },
+    {
+      "name": "scene progress cloud 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress cloud 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress cloud 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress cloud 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "five ordered scenes and origin identity aqua",
+      "ok": true
+    },
+    {
+      "name": "scene progress aqua 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress aqua 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress aqua 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress aqua 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "five ordered scenes and origin identity inventor",
+      "ok": true
+    },
+    {
+      "name": "scene progress inventor 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress inventor 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress inventor 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress inventor 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "five ordered scenes and origin identity forest",
+      "ok": true
+    },
+    {
+      "name": "scene progress forest 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress forest 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress forest 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress forest 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "five ordered scenes and origin identity melody",
+      "ok": true
+    },
+    {
+      "name": "scene progress melody 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress melody 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress melody 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress melody 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "five ordered scenes and origin identity luna",
+      "ok": true
+    },
+    {
+      "name": "scene progress luna 1",
+      "ok": true,
+      "detail": {
+        "active": "#scene-1"
+      }
+    },
+    {
+      "name": "scene progress luna 4",
+      "ok": true,
+      "detail": {
+        "active": "#scene-4"
+      }
+    },
+    {
+      "name": "scene progress luna 2",
+      "ok": true,
+      "detail": {
+        "active": "#scene-2"
+      }
+    },
+    {
+      "name": "scene progress luna 5",
+      "ok": true,
+      "detail": {
+        "active": "#scene-5"
+      }
+    },
+    {
+      "name": "nightlight pointer finds dream luna",
+      "ok": true
+    },
+    {
+      "name": "nightlight keyboard luna",
+      "ok": true
+    },
+    {
+      "name": "nightlight touch luna",
+      "ok": true
+    },
+    {
+      "name": "nightlight disables luna",
+      "ok": true
+    },
+    {
+      "name": "storybook renders approved text as plain HTML",
+      "ok": true
+    },
+    {
+      "name": "actual page flip starts",
+      "ok": true
+    },
+    {
+      "name": "keyboard next page advances",
+      "ok": true
+    },
+    {
+      "name": "keyboard previous page returns",
+      "ok": true
+    },
+    {
+      "name": "touch swipe turns a single mobile page",
+      "ok": true
+    },
+    {
+      "name": "reduced-motion book changes without flipping",
+      "ok": true
+    },
+    {
+      "name": "Escape closes book",
+      "ok": true
+    },
+    {
+      "name": "3D is not loaded before explicit interaction",
+      "ok": true
+    },
+    {
+      "name": "true WebGL scene renders solid character meshes",
+      "ok": true
+    },
+    {
+      "name": "3D horizontal rotation works",
+      "ok": true
+    },
+    {
+      "name": "3D vertical rotation works",
+      "ok": true
+    },
+    {
+      "name": "3D zoom works",
+      "ok": true
+    },
+    {
+      "name": "3D camera reset works",
+      "ok": true
+    },
+    {
+      "name": "3D model interaction wave",
+      "ok": true
+    },
+    {
+      "name": "3D model interaction look",
+      "ok": true
+    },
+    {
+      "name": "3D model interaction bounce",
+      "ok": true
+    },
+    {
+      "name": "3D phone view fits",
+      "ok": true
+    },
+    {
+      "name": "context loss shows canonical fallback and disposes GPU buffers",
+      "ok": true
+    }
+  ],
+  "problems": []
+}

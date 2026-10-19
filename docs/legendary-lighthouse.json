@@ -1,0 +1,903 @@
+{
+  "environment": "Local optimized Next.js production build; Edge headless; standard Lighthouse presets. 3D measures the entry page before explicit renderer loading.",
+  "results": [
+    {
+      "route": "/",
+      "name": "home",
+      "mode": "mobile",
+      "run": 1,
+      "url": "http://localhost:3000/",
+      "fetchTime": "2026-10-19T15:11:51.082Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 90,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 3518.2942,
+        "tbtMs": 58,
+        "cls": 0.0001981608308023204
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.6Ã‚Â s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.5Ã‚Â s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "140Ã‚Â ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.6Ã‚Â s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 17Ã‚Â KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 6Ã‚Â KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 830Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "name": "home",
+      "mode": "mobile",
+      "run": 2,
+      "url": "http://localhost:3000/",
+      "fetchTime": "2026-10-19T15:12:09.624Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 91,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 3478.5805999999993,
+        "tbtMs": 62.5,
+        "cls": 0.0001981608308023204
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.5Ã‚Â s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.5Ã‚Â s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "130Ã‚Â ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.5Ã‚Â s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 17Ã‚Â KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 6Ã‚Â KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 750Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "name": "home",
+      "mode": "mobile",
+      "run": 3,
+      "url": "http://localhost:3000/",
+      "fetchTime": "2026-10-19T15:12:24.700Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 91,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 3456.9644000000008,
+        "tbtMs": 49.5,
+        "cls": 0.0001981608308023204
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.5Ã‚Â s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.5Ã‚Â s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "120Ã‚Â ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.5Ã‚Â s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 17Ã‚Â KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 6Ã‚Â KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 760Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "name": "home",
+      "mode": "desktop",
+      "run": 1,
+      "url": "http://localhost:3000/",
+      "fetchTime": "2026-10-19T15:12:43.878Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 866.316775,
+        "tbtMs": 43.10470000000009,
+        "cls": 0.0004836743363209358
+      },
+      "remainingAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "0.9Ã‚Â s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "0.7Ã‚Â s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "210Ã‚Â ms"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 17Ã‚Â KiB"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 91Ã‚Â KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow",
+          "displayValue": null
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 52Ã‚Â KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 10Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/memory-book",
+      "name": "memory-book",
+      "mode": "mobile",
+      "run": 1,
+      "url": "http://localhost:3000/memory-book",
+      "fetchTime": "2026-10-19T15:14:12.307Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 90,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 3639.5279999999993,
+        "tbtMs": 32.5,
+        "cls": 0.0001981608308023204
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.2Ã‚Â s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.6Ã‚Â s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "70Ã‚Â ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.8Ã‚Â s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 80Ã‚Â KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 30Ã‚Â KiB"
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "displayValue": null
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 410Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/memory-book",
+      "name": "memory-book",
+      "mode": "desktop",
+      "run": 1,
+      "url": "http://localhost:3000/memory-book",
+      "fetchTime": "2026-10-19T15:14:27.933Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 712.9746250000001,
+        "tbtMs": 0,
+        "cls": 0.0004836743363209358
+      },
+      "remainingAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "0.7Ã‚Â s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 80Ã‚Â KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow",
+          "displayValue": null
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 59Ã‚Â KiB"
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "displayValue": null
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 110Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/meet-maria",
+      "name": "three-entry",
+      "mode": "mobile",
+      "run": 1,
+      "url": "http://localhost:3000/meet-maria",
+      "fetchTime": "2026-10-19T15:15:17.578Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 2707.95435,
+        "tbtMs": 5,
+        "cls": 0.0001981608308023204
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.2Ã‚Â s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "2.7Ã‚Â s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "2.7Ã‚Â s"
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "displayValue": null
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 550Ã‚Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/meet-maria",
+      "name": "three-entry",
+      "mode": "desktop",
+      "run": 1,
+      "url": "http://localhost:3000/meet-maria",
+      "fetchTime": "2026-10-19T15:15:32.834Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 809.5636,
+        "tbtMs": 0,
+        "cls": 0.0002511231651365276
+      },
+      "remainingAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "0.8Ã‚Â s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 91Ã‚Â KiB"
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "displayValue": null
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Ã‚Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": null
+        }
+      ]
+    },
+    {
+      "route": "/futures/melody",
+      "name": "hero",
+      "mode": "mobile",
+      "run": 1,
+      "url": "http://localhost:3000/futures/melody",
+      "fetchTime": "2026-10-19T15:44:03.179Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 91,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 3468.9242000000004,
+        "tbtMs": 14.5,
+        "cls": 0.0005419718585475527
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.5Â s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.5Â s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "80Â ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.5Â s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 17Â KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 23Â KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 770Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/futures/melody",
+      "name": "hero",
+      "mode": "desktop",
+      "run": 1,
+      "url": "http://localhost:3000/futures/melody",
+      "fetchTime": "2026-10-19T15:44:18.808Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 729.265,
+        "tbtMs": 0,
+        "cls": 0.00104971061057052
+      },
+      "remainingAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "0.7Â s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 17Â KiB"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 91Â KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 52Â KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14Â KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 130Â ms"
+        }
+      ]
+    },
+    {
+      "route": "/futures/forest/story",
+      "name": "story",
+      "mode": "mobile",
+      "run": 1,
+      "url": "http://localhost:3000/futures/forest/story",
+      "fetchTime": "2026-10-19T15:50:06.885Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 88,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 3817.170399999999,
+        "tbtMs": 25.5,
+        "cls": 0.0001981608308023204
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.7 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.8 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "80 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.9 s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 12 KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 25 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 650 ms"
+        }
+      ]
+    },
+    {
+      "route": "/futures/forest/story",
+      "name": "story",
+      "mode": "desktop",
+      "run": 1,
+      "url": "http://localhost:3000/futures/forest/story",
+      "fetchTime": "2026-10-19T15:50:23.202Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 886.9065000000002,
+        "tbtMs": 0,
+        "cls": 0.0004692294521359541
+      },
+      "remainingAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "0.9 s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 12 KiB"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 91 KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 44 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 140 ms"
+        }
+      ]
+    },
+    {
+      "route": "/futures/melody/story#project-lullaby-lab",
+      "name": "lullaby-lab",
+      "mode": "mobile",
+      "run": 1,
+      "url": "http://localhost:3000/futures/melody/story#project-lullaby-lab",
+      "fetchTime": "2026-10-19T15:50:39.920Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 85,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 4207.09295,
+        "tbtMs": 15.5,
+        "cls": 0.0035765042946138514
+      },
+      "remainingAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.7 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "4.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "2.3 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "80 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "4.2 s"
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimize main-thread work",
+          "displayValue": "2.5 s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 14 KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 60 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14 KiB"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": null
+        }
+      ]
+    },
+    {
+      "route": "/futures/melody/story#project-lullaby-lab",
+      "name": "lullaby-lab",
+      "mode": "desktop",
+      "run": 1,
+      "url": "http://localhost:3000/futures/melody/story#project-lullaby-lab",
+      "fetchTime": "2026-10-19T15:50:56.798Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1191.0782,
+        "tbtMs": 0,
+        "cls": 0.02295960463935483
+      },
+      "remainingAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "0.7 s"
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 14 KiB"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 91 KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 186 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 14 KiB"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": null
+        }
+      ]
+    }
+  ],
+  "sourceRevisions": {
+    "feature": "fb54c61e0a2c3e372b0758ed0d68e0eedb6ec8a8: home, hero, Memory Book and 3D entry measurements",
+    "sceneBundles": "33469be468b2070a29132153558e85033f8b5eaf: final Forest and Melody story measurements"
+  },
+  "methodology": "Sequential standard Lighthouse 13.5.0 mobile/desktop presets against an optimized local production server; no simultaneous browser regression. Homepage mobile median of three runs. 3D entry before opening renderer."
+}

@@ -1,6 +1,7 @@
-﻿import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 const [port='9333', origin='http://localhost:3000'] = process.argv.slice(2);
 if(!['localhost','127.0.0.1'].includes(new URL(origin).hostname))throw Error('This live verification is restricted to a local server.');
+const isolated = process.argv.includes('--isolated');
 const out = '.next/side-quests-verification'; mkdirSync(out,{recursive:true});
 const target = await (await fetch(`http://127.0.0.1:${port}/json/new?about:blank`,{method:'PUT'})).json();
 const ws = new WebSocket(target.webSocketDebuggerUrl); await new Promise(r=>ws.addEventListener('open',r,{once:true}));
@@ -12,7 +13,10 @@ ws.addEventListener('message',event=>{const m=JSON.parse(event.data);if(m.id&&pe
  if(m.method==='Runtime.consoleAPICalled'&&m.params.type==='error')problems.push(m.params.args.map(a=>a.value||a.description).join(' '));
  if(m.method==='Network.requestWillBeSent')requests.push({url:m.params.request.url,method:m.params.request.method});
  if(m.method==='Network.responseReceived'&&m.params.response.url.includes('/api/'))responses.push({url:m.params.response.url,status:m.params.response.status});
- if(m.method==='Fetch.requestPaused')void(async()=>{const p=m.params;const url=new URL(p.request.url);if((fixture&&url.pathname==='/api/memories'&&p.request.method==='GET')||(unavailable&&url.pathname==='/api/visits')){
+ if(m.method==='Fetch.requestPaused')void(async()=>{const p=m.params;const url=new URL(p.request.url);if(isolated&&p.request.method==='POST'&&['/api/memories','/api/visits'].includes(url.pathname)){
+  const body=url.pathname==='/api/visits'?await(await fetch(origin+'/api/visits')).json():{status:'pending'};
+  await send('Fetch.fulfillRequest',{requestId:p.requestId,responseCode:url.pathname==='/api/memories'?202:200,responseHeaders:[{name:'Content-Type',value:'application/json'}],body:Buffer.from(JSON.stringify(body)).toString('base64')});
+ }else if((fixture&&url.pathname==='/api/memories'&&p.request.method==='GET')||(unavailable&&url.pathname==='/api/visits')){
   const body=unavailable&&url.pathname==='/api/visits'?{error:{code:'unavailable',message:'Unavailable'}}:{memories:Array.from({length:revision+1},(_,i)=>({id:`00000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`,visitorName:'Browser Fixture '+i,message:'An approved lantern <script>window.fixtureRan=true</script>',formSlug:'luna',createdAt:new Date(Date.UTC(2026,9,19,8,i)).toISOString()})).reverse(),nextCursor:null};
   await send('Fetch.fulfillRequest',{requestId:p.requestId,responseCode:unavailable&&url.pathname==='/api/visits'?503:200,responseHeaders:[{name:'Content-Type',value:'application/json'}],body:Buffer.from(JSON.stringify(body)).toString('base64')});
  }else await send('Fetch.continueRequest',{requestId:p.requestId});})().catch(e=>problems.push(e.message));
@@ -27,6 +31,7 @@ async function fill(selector,value){await ev(`(()=>{const el=document.querySelec
 async function size(width,height=900){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<500});await send('Emulation.setTouchEmulationEnabled',{enabled:width<500});await sleep(250);}
 await Promise.all([send('Page.enable'),send('Runtime.enable'),send('Network.enable')]);
 await send('Network.setCacheDisabled',{cacheDisabled:true});
+if(isolated)await send('Fetch.enable',{patterns:[{urlPattern:'*/api/memories*'},{urlPattern:'*/api/visits*'}]});
 await send('Network.setExtraHTTPHeaders',{headers:{'x-forwarded-for':'192.0.2.174'}});
 await send('Page.addScriptToEvaluateOnNewDocument',{source:`window.mediaLog=[];window.audioContexts=[];const play=HTMLMediaElement.prototype.play,pause=HTMLMediaElement.prototype.pause;HTMLMediaElement.prototype.play=function(){window.mediaLog.push({kind:'play',src:this.getAttribute('src')});return play.call(this)};HTMLMediaElement.prototype.pause=function(){window.mediaLog.push({kind:'pause',src:this.getAttribute('src')});return pause.call(this)};if(window.AudioContext){const Original=AudioContext;window.AudioContext=new Proxy(Original,{construct(target,args){const ctx=Reflect.construct(target,args);window.audioContexts.push(ctx);return ctx}});}`});
 await size(1366,768);await go('/');await ev("localStorage.setItem('maria:sound','off');localStorage.setItem('maria:chaos','off')");await go('/');
@@ -71,7 +76,7 @@ await click("document.querySelector('#leave-memory button[type=submit]')");
 check('invalid form does not submit',requests.filter(r=>r.method==='POST'&&r.url.endsWith('/api/memories')).length===beforePosts);
 await fill('#leave-memory input[autocomplete=nickname]','Side Quest Check');await fill('#leave-memory textarea',marker+' Global guestbook verification.');
 await click("document.querySelector('#leave-memory button[type=submit]')");await sleep(750);
-check('live guestbook submission accepted for moderation',await ev("document.querySelector('#leave-memory').textContent.includes('has been received')"),await ev("document.querySelector('#leave-memory [role=status]').textContent"));
+check(isolated?'isolated guestbook submission accepts pending response':'live guestbook submission accepted for moderation',await ev("document.querySelector('#leave-memory').textContent.includes('has been received')"),await ev("document.querySelector('#leave-memory [role=status]').textContent"));
 check('pending memory not added to lantern wall',await ev(`!document.querySelector('#read-memories').textContent.includes(${JSON.stringify(marker)})`));
 const oldReads=requests.filter(r=>r.method==='GET'&&r.url.includes('/api/memories')).length;
 await click(byText('Refresh memories'));check('manual refresh reads approved feed',requests.filter(r=>r.method==='GET'&&r.url.includes('/api/memories')).length>oldReads);
@@ -80,7 +85,7 @@ check('Luna shares the same refresh functionality',await ev("!!document.getEleme
 await fill('#project-moonlit-memory-book form input:not([tabindex])','Side Quest Check');await fill('#project-moonlit-memory-book textarea',marker+' Luna guestbook verification.');
 await click("document.querySelector('#project-moonlit-memory-book button[type=submit]')");await sleep(750);
 check('Luna submission waits for moderation',await ev("document.getElementById('project-moonlit-memory-book').textContent.includes('waiting to be checked')"),await ev("document.querySelector('#project-moonlit-memory-book form [role=status]').textContent"));
-console.log('Live pending submissions sent. Testing approved display with isolated browser-only fixtures.');
+console.log(isolated?'Isolated pending responses checked; no live writes.':'Live pending submissions sent.');
 fixture=true;await send('Fetch.enable',{patterns:[{urlPattern:'*/api/memories*'},{urlPattern:'*/api/visits*'}]});await go('/memory-book');
 check('approved lantern rendered from shared feed',await ev("document.querySelector('#read-memories').textContent.includes('Browser Fixture 0')"));
 await click(byText('Browser Fixture 0'));
@@ -93,6 +98,6 @@ unavailable=true;await go('/');check('counter handles API outage without invente
 check('no route-change visit increments',requests.filter(r=>r.method==='POST'&&r.url.endsWith('/api/visits')).length===1);
 // The outage was intentionally injected above, so its single resource error is expected.
 const unexpected=problems.filter(p=>!p.includes('503'));
-const report={marker,results,problems:unexpected,liveApiResponses:responses.filter(r=>!r.url.includes('limit=')).map(r=>({endpoint:new URL(r.url).pathname,status:r.status}))};
+const report={mode:isolated?'Live GETs; browser-isolated public writes':'Live pending-write verification',marker,results,problems:unexpected,liveApiResponses:responses.filter(r=>!r.url.includes('limit=')).map(r=>({endpoint:new URL(r.url).pathname,status:r.status}))};
 writeFileSync('docs/side-quests-browser.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:results.filter(r=>r.ok).length,failed:results.filter(r=>!r.ok),problems:unexpected,marker},null,2));
 await send('Page.close');ws.close();if(results.some(r=>!r.ok)||unexpected.length)process.exitCode=1;

@@ -1,0 +1,616 @@
+{
+  "recordedAt": "2026-10-19T15:43:07.398Z",
+  "routes": [
+    "/",
+    "/forms",
+    "/journey",
+    "/creations",
+    "/memory-book",
+    "/meet-maria",
+    "/futures/blossom",
+    "/futures/blossom/story",
+    "/futures/star",
+    "/futures/star/story",
+    "/futures/cloud",
+    "/futures/cloud/story",
+    "/futures/aqua",
+    "/futures/aqua/story",
+    "/futures/inventor",
+    "/futures/inventor/story",
+    "/futures/forest",
+    "/futures/forest/story",
+    "/futures/melody",
+    "/futures/melody/story",
+    "/futures/luna",
+    "/futures/luna/story"
+  ],
+  "viewports": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      360,
+      800
+    ]
+  ],
+  "results": [
+    {
+      "name": "layout / 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout / 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout / 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout / 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout / 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout / 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /forms 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /forms 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /forms 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /forms 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /forms 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /forms 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /journey 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /journey 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /journey 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /journey 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /journey 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /journey 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /creations 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /creations 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /creations 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /creations 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /creations 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /creations 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /memory-book 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /memory-book 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /memory-book 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /memory-book 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /memory-book 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /memory-book 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /meet-maria 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /meet-maria 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /meet-maria 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /meet-maria 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /meet-maria 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /meet-maria 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/blossom/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/blossom/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/star/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/star/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/cloud/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/cloud/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/aqua/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/aqua/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/inventor/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/inventor/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/forest/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/forest/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/melody/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/melody/story",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna 360x800",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna/story 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna/story 1366x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna/story 1024x768",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna/story 768x1024",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna/story 390x844",
+      "ok": true
+    },
+    {
+      "name": "layout /futures/luna/story 360x800",
+      "ok": true
+    },
+    {
+      "name": "phone portfolios and three projects /futures/luna/story",
+      "ok": true
+    }
+  ],
+  "problems": []
+}

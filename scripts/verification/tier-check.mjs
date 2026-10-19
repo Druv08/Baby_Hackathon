@@ -42,7 +42,12 @@ check('story progress follows visible scene',await ev("document.querySelector('n
 await ev("document.querySelector('nav[aria-label=\"Story progress\"] a[href=\"#scene-3\"]').click()");await sleep(60);const early=await ev('scrollY');await sleep(1200);const late=await ev('scrollY');check('scene link animates scrolling to its destination',late>early+100,{early,late});
 const map="document.querySelector('[data-scroll-route-map]')";
 await ev(`scrollTo({top:scrollY+${map}.getBoundingClientRect().top-innerHeight*.88,behavior:'instant'})`);await sleep(250);const first=await ev(`Number(${map}.dataset.scrollProgress)`);
+  const travelerStart=await ev("[...document.querySelector('[data-scroll-traveler]').attributes].filter(a=>['cx','cy'].includes(a.name)).map(a=>a.value).join(',')");
 await ev('scrollBy({top:400,behavior:"instant"})');await sleep(250);const next=await ev(`Number(${map}.dataset.scrollProgress)`);
+  const travelerForward=await ev("[...document.querySelector('[data-scroll-traveler]').attributes].filter(a=>['cx','cy'].includes(a.name)).map(a=>a.value).join(',')");
+  await ev('scrollBy({top:-400,behavior:"instant"})');await sleep(250);
+  const travelerBack=await ev("[...document.querySelector('[data-scroll-traveler]').attributes].filter(a=>['cx','cy'].includes(a.name)).map(a=>a.value).join(',')");
+  check('SVG traveler follows scrolling forward and backward',travelerStart!==travelerForward&&travelerBack===travelerStart,{travelerStart,travelerForward,travelerBack});
 check('SVG route ink synchronizes with actual scrolling',next>first+.3&&await ev("document.querySelectorAll('[data-route-ink]').length===9"),{first,next});
 const project="document.getElementById('project-dream-delivery-map')";
 await click(byText('Rabbit',project));await click(byText('Oak Cottage',project));

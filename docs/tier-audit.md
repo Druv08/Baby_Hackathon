@@ -1,5 +1,7 @@
 # Maria hackathon tier audit
 
+> Historical checkpoint. Superseded by [the complete three-tier audit](legendary-audit.md), including approved expression artwork, approved interactive 3D, conversations, nightlight, page-turn book, broader regression coverage and new multi-route Lighthouse measurements. Scores and limitations below describe the earlier implementation only.
+
 Implementation: `f02487d8835c35c43e9d97a70ebe3976f94d39b1`, on `integration/final-main`.
 Audited the existing application first. Reused its story, project, sound, cursor, progress and moderated Supabase implementations. No dependencies or canonical artwork were added or replaced.
 
