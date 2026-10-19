@@ -100,7 +100,6 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   // Forest story scenes 1–4 (Normal Maria) and the Whispering Forest world.
   // Not yet supplied (do not register until the files exist):
   //   /stories/forest/scene-5.png  (Forest Maria reveal)
-  //   /projects/forest/whispering-signpost-workshop.png
   "/stories/forest/scene-1.png",
   "/stories/forest/scene-2.png",
   "/stories/forest/scene-3.png",
@@ -110,6 +109,7 @@ export const VERIFIED_ASSETS: ReadonlySet<AssetPath> = new Set<AssetPath>([
   // Forest project artwork.
   "/projects/forest/dream-delivery-map.png",
   "/projects/forest/forest-friends-field-guide.png",
+  "/projects/forest/whispering-signpost-workshop.png",
   // Melody supplied images; unrelated project art retains descriptive names.
   "/stories/melody/scene-1.png",
   "/stories/melody/scene-2.png",

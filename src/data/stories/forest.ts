@@ -11,12 +11,10 @@ import type { StoryScene } from "@/types/story";
  * Scene 5's "Forest Maria — The Pathfinder." and her tagline are rendered
  * from the character record, so only the narration around them is kept here.
  *
- * Scene 5's illustration and the Whispering Signpost Workshop artwork have
- * not been supplied yet. Until they are, scene 5 shows the locked Forest
- * Maria design (`/characters/7.png`) and the signpost project has no image.
- * When the files arrive: copy them to `/stories/forest/scene-5.png` and
- * `/projects/forest/whispering-signpost-workshop.png`, register them in
- * `src/data/assets.ts`, and point the two `image` fields at them.
+ * Scene 5's illustration has not been supplied yet, so the reveal shows
+ * the locked Forest Maria design (`/characters/7.png`). When it arrives,
+ * copy it to `/stories/forest/scene-5.png`, register it in `src/data/assets.ts`
+ * and update the scene's image field. All three project illustrations exist.
  */
 
 export const FOREST_STORY_INTRO: StoryIntro = {
@@ -194,7 +192,7 @@ export const FOREST_PROJECTS: PortfolioProject[] = [
     title: "Whispering Signpost Workshop",
     description:
       "Create your own magical forest signpost using Forest Maria’s collection of wooden signs, flowers, leaves and woodland decorations.",
-    // Artwork not supplied yet (see the note at the top of this file).
+    image: "/projects/forest/whispering-signpost-workshop.png",
     interactionId: "whispering-signpost-workshop",
     status: "ready",
     implementation: "live",

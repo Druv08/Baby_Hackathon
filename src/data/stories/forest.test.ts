@@ -125,14 +125,14 @@ describe("Forest portfolio data", () => {
     expect(FOREST_PROFILE.about[0]).toBe("Hi! I’m Forest Maria!");
   });
 
-  it("registers three projects; two have verified artwork, the signpost art is not supplied yet", () => {
+  it("registers three projects with verified artwork", () => {
     expect(FOREST_PROJECTS.map((p) => p.title)).toEqual(["Dream Delivery Map", "Forest Friends Field Guide", "Whispering Signpost Workshop"]);
     expect(FOREST_PROJECTS.map((p) => p.image)).toEqual([
       "/projects/forest/dream-delivery-map.png",
       "/projects/forest/forest-friends-field-guide.png",
-      undefined,
+      "/projects/forest/whispering-signpost-workshop.png",
     ]);
-    for (const p of FOREST_PROJECTS.slice(0, 2)) expect(isAssetVerified(p.image)).toBe(true);
+    for (const p of FOREST_PROJECTS) expect(isAssetVerified(p.image)).toBe(true);
   });
 });
 
