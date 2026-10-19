@@ -88,10 +88,10 @@ export type SendState = { kind: "idle" } | { kind: "sending" } | { kind: "sent" 
 
 /**
  * The "leave a memory" form state. Checks the same rules as the server, then
- * sends through the API, which publishes valid memories straight away.
- * `onSent` lets the caller reload the lanterns so the new one appears.
+ * sends through the moderated API, where the memory waits as `pending`. A
+ * successful send never adds it to the visible lanterns.
  */
-export function useMemorySubmit(onSent?: () => void) {
+export function useMemorySubmit() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [future, setFuture] = useState<FutureSlug | "">("");
@@ -123,7 +123,6 @@ export function useMemorySubmit(onSent?: () => void) {
     if (!mounted.current) return;
     if (result.ok) {
       setSend({ kind: "sent" });
-      onSent?.();
       setMessage("");
       return;
     }

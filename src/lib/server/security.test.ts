@@ -85,11 +85,12 @@ describe("moderation cannot be done publicly", () => {
     }
   });
 
-  it("only the server insert sets a status (auto-approve); nothing can edit, reject or delete memories", () => {
-    const writers = appFiles.filter((file) => /status\s*:\s*["'](approved|rejected)["']/.test(read(file))).map(rel);
-    expect(writers).toEqual(["src/lib/server/stores.ts"]);
-    expect(read(join(ROOT, "src", "lib", "server", "stores.ts"))).not.toMatch(/status\s*:\s*["']rejected["']/);
+  it("never writes a memory status from application code", () => {
     for (const file of appFiles) {
+      expect({ file: rel(file), writesStatus: /status\s*:\s*["'](approved|rejected)["']/.test(read(file)) }).toEqual({
+        file: rel(file),
+        writesStatus: false,
+      });
       expect(read(file)).not.toMatch(/\.from\(\s*["']memories["']\s*\)\s*\.(update|upsert|delete)\(/);
     }
   });

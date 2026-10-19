@@ -36,10 +36,10 @@ describe.skipIf(!enabled)("Supabase live integration", () => {
     expect(Number(data!.counter_value)).toBe(40);
   });
 
-  it("publishes submissions straight to the public list", async () => {
-    await stores.memories.insertApproved({ visitorName: "Integration", message: `${marker} hello`, formSlug: "star" });
+  it("stores submissions as pending and hides them from the public list", async () => {
+    await stores.memories.insertPending({ visitorName: "Integration", message: `${marker} hello`, formSlug: "star" });
     const listed = await stores.memories.listApproved({ limit: 50 });
-    expect(listed.some((m) => m.message.startsWith(marker))).toBe(true);
+    expect(listed.some((m) => m.message.startsWith(marker))).toBe(false);
   });
 
   it("reads the site visit counter", async () => {

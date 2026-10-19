@@ -25,7 +25,7 @@ describe("Memory Book wiring", () => {
     }
   });
 
-  it("only shows memories returned by the API (a successful send reloads them rather than adding locally)", () => {
+  it("only shows memories returned by the API; a successful send never adds to the lake", () => {
     const hooks = source("src/components/memory/useMemoryBook.ts");
     const submit = hooks.slice(hooks.indexOf("export function useMemorySubmit"));
     expect(submit).not.toMatch(/setMemories/);

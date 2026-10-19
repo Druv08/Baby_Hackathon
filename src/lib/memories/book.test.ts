@@ -39,8 +39,8 @@ describe("Memory Book helpers", () => {
     expect(sendErrorMessage(400, "Please tell Maria your name.")).toBe("Please tell Maria your name.");
   });
 
-  it("tells the visitor their lantern is now glowing", () => {
-    expect(RECEIVED_MESSAGE).toMatch(/now glows/);
+  it("promises review, not instant publication, after a successful send", () => {
+    expect(RECEIVED_MESSAGE).toMatch(/Once it's approved/);
   });
 
   it("formats submission dates and hides unreadable ones", () => {
