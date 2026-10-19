@@ -1,3 +1,4 @@
+import { MELODY_PROFILE, MELODY_PROJECTS, MELODY_SCENES, MELODY_STORY_INTRO } from "./stories/melody";
 import type { FuturePath } from "@/types/future";
 import { AQUA_PROFILE, AQUA_PROJECTS, AQUA_SCENES, AQUA_STORY_INTRO } from "./stories/aqua";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
@@ -93,19 +94,12 @@ export const FUTURES: FuturePath[] = [
     slug: "melody",
     characterId: 8,
     heroImage: "/heroes/melody.png",
-    storyStatus: "pending",
-    portfolioStatus: "pending",
-    scenes: [],
-    projects: [
-      {
-        id: "lullaby-lab",
-        title: "Lullaby Lab",
-        description:
-          "Explore the magic of music and create your own lullaby with Maria.",
-        status: "draft",
-        implementation: "proposed",
-      },
-    ],
+    storyStatus: "draft",
+    portfolioStatus: "draft",
+    storyIntro: MELODY_STORY_INTRO,
+    scenes: MELODY_SCENES,
+    profile: MELODY_PROFILE,
+    projects: MELODY_PROJECTS,
   },
   {
     id: 9,
