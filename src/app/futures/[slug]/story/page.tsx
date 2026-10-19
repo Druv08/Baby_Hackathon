@@ -9,6 +9,7 @@ import { Portfolio } from "@/components/projects/Portfolio";
 import { FadeIn } from "@/components/story/FadeIn";
 import { OceanPearl } from "@/components/aqua/OceanPearl";
 import { RainbowCloud } from "@/components/cloud/RainbowCloud";
+import { GoldenAcorn } from "@/components/forest/GoldenAcorn";
 import { GoldenCog } from "@/components/inventor/GoldenCog";
 import { HiddenConstellation } from "@/components/star/HiddenConstellation";
 import { HiddenSecret } from "@/components/story/GoldenSeed";
@@ -211,7 +212,8 @@ type SecretSpot =
   | { kind: "constellation"; sceneId: number }
   | { kind: "rainbow-cloud"; sceneId: number; left: string; top: string }
   | { kind: "pearl"; sceneId: number; left: string; top: string }
-  | { kind: "cog"; sceneId: number; left: string; top: string };
+  | { kind: "cog"; sceneId: number; left: string; top: string }
+  | { kind: "acorn"; sceneId: number; left: string; top: string };
 
 /** Where each future's hidden collectible is tucked into its story. */
 const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
@@ -225,6 +227,8 @@ const SECRET_SPOTS: Partial<Record<string, SecretSpot>> = {
   aqua: { kind: "pearl", sceneId: 2, left: "47%", top: "88%" },
   // A tiny golden gear among the scattered parts on the floor of "A Hundred Tiny Tries".
   inventor: { kind: "cog", sceneId: 3, left: "62%", top: "80%" },
+  // A tiny golden acorn among the roots of the ancient tree in "The Forest of Missing Footprints".
+  forest: { kind: "acorn", sceneId: 1, left: "16%", top: "84%" },
 };
 
 /**
@@ -272,6 +276,7 @@ function OriginScene({
             <HiddenSecret futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />
           )}
           {secret?.spot.kind === "constellation" && <HiddenConstellation futureSlug={secret.slug} />}
+          {secret?.spot.kind === "acorn" && <GoldenAcorn futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />}
           {secret?.spot.kind === "cog" && <GoldenCog futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />}
           {secret?.spot.kind === "pearl" && <OceanPearl futureSlug={secret.slug} left={secret.spot.left} top={secret.spot.top} />}
           {secret?.spot.kind === "rainbow-cloud" && (

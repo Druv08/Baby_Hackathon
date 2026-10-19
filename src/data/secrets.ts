@@ -18,7 +18,7 @@ export const SECRETS: readonly SecretCollectible[] = [
   { id: "secret-cloud", futureSlug: "cloud", characterId: 4, name: "Secret Rainbow Cloud", unlockMessage: "You found the Secret Rainbow Cloud!" },
   { id: "hidden-pearl", futureSlug: "aqua", characterId: 5, name: "Secret Ocean Pearl", unlockMessage: "You found the Secret Ocean Pearl!" },
   { id: "secret-gear", futureSlug: "inventor", characterId: 6, name: "Golden Cog", unlockMessage: "You found the Golden Cog!" },
-  { id: "hidden-leaf", futureSlug: "forest", characterId: 7, name: "Hidden Leaf", unlockMessage: "You found the Hidden Leaf!" },
+  { id: "hidden-leaf", futureSlug: "forest", characterId: 7, name: "Golden Acorn", unlockMessage: "You found the Golden Acorn!" },
   { id: "secret-note", futureSlug: "melody", characterId: 8, name: "Secret Note", unlockMessage: "You found the Secret Note!" },
   { id: "memory-star", futureSlug: "luna", characterId: 9, name: "Memory Star", unlockMessage: "You found the Memory Star!" },
 ];

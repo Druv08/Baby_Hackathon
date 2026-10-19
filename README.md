@@ -303,3 +303,21 @@ shared `GearSvg.tsx`), rules in `src/lib/projects/inventor-story.ts` and
 `inventor-projects.ts`, and the workshop atmosphere in
 `src/components/story/WorkshopLayer.tsx`. The Golden Cog uses Inventor's
 existing secret id, `secret-gear`.
+
+### Forest (sixth complete future)
+
+Forest follows the same pattern (`src/data/stories/forest.ts`), with its
+scene interactions, Dream Delivery Map, Forest Friends Field Guide,
+Whispering Signpost Workshop and the Golden Acorn secret in
+`src/components/forest/`, rules in `src/lib/projects/forest-story.ts` and
+`forest-projects.ts`, and the woodland atmosphere in
+`src/components/story/ForestLayer.tsx`. The Golden Acorn uses Forest's
+existing secret id, `hidden-leaf`.
+
+**Artwork still to supply:** Folder 7 had no scene 5 illustration and no
+Whispering Signpost Workshop artwork. Until they arrive, scene 5 shows the
+locked `characters/7.png` (portrait-sized) and the signpost card shows a drawn
+sign. To add them: copy the files to `public/stories/forest/scene-5.png` and
+`public/projects/forest/whispering-signpost-workshop.png`, register both in
+`src/data/assets.ts`, and set the two `image` fields in
+`src/data/stories/forest.ts`.
