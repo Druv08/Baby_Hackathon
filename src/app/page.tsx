@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 
 import { Sparkles } from "@/components/decor/Sparkles";
 import { FutureGrid } from "@/components/futures/FutureGrid";
@@ -18,10 +19,12 @@ export default function Home() {
           alt=""
           fill
           priority
+          fetchPriority="high"
+          quality={65}
           sizes="100vw"
           className={styles.heroBackground}
         />
-        <div className={styles.heroVeil} aria-hidden="true" />
+        <div className={styles.heroVeil} data-home-veil aria-hidden="true" />
       </div>
       <section className={styles.hero} aria-labelledby="hero-title">
         <Sparkles />
@@ -47,14 +50,18 @@ export default function Home() {
 
           <div className={styles.portraitWrap}>
             <div className={styles.portrait}>
+              <ReactivePortrait name={maria.name}>
               <Image
                 src={maria.characterImage}
                 alt={CHARACTER_THEMES.normal.portraitAlt}
                 width={1086}
                 height={1448}
                 priority
-                sizes="(max-width: 800px) 80vw, 420px"
+                fetchPriority="high"
+                quality={60}
+                sizes="(max-width: 480px) 68vw, (max-width: 800px) 320px, 420px"
               />
+              </ReactivePortrait>
             </div>
             <p className={styles.sign} aria-hidden="true">
               A new journey begins…

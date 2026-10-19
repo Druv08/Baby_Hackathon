@@ -1,0 +1,6 @@
+/* Reading panels stay light so existing illustrated worlds retain their contrast. */
+html[data-palette="night"] { --paper: #f1eaf7; --paper-deep: #e4d7f1; --ink: #372347; --ink-soft: #60446e; --pink: #db9bbe; --pink-deep: #a72b63; --lavender: #b4a1d5; --lavender-deep: #56338e; --gold: #f0c773; }
+html[data-palette="night"] body { background: radial-gradient(ellipse at top, #45305e, #201a38 75%); }
+html[data-palette="night"] body > header { background: #e9dff2; border-bottom-color: #b4a1d5; }
+html[data-palette="night"] body > footer { background: #e9dff2; }
+html[data-palette="night"] [data-home-veil] { background: linear-gradient(90deg, rgba(53, 32, 83, .42), rgba(53, 32, 83, .2)); }

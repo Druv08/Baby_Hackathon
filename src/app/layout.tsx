@@ -5,6 +5,7 @@ import "./globals.css";
 import { CharacterAmbience } from "@/components/site/CharacterAmbience";
 import { CursorTrail } from "@/components/site/CursorTrail";
 import { ChaosMode } from "@/components/site/ChaosMode";
+import { PaletteTheme } from "@/components/site/PaletteTheme";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SITE_CONFIG } from "@/data/site-config";
@@ -33,6 +34,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
+        <PaletteTheme />
         <ChaosMode />
         <main id="main">{children}</main>
         <SiteFooter />

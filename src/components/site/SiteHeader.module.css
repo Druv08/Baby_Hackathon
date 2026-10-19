@@ -154,8 +154,8 @@
   }
 }
 
-/* Only tablets in portrait and phones fold the links into the menu. */
-@media (max-width: 820px) {
+/* Leave room for sound, Chaos Mode and palette controls on tablets. */
+@media (max-width: 1000px) {
   .linkIcon {
     display: inline;
   }
@@ -188,4 +188,14 @@
     width: 100%;
     font-size: 1.15rem;
   }
+}
+
+@media (max-width: 600px) {
+  .inner { gap: .5rem; }
+  .logo span { display: none; }
+  .toggle { padding-inline: .75rem; }
+}
+@media (max-width: 380px) {
+  .toggle { min-width: 44px; justify-content: center; }
+  .toggle > span:last-child { display: none; }
 }

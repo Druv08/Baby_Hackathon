@@ -29,3 +29,5 @@ export function createBooleanPreference(key: string, storage: () => Pick<Storage
 export function browserStorage() { return typeof window === "undefined" ? null : window.localStorage; }
 export const CHAOS_STORAGE_KEY = "maria:chaos";
 export const chaosPreference = createBooleanPreference(CHAOS_STORAGE_KEY, browserStorage);
+export const NIGHT_STORAGE_KEY = "maria:night-palette";
+export const nightPreference = createBooleanPreference(NIGHT_STORAGE_KEY, browserStorage);

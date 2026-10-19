@@ -493,3 +493,8 @@
     animation: none;
   }
 }
+.routeInk { pointer-events: none; }
+.routeReveal { fill: none; stroke: #ad7b24; stroke-width: 2; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--route-reveal, 0)); opacity: .6; }
+.routeReveal[data-used="true"] { stroke: #b47710; stroke-width: 6; opacity: 1; }
+.routeReveal[data-usable="false"] { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .routeReveal { stroke-dashoffset: 0; } }

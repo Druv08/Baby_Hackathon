@@ -1,6 +1,7 @@
 import { GoldenNote } from "@/components/melody/GoldenNote";
 import { MelodyLayer, MelodySceneInteraction } from "@/components/melody/MelodySceneInteractions";
 import Image from "next/image";
+import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -71,6 +72,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
       <section className={styles.intro} aria-labelledby="story-title">
         <div className={`container ${styles.introInner}`}>
           <div className={styles.introMaria}>
+            <ReactivePortrait name={view.normalMaria.name}>
             <Image
               src={view.normalMaria.characterImage}
               alt={CHARACTER_THEMES.normal.portraitAlt}
@@ -79,6 +81,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
               priority
               sizes="(max-width: 800px) 60vw, 380px"
             />
+            </ReactivePortrait>
             <p className={styles.introSign} aria-hidden="true">
               A new journey begins…
             </p>
@@ -144,6 +147,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
 
             <FadeIn className={styles.characterCard}>
               <div className={styles.cardPortrait}>
+                <ReactivePortrait name={reveal.character.name}>
                 <Image
                   src={reveal.character.characterImage}
                   alt={theme.portraitAlt}
@@ -151,6 +155,7 @@ export async function RenderStory({ params, preview = false }: Params & { previe
                   height={1448}
                   sizes="(max-width: 800px) 70vw, 320px"
                 />
+                </ReactivePortrait>
               </div>
               <p className={styles.cardName}>
                 {reveal.character.name} — <span>The {reveal.character.profession}</span>

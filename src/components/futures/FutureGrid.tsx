@@ -23,6 +23,7 @@ export function FutureGrid({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3"
                   alt={theme.portraitAlt}
                   width={1086}
                   height={1448}
+                  fetchPriority="low"
                   sizes="(max-width: 600px) 45vw, (max-width: 1100px) 30vw, 260px"
                 />
                 <span className={styles.number} aria-hidden="true">

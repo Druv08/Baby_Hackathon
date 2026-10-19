@@ -41,6 +41,7 @@ export function SiteHeader() {
           ref={toggleRef}
           type="button"
           className={styles.toggle}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((o) => !o)}

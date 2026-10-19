@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducer } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import {
   DELIVERY_PATHS,
@@ -53,6 +54,7 @@ function message(s: DeliveryState): string {
  * that suit it, so the shortest line isn't always the right one.
  */
 export function DreamDeliveryMap() {
+  const map = useScrollReveal();
   const [state, dispatch] = useReducer(deliveryReducer, initialDelivery);
   const delivered = isDelivered(state);
   const here = state.route.at(-1);
@@ -90,7 +92,7 @@ export function DreamDeliveryMap() {
         </fieldset>
       )}
 
-      <div className={styles.forestMap} data-delivered={delivered}>
+      <div ref={map} className={styles.forestMap} data-delivered={delivered} data-scroll-route-map>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path d="M44 0 C 50 30, 44 60, 52 100" fill="none" stroke="#8fc6d8" strokeWidth="7" />
           {DELIVERY_PATHS.map((p) => {
@@ -110,6 +112,14 @@ export function DreamDeliveryMap() {
                 data-used={onRoute(p.a, p.b)}
               />
             );
+          })}
+        </svg>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" className={styles.routeInk}>
+          {DELIVERY_PATHS.map(path => {
+            const a = place(path.a), b = place(path.b);
+            return <path key={`${path.a}-${path.b}`} d={`M${a.x} ${a.y} L${b.x} ${b.y}`} pathLength={1}
+              className={styles.routeReveal} data-route-ink data-used={onRoute(path.a, path.b)}
+              data-usable={!state.traveler || canUse(state.traveler, path.kind)} />;
           })}
         </svg>
         {PLACES.map((p) => {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ReactivePortrait } from "@/components/characters/ReactivePortrait";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -86,6 +87,7 @@ export default async function FuturePage({ params }: Params) {
           </div>
 
           <div className={styles.portrait}>
+            <ReactivePortrait name={character.name}>
             <Image
               src={character.characterImage}
               alt={theme.portraitAlt}
@@ -94,6 +96,7 @@ export default async function FuturePage({ params }: Params) {
               priority
               sizes="(max-width: 860px) 70vw, 400px"
             />
+            </ReactivePortrait>
           </div>
         </div>
       </section>
