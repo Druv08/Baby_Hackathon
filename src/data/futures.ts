@@ -2,6 +2,7 @@ import type { FuturePath } from "@/types/future";
 import { AQUA_PROFILE, AQUA_PROJECTS, AQUA_SCENES, AQUA_STORY_INTRO } from "./stories/aqua";
 import { BLOSSOM_PROFILE, BLOSSOM_PROJECTS, BLOSSOM_SCENES, BLOSSOM_STORY_INTRO } from "./stories/blossom";
 import { CLOUD_PROFILE, CLOUD_PROJECTS, CLOUD_SCENES, CLOUD_STORY_INTRO } from "./stories/cloud";
+import { FOREST_PROFILE, FOREST_PROJECTS, FOREST_SCENES, FOREST_STORY_INTRO } from "./stories/forest";
 import { INVENTOR_PROFILE, INVENTOR_PROJECTS, INVENTOR_SCENES, INVENTOR_STORY_INTRO } from "./stories/inventor";
 import { STAR_PROFILE, STAR_PROJECTS, STAR_SCENES, STAR_STORY_INTRO } from "./stories/star";
 
@@ -80,18 +81,13 @@ export const FUTURES: FuturePath[] = [
     slug: "forest",
     characterId: 7,
     heroImage: "/heroes/forest.png",
-    storyStatus: "pending",
+    // Draft until the story page is live and verified.
+    storyStatus: "draft",
     portfolioStatus: "pending",
-    scenes: [],
-    projects: [
-      {
-        id: "dream-delivery-map",
-        title: "Dream Delivery Map",
-        description: "See the forest map Maria created to help her new friends.",
-        status: "draft",
-        implementation: "proposed",
-      },
-    ],
+    storyIntro: FOREST_STORY_INTRO,
+    scenes: FOREST_SCENES,
+    profile: FOREST_PROFILE,
+    projects: FOREST_PROJECTS,
   },
   {
     id: 8,

@@ -47,7 +47,7 @@ describe("Blossom portfolio", () => {
   });
 
   it("leaves the futures without content untouched", () => {
-    for (const f of FUTURES.filter((f) => !["blossom", "star", "cloud", "aqua", "inventor"].includes(f.slug))) {
+    for (const f of FUTURES.filter((f) => !["blossom", "star", "cloud", "aqua", "inventor", "forest"].includes(f.slug))) {
       expect(f.portfolioStatus).toBe("pending");
       expect(f.profile).toBeUndefined();
       expect(f.projects.every((p) => p.implementation === "proposed")).toBe(true);
