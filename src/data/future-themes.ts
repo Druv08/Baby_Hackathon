@@ -90,6 +90,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#e5f3df",
     accentGlow: "rgba(130, 190, 110, 0.5)",
     portraitAlt: "Forest Maria in a leafy green hooded cloak with flowers, holding a hand-drawn map.",
+    journalTitle: "Explorer’s Journal",
+    workshop: "woodland workshop",
+    creationsIcon: "🍃",
   },
   melody: {
     label: "Melody",

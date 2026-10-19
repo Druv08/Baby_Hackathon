@@ -1,0 +1,389 @@
+/* Sits exactly over the 1672×941 illustration at the top of the frame. */
+.imageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  pointer-events: none;
+}
+
+.imageLayer > button {
+  pointer-events: auto;
+}
+
+/* ── Scene 1: the signpost ───────────────────────────────────────────── */
+.signpost {
+  position: absolute;
+  width: 22%;
+  aspect-ratio: 2.2;
+  padding: 0;
+  border: 3px dashed rgba(255, 244, 210, 0.9);
+  border-radius: 16px;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  animation: hint 2.6s ease-in-out infinite;
+}
+
+.signpost:focus-visible,
+.leafSlot:focus-visible,
+.landmark:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 3px;
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.04;
+  }
+}
+
+.arrow {
+  position: absolute;
+  inset: 0;
+}
+
+/* The second direction swings into view, then swings back. */
+.flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: #c8945c;
+  border: 2px solid #7a4f2a;
+  color: #fff8ec;
+  font: 800 clamp(0.7rem, 1.4vw, 1rem) var(--font-body);
+  white-space: nowrap;
+  transform-origin: 0 50%;
+  opacity: 0;
+}
+
+.arrow[data-active="true"] .flash {
+  animation: swing 1.9s ease-in-out forwards;
+}
+
+@keyframes swing {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-40deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(12deg);
+  }
+  35% {
+    transform: translate(-50%, -50%) rotate(-6deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-40deg);
+  }
+}
+
+/* ── Scene 2: the wayfinder map ──────────────────────────────────────── */
+.mapCard {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 7;
+  border-radius: 14px;
+  border: 3px solid #8a5a2c;
+  filter: saturate(0.5) brightness(0.85);
+  transition: filter 0.8s ease, box-shadow 0.8s ease;
+}
+
+.mapCard[data-stage="glowing"],
+.mapCard[data-stage="shifted"] {
+  filter: none;
+  box-shadow: 0 0 22px rgba(255, 214, 120, 0.85);
+}
+
+.mapCard svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mapPath {
+  fill: none;
+  stroke: #f2b632;
+  stroke-width: 2.2;
+  stroke-dasharray: 3 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.mapPath[data-visible="true"] {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px #ffd36a);
+}
+
+.leafSlot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 3px dashed #fff3c4;
+  border-radius: 50%;
+  background: rgba(70, 50, 20, 0.55);
+  font-size: 1.6rem;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  animation: hint 2s ease-in-out infinite;
+}
+
+/* ── Scene 3: route choices ──────────────────────────────────────────── */
+.routes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.route {
+  display: grid;
+  gap: 4px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 2px solid #b8d6a0;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f6fbef;
+  font: 600 0.9rem var(--font-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.route strong {
+  font-weight: 800;
+  color: #fff3c4;
+}
+
+.route[data-verdict="no"] {
+  border-color: #f0a58a;
+  border-style: dashed;
+}
+
+.route[data-verdict="good"] {
+  border-color: #ffe08a;
+  background: rgba(255, 224, 138, 0.18);
+  box-shadow: 0 0 14px rgba(255, 224, 138, 0.6);
+}
+
+.route:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.route:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 2px;
+}
+
+/* ── Scene 4: safe route map ─────────────────────────────────────────── */
+.routeMap {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  border-radius: 14px;
+  border: 3px solid #8a5a2c;
+  transition: box-shadow 0.8s ease;
+}
+
+.routeMap[data-done="true"] {
+  box-shadow: 0 0 26px rgba(255, 214, 120, 0.9);
+}
+
+.routeMap svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 11px;
+}
+
+.goldLine {
+  stroke: #f2b632;
+  stroke-width: 4;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 3px #ffd36a);
+}
+
+.routeMap[data-done="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 11px;
+  background: radial-gradient(ellipse 60% 60% at 60% 60%, rgba(255, 230, 150, 0.35), rgba(255, 230, 150, 0) 70%);
+  pointer-events: none;
+}
+
+.landmark {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translate(-50%, -30%);
+  cursor: pointer;
+}
+
+.landmark:disabled {
+  cursor: default;
+}
+
+.dot {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #6f9f55;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.landmark[data-safe="false"] .dot {
+  background: #b98a6a;
+}
+
+.landmark[data-on-route="true"] .dot {
+  background: #f2b632;
+  box-shadow: 0 0 12px rgba(255, 210, 100, 0.9);
+}
+
+.landmarkName {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.92);
+  color: #3a2a14;
+  font: 800 0.72rem var(--font-body);
+  white-space: nowrap;
+}
+
+.rabbit {
+  position: absolute;
+  font-size: 1.4rem;
+  transform: translate(-50%, -120%);
+  transition: left 0.8s ease, top 0.8s ease;
+  pointer-events: none;
+}
+
+/* ── Panels below the illustration ───────────────────────────────────── */
+.caption {
+  margin: 0;
+  padding: 10px 14px;
+  background: #2f4a2a;
+  color: #f6fbef;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #34502e, #26401f);
+  color: #f6fbef;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.inline {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.inline[data-tone="good"] {
+  color: #ffe08a;
+}
+
+.inline[data-tone="gentle"] {
+  color: #ffd8c2;
+}
+
+.action {
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e8b84a, #b98420);
+  color: #fff;
+  font: 800 0.95rem var(--font-body);
+  cursor: pointer;
+}
+
+.ghost {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: #d8eccb;
+  font: 700 0.95rem var(--font-body);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.action:focus-visible,
+.ghost:focus-visible {
+  outline: 3px solid #fff3c4;
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .routes {
+    grid-template-columns: 1fr;
+  }
+
+  .landmarkName {
+    font-size: 0.62rem;
+    padding: 1px 4px;
+  }
+
+  .routeMap {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signpost,
+  .leafSlot {
+    animation: none;
+  }
+
+  .arrow[data-active="true"] .flash {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .mapCard,
+  .mapPath,
+  .routeMap,
+  .rabbit {
+    transition: none;
+  }
+}

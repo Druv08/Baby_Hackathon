@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { MagicBubble, ReefCleanup, SeaCreatures, TangledNet } from "@/components/aqua/AquaSceneInteractions";
 import { CloudBridge, CloudSteps, WindChimes, WorriedCloud } from "@/components/cloud/CloudSceneInteractions";
+import { RouteChoice, SafeRouteMap, ShiftingMap, TurningSignpost } from "@/components/forest/ForestSceneInteractions";
 import { Gear } from "@/components/inventor/GearSvg";
 import { FlickerLantern, GearChallenge, MachineActivation, MachineDiagram } from "@/components/inventor/InventorSceneInteractions";
 import {
@@ -75,6 +76,17 @@ export function SceneInteraction({ id }: { id?: string }) {
       return <MachineActivation />;
     case "inventor-reveal":
       return <RevealSparkles variant="gears" />;
+    // Forest Maria
+    case "turning-signpost":
+      return <TurningSignpost />;
+    case "shifting-map":
+      return <ShiftingMap />;
+    case "route-choice":
+      return <RouteChoice />;
+    case "safe-route-map":
+      return <SafeRouteMap />;
+    case "forest-reveal":
+      return <RevealSparkles variant="leaves" />;
     default:
       return null;
   }
@@ -211,9 +223,10 @@ function BloomFlowers() {
  * Scene 5: soft golden-and-pink petals (golden stars for Star, rising cloud
  * puffs and a brightening sky for Cloud, rising bubbles in turquoise and
  * golden light for Aqua, turning golden gears, glowing lanterns and warm
- * sparkles for Inventor) when the reveal appears.
+ * sparkles for Inventor, falling leaves, glowing paths and brightening
+ * lanterns for Forest) when the reveal appears.
  */
-function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" | "bubbles" | "gears" }) {
+function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" | "bubbles" | "gears" | "leaves" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {

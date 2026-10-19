@@ -505,3 +505,39 @@
     transition: none;
   }
 }
+
+/* Forest reveal: lanterns brighten, golden paths glow and leaves fall. */
+.sparkleLayer[data-variant="leaves"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 214, 140, 0.55), rgba(255, 214, 140, 0) 12%),
+    radial-gradient(circle at 88% 22%, rgba(255, 214, 140, 0.5), rgba(255, 214, 140, 0) 12%),
+    radial-gradient(ellipse 70% 25% at 50% 92%, rgba(255, 220, 120, 0.4), rgba(255, 220, 120, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.sparkleLayer[data-variant="leaves"][data-shown="true"]::before {
+  opacity: 1;
+}
+
+.sparkleLayer[data-variant="leaves"] span {
+  width: 14px;
+  height: 9px;
+  border-radius: 0 100% 0 100%;
+  box-shadow: none;
+}
+
+.sparkleLayer[data-variant="leaves"] span:nth-child(odd) {
+  background: #8fbf5a;
+}
+
+.sparkleLayer[data-variant="leaves"] span:nth-child(even) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #ffd27a 50%, rgba(255, 210, 122, 0) 75%);
+  box-shadow: 0 0 8px rgba(255, 210, 122, 0.9);
+}

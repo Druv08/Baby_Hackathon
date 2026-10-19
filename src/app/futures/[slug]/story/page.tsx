@@ -15,6 +15,7 @@ import { HiddenSecret } from "@/components/story/GoldenSeed";
 import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
 import { StarfieldLayer } from "@/components/story/StarfieldLayer";
+import { ForestLayer } from "@/components/story/ForestLayer";
 import { OceanLayer } from "@/components/story/OceanLayer";
 import { SkyLayer } from "@/components/story/SkyLayer";
 import { WorkshopLayer } from "@/components/story/WorkshopLayer";
@@ -57,6 +58,10 @@ export default async function StoryPage({ params }: Params) {
   const theme = CHARACTER_THEMES[view.slug];
   const { origin, reveal } = view.story;
   const size = sceneSize(view.slug);
+  // Until a world's reveal illustration exists, its reveal shows the locked
+  // portrait character art instead (portrait-sized, never stretched).
+  const revealPortrait = reveal.image?.startsWith("/characters/") ?? false;
+  const revealSize = revealPortrait ? { width: 1086, height: 1448 } : size;
   // Story-world landscape, by convention, only when the file was supplied.
   const backdrop = `/stories/${view.slug}/background.png`;
   const hasBackdrop = isAssetVerified(backdrop);
@@ -131,13 +136,13 @@ export default async function StoryPage({ params }: Params) {
             <h2 id={`scene-${reveal.id}-title`}>{reveal.title}</h2>
           </header>
 
-          <FadeIn className={styles.revealFrame}>
+          <FadeIn className={styles.revealFrame} data-portrait={revealPortrait}>
             {reveal.verifiedImage && (
               <Image
                 src={reveal.verifiedImage}
-                alt={SCENE_ALT[reveal.image ?? ""] ?? reveal.title}
-                width={size.width}
-                height={size.height}
+                alt={SCENE_ALT[reveal.image ?? ""] ?? (revealPortrait ? theme.portraitAlt : reveal.title)}
+                width={revealSize.width}
+                height={revealSize.height}
                 sizes="(max-width: 1100px) 94vw, 1100px"
               />
             )}
@@ -197,6 +202,7 @@ function AmbientLayer({ slug }: { slug: string }) {
   if (slug === "cloud") return <SkyLayer />;
   if (slug === "aqua") return <OceanLayer />;
   if (slug === "inventor") return <WorkshopLayer />;
+  if (slug === "forest") return <ForestLayer />;
   return <PetalLayer />;
 }
 
@@ -329,4 +335,12 @@ const SCENE_ALT: Record<string, string> = {
     "Maria happily turns a golden gear on the machine as the Dream Spark floats free in a swirl of light and the village lanterns glow outside.",
   "/stories/inventor/scene-5.png":
     "Inventor Maria in her brown mechanic apron, leather goggles and star-patterned red scarf, holding up a glowing star in the restored workshop.",
+  "/stories/forest/scene-1.png":
+    "Maria, in her pink floral scarf, gently reaches toward a lost baby rabbit beside a broken wooden signpost in a lantern-lit forest.",
+  "/stories/forest/scene-2.png":
+    "Maria and the little rabbit lean over a glowing enchanted map on a carved wooden table among the roots of a giant tree.",
+  "/stories/forest/scene-3.png":
+    "Maria sits thinking beside a rushing stream while the frightened rabbit hesitates at the edge of a narrow log bridge.",
+  "/stories/forest/scene-4.png":
+    "Maria happily traces glowing safe routes on a forest map as a rabbit, a squirrel, a hedgehog and a bluebird gather around.",
 };

@@ -584,3 +584,120 @@
     animation: none;
   }
 }
+
+/* A portrait reveal (character art) stays a sensible size. */
+.revealFrame[data-portrait="true"] {
+  max-width: min(26rem, 100%);
+}
+
+/* ── Forest: the Whispering Forest ────────────────────────────────── */
+.world[data-world="forest"][data-backdrop="true"] {
+  background: #4a5a32;
+}
+
+/* A soft green-gold veil keeps the forest vivid behind the reading panels. */
+.world[data-world="forest"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(40, 60, 30, 0.06), rgba(40, 60, 30, 0.04) 45%, rgba(30, 45, 20, 0.28));
+}
+
+/* Centre on the waterfalls and the lantern-lit bridge. */
+.world[data-world="forest"] .backdropImage {
+  object-position: 50% 55%;
+}
+
+.world[data-world="forest"] .introTitle {
+  color: #3f6b2a;
+  text-shadow: 0 0 22px rgba(255, 240, 180, 0.95);
+}
+
+.world[data-world="forest"] .introSubtitle {
+  color: #8a5a2c;
+}
+
+/* Parchment storybook panels with a leafy edge and a blossom. */
+.world[data-world="forest"] .introCopy,
+.world[data-world="forest"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 0 0, rgba(205, 230, 170, 0.55), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(255, 210, 225, 0.4), transparent 35%),
+    #fffaee;
+  border-color: #a9c98a;
+  box-shadow: var(--shadow-soft), 0 0 0 1px rgba(95, 140, 60, 0.15), 0 10px 30px rgba(40, 60, 20, 0.2);
+}
+
+.world[data-world="forest"] .panel::after {
+  content: "🍃";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.2rem;
+  opacity: 0.75;
+}
+
+.world[data-world="forest"] .sceneTitle {
+  color: #2f4a22;
+}
+
+/* Spoken lines in warm woodland gold. */
+.world[data-world="forest"] .panel p[class] {
+  border-left-color: #8fbf5a;
+  color: #6b4a1e;
+}
+
+.world[data-world="forest"] .frame,
+.world[data-world="forest"] .revealFrame {
+  border-color: #fffaee;
+  box-shadow: 0 0 0 3px #8fbf5a, 0 20px 50px rgba(30, 45, 20, 0.35), 0 0 36px rgba(255, 220, 140, 0.35);
+}
+
+.world[data-world="forest"] .revealHead {
+  background: rgba(47, 74, 34, 0.86);
+}
+
+.world[data-world="forest"] .revealHead h2 {
+  color: #fff3d0;
+  text-shadow: 0 0 22px rgba(255, 220, 140, 0.85);
+}
+
+/* Gentle bobbing on the illustrations (translate, so it combines with the fade-in). */
+.world[data-world="forest"] .frame {
+  animation: bob 7s ease-in-out infinite;
+}
+
+.world[data-world="forest"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3.5s;
+}
+
+.world[data-world="forest"] .introMaria {
+  animation: bob 6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.world[data-world="forest"] .characterCard {
+  background: linear-gradient(180deg, #fffaee, #e6f1d2);
+}
+
+.world[data-world="forest"] .cardPortrait {
+  box-shadow: 0 0 0 3px #8fbf5a, 0 0 30px rgba(255, 220, 140, 0.6);
+}
+
+.world[data-world="forest"] .cardName {
+  color: #3f6b2a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="forest"] .frame,
+  .world[data-world="forest"] .introMaria {
+    animation: none;
+  }
+}
