@@ -18,6 +18,7 @@ import { StoryCompletion } from "@/components/story/StoryCompletion";
 import { PetalLayer } from "@/components/story/PetalLayer";
 import { StarfieldLayer } from "@/components/story/StarfieldLayer";
 import { ForestLayer } from "@/components/story/ForestLayer";
+import { MoonlitLayer } from "@/components/story/MoonlitLayer";
 import { OceanLayer } from "@/components/story/OceanLayer";
 import { SkyLayer } from "@/components/story/SkyLayer";
 import { WorkshopLayer } from "@/components/story/WorkshopLayer";
@@ -190,6 +191,7 @@ function AmbientLayer({ slug }: { slug: string }) {
   if (slug === "aqua") return <OceanLayer />;
   if (slug === "inventor") return <WorkshopLayer />;
   if (slug === "forest") return <ForestLayer />;
+  if (slug === "luna") return <MoonlitLayer />;
   return <PetalLayer />;
 }
 
@@ -285,6 +287,14 @@ function OriginScene({
 
 /** Descriptions of each illustration for screen readers. */
 const SCENE_ALT: Record<string, string> = {
+  "/stories/luna/scene-1.png":
+    "Maria, in her pink floral scarf, reaches toward a fading paper lantern on a moonlit lake while an elderly owl holds an old photograph.",
+  "/stories/luna/scene-2.png":
+    "Maria stands on a stool in a library inside a great flowering tree, reaching for shelves of glowing jars, books, bells and photographs.",
+  "/stories/luna/scene-3.png":
+    "Maria listens thoughtfully as the elderly owl holds a faded photograph beside a lantern, a silver bell and a tiny wooden boat.",
+  "/stories/luna/scene-4.png":
+    "Maria happily writes in a memory book by the lake while glowing lanterns float on the water and woodland friends gather around.",
   "/stories/melody/scene-1.png": "Maria in her pink floral scarf sits beside a sad little bunny on a lantern-lit village street beneath the moon.",
   "/stories/melody/scene-2.png": "Maria in her pink floral scarf explores a moonlit village with bridges, waterfalls and golden lanterns. Preview artwork awaiting the guitar discovery scene.",
   "/stories/melody/scene-3.png": "Maria in her pink floral scarf thinks beside a guitar beneath a sleeping child's window. Preview artwork awaiting the scene with the bunny.",

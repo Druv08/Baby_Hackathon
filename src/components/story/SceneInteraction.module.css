@@ -541,3 +541,66 @@
   background: radial-gradient(circle, #fff, #ffd27a 50%, rgba(255, 210, 122, 0) 75%);
   box-shadow: 0 0 8px rgba(255, 210, 122, 0.9);
 }
+
+/* Luna reveal: moonlight, memory lanterns floating up and golden sparkles. */
+.sparkleLayer[data-variant="lanterns"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 35% at 70% 10%, rgba(235, 225, 255, 0.45), rgba(235, 225, 255, 0) 70%),
+    radial-gradient(ellipse 70% 30% at 50% 95%, rgba(255, 214, 140, 0.35), rgba(255, 214, 140, 0) 70%);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.sparkleLayer[data-variant="lanterns"][data-shown="true"]::before {
+  opacity: 1;
+}
+
+.sparkleLayer[data-variant="lanterns"] span {
+  top: auto;
+  bottom: -24px;
+  width: 12px;
+  height: 15px;
+  border-radius: 3px;
+  background: linear-gradient(#fff3c4, #ffc861);
+  box-shadow: 0 0 12px rgba(255, 210, 120, 0.85);
+}
+
+.sparkleLayer[data-variant="lanterns"] span:nth-child(3n) {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.sparkleLayer[data-variant="lanterns"][data-shown="true"] span {
+  animation: lanternUp 6s ease-in infinite;
+}
+
+@keyframes lanternUp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(14px, -360px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkleLayer[data-variant="lanterns"][data-shown="true"] span {
+    animation: none;
+    opacity: 0.85;
+    bottom: 8%;
+  }
+
+  .sparkleLayer[data-variant="lanterns"]::before {
+    transition: none;
+  }
+}

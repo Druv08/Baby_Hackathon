@@ -6,6 +6,7 @@ import { MagicBubble, ReefCleanup, SeaCreatures, TangledNet } from "@/components
 import { CloudBridge, CloudSteps, WindChimes, WorriedCloud } from "@/components/cloud/CloudSceneInteractions";
 import { RouteChoice, SafeRouteMap, ShiftingMap, TurningSignpost } from "@/components/forest/ForestSceneInteractions";
 import { Gear } from "@/components/inventor/GearSvg";
+import { FadingLantern, KeepsakeClues, MemoryMatch, StoryBehind } from "@/components/luna/LunaSceneInteractions";
 import { FlickerLantern, GearChallenge, MachineActivation, MachineDiagram } from "@/components/inventor/InventorSceneInteractions";
 import {
   ConnectDreams,
@@ -87,6 +88,17 @@ export function SceneInteraction({ id }: { id?: string }) {
       return <SafeRouteMap />;
     case "forest-reveal":
       return <RevealSparkles variant="leaves" />;
+    // Luna Maria
+    case "fading-lantern":
+      return <FadingLantern />;
+    case "keepsake-clues":
+      return <KeepsakeClues />;
+    case "story-behind":
+      return <StoryBehind />;
+    case "memory-match":
+      return <MemoryMatch />;
+    case "luna-reveal":
+      return <RevealSparkles variant="lanterns" />;
     default:
       return null;
   }
@@ -226,7 +238,11 @@ function BloomFlowers() {
  * sparkles for Inventor, falling leaves, glowing paths and brightening
  * lanterns for Forest) when the reveal appears.
  */
-function RevealSparkles({ variant = "petals" }: { variant?: "petals" | "stars" | "clouds" | "bubbles" | "gears" | "leaves" }) {
+function RevealSparkles({
+  variant = "petals",
+}: {
+  variant?: "petals" | "stars" | "clouds" | "bubbles" | "gears" | "leaves" | "lanterns";
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {

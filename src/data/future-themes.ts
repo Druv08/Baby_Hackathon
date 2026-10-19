@@ -112,6 +112,9 @@ export const CHARACTER_THEMES: Record<CharacterSlug, CharacterTheme> = {
     accentSoft: "#e7e3fa",
     accentGlow: "rgba(130, 110, 220, 0.55)",
     portraitAlt: "Luna Maria in a purple wizard hat with a crescent moon and a starry cape, holding a glowing star.",
+    journalTitle: "Celestial Journal",
+    workshop: "memory workshop",
+    creationsIcon: "🌙",
   },
 };
 

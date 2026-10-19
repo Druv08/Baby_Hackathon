@@ -107,8 +107,7 @@ export const FUTURES: FuturePath[] = [
     slug: "luna",
     characterId: 9,
     heroImage: "/heroes/luna.png",
-    // Draft until the story page is live and verified.
-    storyStatus: "draft",
+    storyStatus: "ready",
     portfolioStatus: "pending",
     storyIntro: LUNA_STORY_INTRO,
     scenes: LUNA_SCENES,

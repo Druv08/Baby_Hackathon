@@ -710,3 +710,118 @@
   border-radius: var(--radius-sm);
   line-height: 1.6;
 }
+
+/* ── Luna: the Moonlit Village of Memories ────────────────────────── */
+.world[data-world="luna"][data-backdrop="true"] {
+  background: #241d4a;
+}
+
+/* A gentle night veil keeps the lanterns glowing without hiding the moon. */
+.world[data-world="luna"] .backdropVeil {
+  background: linear-gradient(180deg, rgba(20, 14, 50, 0.1), rgba(20, 14, 50, 0.06) 45%, rgba(20, 14, 50, 0.32));
+}
+
+/* Centre on the moon, the bridge and the lantern-lit lake. */
+.world[data-world="luna"] .backdropImage {
+  object-position: 55% 50%;
+}
+
+/* Translucent navy intro card with a lavender edge. */
+.world[data-world="luna"] .introCopy,
+.world[data-world="luna"] .revealHead {
+  background: rgba(30, 24, 66, 0.85);
+  border-color: rgba(185, 167, 230, 0.6);
+}
+
+.world[data-world="luna"] .introTitle,
+.world[data-world="luna"] .revealHead h2 {
+  color: #fdf8ff;
+  text-shadow: 0 0 22px rgba(205, 188, 255, 0.85);
+}
+
+.world[data-world="luna"] .introSubtitle,
+.world[data-world="luna"] .introCopy :global(.eyebrow) {
+  color: #ffe08a;
+}
+
+.world[data-world="luna"] .introBlurb {
+  color: #ece6ff;
+}
+
+/* Cream parchment reading panels with a lavender border and a little moon. */
+.world[data-world="luna"] .panel {
+  position: relative;
+  background:
+    radial-gradient(circle at 100% 0, rgba(205, 188, 255, 0.45), transparent 35%),
+    #fffaf3;
+  border-color: #cdbcff;
+  box-shadow: var(--shadow-soft), 0 0 30px rgba(155, 130, 230, 0.25);
+}
+
+.world[data-world="luna"] .panel::after {
+  content: "🌙";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.world[data-world="luna"] .sceneTitle {
+  color: #3b2c74;
+}
+
+/* Spoken lines with a soft golden glow. */
+.world[data-world="luna"] .panel p[class] {
+  border-left-color: #c9a2f0;
+  color: #5b3fa8;
+  text-shadow: 0 0 12px rgba(255, 220, 140, 0.35);
+}
+
+.world[data-world="luna"] .frame,
+.world[data-world="luna"] .revealFrame {
+  border-color: #fffaf3;
+  box-shadow: 0 0 0 3px #b9a7e6, 0 20px 50px rgba(20, 14, 50, 0.45), 0 0 40px rgba(255, 214, 140, 0.3);
+}
+
+/* Gentle floating on the illustrations (translate, so it combines with the fade-in). */
+.world[data-world="luna"] .frame {
+  animation: moonFloat 7s ease-in-out infinite;
+}
+
+.world[data-world="luna"] .scene:nth-of-type(even) .frame {
+  animation-delay: -3.5s;
+}
+
+.world[data-world="luna"] .introMaria {
+  animation: moonFloat 6s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.world[data-world="luna"] .characterCard {
+  background: linear-gradient(180deg, #fffaf3, #ebe3ff);
+}
+
+.world[data-world="luna"] .cardPortrait {
+  box-shadow: 0 0 0 3px #b9a7e6, 0 0 30px rgba(255, 214, 140, 0.6);
+}
+
+.world[data-world="luna"] .cardName {
+  color: #5b3fa8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world[data-world="luna"] .frame,
+  .world[data-world="luna"] .introMaria {
+    animation: none;
+  }
+}
